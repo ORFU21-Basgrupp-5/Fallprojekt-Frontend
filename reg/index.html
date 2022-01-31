@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/login/login.css" rel="stylesheet">
+    <title>Registrera</title>
+</head>
+<body>
+    <div id="reg">
+        <h1>Skapa ett konto</h1>
+        <p>Har du redan ett konto? <a href="/login/">Logga in här</a></p>
+        <form id="reg_form">
+            <div id="hidden-message"></div>
+            <div id="uname">
+                <label for="username">Användarnamn </label>
+                <input type="text" name="username" placeholder="Välj ett användarnamn">
+            </div>
+
+            <div id="email">
+                <label for="email">Email: </label>
+                <input type="text" name="email" placeholder="Fyll i din epost">
+            </div>
+
+            <div id="pswrd">
+                <label for="password">Lösenord: </label>
+                <input type="text" name="password" placeholder="Välj ett lösenord">
+            </div>
+            
+            <div id="pswrdvalid">
+                <label for="password2">Bekräfta lösenord: </label>
+                <input type="text" name="password2" placeholder="Bekräfta lösenord">
+            </div>
+
+            <div id="btn">
+                <input type="submit">
+            </div>
+        </form>
+    </div>
+    
+</body>
+<script src="reg.js"></script>
+</html>
