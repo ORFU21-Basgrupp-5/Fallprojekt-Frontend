@@ -1,6 +1,6 @@
 let ListExp = document.getElementById("Lista Utgifter")
 
-let data = ['Cigaretter', 'Spel', 'Alkohol', 'mat' ];
+let data = ['Mat', 'Nöje', 'Hyra', 'Bilutgifter' ];
   
 let list = document.getElementById("Lista Utgifter");
 
