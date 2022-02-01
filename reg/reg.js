@@ -2,7 +2,6 @@ let form = document.getElementById("reg_form");
 
 
 
-
 form.onsubmit= (e) =>{
 
     e.preventDefault();
