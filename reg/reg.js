@@ -37,19 +37,20 @@ form.onsubmit= (e) =>{
             const email = userRegister[1];
             const password = userRegister[2];
             const newUser = new userDTO(name,password,email);
-
-       
-
-                // todo Fixa API connection
-            // let response = await fetch('https://localhost:7151/User/Login?userName=TestKonto1&passWord=admin',opts);
-            // fetch('https://localhost:7151/User/Login', {
-            //     method: 'post',
-            //     body: JSON.stringify({ name: namevalue, address: addressvalue })
-            // })
-            //     .then(function (response) {
-            //         if (response.status !== 200) {
-            //             console.log('fetch returned not ok' + response.status);
-            //         }
+            FetchReg();
+            async function FetchReg(){
+                let response = await fetch('https://localhost:7151/User/register', {
+                method: 'post',
+                body: JSON.stringify({ "userName": newUser.name, "password": newUser.password, "email": newUser.email })
+            }).then(function (response) {
+                if (response.status !== 200) {
+                    console.log('something went wrong');
+                } else{
+                    console.log('user registerd');
+                }
+            })
+            
+                
         
             //         response.json().then(function (data) {
             //             console.log('fetch returned ok');
@@ -61,12 +62,8 @@ form.onsubmit= (e) =>{
             //     });
             // }, false);
             
+            }
         }
-        
-     
-
-        
-        
     }
     else
     {
