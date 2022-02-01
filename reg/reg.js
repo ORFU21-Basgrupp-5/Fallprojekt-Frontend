@@ -37,32 +37,8 @@ form.onsubmit= (e) =>{
             const email = userRegister[1];
             const password = userRegister[2];
             const newUser = new userDTO(name,password,email);
-            FetchReg();
-            async function FetchReg(){
-                let response = await fetch('https://localhost:7151/User/register', {
-                method: 'post',
-                body: JSON.stringify({ "userName": newUser.name, "password": newUser.password, "email": newUser.email })
-            }).then(function (response) {
-                if (response.status !== 200) {
-                    console.log('something went wrong');
-                } else{
-                    console.log('user registerd');
-                }
-            })
+            FetchReg(newUser);
             
-                
-        
-            //         response.json().then(function (data) {
-            //             console.log('fetch returned ok');
-            //             console.log(data);
-            //         });
-            //     })
-            //     .catch(function (err) {
-            //         console.log(`error: ${err}`);
-            //     });
-            // }, false);
-            
-            }
         }
     }
     else
@@ -72,6 +48,20 @@ form.onsubmit= (e) =>{
             errorPassContainer.appendChild(newText);
     }
     
+}
+async function FetchReg(newUser){
+    let response = await fetch('https://localhost:7151/User/register', {
+    method: 'post',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({"userName": newUser.name, "password": newUser.password, "email": newUser.email})
+})
+if (response.status !== 200) {
+    console.log('something went wrong');
+} else{
+    console.log('user registerd');
+}
 }
  class userDTO {
     constructor(userName,password,email) {
