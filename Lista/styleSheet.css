@@ -1,0 +1,20 @@
+body {
+    background: rgb(212, 67, 67);
+    text-align: center;
+}
+
+/* h1 {
+  text-align: center;
+} */
+
+#ListaUtgifter {
+  background-color: #113e88;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
