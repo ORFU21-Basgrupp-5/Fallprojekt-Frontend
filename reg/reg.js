@@ -32,12 +32,17 @@ form.onsubmit= (e) =>{
         }
         else
         {
-            debugger
             const name = userRegister[0];
             const email = userRegister[1];
             const password = userRegister[2];
             const newUser = new userDTO(name,password,email);
-            FetchReg(newUser);
+            const userDTO2 = {
+                userName: name,
+                password: password,
+                email: email
+            }
+            
+            FetchReg(userDTO2);
             
         }
     }
@@ -55,9 +60,9 @@ async function FetchReg(newUser){
     headers: {
         'Content-Type': 'application/json',
     },
-    body: JSON.stringify({"userName": newUser.name, "password": newUser.password, "email": newUser.email})
+    body: JSON.stringify(newUser)
 })
-if (response.status !== 200) {
+if (!response.ok) {
     console.log('something went wrong');
 } else{
     console.log('user registerd');
