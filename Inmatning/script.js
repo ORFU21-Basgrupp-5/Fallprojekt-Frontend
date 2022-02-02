@@ -8,7 +8,6 @@ let Incbutton = document.getElementById("income")
 
 Expbutton.onclick = (e) =>
 {
-    debugger;
     e.preventDefault()
     console.log("Du lade till en utgift")
 let expinputs = {
@@ -24,20 +23,16 @@ let expinputs = {
     
 }
 
-    
-
-
-
 Incbutton.onclick = (i) =>
 {
     i.preventDefault()
     console.log("Du lade till en inkomst")
    
     let incinputs = {
-        Incsaldo: Inc.Saldo,
-        Inckonto:Inc.Konto,
-        Incdescription: Inc.Description,
-        Incdate: Inc.Date
+        Incsaldo: Inc.Saldo.value,
+        Inckonto:Inc.Konto.value,
+        Incdescription: Inc.Description.value,
+        Incdate: Inc.Date.value
         }
         fetchInc(incinputs)
 }
@@ -47,7 +42,6 @@ Incbutton.onclick = (i) =>
 async function fetchExp(expinputs){  
     const AddExp = await fetch('https://localhost:7151/Expenses/AddExpense?'+'saldo='+expinputs.Expsaldo+'&AccountId='+expinputs.Expkonto+'&description='+expinputs.Expdescription+'&date='+expinputs.Expdate, {
         method: "PUT", 
-        
         headers: {
           'Content-Type': 'application/json'
         }})
