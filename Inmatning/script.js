@@ -1,33 +1,80 @@
 
-let Exp = document.getElementById("utgifter")
+let Exp = document.getElementById("Utgifter")
 let Inc = document.getElementById("Inkomster")
 let Expbutton = document.getElementById("expense")
 let Incbutton = document.getElementById("income")
 
-// const Expense = (C)=>
-// {
-//     console.log("Du lade till en utgift")
-// }
-// const Income = (C)=>
-// {
-//     console.log("Du lade till en inkomst")
-// }
+
 
 Expbutton.onclick = (e) =>
 {
+    debugger;
     e.preventDefault()
     console.log("Du lade till en utgift")
+let expinputs = {
+     Expdate: Exp.Date.value,
+     Expsaldo: Exp.Saldo.value,
+     Expkonto:  Exp.Konto.value,
+     Expdescription: Exp.Description.value
 }
+ 
+    fetchExp(expinputs)
+
+      
+    
+}
+
+    
+
+
 
 Incbutton.onclick = (i) =>
 {
     i.preventDefault()
     console.log("Du lade till en inkomst")
-    
+   
+    let incinputs = {
+        Incsaldo: Inc.Saldo,
+        Inckonto:Inc.Konto,
+        Incdescription: Inc.Description,
+        Incdate: Inc.Date
+        }
+        fetchInc(incinputs)
 }
 
 
-// }
-// Expense()
-// Income()
-// // debugger
+
+async function fetchExp(expinputs){  
+    const AddExp = await fetch('https://localhost:7151/Expenses/AddExpense?'+'saldo='+expinputs.Expsaldo+'&AccountId='+expinputs.Expkonto+'&description='+expinputs.Expdescription+'&date='+expinputs.Expdate, {
+        method: "PUT", 
+        
+        headers: {
+          'Content-Type': 'application/json'
+        }})
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("NETWORK RESPONSE ERROR");
+        }
+      })
+    }
+
+    async function fetchInc(incinputs){  
+        const AddInc = await fetch('https://localhost:7151/Income/AddIncome?'+'saldo='+incinputs.Incsaldo+'&AccountId='+incinputs.Inckonto+'&description='+incinputs.Incdescription+'&date='+incinputs.Incdate, {
+            method: "PUT", 
+            headers: {
+              'Content-Type': 'application/json'
+            }})
+          .then((response) => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              throw new Error("NETWORK RESPONSE ERROR");
+            }
+          })
+        }
+
+       
+
+
