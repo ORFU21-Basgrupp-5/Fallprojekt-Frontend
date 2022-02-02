@@ -1,11 +1,7 @@
 body {
-    background: rgb(212, 67, 67);
+    background: rgb(194, 88, 88);
     text-align: center;
 }
-
-/* h1 {
-  text-align: center;
-} */
 
 #ListaUtgifter {
   background-color: #113e88;
@@ -18,3 +14,11 @@ body {
   font-size: 16px;
 }
 
+.container {
+  height: 100%;
+  width: 25%;
+  display: box;
+  justify-content: left;
+  align-items: left;
+  text-align: left;
+}
