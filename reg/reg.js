@@ -2,7 +2,6 @@ let form = document.getElementById("reg_form");
 
 
 
-
 form.onsubmit= (e) =>{
 
     e.preventDefault();
@@ -33,41 +32,19 @@ form.onsubmit= (e) =>{
         }
         else
         {
-            debugger
             const name = userRegister[0];
             const email = userRegister[1];
             const password = userRegister[2];
             const newUser = new userDTO(name,password,email);
-
-       
-
-                // todo Fixa API connection
-            // let response = await fetch('https://localhost:7151/User/Login?userName=TestKonto1&passWord=admin',opts);
-            // fetch('https://localhost:7151/User/Login', {
-            //     method: 'post',
-            //     body: JSON.stringify({ name: namevalue, address: addressvalue })
-            // })
-            //     .then(function (response) {
-            //         if (response.status !== 200) {
-            //             console.log('fetch returned not ok' + response.status);
-            //         }
-        
-            //         response.json().then(function (data) {
-            //             console.log('fetch returned ok');
-            //             console.log(data);
-            //         });
-            //     })
-            //     .catch(function (err) {
-            //         console.log(`error: ${err}`);
-            //     });
-            // }, false);
+            const userDTO2 = {
+                userName: name,
+                password: password,
+                email: email
+            }
+            
+            FetchReg(userDTO2);
             
         }
-        
-     
-
-        
-        
     }
     else
     {
@@ -76,6 +53,23 @@ form.onsubmit= (e) =>{
             errorPassContainer.appendChild(newText);
     }
     
+}
+
+
+
+async function FetchReg(newUser){
+    let response = await fetch('http://localhost:7151/User/register', {
+    method: 'post',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(newUser)
+})
+if (!response.ok) {
+    console.log('something went wrong');
+} else{
+    console.log('user registerd');
+}
 }
  class userDTO {
     constructor(userName,password,email) {
