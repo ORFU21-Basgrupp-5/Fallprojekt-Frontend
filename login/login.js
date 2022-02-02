@@ -20,11 +20,8 @@ form.onsubmit= (e) =>{
 
    
 
- 
 
-     
 
-        //fetch("https://localhost:7151/ListExpenses"
 
  
 //Login?userName=test&passWord=baba'

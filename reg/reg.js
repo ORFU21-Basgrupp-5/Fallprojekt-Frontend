@@ -54,8 +54,11 @@ form.onsubmit= (e) =>{
     }
     
 }
+
+
+
 async function FetchReg(newUser){
-    let response = await fetch('https://localhost:7151/User/register', {
+    let response = await fetch('http://localhost:7151/User/register', {
     method: 'post',
     headers: {
         'Content-Type': 'application/json',
