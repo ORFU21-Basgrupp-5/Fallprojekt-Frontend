@@ -1,7 +1,5 @@
 let form = document.getElementById("reg_form");
 
-
-
 form.onsubmit= (e) =>{
 
     e.preventDefault();
@@ -35,14 +33,14 @@ form.onsubmit= (e) =>{
             const name = userRegister[0];
             const email = userRegister[1];
             const password = userRegister[2];
-            const newUser = new userDTO(name,password,email);
-            const userDTO2 = {
+            
+            const userDTO = {
                 userName: name,
                 password: password,
                 email: email
             }
             
-            FetchReg(userDTO2);
+            FetchReg(userDTO);
             
         }
     }
@@ -58,7 +56,7 @@ form.onsubmit= (e) =>{
 
 
 async function FetchReg(newUser){
-    let response = await fetch('http://localhost:7151/User/register', {
+    let response = await fetch('https://localhost:7151/User/register', {
     method: 'post',
     headers: {
         'Content-Type': 'application/json',
@@ -68,16 +66,13 @@ async function FetchReg(newUser){
 if (!response.ok) {
     console.log('something went wrong');
 } else{
-    console.log('user registerd');
+    var activeUser = newUser.userName;
+              sessionStorage.setItem("User", activeUser);
+                alert('Du är nu registrerad!');
+                window.location.assign('/welcome/');
 }
 }
- class userDTO {
-    constructor(userName,password,email) {
-        this.userName = userName;
-        this.password = password;
-        this.email = email;
-     }
- }
+
 
 
 function CheckPassword(password) 
