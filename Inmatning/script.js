@@ -14,7 +14,9 @@ let expinputs = {
      Expdate: Exp.Date.value,
      Expsaldo: Exp.Saldo.value,
      Expkonto:  Exp.Konto.value,
-     Expdescription: Exp.Description.value
+     Expdescription: Exp.Description.value,
+     CategoryExpense: Exp.CategoryExp.value
+
 }
 
     fetchExp(expinputs)
@@ -32,7 +34,8 @@ Incbutton.onclick = (i) =>
         Incsaldo: Inc.Saldo.value,
         Inckonto:Inc.Konto.value,
         Incdescription: Inc.Description.value,
-        Incdate: Inc.Date.value
+        Incdate: Inc.Date.value,
+        CategoryIncome: Inc.CategoryInc.value
         }
         fetchInc(incinputs)
 }
@@ -40,7 +43,7 @@ Incbutton.onclick = (i) =>
 
 
 async function fetchExp(expinputs){  
-    const AddExp = await fetch('https://localhost:7151/Expenses/AddExpense?'+'saldo='+expinputs.Expsaldo+'&AccountId='+expinputs.Expkonto+'&description='+expinputs.Expdescription+'&date='+expinputs.Expdate, {
+    const AddExp = await fetch('https://localhost:7151/Expenses/AddExpense?'+'saldo='+expinputs.Expsaldo+'&AccountId='+expinputs.Expkonto+'&description='+expinputs.Expdescription+'&date='+expinputs.Expdate+'&category='+expinputs.CategoryExpense, {
         method: "PUT", 
         headers: {
           'Content-Type': 'application/json'
@@ -55,7 +58,7 @@ async function fetchExp(expinputs){
     }
 
     async function fetchInc(incinputs){  
-        const AddInc = await fetch('https://localhost:7151/Income/AddIncome?'+'saldo='+incinputs.Incsaldo+'&AccountId='+incinputs.Inckonto+'&description='+incinputs.Incdescription+'&date='+incinputs.Incdate, {
+        const AddInc = await fetch('https://localhost:7151/Income/AddIncome?'+'saldo='+incinputs.Incsaldo+'&AccountId='+incinputs.Inckonto+'&description='+incinputs.Incdescription+'&date='+incinputs.Incdate+'&category='+incinputs.CategoryIncome, {
             method: "PUT", 
             headers: {
               'Content-Type': 'application/json'
@@ -68,6 +71,7 @@ async function fetchExp(expinputs){
             }
           })
         }
+
 
 
 
