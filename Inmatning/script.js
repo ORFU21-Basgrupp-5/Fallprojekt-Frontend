@@ -21,8 +21,6 @@ let expinputs = {
 
     fetchExp(expinputs)
 
-
-
 }
 
 Incbutton.onclick = (i) =>
@@ -50,7 +48,7 @@ async function fetchExp(expinputs){
         }})
       .then((response) => {
         if (response.ok) {
-          return response.json();
+          return true;
         } else {
           throw new Error("NETWORK RESPONSE ERROR");
         }
@@ -65,7 +63,7 @@ async function fetchExp(expinputs){
             }})
           .then((response) => {
             if (response.ok) {
-              return response.json();
+              return true;
             } else {
               throw new Error("NETWORK RESPONSE ERROR");
             }
