@@ -1,5 +1,6 @@
 import { render as listRender } from "./lista.js";
 import { render as inmatningRender} from "./inmatning.js";
+import { render as RegRender} from "./reg.js";
 
 const pageContent = document.getElementById('pageContent')
 
@@ -16,7 +17,7 @@ export class Header {
             inmatningRender(pageContent)
         })
         button3.addEventListener('click', () => {
-            changePage('page3')
+            RegRender(pageContent)
         })
     }
 }
