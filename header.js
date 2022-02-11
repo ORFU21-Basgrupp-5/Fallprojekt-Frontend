@@ -19,5 +19,7 @@ export class Header {
         button3.addEventListener('click', () => {
             RegRender(pageContent)
         })
+
+        
     }
 }
