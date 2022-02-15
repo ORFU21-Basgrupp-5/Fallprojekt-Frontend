@@ -55,3 +55,4 @@ form.onsubmit= (e) =>
 }
 
 
+//'Authorization': 'Bearer ' + cookies.get('token')
