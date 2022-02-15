@@ -2,28 +2,19 @@ export const render = (root) => {
   root.innerHTML = '';
   // var stringUtgifter = '<div><form id="Utgifter"><div><p>Inmatning av utgifter</p></div><div id="info-utgift"></div><div><label for = "Saldo"> Utgift, saldo:</label></div> <div>   <input type = "text" id= "Saldo" name= saldo></div><div><label for="Konto">Utgift, konto:</label></div> <div><input type="text" id= "Konto" name= konto></div><div><label for="Description">Utgift, beskrivning:</label></div><div>  <input type="text" id= "Description" name= description></div><div> <label for="Date">Utgift, datum:</label></div> <div><input type="date" id= "Date" name= date></div><div><button id= "expense">Enter</button></div</form></div>'
   // var stringInkomster = '<div><form id ="Inkomster"><div><p>Inmatning av Inkomster</p></div><div id="info-inkomst"></div><div><label for = "Saldo"> Inkomst, saldo:</label></div><div><input type = "text" id= "Saldo" name= saldo></div><div><label for="Konto">Inkomst, konto:</label></div><div><input type="text" id= "Konto" name= konto></div><div><label for="Description">Inkomst, beskrivning:</label></div><div><input type="text" id= "Description" name= description></div><div><label for="Date">Utgift, datum:</label></div><div> <input type="date" id= "Date" name= date> </div><div><button id= "income">Enter</button></div></form></div>'
+  
   let elem = [
-    document.createElement("label"),
-    document.createElement("input"),
-    document.createElement("label"),
-    document.createElement("input"),
-    document.createElement("label"),
-    document.createElement("input"),
-    document.createElement("label"),
-    document.createElement("input"),
-    document.createElement("button")
+    "label",
+    "input",
+    "label",
+    "input",
+    "label",
+    "input",
+    "label",
+    "input",
+    "button"
   ]
-  let elem2 = [
-    document.createElement("label"),
-    document.createElement("input"),
-    document.createElement("label"),
-    document.createElement("input"),
-    document.createElement("label"),
-    document.createElement("input"),
-    document.createElement("label"),
-    document.createElement("input"),
-    document.createElement("button")
-  ]
+
   let attri = [
     "for", "Saldo",
     "id", "Saldo",
@@ -50,20 +41,32 @@ export const render = (root) => {
   let divinkomst = document.createElement("div")
   divinkomst.setAttribute("id", "info-inkomst")
 
+  const inkomsterHeader = document.createElement('d')
+  const inkomsterText = document.createTextNode('Inkomster')
+  const inkomsterH3 = document.createElement('h3')
+  inkomsterHeader.appendChild(inkomsterH3)
+  inkomsterH3.appendChild(inkomsterText)
+
+  const utgifterHeader = document.createElement('d')
+  const utgifterText = document.createTextNode('Utgifter')
+  const utgifterH3 = document.createElement('h3')
+  utgifterHeader.appendChild(utgifterH3)
+  utgifterH3.appendChild(utgifterText)
+
+
+  pageContent.appendChild(inkomsterHeader)
   pageContent.appendChild(divinkomst)
   pageContent.appendChild(IncomeForm)
+  pageContent.appendChild(utgifterHeader)
   pageContent.appendChild(divutgift)
   pageContent.appendChild(ExpenseForm)
 
-  SetAttribuites(elem, attri, "I")
-  AppendElements(elem, IncomeForm)
-
-  SetAttribuites(elem2, attri, "E")
-  AppendElements(elem2, ExpenseForm)
+  SetAttribuites(elem, attri, "I", IncomeForm)
+  SetAttribuites(elem, attri, "E", ExpenseForm)
 
   let IncSubmit = document.getElementById("ISubmit")
   let ExpSubmit = document.getElementById("ESubmit")
-  
+
   IncSubmit.onclick = function(e) {
     e.preventDefault()
     income();
@@ -99,20 +102,24 @@ const expense = (e) => {
   }
 }
 
-function SetAttribuites(arr, arr2, letter){
+function SetAttribuites(arr, arr2, letter, form){
   let attnum = 0;
+  let elements = []
   for (let index = 0; index < arr.length; index++) {
-    arr[index].setAttribute(arr2[attnum], letter + arr2[attnum + 1]);
+    let element = document.createElement(arr[index])
+    elements.push(element)
+    elements[index].setAttribute(arr2[attnum], letter + arr2[attnum + 1]);
     if(index % 2 == 0 && index !== 8 || index == 7){
-      arr[index].innerHTML = arr2[attnum+1];
+      elements[index].innerHTML = arr2[attnum+1];
     }
     if(index == 7){
-      arr[index].setAttribute("type", "date")
+      elements[index].setAttribute("type", "date")
     } else if(index == 8){
-      arr[index].innerHTML = "Enter"
+      elements[index].innerHTML = "Enter"
     }
     attnum += 2;
   }
+  AppendElements(elements, form)
 }
 
 function AppendElements(arr, form){
