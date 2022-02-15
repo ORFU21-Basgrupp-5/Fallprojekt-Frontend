@@ -3,7 +3,8 @@ let ListExp = document.getElementById("ListaUtgifter")
 ListExp.onclick = (e) =>
 {
   let utgifter = [];
-  fetch("https://localhost:7151/ListExpenses", {
+  fetch("https://localhost:7151/ListExpenses", 
+  {
     method: "GET", 
     headers: {
       'Content-Type': 'application/json'
