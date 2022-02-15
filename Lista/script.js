@@ -23,9 +23,9 @@ function getCookie(name) {
 ListExp.onclick = (e) =>
 {
   let utgifter = [];
-  fetch("http://localhost:7151/User/Secret", 
+  fetch("http://localhost:7151/ListExpenses", 
   {
-    method: "post", 
+    method: "GET  ", 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + getCookie('token')

@@ -61,11 +61,11 @@ Incbutton.onclick = (i) =>
 
 
 async function fetchExp(expinputs){  
-    const AddExp = await fetch('https://localhost:7151/Expenses/AddExpense?'+'saldo='+expinputs.Expsaldo+'&AccountId='+expinputs.Expkonto+'&description='+expinputs.Expdescription+'&date='+expinputs.Expdate+'&category='+expinputs.CategoryExpense, {
+    const AddExp = await fetch('http://localhost:7151/Expenses/AddExpense?'+'saldo='+expinputs.Expsaldo+'&AccountId='+expinputs.Expkonto+'&description='+expinputs.Expdescription+'&date='+expinputs.Expdate+'&category='+expinputs.CategoryExpense, {
         method: "PUT", 
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + getCookie('token')
+          'Authorization': 'Bearer ' + getCookie('token'),
         }})
       .then((response) => {
         if (response.ok) {
@@ -77,10 +77,11 @@ async function fetchExp(expinputs){
     }
 
     async function fetchInc(incinputs){  
-        const AddInc = await fetch('https://localhost:7151/Income/AddIncome?'+'saldo='+incinputs.Incsaldo+'&AccountId='+incinputs.Inckonto+'&description='+incinputs.Incdescription+'&date='+incinputs.Incdate+'&category='+incinputs.CategoryIncome, {
+        const AddInc = await fetch('http://localhost:7151/Income/AddIncome?'+'saldo='+incinputs.Incsaldo+'&AccountId='+incinputs.Inckonto+'&description='+incinputs.Incdescription+'&date='+incinputs.Incdate+'&category='+incinputs.CategoryIncome, {
             method: "PUT", 
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + getCookie('token')
             }})
           .then((response) => {
             if (response.ok) {
