@@ -1,8 +1,4 @@
-var ActiveUser = sessionStorage.getItem("User");
 
-let errorPassContainer = document.getElementById("active_user");
-            let newText = document.createElement("p").appendChild(document.createTextNode(ActiveUser));
-            errorPassContainer.appendChild(newText);
 
 export const Render = (root) => {
     root.innerHTML = "";
@@ -13,17 +9,20 @@ export const Render = (root) => {
     welcome.innerHTML = "Welcome";
     pageContent.appendChild(welcome);
 
+    var ActiveUser = sessionStorage.getItem("User");
     let active = document.createElement("div");
     active.setAttribute("id", "active_user");
     pageContent.appendChild(active);
+    let newText = document.createElement("p").appendChild(document.createTextNode(ActiveUser));
+    active.appendChild(newText)
 
     const inmatningButton = document.createElement("button");
-    inmatningButton.setAttribute("id", buttonInmatning);
+    inmatningButton.setAttribute("id", "buttonInmatning");
     inmatningButton.innerHTML = "Inmatning";
 
     const listaButton = document.createElement("button");
-    listaButton.setAttribute("id", buttonLista);
-    listaButton.innerHTML = "Inmatning";
+    listaButton.setAttribute("id", "buttonLista");
+    listaButton.innerHTML = "Lista";
 
     header.appendChild(inmatningButton);
     header.appendChild(listaButton);

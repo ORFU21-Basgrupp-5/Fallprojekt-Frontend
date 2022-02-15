@@ -105,7 +105,6 @@ export const render = (root) => {
 
  
     form.onsubmit= (e) =>{
-
         e.preventDefault();
         const userRegister = 
             [
@@ -174,8 +173,7 @@ export const render = (root) => {
     }
     
     function CheckPassword(password) 
-    { 
-      
+    {
         var paswd=  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{12,50}$/;
         if(password.match(paswd)) 
         { 
