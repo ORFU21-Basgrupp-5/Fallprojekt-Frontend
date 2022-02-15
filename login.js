@@ -1,3 +1,5 @@
+import {Render as welcomepage} from './welcome.js'
+let pageContent = document.getElementById("pageContent");
 let form = document.getElementById("form1");
 
 form.onsubmit= (e) =>{
@@ -19,7 +21,7 @@ form.onsubmit= (e) =>{
               var activeUser = userlogin[0].value;
               sessionStorage.setItem("User", activeUser);
                 alert('du är inloggad');
-                //window.location.assign('/welcome/');
+                welcomepage(pageContent)
             }
 
           }
