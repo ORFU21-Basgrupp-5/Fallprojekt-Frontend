@@ -1,136 +1,127 @@
 export const render = (root) => {
-    root.innerHTML = '';
-    // var stringUtgifter = '<div><form id="Utgifter"><div><p>Inmatning av utgifter</p></div><div id="info-utgift"></div><div><label for = "Saldo"> Utgift, saldo:</label></div> <div>   <input type = "text" id= "Saldo" name= saldo></div><div><label for="Konto">Utgift, konto:</label></div> <div><input type="text" id= "Konto" name= konto></div><div><label for="Description">Utgift, beskrivning:</label></div><div>  <input type="text" id= "Description" name= description></div><div> <label for="Date">Utgift, datum:</label></div> <div><input type="date" id= "Date" name= date></div><div><button id= "expense">Enter</button></div</form></div>'
-    // var stringInkomster = '<div><form id ="Inkomster"><div><p>Inmatning av Inkomster</p></div><div id="info-inkomst"></div><div><label for = "Saldo"> Inkomst, saldo:</label></div><div><input type = "text" id= "Saldo" name= saldo></div><div><label for="Konto">Inkomst, konto:</label></div><div><input type="text" id= "Konto" name= konto></div><div><label for="Description">Inkomst, beskrivning:</label></div><div><input type="text" id= "Description" name= description></div><div><label for="Date">Utgift, datum:</label></div><div> <input type="date" id= "Date" name= date> </div><div><button id= "income">Enter</button></div></form></div>'
+  root.innerHTML = '';
+  // var stringUtgifter = '<div><form id="Utgifter"><div><p>Inmatning av utgifter</p></div><div id="info-utgift"></div><div><label for = "Saldo"> Utgift, saldo:</label></div> <div>   <input type = "text" id= "Saldo" name= saldo></div><div><label for="Konto">Utgift, konto:</label></div> <div><input type="text" id= "Konto" name= konto></div><div><label for="Description">Utgift, beskrivning:</label></div><div>  <input type="text" id= "Description" name= description></div><div> <label for="Date">Utgift, datum:</label></div> <div><input type="date" id= "Date" name= date></div><div><button id= "expense">Enter</button></div</form></div>'
+  // var stringInkomster = '<div><form id ="Inkomster"><div><p>Inmatning av Inkomster</p></div><div id="info-inkomst"></div><div><label for = "Saldo"> Inkomst, saldo:</label></div><div><input type = "text" id= "Saldo" name= saldo></div><div><label for="Konto">Inkomst, konto:</label></div><div><input type="text" id= "Konto" name= konto></div><div><label for="Description">Inkomst, beskrivning:</label></div><div><input type="text" id= "Description" name= description></div><div><label for="Date">Utgift, datum:</label></div><div> <input type="date" id= "Date" name= date> </div><div><button id= "income">Enter</button></div></form></div>'
+  let elem = [
+    document.createElement("label"),
+    document.createElement("input"),
+    document.createElement("label"),
+    document.createElement("input"),
+    document.createElement("label"),
+    document.createElement("input"),
+    document.createElement("label"),
+    document.createElement("input"),
+    document.createElement("button")
+  ]
+  let elem2 = [
+    document.createElement("label"),
+    document.createElement("input"),
+    document.createElement("label"),
+    document.createElement("input"),
+    document.createElement("label"),
+    document.createElement("input"),
+    document.createElement("label"),
+    document.createElement("input"),
+    document.createElement("button")
+  ]
+  let attri = [
+    "for", "Saldo",
+    "id", "Saldo",
+    "for", "Konto",
+    "id", "Konto",
+    "for", "Desc",
+    "id", "Desc",
+    "for", "Date",
+    "id", "Date",
+    "id", "Submit"
+  ]
+  
+  let pageContent = document.getElementById("pageContent")
 
-    let pageContent = document.getElementById("pageContent")
-    let IncomeForm = document.createElement("form")
-    IncomeForm.setAttribute("id", "Inkomster")
-    let divutgift = document.createElement("div")
-    divutgift.setAttribute("id", "info-utgift")
+  let IncomeForm = document.createElement("form")
+  IncomeForm.setAttribute("id", "Inkomster")
 
-    let divinkomst = document.createElement("div")
-    divinkomst.setAttribute("id", "info-inkomst")
-    
-    let elem = [
-        document.createElement("label"),
-        document.createElement("input"),
-        document.createElement("label"),
-        document.createElement("input"),
-        document.createElement("label"),
-        document.createElement("input"),
-        document.createElement("label"),
-        document.createElement("input"),
-        document.createElement("button")
-    ]
-    let elem2 = [
-        document.createElement("label"),
-        document.createElement("input"),
-        document.createElement("label"),
-        document.createElement("input"),
-        document.createElement("label"),
-        document.createElement("input"),
-        document.createElement("label"),
-        document.createElement("input"),
-        document.createElement("button")
-    ]
-    let attri = [
-        "for", "ESaldo",
-        "id", "ESaldo",
-        "for", "EKonto",
-        "id", "EKonto",
-        "for", "EDesc",
-        "id", "EDesc",
-        "for", "EDate",
-        "id", "EDate",
-        "id", "ESubmit"
-    ]
-    let attri2 = [
-        "for", "ISaldo",
-        "id", "ISaldo",
-        "for", "IKonto",
-        "id", "IKonto",
-        "for", "IDesc",
-        "id", "IDesc",
-        "for", "IDate",
-        "id", "IDate",
-        "id", "ISubmit"
-    ]
-    elem[0].innerHTML = "Saldo :"
-    elem[2].innerHTML = "Konto :"
-    elem[4].innerHTML = "Desc :"
-    elem[6].innerHTML = "Datum :"
-    elem[7].setAttribute("type", "date")
-    elem[8].innerHTML = "Expense"
-    let attnum = 0;
-    for (let index = 0; index < elem.length; index++) {
-        elem[index].setAttribute(attri[attnum], attri[attnum + 1])
-        attnum += 2;
-    }
+  let ExpenseForm = document.createElement("form")
+  ExpenseForm.setAttribute("id", "Utgifter")
 
-    elem2[0].innerHTML = "Saldo :"
-    elem2[2].innerHTML = "Konto :"
-    elem2[4].innerHTML = "Desc :"
-    elem2[6].innerHTML = "Datum :"
-    elem2[7].setAttribute("type", "date")
-    elem2[8].innerHTML = "Income"
-    let attnum2 = 0;
-    for (let index = 0; index < elem.length; index++) {
-        elem2[index].setAttribute(attri2[attnum2], attri2[attnum2 + 1])
-        attnum2 += 2;
-    }
-    pageContent.appendChild(divutgift)
-    pageContent.appendChild(divinkomst)
+  let divutgift = document.createElement("div")
+  divutgift.setAttribute("id", "info-utgift")
 
-    elem.forEach(x => {
-        var d = document.createElement("div")
-        pageContent.appendChild(d).appendChild(x)
-    })
-    elem2.forEach(x => {
-        var d = document.createElement("div")
-        pageContent.appendChild(d).appendChild(x)
-    })
-    let Exp = document.getElementById("Utgifter")
-    
-    let IncSubmit = document.getElementById("ISubmit")
-    let ExpSubmit = document.getElementById("ESubmit")
-    
-    ExpSubmit.addEventListener('click', () => {
-      expense();
+  let divinkomst = document.createElement("div")
+  divinkomst.setAttribute("id", "info-inkomst")
+
+  pageContent.appendChild(divinkomst)
+  pageContent.appendChild(IncomeForm)
+  pageContent.appendChild(divutgift)
+  pageContent.appendChild(ExpenseForm)
+
+  SetAttribuites(elem, attri, "I")
+  SetAttribuites(elem2, attri, "E")
+
+  AppendElements(elem, IncomeForm)
+  AppendElements(elem2, ExpenseForm)
+
+  let IncSubmit = document.getElementById("ISubmit")
+  let ExpSubmit = document.getElementById("ESubmit")
+  
+  ExpSubmit.addEventListener('click', () => {
+    expense();
   })
 
   IncSubmit.addEventListener('click', () => {
     income();
-})
-
-const income = (e) =>
-  {
-    let Inc = document.getElementById("Inkomster")
-    console.log("Du lade till en inkomst")
-    PrintAdded("inkomst");
-    let incinputs = {
-        Incsaldo: Inc.Saldo.value,
-        Inckonto:Inc.Konto.value,
-        Incdescription: Inc.Description.value,
-        Incdate: Inc.Date.value
-        }
-        fetchInc(incinputs)
+  })
+  
+const income = (e) => {
+  e.preventDefault()
+  console.log("Du lade till en inkomst")
+  PrintAdded("inkomst");
+  let incinputs = {
+      Incsaldo: Inc.Saldo.value,
+      Inckonto:Inc.Konto.value,
+      Incdescription: Inc.Description.value,
+      Incdate: Inc.Date.value
   }
-
-const expense = (e) =>
-    {
-        // e.preventDefault()
-        console.log("Du lade till en utgift")
-        PrintAdded("utgift");
-        let expinputs = {
-            Expsaldo: Exp.Saldo.value,
-            Expkonto:  Exp.Konto.value,
-            Expdate: Exp.Date.value,
-            Expdescription: Exp.Description.value
-        }
-        fetchExp(expinputs)
-    }
+  fetchInc(incinputs)
 }
+
+const expense = (e) => {
+  e.preventDefault()
+  console.log("Du lade till en utgift")
+  PrintAdded("utgift");
+  let expinputs = {
+      Expsaldo: Exp.Saldo.value,
+      Expkonto:  Exp.Konto.value,
+      Expdate: Exp.Date.value,
+      Expdescription: Exp.Description.value
+    }
+  fetchExp(expinputs)
+  }
+}
+
+function SetAttribuites(arr, arr2, letter){
+  let attnum = 0;
+  for (let index = 0; index < arr.length; index++) {
+    arr[index].setAttribute(arr2[attnum], letter + arr2[attnum + 1]);
+    if(index % 2 == 0 && index !== 8 || index == 7){
+      arr[index].innerHTML = arr2[attnum+1];
+    }
+    if(index == 7){
+      arr[index].setAttribute("type", "date")
+    } else if(index == 8){
+      arr[index].innerHTML = "Enter"
+    }
+    attnum += 2;
+  }
+}
+
+function AppendElements(arr, form){
+  arr.forEach(x => {
+    var d = document.createElement("div")
+    form.appendChild(d).appendChild(x)
+  })
+}
+
 function PrintAdded(string){
     let divutgift = document.getElementById("info-utgift");
     let divinkomst = document.getElementById("info-inkomst");
@@ -182,8 +173,3 @@ function PrintAdded(string){
             }
             })
         }
-
-
-
-
-
