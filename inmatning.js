@@ -56,44 +56,44 @@ export const render = (root) => {
   pageContent.appendChild(ExpenseForm)
 
   SetAttribuites(elem, attri, "I")
-  SetAttribuites(elem2, attri, "E")
-
   AppendElements(elem, IncomeForm)
+
+  SetAttribuites(elem2, attri, "E")
   AppendElements(elem2, ExpenseForm)
 
   let IncSubmit = document.getElementById("ISubmit")
   let ExpSubmit = document.getElementById("ESubmit")
   
-  ExpSubmit.addEventListener('click', () => {
-    expense();
-  })
-
-  IncSubmit.addEventListener('click', () => {
+  IncSubmit.onclick = function(e) {
+    e.preventDefault()
     income();
-  })
+  }
+  ExpSubmit.onclick = function(e) {
+    e.preventDefault()
+    expense();
+  }
   
 const income = (e) => {
-  e.preventDefault()
+  let Inc = document.getElementById("Inkomster")
   console.log("Du lade till en inkomst")
   PrintAdded("inkomst");
   let incinputs = {
-      Incsaldo: Inc.Saldo.value,
-      Inckonto:Inc.Konto.value,
-      Incdescription: Inc.Description.value,
-      Incdate: Inc.Date.value
+      Incsaldo: Inc.ISaldo.value,
+      Inckonto:Inc.IKonto.value,
+      Incdescription: Inc.IDesc.value,
+      Incdate: Inc.IDate.value
   }
   fetchInc(incinputs)
 }
 
 const expense = (e) => {
-  e.preventDefault()
   console.log("Du lade till en utgift")
   PrintAdded("utgift");
   let expinputs = {
-      Expsaldo: Exp.Saldo.value,
-      Expkonto:  Exp.Konto.value,
-      Expdate: Exp.Date.value,
-      Expdescription: Exp.Description.value
+      Expsaldo: Exp.ESaldo.value,
+      Expkonto:  Exp.EKonto.value,
+      Expdescription: Exp.EDesc.value,
+      Expdate: Exp.EDate.value
     }
   fetchExp(expinputs)
   }

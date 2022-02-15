@@ -19,7 +19,7 @@ form.onsubmit= (e) =>{
               var activeUser = userlogin[0].value;
               sessionStorage.setItem("User", activeUser);
                 alert('du är inloggad');
-                window.location.assign('/welcome/');
+                //window.location.assign('/welcome/');
             }
 
           }
