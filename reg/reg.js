@@ -63,9 +63,12 @@ async function FetchReg(newUser){
     },
     body: JSON.stringify(newUser)
 })
-if (!response.ok) {
+if (!response.ok) 
+{
     console.log('something went wrong');
-} else{
+} 
+else
+{
     var activeUser = newUser.userName;
               sessionStorage.setItem("User", activeUser);
                 alert('Du är nu registrerad!');
