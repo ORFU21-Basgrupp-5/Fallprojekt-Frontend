@@ -1,4 +1,4 @@
-
+import {getCookie} from './cookie.js'
 export const render = (root) => {
   root.innerHTML = ''
   var stringLista = '<h1>Lista Utgifter</h1><div id="DivWithExpenses"></div>'
@@ -11,7 +11,8 @@ function GetData(){
   fetch("https://localhost:7151/ListExpenses", {
     method: "GET", 
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + getCookie('token')
     }})
     .then((response) => {
       if (response.ok) {

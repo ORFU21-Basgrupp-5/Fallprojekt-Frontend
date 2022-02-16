@@ -1,3 +1,4 @@
+import {getCookie} from './cookie.js'
 export const render = (root) => {
     root.innerHTML = '';
     
@@ -44,7 +45,8 @@ export const render = (root) => {
     form.appendChild(divuname)
     divuname.appendChild(labeluname)
     labeluname.appendChild(unametext)
-    form.appendChild(inputuname)
+    divuname.appendChild(inputuname)
+    form.appendChild(divuname)
 
 
     const divemail = document.createElement('div')
@@ -159,6 +161,7 @@ export const render = (root) => {
         method: 'post',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + getCookie('token')
         },
         body: JSON.stringify(newUser)
     })

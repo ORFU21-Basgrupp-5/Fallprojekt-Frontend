@@ -1,3 +1,4 @@
+import {getCookie} from './cookie.js'
 export const render = (root) => {
   root.innerHTML = '';
   // var stringUtgifter = '<div><form id="Utgifter"><div><p>Inmatning av utgifter</p></div><div id="info-utgift"></div><div><label for = "Saldo"> Utgift, saldo:</label></div> <div>   <input type = "text" id= "Saldo" name= saldo></div><div><label for="Konto">Utgift, konto:</label></div> <div><input type="text" id= "Konto" name= konto></div><div><label for="Description">Utgift, beskrivning:</label></div><div>  <input type="text" id= "Description" name= description></div><div> <label for="Date">Utgift, datum:</label></div> <div><input type="date" id= "Date" name= date></div><div><button id= "expense">Enter</button></div</form></div>'
@@ -53,6 +54,70 @@ export const render = (root) => {
   utgifterHeader.appendChild(utgifterH3)
   utgifterH3.appendChild(utgifterText)
 
+  const categorySelect = document.createElement("select")
+  categorySelect.setAttribute("id", "CategoryExp")
+  const opt1 = document.createElement("option")
+  opt1.setAttribute("value", 0)
+  opt1.innerHTML = "Food"
+  const opt2 = document.createElement("option")
+  opt2.setAttribute("value", 1)
+  opt2.innerHTML = "Car"
+  const opt3 = document.createElement("option")
+  opt3.setAttribute("value", 2)
+  opt3.innerHTML = "Subscriptions"
+  const opt4 = document.createElement("option")
+  opt4.setAttribute("value", 3)
+  opt4.innerHTML = "Clothes"
+  const opt5 = document.createElement("option")
+  opt5.setAttribute("value", 4)
+  opt5.innerHTML = "Treat"
+  const opt6 = document.createElement("option")
+  opt6.setAttribute("value", 5)
+  opt6.innerHTML = "Other"
+
+  let div = document.createElement("div")
+  let categorylabel = document.createElement("label")
+  categorylabel.innerHTML = "Category"
+  div.appendChild(categorylabel)
+  categorySelect.appendChild(opt1)
+  categorySelect.appendChild(opt2)
+  categorySelect.appendChild(opt3)
+  categorySelect.appendChild(opt4)
+  categorySelect.appendChild(opt5)
+  categorySelect.appendChild(opt6)
+  
+  const categorySelect2 = document.createElement("select")
+  categorySelect2.setAttribute("id", "CategoryInc")
+  const Incopt1 = document.createElement("option")
+  Incopt1.setAttribute("value", 0)
+  Incopt1.innerHTML = "Income"
+  const Incopt2 = document.createElement("option")
+  Incopt2.setAttribute("value", 1)
+  Incopt2.innerHTML = "CSN"
+  const Incopt3 = document.createElement("option")
+  Incopt3.setAttribute("value", 2)
+  Incopt3.innerHTML = "Shares"
+  const Incopt4 = document.createElement("option")
+  Incopt4.setAttribute("value", 3)
+  Incopt4.innerHTML = "Swish"
+  const Incopt5 = document.createElement("option")
+  Incopt5.setAttribute("value", 4)
+  Incopt5.innerHTML = "Other"
+
+  let div2 = document.createElement("div")
+  let categorylabel2 = document.createElement("label")
+  categorylabel2.innerHTML = "Category"
+  div2.appendChild(categorylabel2)
+  categorySelect2.appendChild(Incopt1)
+  categorySelect2.appendChild(Incopt2)
+  categorySelect2.appendChild(Incopt3)
+  categorySelect2.appendChild(Incopt4)
+  categorySelect2.appendChild(Incopt5)
+
+  IncomeForm.appendChild(div2)
+  IncomeForm.appendChild(categorySelect2)
+  ExpenseForm.appendChild(div)
+  ExpenseForm.appendChild(categorySelect)
 
   pageContent.appendChild(inkomsterHeader)
   pageContent.appendChild(divinkomst)
@@ -84,7 +149,8 @@ const income = (e) => {
       Incsaldo: Inc.ISaldo.value,
       Inckonto:Inc.IKonto.value,
       Incdescription: Inc.IDesc.value,
-      Incdate: Inc.IDate.value
+      Incdate: Inc.IDate.value,
+      CategoryIncome: Inc.CategoryInc.value
   }
   fetchInc(incinputs)
 }
@@ -96,7 +162,8 @@ const expense = (e) => {
       Expsaldo: Exp.ESaldo.value,
       Expkonto:  Exp.EKonto.value,
       Expdescription: Exp.EDesc.value,
-      Expdate: Exp.EDate.value
+      Expdate: Exp.EDate.value,
+      CategoryExpense: Exp.CategoryExp.value
     }
   fetchExp(expinputs)
   }
@@ -152,10 +219,11 @@ function PrintAdded(string){
 }
 
 async function fetchExp(expinputs){  
-  const AddExp = await fetch('https://localhost:7151/Expenses/AddExpense?'+'saldo='+expinputs.Expsaldo+'&AccountId='+expinputs.Expkonto+'&description='+expinputs.Expdescription+'&date='+expinputs.Expdate, {
+  const AddExp = await fetch('http://localhost:7151/Expenses/AddExpense?'+'saldo='+expinputs.Expsaldo+'&AccountId='+expinputs.Expkonto+'&description='+expinputs.Expdescription+'&date='+expinputs.Expdate+'&category='+expinputs.CategoryExpense, {
     method: "PUT", 
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + getCookie('token')
     }})
   .then((response) => {
     if (response.ok) {
@@ -166,10 +234,11 @@ async function fetchExp(expinputs){
   })
 }
 async function fetchInc(incinputs){  
-  const AddInc = await fetch('https://localhost:7151/Income/AddIncome?'+'saldo='+incinputs.Incsaldo+'&AccountId='+incinputs.Inckonto+'&description='+incinputs.Incdescription+'&date='+incinputs.Incdate, {
+  const AddInc = await fetch('http://localhost:7151/Income/AddIncome?'+'saldo='+incinputs.Incsaldo+'&AccountId='+incinputs.Inckonto+'&description='+incinputs.Incdescription+'&date='+incinputs.Incdate+'&category='+incinputs.CategoryIncome, {
     method: "PUT", 
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + getCookie('token')
     }})
     .then((response) => {
     if (response.ok) {
