@@ -1,34 +1,79 @@
+import { Render as welcomepage } from "./welcome.js";
+import { render as RegRender } from "./reg.js";
+import { Header } from "./header.js";
+
+let pageContent = document.getElementById("pageContent");
+
+let reglink = document.getElementById("reglink");
+reglink.onclick = function (e) {
+  e.preventDefault();
+  RegRender(pageContent);
+};
+
 let form = document.getElementById("form1");
 
-form.onsubmit= (e) =>{
-    e.preventDefault();
-    const userlogin = [document.forms["form1"]["username"], document.forms["form1"]["password"]];
-    
-  
+form.onsubmit = (e) => {
+  debugger;
+  e.preventDefault();
+  const userlogin = [
+    document.forms["form1"]["username"].value,
+    document.forms["form1"]["password"].value,
+  ];
 
-    const upvalidate =  userlogin.every(login => login.value != "");
-
-    if(upvalidate){
-        async function fetchLogin() {
-            const response = await fetch('https://localhost:7151/User/Login?'+'userName='+ userlogin[0].value + '&passWord=' + userlogin[1].value);
-            if (!response.ok) {
-              alert('Fel lösenord eller användarenamn!')
-            }
-            else
-            {
-              var activeUser = userlogin[0].value;
-              sessionStorage.setItem("User", activeUser);
-                alert('du är inloggad');
-                window.location.assign('/welcome/');
-            }
-
+  const userLoginDTO = {
+    userName: document.forms["form1"]["username"].value,
+    password: document.forms["form1"]["password"].value,
+  };
+  const upvalidate = userlogin.every((login) => login.value != "");
+  if (upvalidate) {
+    let isLoggedIn = false;
+    async function fetchLogin() {
+      const response = await fetch("http://localhost:7151/User/login", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userLoginDTO),
+      })
+        .then((response) => {
+          if (response.ok) {
+            isLoggedIn = true;
+            return response.json();
+          } else {
+            throw new Error("Error");
           }
-          fetchLogin().catch(error => {
-            error.message; // 'An error has occurred: 404'
-          });
-    } else {
-        alert("Enter stuff");
+        })
+        .then((data) => {
+          //console.log(data);
+          let token = data.token;
+          let user = data.user;
+          let expires = new Date(Date.now() + 86400 * 1000).toUTCString();
+
+          const cookie = (document.cookie =
+            "token=" +
+            token +
+            ";" +
+            "user=" +
+            user +
+            ";" +
+            "expires=" +
+            expires +
+            86400 +
+            ";path=/;");
+
+          welcomepage(pageContent);
+          let header = new Header();
+        });
     }
-}
 
+    fetchLogin().catch((error) => {
+      error.message;
+    });
 
+    // 'An error has occurred: 404'
+  } else {
+    alert("Enter stuff");
+  }
+};
+
+//'Authorization': 'Bearer ' + cookies.get('token')
