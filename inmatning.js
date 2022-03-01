@@ -154,28 +154,28 @@ export const render = (root) => {
     let Inc = document.getElementById("Inkomster");
     console.log("Du lade till en inkomst");
     PrintAdded("inkomst");
-    let incinputs = {
+    const incinputsDTO = {
       Incsaldo: Inc.ISaldo.value,
       Inckonto: Inc.IKonto.value,
       Incdescription: Inc.IDesc.value,
       Incdate: Inc.IDate.value,
       CategoryIncome: Inc.CategoryInc.value,
     };
-    fetchInc(incinputs);
+    fetchInc();
   };
 
   const expense = (e) => {
     console.log("Du lade till en utgift");
     PrintAdded("utgift");
     let Exp = document.getElementById("Utgifter")
-    let expinputs = {
+    const expinputsDTO = {
       Expsaldo: Exp.ESaldo.value,
       Expkonto: Exp.EKonto.value,
       Expdescription: Exp.EDesc.value,
       Expdate: Exp.EDate.value,
       CategoryExpense: Exp.CategoryExp.value,
     };
-    fetchExp(expinputs);
+    fetchExp();
   };
 };
 
@@ -236,25 +236,18 @@ function PrintAdded(string) {
   }
 }
 
-async function fetchExp(expinputs) {
+
+async function fetchExp() {
   const AddExp = await fetch(
-    "http://localhost:7151/Expenses/AddExpense?" +
-      "saldo=" +
-      expinputs.Expsaldo +
-      "&AccountId=" +
-      expinputs.Expkonto +
-      "&description=" +
-      expinputs.Expdescription +
-      "&date=" +
-      expinputs.Expdate +
-      "&category=" +
-      expinputs.CategoryExpense,
+    "http://localhost:7151/Expenses/AddExpense",
+   
     {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + getCookie("token"),
       },
+      body: JSON.stringify(expinputsDTO)
     }
   ).then((response) => {
     if (response.ok) {
@@ -264,25 +257,16 @@ async function fetchExp(expinputs) {
     }
   });
 }
-async function fetchInc(incinputs) {
+async function fetchInc() {
   const AddInc = await fetch(
-    "http://localhost:7151/Income/AddIncome?" +
-      "saldo=" +
-      incinputs.Incsaldo +
-      "&AccountId=" +
-      incinputs.Inckonto +
-      "&description=" +
-      incinputs.Incdescription +
-      "&date=" +
-      incinputs.Incdate +
-      "&category=" +
-      incinputs.CategoryIncome,
+    "http://localhost:7151/Income/AddIncome",
     {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + getCookie("token"),
       },
+      body: JSON.stringify(incinputsDTO)
     }
   ).then((response) => {
     if (response.ok) {
