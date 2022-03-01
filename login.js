@@ -1,8 +1,15 @@
 import { Render as welcomepage } from "./welcome.js";
 import { render as RegRender } from "./reg.js";
 import { Header } from "./header.js";
+import { render } from "./recoverpassword.js";
 
 let pageContent = document.getElementById("pageContent");
+
+const linkToRecover = document.getElementById("recover-btn")
+linkToRecover.onclick= function(e){
+  e.preventDefault();
+  render(pageContent)
+}
 
 let reglink = document.getElementById("reglink");
 reglink.onclick = function (e) {
