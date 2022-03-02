@@ -155,12 +155,33 @@ export const render = (root) => {
     console.log("Du lade till en inkomst");
     PrintAdded("inkomst");
     const incinputsDTO = {
-      Incsaldo: Inc.ISaldo.value,
-      Inckonto: Inc.IKonto.value,
-      Incdescription: Inc.IDesc.value,
-      Incdate: Inc.IDate.value,
-      CategoryIncome: Inc.CategoryInc.value,
+      incomeDate: Inc.IDate.value,
+      incomeDescription: Inc.IDesc.value,
+      incomeBalanceChange: Inc.ISaldo.value,
+      accountId: Inc.IKonto.value,
+      incomeCategory: parseInt(Inc.CategoryInc.value),
     };
+    
+    async function fetchInc() {
+      
+      const AddInc = await fetch(
+        "http://localhost:7151/Income/AddIncome",
+        {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + getCookie("token"),
+          },
+          body: JSON.stringify(incinputsDTO)
+        }
+      ).then((response) => {
+        if (response.ok) {
+          return true;
+        } else {
+          throw new Error("NETWORK RESPONSE ERROR");
+        }
+      });
+    }
     fetchInc();
   };
 
@@ -169,14 +190,34 @@ export const render = (root) => {
     PrintAdded("utgift");
     let Exp = document.getElementById("Utgifter")
     const expinputsDTO = {
-      Expsaldo: Exp.ESaldo.value,
-      Expkonto: Exp.EKonto.value,
-      Expdescription: Exp.EDesc.value,
-      Expdate: Exp.EDate.value,
-      CategoryExpense: Exp.CategoryExp.value,
+      expenseDate: Exp.EDate.value,
+      expenseDescription: Exp.EDesc.value,
+      expenseBalanceChange: Exp.ESaldo.value,
+      accountId: Exp.EKonto.value,
+      expenseCategory: parseInt(Exp.CategoryExp.value),
     };
-    fetchExp();
+    async function fetchExp() {
+  const AddExp = await fetch(
+    "http://localhost:7151/Expenses/AddExpense",
+    {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + getCookie("token"),
+      },
+      body: JSON.stringify(expinputsDTO)
+    }
+  ).then((response) => {
+    if (response.ok) {
+      return true;
+    } else {
+      throw new Error("NETWORK RESPONSE ERROR");
+    }
+  });
+}
+fetchExp();
   };
+  
 };
 
 function SetAttributes(arr, arr2, letter, form) {
@@ -237,42 +278,24 @@ function PrintAdded(string) {
 }
 
 
-async function fetchExp() {
-  const AddExp = await fetch(
-    "http://localhost:7151/Expenses/AddExpense",
-   
-    {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + getCookie("token"),
-      },
-      body: JSON.stringify(expinputsDTO)
-    }
-  ).then((response) => {
-    if (response.ok) {
-      return true;
-    } else {
-      throw new Error("NETWORK RESPONSE ERROR");
-    }
-  });
-}
-async function fetchInc() {
-  const AddInc = await fetch(
-    "http://localhost:7151/Income/AddIncome",
-    {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + getCookie("token"),
-      },
-      body: JSON.stringify(incinputsDTO)
-    }
-  ).then((response) => {
-    if (response.ok) {
-      return true;
-    } else {
-      throw new Error("NETWORK RESPONSE ERROR");
-    }
-  });
-}
+
+// async function fetchInc(incinputsDTO) {
+//   debugger;
+//   const AddInc = await fetch(
+//     "http://localhost:7151/Income/AddIncome",
+//     {
+//       method: "post",
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: "Bearer " + getCookie("token"),
+//       },
+//       body: JSON.stringify(incinputsDTO)
+//     }
+//   ).then((response) => {
+//     if (response.ok) {
+//       return true;
+//     } else {
+//       throw new Error("NETWORK RESPONSE ERROR");
+//     }
+//   });
+// }
