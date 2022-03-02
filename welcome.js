@@ -21,12 +21,12 @@ export const Render = (root) => {
   inmatningButton.innerHTML = "Inmatning";
 
   const listaEButton = document.createElement("button");
-  listaButton.setAttribute("id", "buttonELista");
-  listaButton.innerHTML = "ListaExpenses";
+  listaEButton.setAttribute("id", "buttonELista");
+  listaEButton.innerHTML = "ListaExpenses";
 
   const listaIButton = document.createElement("button");
-  listaButton.setAttribute("id", "buttonILista");
-  listaButton.innerHTML = "ListaIncomes";
+  listaIButton.setAttribute("id", "buttonILista");
+  listaIButton.innerHTML = "ListaIncomes";
 
   header.appendChild(inmatningButton);
   header.appendChild(listaEButton);
