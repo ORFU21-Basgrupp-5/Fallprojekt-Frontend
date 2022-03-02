@@ -13,7 +13,7 @@ reglink.onclick = function (e) {
 let form = document.getElementById("form1");
 
 form.onsubmit = (e) => {
-  debugger;
+  
   e.preventDefault();
   const userlogin = [
     document.forms["form1"]["username"].value,
