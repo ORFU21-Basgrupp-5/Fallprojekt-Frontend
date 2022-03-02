@@ -277,25 +277,3 @@ function PrintAdded(string) {
   }
 }
 
-
-
-// async function fetchInc(incinputsDTO) {
-//   debugger;
-//   const AddInc = await fetch(
-//     "http://localhost:7151/Income/AddIncome",
-//     {
-//       method: "post",
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: "Bearer " + getCookie("token"),
-//       },
-//       body: JSON.stringify(incinputsDTO)
-//     }
-//   ).then((response) => {
-//     if (response.ok) {
-//       return true;
-//     } else {
-//       throw new Error("NETWORK RESPONSE ERROR");
-//     }
-//   });
-// }
