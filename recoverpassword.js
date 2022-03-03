@@ -1,3 +1,4 @@
+import { getCookie } from "./cookie.js";
 export const render = (root) => {
   root.innerHTML = "";
   let formPassword = document.createElement("form")
@@ -36,22 +37,28 @@ export const render = (root) => {
 
   submitbtn.onclick = function (e) {
     e.preventDefault()
-    const emailrecdto = {
-      email: email.value,
-      password: newPassword.value,
-      confirmPassword: confirmPassword.value,
-    };
-    changepassword(emailrecdto)
+    if (newPassword.value===confirmPassword.value) {
+      const emailrecdto = {
+        Email: email.value,
+        NewPassword: newPassword.value,
+        ConfirmPassword: confirmPassword.value
+      };
+      changepassword(emailrecdto)
+    }
+    else{
+      console.log("Lösenorden matchar inte")
+    }
+  
   }
   
   root.appendChild(formPassword)
 
-  async function changepassword() {
+  async function changepassword(emailrecdto) {
       
-    const changepassword = await fetch(
-      "http://localhost:7151/Income/AddIncome",
+    const recoverPass = await fetch(
+      "http://localhost:7151/User/recover",
       {
-        method: "post",
+        method: "put",
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + getCookie("token"),
@@ -66,7 +73,6 @@ export const render = (root) => {
       }
     });
   }
-  fetchInc();
 };
 
 
