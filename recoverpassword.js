@@ -27,12 +27,48 @@ export const render = (root) => {
   formPassword.appendChild(labelConfirm)
   formPassword.appendChild(confirmPassword)
 
-  let submitbtn = document.createElement("submit")
+  // let submitbtn = document.createElement("submit")
+  // formPassword.appendChild(submitbtn)
+
+  let submitbtn = document.createElement("button")
   formPassword.appendChild(submitbtn)
+  submitbtn.innerHTML = "Bekräfta";
+
+  submitbtn.onclick = function (e) {
+    e.preventDefault()
+    const emailrecdto = {
+      email: email.value,
+      password: newPassword.value,
+      confirmPassword: confirmPassword.value,
+    };
+    changepassword(emailrecdto)
+  }
   
   root.appendChild(formPassword)
 
- 
+  async function changepassword() {
+      
+    const changepassword = await fetch(
+      "http://localhost:7151/Income/AddIncome",
+      {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + getCookie("token"),
+        },
+        body: JSON.stringify(emailrecdto)
+      }
+    ).then((response) => {
+      if (response.ok) {
+        return true;
+      } else {
+        throw new Error("NETWORK RESPONSE ERROR");
+      }
+    });
+  }
+  fetchInc();
+};
 
 
-}
+
+
