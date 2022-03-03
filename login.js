@@ -39,8 +39,10 @@ form.onsubmit = (e) => {
           if (response.ok) {
             isLoggedIn = true;
             return response.json();
-          } else {
-            throw new Error("Error");
+          }
+          else {
+            //throw Error(response.status)
+            throw new Error(`Invalid Password or Username`);
           }
         })
         .then((data) => {
@@ -67,8 +69,13 @@ form.onsubmit = (e) => {
     }
 
     fetchLogin().catch((error) => {
-      error.message;
+      renderError(`Error: ${error.message} `)
     });
+
+    const renderError = function(msg){
+      const loginDiv = document.getElementById('login')
+      loginDiv.insertAdjacentText('beforeend', msg)
+  }
 
     // 'An error has occurred: 404'
   } else {
