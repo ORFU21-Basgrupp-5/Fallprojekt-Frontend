@@ -143,11 +143,23 @@ export const render = (root) => {
 
   IncSubmit.onclick = function (e) {
     e.preventDefault();
+    if (isNaN(IncomeForm.ISaldo.value))
+    {
+      renderError("inkomst")
+    }
+    else{
     income();
+  }
   };
   ExpSubmit.onclick = function (e) {
     e.preventDefault();
+    if (isNaN(ExpenseForm.ESaldo.value))
+    {
+      renderError("utgift")
+    }
+    else{
     expense();
+    }
   };
 
   const income = (e) => {
@@ -155,6 +167,7 @@ export const render = (root) => {
     console.log("Du lade till en inkomst");
     PrintAdded("inkomst");
     const incinputsDTO = {
+
       incomeDate: Inc.IDate.value,
       incomeDescription: Inc.IDesc.value,
       incomeBalanceChange: Inc.ISaldo.value,
@@ -247,6 +260,7 @@ function AppendElements(arr, form) {
   });
 }
 
+
 function PrintAdded(string) {
   let divutgift = document.getElementById("info-utgift");
   let divinkomst = document.getElementById("info-inkomst");
@@ -276,4 +290,37 @@ function PrintAdded(string) {
       break;
   }
 }
+// const renderError = function(msg){
+//   const IncError = document.getElementById('Inkomster')
+//   IncError.insertAdjacentText('beforeend', msg)
+// }
+function renderError(string) {
+  let divutgift = document.getElementById("info-utgift");
+  let divinkomst = document.getElementById("info-inkomst");
+  switch (string) {
+    case "utgift":
+      divutgift.appendChild(
+        document
+          .createElement("p")
+          .appendChild(document.createTextNode("Saldo måste anges med siffror"))
+      );
+      setTimeout(function () {
+        divutgift.removeChild(divutgift.lastChild);
+      }, 2000);
+      break;
+    case "inkomst":
+      divinkomst.appendChild(
+        document
+          .createElement("p")
+          .appendChild(document.createTextNode("Saldo måste anges med siffror"))
+      );
+      setTimeout(function () {
+        divinkomst.removeChild(divinkomst.lastChild);
+      }, 2000);
+      break;
+    default:
+      break;
+  }
+}
+
 

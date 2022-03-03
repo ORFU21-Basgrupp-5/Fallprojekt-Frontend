@@ -35,18 +35,22 @@ form.onsubmit = (e) => {
         },
         body: JSON.stringify(userLoginDTO),
       })
-        .then((response) => {
+      
+      .then((response) => {
           if (response.ok) {
+        
             isLoggedIn = true;
             return response.json();
           }
           else {
-            //throw Error(response.status)
+
             throw new Error(`Invalid Password or Username`);
           }
+          
+          
         })
         .then((data) => {
-          //console.log(data);
+          
           let token = data.token;
           let user = data.user;
           let expires = new Date(Date.now() + 86400 * 1000).toUTCString();
@@ -62,14 +66,25 @@ form.onsubmit = (e) => {
             expires +
             86400 +
             ";path=/;");
+            
+            let activeUser = userLoginDTO.userName;
+            sessionStorage.setItem("User", activeUser);
 
           welcomepage(pageContent);
           let header = new Header();
         });
+        return response.json().then ((body)=>{
+          const BodyError = new Error(body.error)
+        })
     }
 
     fetchLogin().catch((error) => {
+      
       renderError(`Error: ${error.message} `)
+    })
+    .catch((BodyError) => {
+      renderError(`Error: ${BodyError} `)
+       
     });
 
     const renderError = function(msg){

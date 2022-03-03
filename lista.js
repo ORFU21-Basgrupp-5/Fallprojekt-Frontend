@@ -26,9 +26,15 @@ function GetData() {
       console.log(data);
       upgiftsLista(data);
     })
-    .catch((error) => console.error("FETCH ERROR:", error));
+    .catch((error) => {
+      
+      renderError(`Error: ${error.message} `)
+    })
 }
-
+const renderError = function(msg){
+  const ErrorDiv = document.getElementById('DivWithExpenses')
+  ErrorDiv.insertAdjacentText('beforeend', msg)
+}
 function upgiftsLista(data) {
   data.forEach((item) => {
     let diven = document.getElementById("DivWithExpenses");
