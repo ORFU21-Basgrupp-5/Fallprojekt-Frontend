@@ -66,62 +66,60 @@ export const render = (root) => {
   const categorySelect = document.createElement("select");
   categorySelect.setAttribute("id", "CategoryExp");
   const opt1 = document.createElement("option");
-  opt1.setAttribute("value", 0);
-  opt1.innerHTML = "Food";
-  const opt2 = document.createElement("option");
-  opt2.setAttribute("value", 1);
-  opt2.innerHTML = "Car";
-  const opt3 = document.createElement("option");
-  opt3.setAttribute("value", 2);
-  opt3.innerHTML = "Subscriptions";
-  const opt4 = document.createElement("option");
-  opt4.setAttribute("value", 3);
-  opt4.innerHTML = "Clothes";
-  const opt5 = document.createElement("option");
-  opt5.setAttribute("value", 4);
-  opt5.innerHTML = "Treat";
-  const opt6 = document.createElement("option");
-  opt6.setAttribute("value", 5);
-  opt6.innerHTML = "Other";
+  opt1.setAttribute("value", "");
+  opt1.innerHTML = "-- Select -- " ;
+ 
 
   let div = document.createElement("div");
   let categorylabel = document.createElement("label");
   categorylabel.innerHTML = "Category";
   div.appendChild(categorylabel);
   categorySelect.appendChild(opt1);
-  categorySelect.appendChild(opt2);
-  categorySelect.appendChild(opt3);
-  categorySelect.appendChild(opt4);
-  categorySelect.appendChild(opt5);
-  categorySelect.appendChild(opt6);
+
 
   const categorySelect2 = document.createElement("select");
   categorySelect2.setAttribute("id", "CategoryInc");
   const Incopt1 = document.createElement("option");
-  Incopt1.setAttribute("value", 0);
-  Incopt1.innerHTML = "Income";
-  const Incopt2 = document.createElement("option");
-  Incopt2.setAttribute("value", 1);
-  Incopt2.innerHTML = "CSN";
-  const Incopt3 = document.createElement("option");
-  Incopt3.setAttribute("value", 2);
-  Incopt3.innerHTML = "Shares";
-  const Incopt4 = document.createElement("option");
-  Incopt4.setAttribute("value", 3);
-  Incopt4.innerHTML = "Swish";
-  const Incopt5 = document.createElement("option");
-  Incopt5.setAttribute("value", 4);
-  Incopt5.innerHTML = "Other";
+ 
+  
+  Incopt1.setAttribute("value", "");
+  Incopt1.innerHTML = "-- Select --";
+  categorySelect2.appendChild(opt1);
+  categorySelectFetch("Expenses",categorySelect);
+  categorySelectFetch("Income",categorySelect2);
+  //categorySelect("Expenses",categorySelect1)
+  function categorySelectFetch(choice,catDiv){
+    fetch("http://localhost:7151/" + choice +"/Categorys", 
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        //Add authorization if custom categorys are added.
+      },
+
+    })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+        
+      } else {
+        throw new Error("No categorySelect respons ERROR");
+      }
+    })
+    .then((data) => {
+      for(var i = 0; i < data.length; i++) {
+        catDiv.innerHTML = catDiv.innerHTML + 
+        '<option value="' + i + '">' + data[i] + '</option>';
+      }
+      
+    })
+  }
 
   let div2 = document.createElement("div");
   let categorylabel2 = document.createElement("label");
   categorylabel2.innerHTML = "Category";
   div2.appendChild(categorylabel2);
-  categorySelect2.appendChild(Incopt1);
-  categorySelect2.appendChild(Incopt2);
-  categorySelect2.appendChild(Incopt3);
-  categorySelect2.appendChild(Incopt4);
-  categorySelect2.appendChild(Incopt5);
+ 
 
   IncomeForm.appendChild(div2);
   IncomeForm.appendChild(categorySelect2);
