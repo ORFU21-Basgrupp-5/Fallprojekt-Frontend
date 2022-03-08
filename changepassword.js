@@ -6,35 +6,44 @@ export const render = (root,token) => {
     let formPassword = document.createElement("form")
     let breaker = document.createElement("br")
 
-    let labelNew= document.createElement("label")
-    let newtext=document.createTextNode("Nytt lösenord: ")
-    let labelConfirm= document.createElement("label")
-    let confirmtext=document.createTextNode("Bekräfta lösenord: ")
+    let NewPLabel= document.createElement("label")
+    let NewPLabelText=document.createTextNode("Nytt lösenord: ")
+
+    let ConfirmPLabel= document.createElement("label")
+    let ConfirmPLabelText=document.createTextNode("Bekräfta lösenord: ")
 
     let newPassword = document.createElement("input")
     let confirmPassword = document.createElement("input")
 
-    labelNew.appendChild(newtext)
-    labelConfirm.appendChild(confirmtext)
+    let ChangeButton = document.createElement("button")
+    ChangeButton.innerHTML = "Bekräfta";
 
-    formPassword.appendChild(labelNew)
+    const HomepageLink = document.createElement("a");
+    HomepageLink.href = "/";
+    const HomepageLinkText = document.createTextNode("Logga in här");
+    HomepageLink.appendChild(HomepageLinkText);
+
+    NewPLabel.appendChild(NewPLabelText)
+    ConfirmPLabel.appendChild(ConfirmPLabelText)
+
+    formPassword.appendChild(NewPLabel)
     formPassword.appendChild(newPassword)
     formPassword.appendChild(breaker)
-    formPassword.appendChild(labelConfirm)
+    formPassword.appendChild(ConfirmPLabel)
     formPassword.appendChild(confirmPassword)
+    formPassword.appendChild(ChangeButton)
+    formPassword.appendChild(HomepageLink)
 
-    let submitbtn = document.createElement("button")
-    formPassword.appendChild(submitbtn)
-    submitbtn.innerHTML = "Bekräfta";
+    root.appendChild(formPassword)
 
-    submitbtn.onclick = function (e) {
+    ChangeButton.onclick = function (e) {
         e.preventDefault()
         if (newPassword.value===confirmPassword.value) {
-        const emailrecdto = {
+        const NewPasswordDTO = {
             NewPassword: newPassword.value,
             ConfirmPassword: confirmPassword.value
         };
-        ChangePasswordLink(emailrecdto)
+        ChangePasswordLink(NewPasswordDTO)
         }
         else{
         console.log("Lösenorden matchar inte")
@@ -63,5 +72,4 @@ export const render = (root,token) => {
           }
         });
     }
-    root.appendChild(formPassword)
 }

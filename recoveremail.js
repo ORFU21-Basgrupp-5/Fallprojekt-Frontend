@@ -1,43 +1,51 @@
 import { getCookie } from "./cookie.js";
 export const render = (root) => {
   root.innerHTML = "";
-  let formPassword = document.createElement("form")
 
-  let labelEmail= document.createElement("label")
-  let emailtext=document.createTextNode("Email: ")
-  let textdiv = document.createElement("div");
-  textdiv.setAttribute("id", "textdiven")
-  
-  let email = document.createElement("input")
+  let formSendEmail = document.createElement("form")
 
-  labelEmail.appendChild(emailtext)
+  let EmailLabel = document.createElement("label")
+  let EmailLabelText = document.createTextNode("Email: ")
 
-  formPassword.appendChild(labelEmail)
-  formPassword.appendChild(email)
+  EmailLabel.appendChild(EmailLabelText)
 
-  let submitbtn = document.createElement("button")
-  formPassword.appendChild(submitbtn)
-  submitbtn.innerHTML = "Bekräfta";
+  let Email = document.createElement("input")
 
-  formPassword.appendChild(textdiv)
-  root.appendChild(formPassword);
+  let SentOrNotDiv = document.createElement("div");
+  SentOrNotDiv.setAttribute("id", "SentOrNotDiv")
 
-  submitbtn.onclick = function (e) {
+  let SendButton = document.createElement("button")
+  SendButton.innerHTML = "Bekräfta";
+
+  const HomepageLink = document.createElement("a");
+  HomepageLink.href = "/";
+  const HompageText = document.createTextNode("Logga in här");
+  HomepageLink.appendChild(HompageText);
+
+  formSendEmail.appendChild(EmailLabel)
+  formSendEmail.appendChild(Email)
+  formSendEmail.appendChild(SendButton)
+  formSendEmail.appendChild(SentOrNotDiv)
+  formSendEmail.appendChild(HomepageLink)
+
+  root.appendChild(formSendEmail);
+
+  SendButton.onclick = function (e) {
     e.preventDefault()
-    const emailrecdto = {
-      Email: email.value
+    const EmailDTO = {
+      Email: Email.value
     };
-    SendRecoveryEmail(emailrecdto);
+    SendRecoveryEmail(EmailDTO);
   }
 
   function RecoveryText(string){
-    textdiv.appendChild(
+    SentOrNotDiv.appendChild(
         document
           .createElement("p")
           .appendChild(document.createTextNode(string))
       );
       setTimeout(function () {
-        textdiv.removeChild(textdiv.lastChild);
+        SentOrNotDiv.removeChild(SentOrNotDiv.lastChild);
       }, 2000);
   }
   async function SendRecoveryEmail(emailrecdto) {
