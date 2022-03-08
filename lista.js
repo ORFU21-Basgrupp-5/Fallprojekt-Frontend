@@ -19,7 +19,10 @@ function GetData() {
       if (response.ok) {
         return response.json();
       } else {
-        throw new Error("NETWORK RESPONSE ERROR");
+        return response.text().then(function(text) 
+      {
+        renderError(`${response.status} ${response.statusText} ${text}`);
+      })
       }
     })
     .then((data) => {
@@ -27,14 +30,17 @@ function GetData() {
       upgiftsLista(data);
     })
     .catch((error) => {
-      
       renderError(`Error: ${error.message} `)
     })
 }
 const renderError = function(msg){
   const ErrorDiv = document.getElementById('DivWithExpenses')
   ErrorDiv.insertAdjacentText('beforeend', msg)
+  setTimeout(function () {
+    ErrorDiv.removeChild(ErrorDiv.lastChild);
+  }, 2000)
 }
+
 function upgiftsLista(data) {
   data.forEach((item) => {
     let diven = document.getElementById("DivWithExpenses");

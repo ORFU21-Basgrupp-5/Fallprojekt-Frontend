@@ -173,7 +173,6 @@ export const render = (root) => {
   const income = (e) => {
     let Inc = document.getElementById("Inkomster");
     console.log("Du lade till en inkomst");
-    PrintAdded("inkomst");
     const incinputsDTO = {
 
       incomeDate: Inc.IDate.value,
@@ -197,18 +196,24 @@ export const render = (root) => {
         }
       ).then((response) => {
         if (response.ok) {
+          PrintAdded("inkomst");
           return true;
         } else {
-          throw new Error("NETWORK RESPONSE ERROR");
+          return response.text().then(function(text) 
+      {
+        renderErrorBodyIncome(`${response.status} ${response.statusText} ${text}`);
+      })
         }
-      });
+      })
+      .catch((error) => {  
+        renderError(`Error: ${error.message} `)
+      })
     }
     fetchInc();
   };
 
   const expense = (e) => {
     console.log("Du lade till en utgift");
-    PrintAdded("utgift");
     let Exp = document.getElementById("Utgifter")
     const expinputsDTO = {
       expenseDate: Exp.EDate.value,
@@ -229,12 +234,21 @@ export const render = (root) => {
       body: JSON.stringify(expinputsDTO)
     }
   ).then((response) => {
+    
     if (response.ok) {
+      PrintAdded("utgift");
       return true;
-    } else {
-      throw new Error("NETWORK RESPONSE ERROR");
+    } 
+    else {
+      return response.text().then(function(text) 
+      {
+        renderErrorBodyExpense(`${response.status} ${response.statusText} ${text}`);
+      })
     }
-  });
+  })
+  .catch((error) => {  
+    renderError(`Error: ${error.message} `)
+  })
 }
 fetchExp();
   };
@@ -298,10 +312,23 @@ function PrintAdded(string) {
       break;
   }
 }
-// const renderError = function(msg){
-//   const IncError = document.getElementById('Inkomster')
-//   IncError.insertAdjacentText('beforeend', msg)
-// }
+
+const renderErrorBodyIncome = function(msg){
+  const IncError = document.getElementById('Inkomster')
+  IncError.insertAdjacentText('beforeend', msg)
+  setTimeout(function () {
+    IncError.removeChild(IncError.lastChild);
+  }, 2000)
+}
+
+const renderErrorBodyExpense = function(msg){
+  const ExpError = document.getElementById('Utgifter')
+  ExpError.insertAdjacentText('beforeend', msg)
+  setTimeout(function () {
+    ExpError.removeChild(ExpError.lastChild);
+  }, 2000)
+}
+
 function renderError(string) {
   let divutgift = document.getElementById("info-utgift");
   let divinkomst = document.getElementById("info-inkomst");

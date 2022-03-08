@@ -44,7 +44,10 @@ form.onsubmit = (e) => {
           }
           else {
 
-            throw new Error(`Invalid Password or Username`);
+            return response.text().then(function(text) 
+            {
+              renderError(`${response.status} ${response.statusText} ${text}`);
+            })
           }
           
           
@@ -75,6 +78,10 @@ form.onsubmit = (e) => {
         });
         return response.json().then ((body)=>{
           const BodyError = new Error(body.error)
+        })
+        .catch((error) => {
+      
+          renderError(`Error: ${error.message} `)
         })
     }
 

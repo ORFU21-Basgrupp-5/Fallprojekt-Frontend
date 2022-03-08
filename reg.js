@@ -166,10 +166,7 @@ export const render = (root) => {
     });
     let textreponse = await response.text();
     if (!response.ok) {
-        
         renderError(`Error is: ${response.status} ${textreponse}`);
-      
-      
     } else{
       let activeUser = newUser.userName;
       sessionStorage.setItem("User", activeUser);
