@@ -1,7 +1,7 @@
 import { Render as welcomepage } from "./welcome.js";
 import { render as RegRender } from "./reg.js";
 import { Header } from "./header.js";
-import { render } from "./recoverpassword.js";
+import { render } from "./recoveremail.js";
 
 let pageContent = document.getElementById("pageContent");
 
