@@ -1,5 +1,6 @@
 import { getCookie } from "./cookie.js";
-export const render = (root) => {
+
+export const render = (root,token) => {
     root.innerHTML = "";
 
     let formPassword = document.createElement("form")
@@ -33,11 +34,34 @@ export const render = (root) => {
             NewPassword: newPassword.value,
             ConfirmPassword: confirmPassword.value
         };
-        changepassword(emailrecdto)
+        ChangePasswordLink(emailrecdto)
         }
         else{
         console.log("Lösenorden matchar inte")
         }
     
     }
+    async function ChangePasswordLink(emailrecdto) {
+    
+        const recoverPass = await fetch(
+          "http://localhost:7151/User/recover",
+          {
+            method: "put",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token
+            },
+            body: JSON.stringify(emailrecdto)
+          }
+        ).then((response) => {
+          if (response.ok) {
+            alert("Changed password successfully");
+            return true;
+          } else {
+            alert("Could not change password")
+            // throw new Error("NETWORK RESPONSE ERROR");
+          }
+        });
+    }
+    root.appendChild(formPassword)
 }
