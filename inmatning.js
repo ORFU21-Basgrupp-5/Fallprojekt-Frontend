@@ -89,7 +89,7 @@ export const render = (root) => {
   categorySelectFetch("Income",categorySelect2);
   //categorySelect("Expenses",categorySelect1)
   function categorySelectFetch(choice,catDiv){
-    fetch("http://localhost:7151/" + choice +"/Categorys", 
+    fetch("http://localhost:7151/" + choice +"/categories", 
     {
       method: "GET",
       headers: {
