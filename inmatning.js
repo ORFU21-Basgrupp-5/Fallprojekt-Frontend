@@ -147,7 +147,11 @@ export const render = (root) => {
     {
       renderError("inkomst")
     }
-    else{
+    else if (IncomeForm.IKonto.value === "" || IncomeForm.IDesc.value === "" || IncomeForm.IDate === "" || IncomeForm.ISaldo.value === "") 
+    {
+      renderErrorEmpty("inkomst")
+    }
+    else {
     income();
   }
   };
@@ -156,6 +160,10 @@ export const render = (root) => {
     if (isNaN(ExpenseForm.ESaldo.value))
     {
       renderError("utgift")
+    }
+    else if (ExpenseForm.EKonto.value === "" || ExpenseForm.EDesc.value === "" || ExpenseForm.EDate.value === "" || ExpenseForm.ESaldo.value === "") 
+    {
+      renderErrorEmpty("utgift")
     }
     else{
     expense();
@@ -313,6 +321,35 @@ function renderError(string) {
         document
           .createElement("p")
           .appendChild(document.createTextNode("Saldo måste anges med siffror"))
+      );
+      setTimeout(function () {
+        divinkomst.removeChild(divinkomst.lastChild);
+      }, 2000);
+      break;
+    default:
+      break;
+  }
+}
+
+function renderErrorEmpty(string) {
+  let divutgift = document.getElementById("info-utgift");
+  let divinkomst = document.getElementById("info-inkomst");
+  switch (string) {
+    case "utgift":
+      divutgift.appendChild(
+        document
+          .createElement("p")
+          .appendChild(document.createTextNode("Samtliga fält måste fyllas i"))
+      );
+      setTimeout(function () {
+        divutgift.removeChild(divutgift.lastChild);
+      }, 2000);
+      break;
+    case "inkomst":
+      divinkomst.appendChild(
+        document
+          .createElement("p")
+          .appendChild(document.createTextNode("Samtliga fält måste fyllas i"))
       );
       setTimeout(function () {
         divinkomst.removeChild(divinkomst.lastChild);

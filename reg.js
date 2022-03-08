@@ -115,6 +115,7 @@ export const render = (root) => {
 
     const usernamevalidate = userRegister.every((x) => x.value != "");
     if (usernamevalidate) {
+      debugger
       if (userRegister[2].value != userRegister[3].value) {
         let errorPassContainer = document.getElementById("hidden-message");
         let newText = document
