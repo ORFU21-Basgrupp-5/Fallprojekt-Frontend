@@ -27,15 +27,19 @@ function GetData() {
       upgiftsLista(data);
     })
     .catch((error) => console.error("FETCH ERROR:", error));
-}
+  }
 
-function upgiftsLista(data) {
-  data.forEach((item) => {
-    let diven = document.getElementById("DivWithExpenses");
-    for (let row in item) {
-      let li = document.createElement("li");
-      li.innerText = `${row}: ${item[row]}`;
-      diven.appendChild(li);
-    }
-  });
-}
+  function upgiftsLista(data) {
+    data.forEach((item) => {
+      let diven = document.getElementById("DivWithExpenses");
+      let listContainer = document.createElement("ul");
+      diven.appendChild(listContainer);
+      for (let row in item) {
+        let li = document.createElement("li");
+        li.innerText = `${row}: ${item[row]}`;
+        listContainer.appendChild(li);
+      }
+    });
+  }
+
+
