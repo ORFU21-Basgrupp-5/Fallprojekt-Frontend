@@ -15,19 +15,33 @@ function GetData() {
       Authorization: "Bearer " + getCookie("token"),
     },
   })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("NETWORK RESPONSE ERROR");
-      }
+  .then((response) => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      return response.text().then(function(text) 
+    {
+      renderError(`${response.status} ${response.statusText} ${text}`);
     })
-    .then((data) => {
-      console.log(data);
-      upgiftsLista(data);
-    })
-    .catch((error) => console.error("FETCH ERROR:", error));
+    }
+  })
+  .then((data) => {
+    console.log(data);
+    upgiftsLista(data);
+  })
+  .catch((error) => {
+    renderError(`Error: ${error.message} `)
+  })
 }
+
+const renderError = function(msg){
+  const ErrorDiv = document.getElementById('DivWithExpenses')
+  ErrorDiv.insertAdjacentText('beforeend', msg)
+  setTimeout(function () {
+    ErrorDiv.removeChild(ErrorDiv.lastChild);
+  }, 2000)
+}
+
 
 function upgiftsLista(data) {
   data.forEach((item) => {
