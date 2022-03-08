@@ -113,10 +113,10 @@ export const render = (root) => {
       document.forms["reg_form"]["password2"].value,
     ];
 
-    const usernamevalidate = userRegister.every((x) => x.value != "");
+    const usernamevalidate = userRegister.every((x) => x != "");
     if (usernamevalidate) {
       debugger
-      if (userRegister[2].value != userRegister[3].value) {
+      if (userRegister[2] != userRegister[3]) {
         let errorPassContainer = document.getElementById("hidden-message");
         let newText = document
           .createElement("p")
@@ -162,11 +162,15 @@ export const render = (root) => {
         Authorization: "Bearer " + getCookie("token"),
       },
       body: JSON.stringify(newUser),
+
     });
+    let textreponse = await response.text();
     if (!response.ok) {
-      renderError("Something went wrong");
-    } else {
-      debugger;
+        
+        renderError(`Error is: ${response.status} ${textreponse}`);
+      
+      
+    } else{
       let activeUser = newUser.userName;
       sessionStorage.setItem("User", activeUser);
       alert("Du är nu registrerad!");
@@ -186,7 +190,7 @@ export const render = (root) => {
 };
 
 const renderError = function(msg){
-  const regError = document.getElementById('regform')
+  const regError = document.getElementById('reg_form')
   regError.insertAdjacentText('beforeend', msg)
 }
 
