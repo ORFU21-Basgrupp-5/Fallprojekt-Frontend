@@ -14,6 +14,7 @@ if(urlparams.get("token") != null){
 else{
   let pageContent = document.getElementById("pageContent");
 
+
   const linkToRecover = document.getElementById("recover-btn")
   linkToRecover.onclick= function(e){
     e.preventDefault();
@@ -24,6 +25,7 @@ else{
   reglink.onclick = function (e) {
     e.preventDefault();
     RegRender(pageContent);
+
   };
   
   let form = document.getElementById("form1");
