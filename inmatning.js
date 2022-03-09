@@ -66,60 +66,62 @@ export const render = (root) => {
   const categorySelect = document.createElement("select");
   categorySelect.setAttribute("id", "CategoryExp");
   const opt1 = document.createElement("option");
-  opt1.setAttribute("value", "");
-  opt1.innerHTML = "-- Select -- " ;
- 
+  opt1.setAttribute("value", 0);
+  opt1.innerHTML = "Food";
+  const opt2 = document.createElement("option");
+  opt2.setAttribute("value", 1);
+  opt2.innerHTML = "Car";
+  const opt3 = document.createElement("option");
+  opt3.setAttribute("value", 2);
+  opt3.innerHTML = "Subscriptions";
+  const opt4 = document.createElement("option");
+  opt4.setAttribute("value", 3);
+  opt4.innerHTML = "Clothes";
+  const opt5 = document.createElement("option");
+  opt5.setAttribute("value", 4);
+  opt5.innerHTML = "Treat";
+  const opt6 = document.createElement("option");
+  opt6.setAttribute("value", 5);
+  opt6.innerHTML = "Other";
 
   let div = document.createElement("div");
   let categorylabel = document.createElement("label");
   categorylabel.innerHTML = "Category";
   div.appendChild(categorylabel);
   categorySelect.appendChild(opt1);
-
+  categorySelect.appendChild(opt2);
+  categorySelect.appendChild(opt3);
+  categorySelect.appendChild(opt4);
+  categorySelect.appendChild(opt5);
+  categorySelect.appendChild(opt6);
 
   const categorySelect2 = document.createElement("select");
   categorySelect2.setAttribute("id", "CategoryInc");
   const Incopt1 = document.createElement("option");
- 
-  
-  Incopt1.setAttribute("value", "");
-  Incopt1.innerHTML = "-- Select --";
-  categorySelect2.appendChild(opt1);
-  categorySelectFetch("Expenses",categorySelect);
-  categorySelectFetch("Income",categorySelect2);
-  //categorySelect("Expenses",categorySelect1)
-  function categorySelectFetch(choice,catDiv){
-    fetch("http://localhost:7151/" + choice +"/categories", 
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        //Add authorization if custom categorys are added.
-      },
-
-    })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-        
-      } else {
-        throw new Error("No categorySelect respons ERROR");
-      }
-    })
-    .then((data) => {
-      for(var i = 0; i < data.length; i++) {
-        catDiv.innerHTML = catDiv.innerHTML + 
-        '<option value="' + i + '">' + data[i] + '</option>';
-      }
-      
-    })
-  }
+  Incopt1.setAttribute("value", 0);
+  Incopt1.innerHTML = "Income";
+  const Incopt2 = document.createElement("option");
+  Incopt2.setAttribute("value", 1);
+  Incopt2.innerHTML = "CSN";
+  const Incopt3 = document.createElement("option");
+  Incopt3.setAttribute("value", 2);
+  Incopt3.innerHTML = "Shares";
+  const Incopt4 = document.createElement("option");
+  Incopt4.setAttribute("value", 3);
+  Incopt4.innerHTML = "Swish";
+  const Incopt5 = document.createElement("option");
+  Incopt5.setAttribute("value", 4);
+  Incopt5.innerHTML = "Other";
 
   let div2 = document.createElement("div");
   let categorylabel2 = document.createElement("label");
   categorylabel2.innerHTML = "Category";
   div2.appendChild(categorylabel2);
- 
+  categorySelect2.appendChild(Incopt1);
+  categorySelect2.appendChild(Incopt2);
+  categorySelect2.appendChild(Incopt3);
+  categorySelect2.appendChild(Incopt4);
+  categorySelect2.appendChild(Incopt5);
 
   IncomeForm.appendChild(div2);
   IncomeForm.appendChild(categorySelect2);
@@ -141,18 +143,38 @@ export const render = (root) => {
 
   IncSubmit.onclick = function (e) {
     e.preventDefault();
+    if (isNaN(IncomeForm.ISaldo.value))
+    {
+      renderError("inkomst")
+    }
+    else if (IncomeForm.IKonto.value === "" || IncomeForm.IDesc.value === "" || IncomeForm.IDate === "" || IncomeForm.ISaldo.value === "") 
+    {
+      renderErrorEmpty("inkomst")
+    }
+    else {
     income();
+  }
   };
   ExpSubmit.onclick = function (e) {
     e.preventDefault();
+    if (isNaN(ExpenseForm.ESaldo.value))
+    {
+      renderError("utgift")
+    }
+    else if (ExpenseForm.EKonto.value === "" || ExpenseForm.EDesc.value === "" || ExpenseForm.EDate.value === "" || ExpenseForm.ESaldo.value === "") 
+    {
+      renderErrorEmpty("utgift")
+    }
+    else{
     expense();
+    }
   };
 
   const income = (e) => {
     let Inc = document.getElementById("Inkomster");
     console.log("Du lade till en inkomst");
-    PrintAdded("inkomst");
     const incinputsDTO = {
+
       incomeDate: Inc.IDate.value,
       incomeDescription: Inc.IDesc.value,
       incomeBalanceChange: Inc.ISaldo.value,
@@ -174,18 +196,24 @@ export const render = (root) => {
         }
       ).then((response) => {
         if (response.ok) {
+          PrintAdded("inkomst");
           return true;
         } else {
-          throw new Error("NETWORK RESPONSE ERROR");
+          return response.text().then(function(text) 
+      {
+        renderErrorBodyIncome(`${response.status} ${response.statusText} ${text}`);
+      })
         }
-      });
+      })
+      .catch((error) => {  
+        renderError(`Error: ${error.message} `)
+      })
     }
     fetchInc();
   };
 
   const expense = (e) => {
     console.log("Du lade till en utgift");
-    PrintAdded("utgift");
     let Exp = document.getElementById("Utgifter")
     const expinputsDTO = {
       expenseDate: Exp.EDate.value,
@@ -206,12 +234,21 @@ export const render = (root) => {
       body: JSON.stringify(expinputsDTO)
     }
   ).then((response) => {
+    
     if (response.ok) {
+      PrintAdded("utgift");
       return true;
-    } else {
-      throw new Error("NETWORK RESPONSE ERROR");
+    } 
+    else {
+      return response.text().then(function(text) 
+      {
+        renderErrorBodyExpense(`${response.status} ${response.statusText} ${text}`);
+      })
     }
-  });
+  })
+  .catch((error) => {  
+    renderError(`Error: ${error.message} `)
+  })
 }
 fetchExp();
   };
@@ -245,6 +282,7 @@ function AppendElements(arr, form) {
   });
 }
 
+
 function PrintAdded(string) {
   let divutgift = document.getElementById("info-utgift");
   let divinkomst = document.getElementById("info-inkomst");
@@ -274,4 +312,79 @@ function PrintAdded(string) {
       break;
   }
 }
+
+const renderErrorBodyIncome = function(msg){
+  const IncError = document.getElementById('Inkomster')
+  IncError.insertAdjacentText('beforeend', msg)
+  setTimeout(function () {
+    IncError.removeChild(IncError.lastChild);
+  }, 2000)
+}
+
+const renderErrorBodyExpense = function(msg){
+  const ExpError = document.getElementById('Utgifter')
+  ExpError.insertAdjacentText('beforeend', msg)
+  setTimeout(function () {
+    ExpError.removeChild(ExpError.lastChild);
+  }, 2000)
+}
+
+function renderError(string) {
+  let divutgift = document.getElementById("info-utgift");
+  let divinkomst = document.getElementById("info-inkomst");
+  switch (string) {
+    case "utgift":
+      divutgift.appendChild(
+        document
+          .createElement("p")
+          .appendChild(document.createTextNode("Saldo måste anges med siffror"))
+      );
+      setTimeout(function () {
+        divutgift.removeChild(divutgift.lastChild);
+      }, 2000);
+      break;
+    case "inkomst":
+      divinkomst.appendChild(
+        document
+          .createElement("p")
+          .appendChild(document.createTextNode("Saldo måste anges med siffror"))
+      );
+      setTimeout(function () {
+        divinkomst.removeChild(divinkomst.lastChild);
+      }, 2000);
+      break;
+    default:
+      break;
+  }
+}
+
+function renderErrorEmpty(string) {
+  let divutgift = document.getElementById("info-utgift");
+  let divinkomst = document.getElementById("info-inkomst");
+  switch (string) {
+    case "utgift":
+      divutgift.appendChild(
+        document
+          .createElement("p")
+          .appendChild(document.createTextNode("Samtliga fält måste fyllas i"))
+      );
+      setTimeout(function () {
+        divutgift.removeChild(divutgift.lastChild);
+      }, 2000);
+      break;
+    case "inkomst":
+      divinkomst.appendChild(
+        document
+          .createElement("p")
+          .appendChild(document.createTextNode("Samtliga fält måste fyllas i"))
+      );
+      setTimeout(function () {
+        divinkomst.removeChild(divinkomst.lastChild);
+      }, 2000);
+      break;
+    default:
+      break;
+  }
+}
+
 

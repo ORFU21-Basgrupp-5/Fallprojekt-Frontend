@@ -20,15 +20,10 @@ export const Render = (root) => {
   inmatningButton.setAttribute("id", "buttonInmatning");
   inmatningButton.innerHTML = "Inmatning";
 
-  const listaEButton = document.createElement("button");
-  listaEButton.setAttribute("id", "buttonELista");
-  listaEButton.innerHTML = "ListaExpenses";
-
-  const listaIButton = document.createElement("button");
-  listaIButton.setAttribute("id", "buttonILista");
-  listaIButton.innerHTML = "ListaIncomes";
+  const listaButton = document.createElement("button");
+  listaButton.setAttribute("id", "buttonLista");
+  listaButton.innerHTML = "Lista";
 
   header.appendChild(inmatningButton);
-  header.appendChild(listaEButton);
-  header.appendChild(listaIButton);
+  header.appendChild(listaButton);
 };
