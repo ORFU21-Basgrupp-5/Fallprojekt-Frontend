@@ -35,7 +35,7 @@ function GetData() {
 }
 
 const renderError = function(msg){
-  const ErrorDiv = document.getElementById('DivWithExpenses')
+  const ErrorDiv = document.getElementById('DivWithIncomes')
   ErrorDiv.insertAdjacentText('beforeend', msg)
   setTimeout(function () {
     ErrorDiv.removeChild(ErrorDiv.lastChild);
