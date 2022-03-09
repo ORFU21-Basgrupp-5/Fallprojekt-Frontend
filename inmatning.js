@@ -141,18 +141,38 @@ export const render = (root) => {
 
   IncSubmit.onclick = function (e) {
     e.preventDefault();
+    if (isNaN(IncomeForm.ISaldo.value))
+    {
+      renderError("inkomst")
+    }
+    else if (IncomeForm.IKonto.value === "" || IncomeForm.IDesc.value === "" || IncomeForm.IDate === "" || IncomeForm.ISaldo.value === "") 
+    {
+      renderErrorEmpty("inkomst")
+    }
+    else {
     income();
+  }
   };
   ExpSubmit.onclick = function (e) {
     e.preventDefault();
+    if (isNaN(ExpenseForm.ESaldo.value))
+    {
+      renderError("utgift")
+    }
+    else if (ExpenseForm.EKonto.value === "" || ExpenseForm.EDesc.value === "" || ExpenseForm.EDate.value === "" || ExpenseForm.ESaldo.value === "") 
+    {
+      renderErrorEmpty("utgift")
+    }
+    else{
     expense();
+    }
   };
 
   const income = (e) => {
     let Inc = document.getElementById("Inkomster");
     console.log("Du lade till en inkomst");
-    PrintAdded("inkomst");
     const incinputsDTO = {
+
       incomeDate: Inc.IDate.value,
       incomeDescription: Inc.IDesc.value,
       incomeBalanceChange: Inc.ISaldo.value,
@@ -174,18 +194,24 @@ export const render = (root) => {
         }
       ).then((response) => {
         if (response.ok) {
+          PrintAdded("inkomst");
           return true;
         } else {
-          throw new Error("NETWORK RESPONSE ERROR");
+          return response.text().then(function(text) 
+      {
+        renderErrorBodyIncome(`${response.status} ${response.statusText} ${text}`);
+      })
         }
-      });
+      })
+      .catch((error) => {  
+        renderError(`Error: ${error.message} `)
+      })
     }
     fetchInc();
   };
 
   const expense = (e) => {
     console.log("Du lade till en utgift");
-    PrintAdded("utgift");
     let Exp = document.getElementById("Utgifter")
     const expinputsDTO = {
       expenseDate: Exp.EDate.value,
@@ -206,12 +232,21 @@ export const render = (root) => {
       body: JSON.stringify(expinputsDTO)
     }
   ).then((response) => {
+    
     if (response.ok) {
+      PrintAdded("utgift");
       return true;
-    } else {
-      throw new Error("NETWORK RESPONSE ERROR");
+    } 
+    else {
+      return response.text().then(function(text) 
+      {
+        renderErrorBodyExpense(`${response.status} ${response.statusText} ${text}`);
+      })
     }
-  });
+  })
+  .catch((error) => {  
+    renderError(`Error: ${error.message} `)
+  })
 }
 fetchExp();
   };
@@ -245,6 +280,7 @@ function AppendElements(arr, form) {
   });
 }
 
+
 function PrintAdded(string) {
   let divutgift = document.getElementById("info-utgift");
   let divinkomst = document.getElementById("info-inkomst");
@@ -274,4 +310,79 @@ function PrintAdded(string) {
       break;
   }
 }
+
+const renderErrorBodyIncome = function(msg){
+  const IncError = document.getElementById('Inkomster')
+  IncError.insertAdjacentText('beforeend', msg)
+  setTimeout(function () {
+    IncError.removeChild(IncError.lastChild);
+  }, 2000)
+}
+
+const renderErrorBodyExpense = function(msg){
+  const ExpError = document.getElementById('Utgifter')
+  ExpError.insertAdjacentText('beforeend', msg)
+  setTimeout(function () {
+    ExpError.removeChild(ExpError.lastChild);
+  }, 2000)
+}
+
+function renderError(string) {
+  let divutgift = document.getElementById("info-utgift");
+  let divinkomst = document.getElementById("info-inkomst");
+  switch (string) {
+    case "utgift":
+      divutgift.appendChild(
+        document
+          .createElement("p")
+          .appendChild(document.createTextNode("Saldo måste anges med siffror"))
+      );
+      setTimeout(function () {
+        divutgift.removeChild(divutgift.lastChild);
+      }, 2000);
+      break;
+    case "inkomst":
+      divinkomst.appendChild(
+        document
+          .createElement("p")
+          .appendChild(document.createTextNode("Saldo måste anges med siffror"))
+      );
+      setTimeout(function () {
+        divinkomst.removeChild(divinkomst.lastChild);
+      }, 2000);
+      break;
+    default:
+      break;
+  }
+}
+
+function renderErrorEmpty(string) {
+  let divutgift = document.getElementById("info-utgift");
+  let divinkomst = document.getElementById("info-inkomst");
+  switch (string) {
+    case "utgift":
+      divutgift.appendChild(
+        document
+          .createElement("p")
+          .appendChild(document.createTextNode("Samtliga fält måste fyllas i"))
+      );
+      setTimeout(function () {
+        divutgift.removeChild(divutgift.lastChild);
+      }, 2000);
+      break;
+    case "inkomst":
+      divinkomst.appendChild(
+        document
+          .createElement("p")
+          .appendChild(document.createTextNode("Samtliga fält måste fyllas i"))
+      );
+      setTimeout(function () {
+        divinkomst.removeChild(divinkomst.lastChild);
+      }, 2000);
+      break;
+    default:
+      break;
+  }
+}
+
 
