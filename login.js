@@ -1,29 +1,33 @@
 import { Render as welcomepage } from "./welcome.js";
 import { render as RegRender } from "./reg.js";
 import { Header } from "./header.js";
+import { render } from "./recoveremail.js";
+import {render as recoverpassword }  from "./changepassword.js";
 
-let pageContent = document.getElementById("pageContent");
+let currenturl = new URL(document.URL);
+let urlparams = new URLSearchParams(currenturl.search);
 
-let reglink = document.getElementById("reglink");
-reglink.onclick = function (e) {
-  e.preventDefault();
-  RegRender(pageContent);
-};
+if(urlparams.get("token") != null){
+  recoverpassword(pageContent, urlparams.get("token"));
+  console.log("token param found")
+}
+else{
+  let pageContent = document.getElementById("pageContent");
 
-let form = document.getElementById("form1");
 
-form.onsubmit = (e) => {
+  const linkToRecover = document.getElementById("recover-btn")
+  linkToRecover.onclick= function(e){
+    e.preventDefault();
+    render(pageContent)
+  }
   
-  e.preventDefault();
-  const userlogin = [
-    document.forms["form1"]["username"].value,
-    document.forms["form1"]["password"].value,
-  ];
+  let reglink = document.getElementById("reglink");
+  reglink.onclick = function (e) {
+    e.preventDefault();
+    RegRender(pageContent);
 
-  const userLoginDTO = {
-    userName: document.forms["form1"]["username"].value,
-    password: document.forms["form1"]["password"].value,
   };
+
   const upvalidate = userlogin.every((login) => login.value != "");
   if (upvalidate) {
     let isLoggedIn = false;
@@ -83,7 +87,14 @@ form.onsubmit = (e) => {
       
           renderError(`Error: ${error.message} `)
         })
+
     }
+  };
+  
+  //'Authorization': 'Bearer ' + cookies.get('token')
+  
+}
+
 
     fetchLogin().catch((error) => {
       
@@ -105,4 +116,3 @@ form.onsubmit = (e) => {
   }
 };
 
-//'Authorization': 'Bearer ' + cookies.get('token')
