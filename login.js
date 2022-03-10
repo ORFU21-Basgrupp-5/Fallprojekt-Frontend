@@ -58,7 +58,10 @@ else{
               isLoggedIn = true;
               return response.json();
             } else {
-              throw new Error("Error");
+              return response.text().then(function(text) 
+            {
+              renderError(`${response.status} ${response.statusText} ${text}`);
+            })
             }
           })
           .then((data) => {
@@ -79,8 +82,20 @@ else{
               86400 +
               ";path=/;");
   
+
+              let activeUser = userLoginDTO.userName;
+              sessionStorage.setItem("User", activeUser);
+              
             welcomepage(pageContent);
             let header = new Header();
+          })
+          .catch((error) => {
+      
+            renderError(`Error: ${error.message} `)
+          })
+          .catch((BodyError) => {
+            renderError(`Error: ${BodyError} `)
+             
           });
       }
   
@@ -90,11 +105,14 @@ else{
   
       // 'An error has occurred: 404'
     } else {
-      alert("Enter stuff");
+      renderError("Enter stuff");
     }
   };
   
   //'Authorization': 'Bearer ' + cookies.get('token')
   
+  const renderError = function(msg){
+    const loginDiv = document.getElementById('login')
+    loginDiv.insertAdjacentText('beforeend', msg)
 }
-
+}
