@@ -202,8 +202,9 @@ export const render = (root) => {
       })
         }
       })
-      .catch((error) => {  
-        renderError(`Error: ${error.message} `)
+      .catch((error) => { 
+        debugger
+        renderErrorBodyIncome(`Error: ${error.message} `)
       })
     }
     fetchInc();
@@ -243,7 +244,7 @@ export const render = (root) => {
     }
   })
   .catch((error) => {  
-    renderError(`Error: ${error.message} `)
+    renderErrorBodyExpense(`Error: ${error.message} `)
   })
 }
 fetchExp();
@@ -327,6 +328,7 @@ const renderErrorBodyExpense = function(msg){
 function renderError(string) {
   let divutgift = document.getElementById("info-utgift");
   let divinkomst = document.getElementById("info-inkomst");
+
   switch (string) {
     case "utgift":
       divutgift.appendChild(
