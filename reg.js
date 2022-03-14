@@ -115,9 +115,9 @@ export const render = (root) => {
       document.forms["reg_form"]["password2"].value,
     ];
 
-    const usernamevalidate = userRegister.every((x) => x.value != "");
+    const usernamevalidate = userRegister.every((x) => x != "");
     if (usernamevalidate) {
-      if (userRegister[2].value != userRegister[3].value) {
+      if (userRegister[2] != userRegister[3]) {
         let errorPassContainer = document.getElementById("hidden-message");
         let newText = document
           .createElement("p")
