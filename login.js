@@ -106,7 +106,7 @@ if (urlparams.get("token") != null) {
   //'Authorization': 'Bearer ' + cookies.get('token')
 
   const renderError = function (msg) {
-    const loginDiv = document.getElementById("login");
-    loginDiv.insertAdjacentText("beforeend", msg);
+    const form1Div = document.getElementById("form1");
+    form1Div.insertAdjacentText("beforeend", msg);
   };
 }
