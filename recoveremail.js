@@ -38,16 +38,8 @@ export const render = (root) => {
     SendRecoveryEmail(EmailDTO);
   }
 
-  function RecoveryText(string){
-    SentOrNotDiv.appendChild(
-        document
-          .createElement("p")
-          .appendChild(document.createTextNode(string))
-      );
-      setTimeout(function () {
-        SentOrNotDiv.removeChild(SentOrNotDiv.lastChild);
-      }, 2000);
-  }
+  
+
   async function SendRecoveryEmail(emailrecdto) {
     
     const recoverPass = await fetch(
@@ -61,13 +53,40 @@ export const render = (root) => {
       }
     ).then((response) => {
       if (response.ok) {
-        RecoveryText("Email sent.");
+        RecoveryMessege("Email sent.");
         return true;
       } else {
-        RecoveryText("Did not send email.");
-        // throw new Error("NETWORK RESPONSE ERROR");
+        return response.text().then(function(text) 
+      {
+        renderError(`${response.status} ${response.statusText} ${text}`);
+      })
       }
+    })
+    .catch((error) => {
+      renderError(`Error: ${error.message} `);
     });
+  }
+
+  function RecoveryMessege(string){
+    SentOrNotDiv.appendChild(
+        document
+          .createElement("p")
+          .appendChild(document.createTextNode(string))
+      );
+      setTimeout(function () {
+        SentOrNotDiv.removeChild(SentOrNotDiv.lastChild);
+      }, 2000);
+  }
+
+  function renderError(string){
+    SentOrNotDiv.appendChild(
+        document
+          .createElement("p")
+          .appendChild(document.createTextNode(string))
+      );
+      setTimeout(function () {
+        SentOrNotDiv.removeChild(SentOrNotDiv.lastChild);
+      }, 2000);
   }
 }
 
