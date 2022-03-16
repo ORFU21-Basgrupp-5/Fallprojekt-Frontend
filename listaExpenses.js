@@ -1,7 +1,16 @@
 import { getCookie } from "./cookie.js";
+
 export const render = (root) => {
   root.innerHTML = "";
-  var stringLista = '<h1>Lista Utgifter</h1><div id="DivWithExpenses"></div>';
+  var stringLista = `
+    <div id="header">
+      <button id="buttonInmatning">Inmatning</button>
+      <button id="buttonELista">ListaExpenses</button>
+      <button id="buttonILista">ListaIncomes</button>
+    </div>
+    <div id="DivWithExpenses">
+      <h1>Lista Utgifter</h1>
+    </div>`;
   root.innerHTML = stringLista;
 
   GetData();
