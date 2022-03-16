@@ -2,18 +2,14 @@ import { getCookie } from "./cookie.js";
 export const render = (root) => {
   root.innerHTML = "";
   const html = `
-  <div id="header">
-    <button id="buttonInmatning">Inmatning</button>
-    <button id="buttonELista">ListaExpenses</button>
-    <button id="buttonILista">ListaIncomes</button>
-  </div>
-  <h1>Lista Inkomster</h1>
-    <div id="DivWithIncomes">
-  </div>`;
+    <h1>Lista Inkomster</h1>
+      <div id="DivWithIncomes">
+    </div>`;
   root.innerHTML = html;
 
   GetData();
 };
+
 
 function GetData() {
   fetch("http://localhost:7151/ListIncome", {
