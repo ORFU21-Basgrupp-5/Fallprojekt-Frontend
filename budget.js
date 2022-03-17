@@ -3,7 +3,7 @@ export const render = (root) => {
   root.innerHTML = "";
   
   const budgetForm = `
-  <div id="budgetForm">
+  <div id="form1">
   <form>
       <label for="budgetName">Budget name:</label><br>
       <input type="text" id="budgetName" name="budgetName"><br>
@@ -31,15 +31,28 @@ export const render = (root) => {
   root.innerHTML = budgetForm;
   let budgetFormDiv = document.getElementById("budgetForm");
   budgetFormDiv.onclick = function (e) {
-    if(clickedTarget.nodeName === "BUTTON")
+    e.preventDefault();
+    if(e.target.nodeName === "BUTTON")
     {
+      const date = new Date(document.forms["form1"]["budgetDate"].value);
+      let year = date.getFullYear()
+      let month = date.getMonth()
       const newBudgetDTO = {
-        name: e.target[0].value,
-        totalSum: e.target[1].value,
-        month: e.target[2].getMonth(),
-        year:   e.target[2].getYear(),
+        name: document.forms["form1"]["budgetName"].value,
+        totalSum: document.forms["form1"]["maxAmount"].value,
+        month: month,
+        year: year,
+        categoriesAndAmount: {
+          "0": document.forms["form1"]["Food"].value,
+          "1": document.forms["form1"]["Car"].value,
+          "2": document.forms["form1"]["Subscriptions"].value,
+          "3": document.forms["form1"]["Clothes"].value,
+          "4": document.forms["form1"]["Treat"].value,
+          "5": document.forms["form1"]["Other"].value
+        }
+
       }
-      postBudget()
+      postBudget(newBudgetDTO)
     }
   }
 
