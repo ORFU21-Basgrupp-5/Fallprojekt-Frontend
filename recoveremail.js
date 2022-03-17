@@ -2,8 +2,6 @@ import { getCookie } from "./cookie.js";
 export const render = (root) => {
   root.innerHTML = "";
 
-
-
 const emailform = ` 
 <form>
 <label>Email: </label>
