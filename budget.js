@@ -3,8 +3,8 @@ export const render = (root) => {
   root.innerHTML = "";
   
   const budgetForm = `
-  <div id="form1">
-  <form>
+  <div id="budgetForm">
+  <form id="form1">
       <label for="budgetName">Budget name:</label><br>
       <input type="text" id="budgetName" name="budgetName"><br>
       <label for="maxAmount">Budget total amount:</label>
@@ -24,14 +24,15 @@ export const render = (root) => {
       <input type="number" id="Treat"><br>
       <label for="Other">Other:</label>
       <input type="number" id="Other"><br>
-      <button id="budgetSumbit">Submit</button>
+      
   </form>
+  <button id="budgetSumbit">Submit</button>
 </div>`
 
   root.innerHTML = budgetForm;
   let budgetFormDiv = document.getElementById("budgetForm");
   budgetFormDiv.onclick = function (e) {
-    e.preventDefault();
+    //e.preventDefault();
     if(e.target.nodeName === "BUTTON")
     {
       const date = new Date(document.forms["form1"]["budgetDate"].value);
@@ -68,7 +69,7 @@ export const render = (root) => {
 //   }
 // }
 
-   postBudget = async (newBudget) => {
+   const postBudget = async (newBudget) => {
      const settings = {
        method: 'POST',
        headers: {
@@ -78,9 +79,15 @@ export const render = (root) => {
       body: JSON.stringify(newBudget)
      };
      try {
-       const fetchResponse = await fetch("http://localhost:7151/api/Budget/Create",settings);
-       const data = await fetchResponse.json();
-       return data;
+       const response = await fetch("http://localhost:7151/api/Budget/Create",settings);
+       if(response.ok){
+         console.log("A ok!")
+       }
+       else{
+        const message = 'Error with Status Code: ' + response.status;
+        throw new Error(message);
+       }
+       
      }
      catch(e){
       console.log(e);
