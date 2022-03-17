@@ -1,7 +1,7 @@
 export const Render = (root) => {
   root.innerHTML = "";
 
-  var ActiveUser = sessionStorage.getItem("User");
+var ActiveUser = sessionStorage.getItem("User");
 
 const headertag = document.getElementById('header')
 const header = `
@@ -9,7 +9,8 @@ const header = `
       <button id="buttonInmatning">Inmatning</button>
       <button id="buttonELista">ListaExpenses</button>
       <button id="buttonILista">ListaIncomes</button>
-    </div>`
+      </div>`
+      //<button id="emailknapp">Email</button>  knapp för att komma till lösenåterställning
 
 headertag.innerHTML = header;
   
@@ -21,5 +22,3 @@ const html = `
 
 root.innerHTML = html
 };
-
-

@@ -2,6 +2,8 @@ import { getCookie } from "./cookie.js";
 export const render = (root) => {
   root.innerHTML = "";
 
+
+
   let formSendEmail = document.createElement("form")
 
   let EmailLabel = document.createElement("label")

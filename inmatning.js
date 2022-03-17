@@ -4,6 +4,51 @@ export const render = (root) => {
   // var stringUtgifter = '<div><form id="Utgifter"><div><p>Inmatning av utgifter</p></div><div id="info-utgift"></div><div><label for = "Saldo"> Utgift, saldo:</label></div> <div>   <input type = "text" id= "Saldo" name= saldo></div><div><label for="Konto">Utgift, konto:</label></div> <div><input type="text" id= "Konto" name= konto></div><div><label for="Description">Utgift, beskrivning:</label></div><div>  <input type="text" id= "Description" name= description></div><div> <label for="Date">Utgift, datum:</label></div> <div><input type="date" id= "Date" name= date></div><div><button id= "expense">Enter</button></div</form></div>'
   // var stringInkomster = '<div><form id ="Inkomster"><div><p>Inmatning av Inkomster</p></div><div id="info-inkomst"></div><div><label for = "Saldo"> Inkomst, saldo:</label></div><div><input type = "text" id= "Saldo" name= saldo></div><div><label for="Konto">Inkomst, konto:</label></div><div><input type="text" id= "Konto" name= konto></div><div><label for="Description">Inkomst, beskrivning:</label></div><div><input type="text" id= "Description" name= description></div><div><label for="Date">Utgift, datum:</label></div><div> <input type="date" id= "Date" name= date> </div><div><button id= "income">Enter</button></div></form></div>'
 
+//   const html = `
+//   <div id="pageContent">
+//     <div>
+//     <h3>Inkomster</h3>
+//     </div><div id="info-inkomst">
+//       </div><form id="Inkomster">
+//         <div><label>Category</label>
+//         </div><select id="CategoryInc">
+//           <option value="">-- Select -- </option>
+//           <option value="0">Income</option>
+//           <option value="1">CSN</option>
+//           <option value="2">Shares</option>
+//           <option value="3">Swish</option>
+//           <option value="4">Other</option>
+//           </select><div>
+//             <label for="ISaldo">Saldo</label></div>
+//             <div><input id="ISaldo"></div><div><label for="IKonto">Konto</label>
+//             </div><div><input id="IKonto"></div>
+//             <div><label for="IDesc">Desc</label>
+//             </div><div><input id="IDesc"></div>
+//             <div><label for="IDate">Date</label>
+//             </div><div><input id="IDate" type="date">
+//               </div><div><button id="ISubmit">Enter</button>
+//               </div></form><d><h3>Utgifter</h3>
+//               </d><div id="info-utgift"></div>
+//               <form id="Utgifter"><div>
+//                 <label>Category</label>
+//                 </div><select id="CategoryExp">
+//                   <option value="0">Food</option>
+//                   <option value="1">Car</option>
+//                   <option value="2">Subscriptions</option><option value="3">Clothes</option><option value="4">Treat</option>
+//                   <option value="5">Other</option></select><div><label for="ESaldo">Saldo</label>
+//                   </div><div><input id="ESaldo"></div>
+//                   <div><label for="EKonto">Konto</label></div>
+//                   <div><input id="EKonto"></div>
+//                   <div><label for="EDesc">Desc</label>
+//                   </div><div><input id="EDesc"></div>
+//                   <div><label for="EDate">Date</label>
+//                   </div><div><input id="EDate" type="date">
+//                     </div><div><button id="ESubmit">Enter</button>
+//                     </div></form>
+//                     </div>`;
+                    
+// root.innerHTML = html;
+
 
   let elementStrings = [
     "label",
@@ -45,6 +90,8 @@ export const render = (root) => {
 
   let ExpenseForm = document.createElement("form");
   ExpenseForm.setAttribute("id", "Utgifter");
+
+
 
   let divutgift = document.createElement("div");
   divutgift.setAttribute("id", "info-utgift");
@@ -89,6 +136,9 @@ export const render = (root) => {
   categorySelectFetch("Expenses",categorySelect);
   categorySelectFetch("Income",categorySelect2);
   //categorySelect("Expenses",categorySelect1)
+
+  
+
   function categorySelectFetch(choice,catDiv){
     fetch("http://localhost:7151/" + choice +"/categories", 
     {
@@ -140,6 +190,8 @@ export const render = (root) => {
   let IncSubmit = document.getElementById("ISubmit");
   let ExpSubmit = document.getElementById("ESubmit");
 
+
+  
   IncSubmit.onclick = function (e) {
     e.preventDefault();
     if (isNaN(IncomeForm.ISaldo.value))
@@ -249,7 +301,11 @@ export const render = (root) => {
   })
 }
 fetchExp();
-  };
+  
+
+};
+
+
   
 };
 
@@ -385,5 +441,5 @@ function renderErrorEmpty(string) {
     default:
       break;
   }
+  
 }
-
