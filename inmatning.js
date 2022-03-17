@@ -133,14 +133,16 @@ root.innerHTML = html;
   categorySelect2.appendChild(opt1);
   categorySelectFetch("Expenses",categorySelect);
   categorySelectFetch("Income",categorySelect2);
-  //categorySelect("Expenses",categorySelect1)
+
+
+  categorySelect("Expenses",categorySelect1)
   function categorySelectFetch(choice,catDiv){
     fetch("http://localhost:7151/" + choice +"/categories", 
     {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        //Add authorization if custom categorys are added.
+        // Add authorization if custom categorys are added.
       },
 
     })

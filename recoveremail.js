@@ -2,33 +2,57 @@ import { getCookie } from "./cookie.js";
 export const render = (root) => {
   root.innerHTML = "";
 
-  let formSendEmail = document.createElement("form")
 
-  let EmailLabel = document.createElement("label")
-  let EmailLabelText = document.createTextNode("Email: ")
 
-  EmailLabel.appendChild(EmailLabelText)
+const emailform = ` 
+<form>
+<label>Email: </label>
+<input id= "Email" >
+<button id= "recoverbutton">Bekräfta</button>
+<div id="SentOrNotDiv"></div>
+<a href="/">Logga in här</a>
+</form>`
+root.innerHTML = emailform
 
-  let Email = document.createElement("input")
+let SendButton = document.getElementById("recoverbutton")
 
-  let SentOrNotDiv = document.createElement("div");
-  SentOrNotDiv.setAttribute("id", "SentOrNotDiv")
+let SentOrNotDiv = document.getElementById("SentOrNotDiv")
 
-  let SendButton = document.createElement("button")
-  SendButton.innerHTML = "Bekräfta";
+let Email = document.getElementById("Email")
 
-  const HomepageLink = document.createElement("a");
-  HomepageLink.href = "/";
-  const HompageText = document.createTextNode("Logga in här");
-  HomepageLink.appendChild(HompageText);
+  // let formSendEmail = document.createElement("form")
 
-  formSendEmail.appendChild(EmailLabel)
-  formSendEmail.appendChild(Email)
-  formSendEmail.appendChild(SendButton)
-  formSendEmail.appendChild(SentOrNotDiv)
-  formSendEmail.appendChild(HomepageLink)
+  // let EmailLabel = document.createElement("label")
+  // let EmailLabelText = document.createTextNode("Email: ")
 
-  root.appendChild(formSendEmail);
+  // EmailLabel.appendChild(EmailLabelText)
+
+  // let Email = document.createElement("input")
+
+  // let SentOrNotDiv = document.createElement("div");
+  // SentOrNotDiv.setAttribute("id", "SentOrNotDiv")
+
+
+
+//   let SendButton = document.createElement("button")
+//   SendButton.innerHTML = "Bekräfta";
+  
+// let homepageLink = document.getElementById("homepage")
+// homepageLink.href = "/"
+
+
+  // const HomepageLink = document.createElement("a");
+  // HomepageLink.href = "/";
+  // const HompageText = document.createTextNode("Logga in här");
+  // HomepageLink.appendChild(HompageText);
+
+  // formSendEmail.appendChild(EmailLabel)
+  // formSendEmail.appendChild(Email)
+  // formSendEmail.appendChild(SendButton)
+  // formSendEmail.appendChild(SentOrNotDiv)
+  // formSendEmail.appendChild(HomepageLink)
+
+  // root.appendChild(formSendEmail);
 
   SendButton.onclick = function (e) {
     e.preventDefault()
