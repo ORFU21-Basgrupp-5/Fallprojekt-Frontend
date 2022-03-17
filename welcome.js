@@ -28,7 +28,14 @@ export const Render = (root) => {
   listaIButton.setAttribute("id", "buttonILista");
   listaIButton.innerHTML = "ListaIncomes";
 
+  const budgetPage = document.createElement("button");
+  budgetPage.setAttribute("id", "budgetPage");
+  budgetPage.innerHTML = "Budget";
+
+  
   header.appendChild(inmatningButton);
   header.appendChild(listaEButton);
   header.appendChild(listaIButton);
+  header.appendChild(budgetPage);
+  
 };
