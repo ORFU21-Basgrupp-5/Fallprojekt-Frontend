@@ -5,106 +5,135 @@ import { Header } from "./header.js"
 export const render = (root) => {
   root.innerHTML = "";
 
-  const text = document.createTextNode("Reg");
-  const divreg = document.createElement("div");
-  divreg.setAttribute("id", "reg");
+  const regform =  `
+  <div id="pageContent">
 
-  const h1div = document.createElement("h1");
-  const h1text = document.createTextNode("Skapa ett konto");
+  <div id="reg"><h1>Skapa ett konto</h1>
+  </div>
+  <p>Har du redan ett konto?<a href="/">Logga in här</a> </p>
+  <form id="reg_form"><div id="hidden-message">
+  </div>
+  <div id="uname"><label for="username">Användarnamn</label>
+  <input type="text" name="username" placeholder="Välj ett användarnamn">
+  </div>
+  <div id="email"></div>
+  <label for="email">Email:</label>
+  <input type="text" name="email" placeholder="Fyll i din epost">
+  <div id="pswrd"></div><label for="password">Lösenord: </label>
+  <input type="text" name="password" placeholder="Välj ett lösenord">
+  <div id="pswrdvalid"></div><label for="password2">Bekräfta lösenord:
+  </label>
+  <input type="text" name="password2" placeholder="Bekräfta lösenord">
+  <div>
+  <button type="submit">Submit</button>
+  </div>
+  </form>
+  </div>
+  `
 
-  const anchorLink = document.createElement("a");
-  anchorLink.href = "/";
-  const anchorText = document.createTextNode("Logga in här");
-  anchorLink.appendChild(anchorText);
+  root.innerHTML = regform
+  const form = document.getElementById("reg_form");
 
-  const para = document.createElement("p");
-  const paratext = document.createTextNode("Har du redan ett konto?");
+  // const text = document.createTextNode("Reg");
+  // const divreg = document.createElement("div");
+  // divreg.setAttribute("id", "reg");
 
-  h1div.appendChild(h1text);
-  divreg.appendChild(h1div);
-  para.appendChild(paratext);
-  para.appendChild(anchorLink);
+  // const h1div = document.createElement("h1");
+  // const h1text = document.createTextNode("Skapa ett konto");
 
-  root.appendChild(divreg);
-  root.appendChild(para);
+  // const anchorLink = document.createElement("a");
+  // anchorLink.href = "/";
+  // const anchorText = document.createTextNode("Logga in här");
+  // anchorLink.appendChild(anchorText);
 
-  const form = document.createElement("form");
-  form.setAttribute("id", "reg_form");
+  // const para = document.createElement("p");
+  // const paratext = document.createTextNode("Har du redan ett konto?");
 
-  const hiddenmessege = document.createElement("div");
-  hiddenmessege.setAttribute("id", "hidden-message");
+  // h1div.appendChild(h1text);
+  // divreg.appendChild(h1div);
+  // para.appendChild(paratext);
+  // para.appendChild(anchorLink);
 
-  const divuname = document.createElement("div");
-  divuname.setAttribute("id", "uname");
-  const labeluname = document.createElement("label");
-  labeluname.setAttribute("for", "username");
-  const unametext = document.createTextNode("Användarnamn");
-  const inputuname = document.createElement("input");
-  inputuname.setAttribute("type", "text");
-  inputuname.setAttribute("name", "username");
-  inputuname.setAttribute("placeholder", "Välj ett användarnamn");
+  // root.appendChild(divreg);
+  // root.appendChild(para);
 
-  form.appendChild(hiddenmessege);
-  form.appendChild(divuname);
-  divuname.appendChild(labeluname);
-  labeluname.appendChild(unametext);
-  divuname.appendChild(inputuname);
-  form.appendChild(divuname);
+  // const form = document.createElement("form");
+  // form.setAttribute("id", "reg_form");
 
-  const divemail = document.createElement("div");
-  divemail.setAttribute("id", "email");
-  const labelemail = document.createElement("label");
-  labelemail.setAttribute("for", "email");
-  const emailtext = document.createTextNode("Email:");
-  const inputemail = document.createElement("input");
-  inputemail.setAttribute("type", "text");
-  inputemail.setAttribute("name", "email");
-  inputemail.setAttribute("placeholder", "Fyll i din epost");
+  // const hiddenmessege = document.createElement("div");
+  // hiddenmessege.setAttribute("id", "hidden-message");
 
-  form.appendChild(divemail);
-  form.appendChild(labelemail);
-  labelemail.appendChild(emailtext);
-  form.appendChild(inputemail);
+  // const divuname = document.createElement("div");
+  // divuname.setAttribute("id", "uname");
+  // const labeluname = document.createElement("label");
+  // labeluname.setAttribute("for", "username");
+  // const unametext = document.createTextNode("Användarnamn");
+  // const inputuname = document.createElement("input");
+  // inputuname.setAttribute("type", "text");
+  // inputuname.setAttribute("name", "username");
+  // inputuname.setAttribute("placeholder", "Välj ett användarnamn");
 
-  const divpassword = document.createElement("div");
-  divpassword.setAttribute("id", "pswrd");
-  const labelpassword = document.createElement("label");
-  labelpassword.setAttribute("for", "password");
-  const passwordtext = document.createTextNode("Lösenord: ");
-  const inputpassword = document.createElement("input");
-  inputpassword.setAttribute("type", "text");
-  inputpassword.setAttribute("name", "password");
-  inputpassword.setAttribute("placeholder", "Välj ett lösenord");
+  // form.appendChild(hiddenmessege);
+  // form.appendChild(divuname);
+  // divuname.appendChild(labeluname);
+  // labeluname.appendChild(unametext);
+  // divuname.appendChild(inputuname);
+  // form.appendChild(divuname);
 
-  form.appendChild(divpassword);
-  form.appendChild(labelpassword);
-  labelpassword.appendChild(passwordtext);
-  form.appendChild(inputpassword);
+  // const divemail = document.createElement("div");
+  // divemail.setAttribute("id", "email");
+  // const labelemail = document.createElement("label");
+  // labelemail.setAttribute("for", "email");
+  // const emailtext = document.createTextNode("Email:");
+  // const inputemail = document.createElement("input");
+  // inputemail.setAttribute("type", "text");
+  // inputemail.setAttribute("name", "email");
+  // inputemail.setAttribute("placeholder", "Fyll i din epost");
 
-  const divpasswordvalid = document.createElement("div");
-  divpasswordvalid.setAttribute("id", "pswrdvalid");
-  const labelpasswordvalid = document.createElement("label");
-  labelpasswordvalid.setAttribute("for", "password2");
-  const passwordvalidtext = document.createTextNode("Bekräfta lösenord: ");
-  const inputpasswordvalid = document.createElement("input");
-  inputpasswordvalid.setAttribute("type", "text");
-  inputpasswordvalid.setAttribute("name", "password2");
-  inputpasswordvalid.setAttribute("placeholder", "Bekräfta lösenord");
+  // form.appendChild(divemail);
+  // form.appendChild(labelemail);
+  // labelemail.appendChild(emailtext);
+  // form.appendChild(inputemail);
 
-  form.appendChild(divpasswordvalid);
-  form.appendChild(labelpasswordvalid);
-  labelpasswordvalid.appendChild(passwordvalidtext);
-  form.appendChild(inputpasswordvalid);
+  // const divpassword = document.createElement("div");
+  // divpassword.setAttribute("id", "pswrd");
+  // const labelpassword = document.createElement("label");
+  // labelpassword.setAttribute("for", "password");
+  // const passwordtext = document.createTextNode("Lösenord: ");
+  // const inputpassword = document.createElement("input");
+  // inputpassword.setAttribute("type", "text");
+  // inputpassword.setAttribute("name", "password");
+  // inputpassword.setAttribute("placeholder", "Välj ett lösenord");
 
-  const buttondiv = document.createElement("div");
-  const button = document.createElement("button");
-  button.setAttribute("type", "submit");
-  button.innerHTML = "Submit";
+  // form.appendChild(divpassword);
+  // form.appendChild(labelpassword);
+  // labelpassword.appendChild(passwordtext);
+  // form.appendChild(inputpassword);
 
-  buttondiv.appendChild(button);
-  form.appendChild(buttondiv);
+  // const divpasswordvalid = document.createElement("div");
+  // divpasswordvalid.setAttribute("id", "pswrdvalid");
+  // const labelpasswordvalid = document.createElement("label");
+  // labelpasswordvalid.setAttribute("for", "password2");
+  // const passwordvalidtext = document.createTextNode("Bekräfta lösenord: ");
+  // const inputpasswordvalid = document.createElement("input");
+  // inputpasswordvalid.setAttribute("type", "text");
+  // inputpasswordvalid.setAttribute("name", "password2");
+  // inputpasswordvalid.setAttribute("placeholder", "Bekräfta lösenord");
 
-  root.appendChild(form);
+  // form.appendChild(divpasswordvalid);
+  // form.appendChild(labelpasswordvalid);
+  // labelpasswordvalid.appendChild(passwordvalidtext);
+  // form.appendChild(inputpasswordvalid);
+
+  // const buttondiv = document.createElement("div");
+  // const button = document.createElement("button");
+  // button.setAttribute("type", "submit");
+  // button.innerHTML = "Submit";
+
+  // buttondiv.appendChild(button);
+  // form.appendChild(buttondiv);
+
+  // root.appendChild(form);
 
   form.onsubmit = (e) => {
     e.preventDefault();

@@ -10,7 +10,7 @@ export const render = (root,token) => {
                 <input id="newPassword">
                 <br>
                 <label>Bekräfta lösenord: </label>
-                <input>
+                <input id="confirmPassword">
                 <button id="confirmButton">Bekräfta</button>
                 <br>
                 <a href="/">Logga in här</a>
@@ -30,8 +30,11 @@ export const render = (root,token) => {
 
     // let newPassword = document.createElement("input")
     // let confirmPassword = document.createElement("input")
-
-    let ChangeButton = document.getElementById("confirmButton")
+    
+    const confirmPassword = document.getElementById('confirmPassword')
+    const newPassword = document.getElementById('newPassword')
+    let ChangeButton = document.getElementById('confirmButton')
+    
     // ChangeButton.innerHTML = "Bekräfta";
 
     // const HomepageLink = document.createElement("a");
