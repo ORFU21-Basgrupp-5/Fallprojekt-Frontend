@@ -57,18 +57,6 @@ export const render = (root) => {
     }
   }
 
-// {
-//   "name": "string",
-//   "totalSum": 0,
-//   "month": 0,
-//   "year": 0,
-//   "categoriesAndAmount": {
-//     "additionalProp1": 0,
-//     "additionalProp2": 0,
-//     "additionalProp3": 0
-//   }
-// }
-
    const postBudget = async (newBudget) => {
      const settings = {
        method: 'POST',
@@ -93,4 +81,6 @@ export const render = (root) => {
       console.log(e);
      }
    }
+
+  
 };
