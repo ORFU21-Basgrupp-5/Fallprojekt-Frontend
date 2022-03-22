@@ -20,6 +20,7 @@ if (urlparams.get("token") != null) {
   };
 
   let reglink = document.getElementById("reglink");
+  console.log("Password to TestKonto1: Admin2Lösen**")
   reglink.onclick = function (e) {
     e.preventDefault();
     RegRender(pageContent);
