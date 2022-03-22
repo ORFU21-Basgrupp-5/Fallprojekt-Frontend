@@ -2,9 +2,10 @@ import { getCookie } from "./cookie.js";
 
 export const render = (root) => {
   root.innerHTML = "";
+  
   var stringLista = `
+  <h1>Lista Utgifter</h1>
     <div id="DivWithExpenses">
-      <h1>Lista Utgifter</h1>
       <div id="errorDiv"></div>
     </div>`;
   root.innerHTML = stringLista;
