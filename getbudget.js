@@ -8,7 +8,7 @@ export const render = (root) => {
 
   root.innerHTML = stringbudget;
 
- 
+
 
   function budgetLista(data) {
     data.forEach((item) => {
@@ -25,32 +25,61 @@ export const render = (root) => {
   function generate_table(budgetData) {
 
     let diven = document.getElementById("DivWithBudget");
+
     let titleTag = document.createElement("H2");
     let titleText = document.createTextNode(budgetData.budgetName);
-    
     titleTag.appendChild(titleText);
     diven.appendChild(titleTag);
 
+    let subTag = document.createElement("H4");
+    let subText = document.createTextNode(`Total Budget:${budgetData.totalSum} Used Budget:${budgetData.usedAmount}`);
+    subTag.appendChild(subText);
+    diven.appendChild(subTag);
+
+    var categories = Object.keys(budgetData.budgetCategories);
+    var categoriesvalues = Object.values(budgetData.budgetCategories);
+
     let tbl = document.createElement("table");
     let tblBody = document.createElement("tbody");
-    for(var i = 0; i < 3; i++)
-    {
-     
-      var row = document.createElement("tr");
-      for(var j = 0; j < 7; j++)
+
+    let row, cell;
+
+    row = tbl.insertRow();
+    cell = row.insertCell();
+    cell.textContent = "Categories";
+    AddData(row, -1);
+
+    row = tbl.insertRow();
+    cell = row.insertCell();
+    cell.textContent = "Cap";
+    AddData(row, 0);
+
+    row = tbl.insertRow();
+    cell = row.insertCell();
+    cell.textContent = "Spent";
+    AddData(row, 1);
+
+    function AddData(row, int){
+      for(var j = 0; j < categories.length; j++)
       {
-        var cell = document.createElement("td");
-        var cellText = document.createTextNode(budgetData.budgetCategories[j])
-        cell.appendChild(cellText);
-        row.appendChild(cell);
+        if(int == -1)
+        {
+          cell = row.insertCell();
+          cell.textContent = categories[j];
+        }
+        else
+        {
+          cell = row.insertCell();
+          cell.textContent = categoriesvalues[j][int];
+        }
       }
-      tblBody.appendChild(row);
     }
+
+    tblBody.appendChild(row);
     tbl.appendChild(tblBody);
     diven.appendChild(tbl);
     tbl.setAttribute("border","2");
   }
-
 
   const getBudget = async () => {
     const settings = {
@@ -69,9 +98,7 @@ export const render = (root) => {
         console.log("A ok!");
         const result = await response.json();
         console.log(result);
-        console.log(result.totalSum);
         generate_table(result);
-    console.log(result.budgetName);
         return result;
       } else {
         const message = "Error with Status Code: " + response.status;
