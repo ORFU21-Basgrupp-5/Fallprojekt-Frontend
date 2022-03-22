@@ -7,7 +7,7 @@ export const render = (root) => {
 
   const html = `
   <div id="pageContent">
-    <div><h3>Inkomster</h3></div>
+    <div><h1>Inkomster</h1></div>
     <div id="errorDiv"></div>
     <div id="info-inkomst"></div>
       <form id="Inkomster">
@@ -44,7 +44,7 @@ export const render = (root) => {
         </div>
       </form>
         <div>
-          <h3>Utgifter</h3>
+          <h1>Utgifter</h1>
         </div>
         <div id="info-utgift"></div>
       <form id="Utgifter">
@@ -239,34 +239,6 @@ fetchExp();
   
 };
 
-
-
-function SetAttributes(arr, arr2, letter, form) {
-  let attnum = 0;
-  let elements = [];
-  for (let index = 0; index < arr.length; index++) {
-    let element = document.createElement(arr[index]);
-    elements.push(element);
-    elements[index].setAttribute(arr2[attnum], letter + arr2[attnum + 1]);
-    if ((index % 2 == 0 && index !== 8) || index == 7) {
-      elements[index].innerHTML = arr2[attnum + 1];
-    }
-    if (index == 7) {
-      elements[index].setAttribute("type", "date");
-    } else if (index == 8) {
-      elements[index].innerHTML = "Enter";
-    }
-    attnum += 2;
-  }
-  AppendElements(elements, form);
-}
-
-function AppendElements(arr, form) {
-  arr.forEach((x) => {
-    var d = document.createElement("div");
-    form.appendChild(d).appendChild(x);
-  });
-}
 
 function PrintAdded(string) {
   let divutgift = document.getElementById("info-utgift");
