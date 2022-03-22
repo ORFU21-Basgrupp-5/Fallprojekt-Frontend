@@ -1,4 +1,5 @@
 import { getCookie } from "./cookie.js";
+import { defaultRender } from "./errorHandler.js";
 export const render = (root) => {
   root.innerHTML = "";
   var stringLista = '<h1>Lista Utgifter</h1><div id="DivWithExpenses"></div>';
@@ -21,7 +22,7 @@ function GetData() {
     } else {
       return response.text().then(function(text) 
     {
-      renderError(`${response.status} ${response.statusText} ${text}`);
+      defaultRender(`${response.status} ${response.statusText} ${text}`);
     })
     }
   })
@@ -30,16 +31,8 @@ function GetData() {
     upgiftsLista(data);
   })
   .catch((error) => {
-    renderError(`Error: ${error.message} `)
+    defaultRender(`Error: ${error.message} `)
   })
-  }
-
-  const renderError = function(msg){
-    const ErrorDiv = document.getElementById('DivWithExpenses')
-    ErrorDiv.insertAdjacentText('beforeend', msg)
-    setTimeout(function () {
-      ErrorDiv.removeChild(ErrorDiv.lastChild);
-    }, 2000)
   }
 
 

@@ -9,7 +9,7 @@ export const render = (root) => {
 };
 
 function GetData() {
-  fetch("http://localhost:7151/ListIncom", {
+  fetch("http://localhost:7151/ListIncome", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -34,16 +34,6 @@ function GetData() {
     defaultRender(`Error: ${error.message} `)
   })
 }
-
-
-
-// const renderError = function(msg){
-//   const ErrorDiv = document.getElementById('DivWithIncomes')
-//   ErrorDiv.insertAdjacentText('beforeend', msg)
-//   setTimeout(function () {
-//     ErrorDiv.removeChild(ErrorDiv.lastChild);
-//   }, 2000)
-// }
 
 
 function upgiftsLista(data) {
