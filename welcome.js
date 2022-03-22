@@ -27,6 +27,9 @@ export const Render = (root) => {
   const listaIButton = document.createElement("button");
   listaIButton.setAttribute("id", "buttonILista");
   listaIButton.innerHTML = "ListaIncomes";
+  const ErrorDiv = document.getElementById('DivWithIncomes')
+
+
 
   const budgetPage = document.createElement("button");
   budgetPage.setAttribute("id", "budgetPage");
