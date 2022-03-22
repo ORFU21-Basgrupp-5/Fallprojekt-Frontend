@@ -2,6 +2,7 @@ import { render as listERender } from "./listaExpenses.js";
 import { render as listIRender } from "./listaIncomes.js";
 import { render as inmatningRender } from "./inmatning.js";
 import { render as budgetRender } from "./budget.js";
+import { render as budgetGetRender } from "./getBudget.js";
 
 const pageContent = document.getElementById("pageContent");
 
@@ -11,6 +12,7 @@ export class Header {
     const button2 = document.getElementById("buttonILista");
     const button3 = document.getElementById("buttonInmatning");
     const button4 = document.getElementById("budgetPage");
+    const button5 = document.getElementById("budgetGetPage");
 
     button1.addEventListener("click", () => {
       listERender(pageContent);
@@ -24,6 +26,9 @@ export class Header {
     });
     button4.addEventListener("click", () => {
       budgetRender(pageContent);
+    });
+    button5.addEventListener("click", () => {
+      budgetGetRender(pageContent);
     });
   }
 }

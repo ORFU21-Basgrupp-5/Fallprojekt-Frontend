@@ -32,11 +32,15 @@ export const Render = (root) => {
   budgetPage.setAttribute("id", "budgetPage");
   budgetPage.innerHTML = "Budget";
 
+  const budgetGetPage = document.createElement("button");
+  budgetGetPage.setAttribute("id", "budgetGetPage");
+  budgetGetPage.innerHTML = "Show Budget";
   
   header.appendChild(inmatningButton);
   header.appendChild(listaEButton);
   header.appendChild(listaIButton);
   header.appendChild(budgetPage);
+  header.appendChild(budgetGetPage);
   
 
 };
