@@ -199,7 +199,7 @@ export const render = (root) => {
         } else {
           return response.text().then(function(text) 
       {
-        defaultRender(`${response.status} ${response.statusText} ${text}`);
+        defaultRender(`${text.status}`);
       })
         }
       })
@@ -240,7 +240,7 @@ export const render = (root) => {
     else {
       return response.text().then(function(text) 
       {
-        defaultRender(`${response.status} ${response.statusText} ${text}`);
+        defaultRender(`${text.error}`);
       })
     }
   })
@@ -309,7 +309,6 @@ function PrintAdded(string) {
       break;
   }
 }
-
 function IsInputNumber(string) {
   let divutgift = document.getElementById("info-utgift");
   let divinkomst = document.getElementById("info-inkomst");
@@ -339,6 +338,7 @@ function IsInputNumber(string) {
       break;
   }
 }
+
 
 function IsInputEmpty(string) {
   let divutgift = document.getElementById("info-utgift");

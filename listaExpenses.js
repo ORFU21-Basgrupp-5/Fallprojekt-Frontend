@@ -22,7 +22,7 @@ function GetData() {
     } else {
       return response.text().then(function(text) 
     {
-      defaultRender(`${response.status} ${response.statusText} ${text}`);
+      defaultRender(`${text.error}`);
     })
     }
   })

@@ -167,7 +167,7 @@ export const render = (root) => {
     });
     let textreponse = await response.text();
     if (!response.ok) {
-        defaultRender(`Error is: ${response.status} ${textreponse}`);
+        defaultRender(`${text.error}`);
     } else {
       var activeUser = newUser.userName;
       sessionStorage.setItem("User", activeUser);

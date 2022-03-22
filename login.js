@@ -57,7 +57,7 @@ if (urlparams.get("token") != null) {
             } else {
               return response.text().then(function (text) {
                 defaultRender(
-                  `${response.status} ${response.statusText} ${text}`
+                  `${text.error}`
                 );
               });
             }
