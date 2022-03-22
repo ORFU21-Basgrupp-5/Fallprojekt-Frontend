@@ -1,4 +1,5 @@
 import { getCookie } from "./cookie.js";
+import { defaultRender } from "./errorHandler.js";
 export const render = (root) => {
   root.innerHTML = "";
   // var stringUtgifter = '<div><form id="Utgifter"><div><p>Inmatning av utgifter</p></div><div id="info-utgift"></div><div><label for = "Saldo"> Utgift, saldo:</label></div> <div>   <input type = "text" id= "Saldo" name= saldo></div><div><label for="Konto">Utgift, konto:</label></div> <div><input type="text" id= "Konto" name= konto></div><div><label for="Description">Utgift, beskrivning:</label></div><div>  <input type="text" id= "Description" name= description></div><div> <label for="Date">Utgift, datum:</label></div> <div><input type="date" id= "Date" name= date></div><div><button id= "expense">Enter</button></div</form></div>'
@@ -129,11 +130,11 @@ root.innerHTML = html;
     e.preventDefault();
     if (isNaN(IncomeForm.ISaldo.value))
     {
-      renderError("inkomst")
+      IsInputNumber("inkomst")
     }
     else if (IncomeForm.IKonto.value === "" || IncomeForm.IDesc.value === "" || IncomeForm.IDate === "" || IncomeForm.ISaldo.value === "") 
     {
-      renderErrorEmpty("inkomst")
+      IsInputEmpty("inkomst")
     }
     else {
     income();
@@ -143,11 +144,11 @@ root.innerHTML = html;
     e.preventDefault();
     if (isNaN(ExpenseForm.ESaldo.value))
     {
-      renderError("utgift")
+      IsInputNumber("utgift")
     }
     else if (ExpenseForm.EKonto.value === "" || ExpenseForm.EDesc.value === "" || ExpenseForm.EDate.value === "" || ExpenseForm.ESaldo.value === "") 
     {
-      renderErrorEmpty("utgift")
+      IsInputEmpty("utgift")
     }
     else{
     expense();
@@ -184,13 +185,13 @@ root.innerHTML = html;
         } else {
           return response.text().then(function(text) 
       {
-        renderErrorBodyIncome(`${response.status} ${response.statusText} ${text}`);
+        defaultRender(`${text.status}`);
       })
         }
       })
       .catch((error) => { 
         debugger
-        renderErrorBodyIncome(`Error: ${error.message} `)
+        defaultRender(`Error: ${error.message} `)
       })
     }
     fetchInc();
@@ -225,12 +226,12 @@ root.innerHTML = html;
     else {
       return response.text().then(function(text) 
       {
-        renderErrorBodyExpense(`${response.status} ${response.statusText} ${text}`);
+        defaultRender(`${text.error}`);
       })
     }
   })
   .catch((error) => {  
-    renderErrorBodyExpense(`Error: ${error.message} `)
+    defaultRender(`Error: ${error.message} `)
   })
 }
 fetchExp();
@@ -296,24 +297,7 @@ function PrintAdded(string) {
       break;
   }
 }
-
-const renderErrorBodyIncome = function(msg){
-  const IncError = document.getElementById('Inkomster')
-  IncError.insertAdjacentText('beforeend', msg)
-  setTimeout(function () {
-    IncError.removeChild(IncError.lastChild);
-  }, 2000)
-}
-
-const renderErrorBodyExpense = function(msg){
-  const ExpError = document.getElementById('Utgifter')
-  ExpError.insertAdjacentText('beforeend', msg)
-  setTimeout(function () {
-    ExpError.removeChild(ExpError.lastChild);
-  }, 2000)
-}
-
-function renderError(string) {
+function IsInputNumber(string) {
   let divutgift = document.getElementById("info-utgift");
   let divinkomst = document.getElementById("info-inkomst");
 
@@ -343,7 +327,8 @@ function renderError(string) {
   }
 }
 
-function renderErrorEmpty(string) {
+
+function IsInputEmpty(string) {
   let divutgift = document.getElementById("info-utgift");
   let divinkomst = document.getElementById("info-inkomst");
   switch (string) {
