@@ -9,8 +9,9 @@ const header = `
       <button id="buttonInmatning">Inmatning</button>
       <button id="buttonELista">ListaExpenses</button>
       <button id="buttonILista">ListaIncomes</button>
-      <button id="emailknapp">Email</button>  
-      </div>`
+    </div>`
+
+{/* <button id="emailknapp">Email</button>  */} 
 
 headertag.innerHTML = header;
   
@@ -18,6 +19,7 @@ const html = `
     <div id="pageContent">
       <h1>Welcome</h1>
       <div id="active_user">${ActiveUser}</div>
+      <div id="errorDiv"></div>
     </div>`
 
 root.innerHTML = html

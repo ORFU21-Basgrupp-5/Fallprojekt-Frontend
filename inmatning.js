@@ -7,135 +7,83 @@ export const render = (root) => {
   const html = `
   <div id="pageContent">
     <div><h3>Inkomster</h3></div>
+    <div id="errorDiv"></div>
     <div id="info-inkomst"></div>
       <form id="Inkomster">
-        <div><label>Category</label></div>
-
-        <select id="CategoryInc">         
-          </select>
-          <div><label for="ISaldo">Saldo</label></div>         
-            <div><input id="ISaldo"></div>
-            <div><label for="IKonto">Konto</label>
-            </div><div><input id="IKonto"></div>
-            <div><label for="IDesc">Desc</label>
-            </div><div><input id="IDesc"></div>
-            <div><label for="IDate">Date</label></div>
-            <div><input id="IDate" type="date"></div>
-            <div><button id="ISubmit">Enter</button></div>
-
-
-            </form><d><h3>Utgifter</h3></d><div id="info-utgift"></div>
-              <form id="Utgifter"><div>
-                <label>Category</label></div>
-
-                <select id="CategoryExp">
-                </select>            
-                <div> <label for="ESaldo">Saldo</label></div>
-                  </div><div><input id="ESaldo"></div>
-                  <div><label for="EKonto">Konto</label></div>
-                  <div><input id="EKonto"></div>
-                  <div><label for="EDesc">Desc</label></div>
-                  <div><input id="EDesc"></div>
-                  <div><label for="EDate">Date</label></div>
-                  <div><input id="EDate" type="date"></div>
-                  <div><button id="ESubmit">Enter</button></div>
-                  </form> </div>`;
+        <div>
+          <label>Category</label>
+        </div>
+        <select id="CategoryInc"></select>
+        <div>
+          <label for="ISaldo">Saldo</label>
+        </div>         
+        <div>
+          <input id="ISaldo">
+        </div>
+        <div>
+          <label for="IKonto">Konto</label>
+        </div>
+        <div>
+          <input id="IKonto">
+        </div>
+        <div>
+          <label for="IDesc">Desc</label>
+        </div>
+        <div>
+          <input id="IDesc">
+        </div>
+        <div>
+          <label for="IDate">Date</label>
+        </div>
+        <div>
+          <input id="IDate" type="date">
+        </div>
+        <div>
+          <button id="ISubmit">Enter</button>
+        </div>
+      </form>
+        <div>
+          <h3>Utgifter</h3>
+        </div>
+        <div id="info-utgift"></div>
+      <form id="Utgifter">
+        <div>
+          <label>Category</label>
+        </div>
+        <select id="CategoryExp"></select>            
+        <div>
+          <label for="ESaldo">Saldo</label>
+        </div>
+        <div>
+          <input id="ESaldo">
+        </div>
+        <div>
+          <label for="EKonto">Konto</label>
+        </div>
+        <div>
+          <input id="EKonto">
+        </div>
+        <div>
+          <label for="EDesc">Desc</label>
+        </div>
+        <div>
+          <input id="EDesc">
+        </div>
+        <div>
+          <label for="EDate">Date</label>
+        </div>
+        <div>
+          <input id="EDate" type="date">
+        </div>
+        <div>
+          <button id="ESubmit">Enter</button>
+        </div>
+    </form>
+  </div>`;
                     
 root.innerHTML = html;
 
-// </div><select id="CategoryExp">
-// <option value="0">Food</option>
-// <option value="1">Car</option>
-// <option value="2">Subscriptions</option><option value="3">Clothes</option><option value="4">Treat</option>
-// <option value="5">Other</option></select><div>
 
-{/* <option value="">-- Select -- </option>
-          <option value="0">Income</option>
-          <option value="1">CSN</option>
-          <option value="2">Shares</option>
-          <option value="3">Swish</option>
-          <option value="4">Other</option> */}
-  // let elementStrings = [
-  //   "label",
-  //   "input",
-  //   "label",
-  //   "input",
-  //   "label",
-  //   "input",
-  //   "label",
-  //   "input",
-  //   "button",
-  // ];
-
-  // let attributes = [
-  //   "for",
-  //   "Saldo",
-  //   "id",
-  //   "Saldo",
-  //   "for",
-  //   "Konto",
-  //   "id",
-  //   "Konto",
-  //   "for",
-  //   "Desc",
-  //   "id",
-  //   "Desc",
-  //   "for",
-  //   "Date",
-  //   "id",
-  //   "Date",
-  //   "id",
-  //   "Submit",
-  // ];
-
-  // let pageContent = document.getElementById("pageContent");
-
-  // let IncomeForm = document.createElement("form");
-  // IncomeForm.setAttribute("id", "Inkomster");
-
-  // let ExpenseForm = document.createElement("form");
-  // ExpenseForm.setAttribute("id", "Utgifter");
-
-  // let divutgift = document.createElement("div");
-  // divutgift.setAttribute("id", "info-utgift");
-
-  // let divinkomst = document.createElement("div");
-  // divinkomst.setAttribute("id", "info-inkomst");
-
-  // const inkomsterHeader = document.createElement("d");
-  // const inkomsterText = document.createTextNode("Inkomster");
-  // const inkomsterH3 = document.createElement("h3");
-  // inkomsterHeader.appendChild(inkomsterH3);
-  // inkomsterH3.appendChild(inkomsterText);
-
-  // const utgifterHeader = document.createElement("d");
-  // const utgifterText = document.createTextNode("Utgifter");
-  // const utgifterH3 = document.createElement("h3");
-  // utgifterHeader.appendChild(utgifterH3);
-  // utgifterH3.appendChild(utgifterText);
-
-  // const categorySelect = document.createElement("select");
-  // categorySelect.setAttribute("id", "CategoryExp");
-  // const opt1 = document.createElement("option");
-  // opt1.setAttribute("value", "");
-  // opt1.innerHTML = "-- Select -- " ;
-  
-  
-  // let div = document.createElement("div");
-  // let categorylabel = document.createElement("label");
-  // categorylabel.innerHTML = "Category";
-  // div.appendChild(categorylabel);
-  // categorySelect.appendChild(opt1);
-  
-  
-  // const categorySelect2 = document.createElement("select");
-  // categorySelect2.setAttribute("id", "CategoryInc");
-  // const Incopt1 = document.createElement("option");
-  
-  
-  // Incopt1.setAttribute("value", "");
-  // Incopt1.innerHTML = "-- Select --";
-  // categorySelect2.appendChild(opt1);
   let categorySelect = document.getElementById("CategoryExp")
   let categorySelect2 = document.getElementById("CategoryInc")
   
@@ -176,31 +124,6 @@ root.innerHTML = html;
       
     })
   }
-
-  // let div2 = document.createElement("div");
-  // let categorylabel2 = document.createElement("label");
-  // categorylabel2.innerHTML = "Category";
-  // div2.appendChild(categorylabel2);
- 
-
-  // IncomeForm.appendChild(div2);
-  // IncomeForm.appendChild(categorySelect2);
-  // ExpenseForm.appendChild(div);
-  // ExpenseForm.appendChild(categorySelect);
-
-  // pageContent.appendChild(inkomsterHeader);
-  // pageContent.appendChild(divinkomst);
-  // pageContent.appendChild(IncomeForm);
-  // pageContent.appendChild(utgifterHeader);
-  // pageContent.appendChild(divutgift);
-  // pageContent.appendChild(ExpenseForm);
-
-  // SetAttributes(elementStrings, attributes, "I", IncomeForm);
-  // SetAttributes(elementStrings, attributes, "E", ExpenseForm);
-
-  // let IncSubmit = document.getElementById("ISubmit");
-  // let ExpSubmit = document.getElementById("ESubmit");
-
 
   IncSubmit.onclick = function (e) {
     e.preventDefault();

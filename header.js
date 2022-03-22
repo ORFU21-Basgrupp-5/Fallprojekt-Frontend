@@ -10,7 +10,7 @@ export class Header {
     const button1 = document.getElementById("buttonELista");
     const button2 = document.getElementById("buttonILista");
     const button3 = document.getElementById("buttonInmatning");
-    const button4 = document.getElementById("emailknapp"); 
+    //const button4 = document.getElementById("emailknapp"); 
 
     button1.addEventListener("click", () => {
       listERender(pageContent);
@@ -22,8 +22,8 @@ export class Header {
     button3.addEventListener("click", () => {
       inmatningRender(pageContent);
     });
-    button4.addEventListener("click", () => {
-      passwordrender(pageContent);
-    });
+    // button4.addEventListener("click", () => {
+    //   passwordrender(pageContent);
+    // });
   }
 }
