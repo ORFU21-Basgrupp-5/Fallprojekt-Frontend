@@ -1,4 +1,5 @@
 import { getCookie } from "./cookie.js";
+import { defaultRender } from "./errorHandler.js";
 export const render = (root) => {
   root.innerHTML = "";
 
@@ -53,32 +54,21 @@ export const render = (root) => {
       }
     ).then((response) => {
       if (response.ok) {
-        RecoveryMessege("Email sent.");
+        RecoveryMessage("Email sent.");
         return true;
       } else {
         return response.text().then(function(text) 
       {
-        renderError(`${response.status} ${response.statusText} ${text}`);
+        defaultRender(`${text.error}`);
       })
       }
     })
     .catch((error) => {
-      renderError(`Error: ${error.message} `);
+      defaultRender(`Error: ${error.message} `);
     });
   }
 
-  function RecoveryMessege(string){
-    SentOrNotDiv.appendChild(
-        document
-          .createElement("p")
-          .appendChild(document.createTextNode(string))
-      );
-      setTimeout(function () {
-        SentOrNotDiv.removeChild(SentOrNotDiv.lastChild);
-      }, 2000);
-  }
-
-  function renderError(string){
+  function RecoveryMessage(string){
     SentOrNotDiv.appendChild(
         document
           .createElement("p")
