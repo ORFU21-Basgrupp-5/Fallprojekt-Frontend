@@ -27,6 +27,9 @@ export const Render = (root) => {
   const listaIButton = document.createElement("button");
   listaIButton.setAttribute("id", "buttonILista");
   listaIButton.innerHTML = "ListaIncomes";
+  const ErrorDiv = document.getElementById('DivWithIncomes')
+
+
 
   header.appendChild(inmatningButton);
   header.appendChild(listaEButton);

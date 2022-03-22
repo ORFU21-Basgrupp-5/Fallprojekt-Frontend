@@ -1,4 +1,5 @@
 import { getCookie } from "./cookie.js";
+import {defaultRender} from "./errorHandler.js";
 export const render = (root) => {
   root.innerHTML = "";
   var stringLista = '<h1>Lista Inkomster</h1><div id="DivWithIncomes"></div>';
@@ -8,7 +9,7 @@ export const render = (root) => {
 };
 
 function GetData() {
-  fetch("http://localhost:7151/ListIncome", {
+  fetch("http://localhost:7151/ListIncom", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -21,7 +22,7 @@ function GetData() {
     } else {
       return response.text().then(function(text) 
     {
-      renderError(`${response.status} ${response.statusText} ${text}`);
+      defaultRender(`${response.status} ${response.statusText} ${text}`);
     })
     }
   })
@@ -30,17 +31,19 @@ function GetData() {
     upgiftsLista(data);
   })
   .catch((error) => {
-    renderError(`Error: ${error.message} `)
+    defaultRender(`Error: ${error.message} `)
   })
 }
 
-const renderError = function(msg){
-  const ErrorDiv = document.getElementById('DivWithIncomes')
-  ErrorDiv.insertAdjacentText('beforeend', msg)
-  setTimeout(function () {
-    ErrorDiv.removeChild(ErrorDiv.lastChild);
-  }, 2000)
-}
+
+
+// const renderError = function(msg){
+//   const ErrorDiv = document.getElementById('DivWithIncomes')
+//   ErrorDiv.insertAdjacentText('beforeend', msg)
+//   setTimeout(function () {
+//     ErrorDiv.removeChild(ErrorDiv.lastChild);
+//   }, 2000)
+// }
 
 
 function upgiftsLista(data) {

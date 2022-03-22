@@ -3,6 +3,7 @@ import { render as RegRender } from "./reg.js";
 import { Header } from "./header.js";
 import { render } from "./recoveremail.js";
 import { render as recoverpassword } from "./changepassword.js";
+import {defaultRender} from "./errorHandler.js";
 
 let currenturl = new URL(document.URL);
 let urlparams = new URLSearchParams(currenturl.search);
@@ -55,7 +56,7 @@ if (urlparams.get("token") != null) {
               return response.json();
             } else {
               return response.text().then(function (text) {
-                renderError(
+                defaultRender(
                   `${response.status} ${response.statusText} ${text}`
                 );
               });
@@ -86,10 +87,10 @@ if (urlparams.get("token") != null) {
             let header = new Header();
           })
           .catch((error) => {
-            renderError(`Error: ${error.message} `);
+            defaultRender(`Error: ${error.message} `);
           })
           .catch((BodyError) => {
-            renderError(`Error: ${BodyError} `);
+            defaultRender(`Error: ${BodyError} `);
           });
       }
 
@@ -99,14 +100,10 @@ if (urlparams.get("token") != null) {
 
       // 'An error has occurred: 404'
     } else {
-      renderError("Enter stuff");
+      defaultRender("Enter stuff");
     }
   };
 
   //'Authorization': 'Bearer ' + cookies.get('token')
 
-  const renderError = function (msg) {
-    const form1Div = document.getElementById("form1");
-    form1Div.insertAdjacentText("beforeend", msg);
-  };
 }
