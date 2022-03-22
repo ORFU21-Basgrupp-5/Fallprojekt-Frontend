@@ -2,11 +2,16 @@ import { getCookie } from "./cookie.js";
 import {defaultRender} from "./errorHandler.js";
 export const render = (root) => {
   root.innerHTML = "";
-  var stringLista = '<h1>Lista Inkomster</h1><div id="DivWithIncomes"></div>';
-  root.innerHTML = stringLista;
+  const html = `
+    <h1>Lista Inkomster</h1>
+      <div id="DivWithIncomes">
+      <div id="errorDiv"></div>
+    </div>`;
+  root.innerHTML = html;
 
   GetData();
 };
+
 
 function GetData() {
   fetch("http://localhost:7151/ListIncome", {

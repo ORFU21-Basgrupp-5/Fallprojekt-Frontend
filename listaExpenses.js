@@ -2,11 +2,17 @@ import { getCookie } from "./cookie.js";
 import { defaultRender } from "./errorHandler.js";
 export const render = (root) => {
   root.innerHTML = "";
-  var stringLista = '<h1>Lista Utgifter</h1><div id="DivWithExpenses"></div>';
+  
+  var stringLista = `
+  <h1>Lista Utgifter</h1>
+    <div id="DivWithExpenses">
+      <div id="errorDiv"></div>
+    </div>`;
   root.innerHTML = stringLista;
 
   GetData();
 };
+
 
 function GetData() {
   fetch("http://localhost:7151/ListExpenses", {

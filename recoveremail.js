@@ -3,33 +3,21 @@ import { defaultRender } from "./errorHandler.js";
 export const render = (root) => {
   root.innerHTML = "";
 
-  let formSendEmail = document.createElement("form")
+const emailform = ` 
+  <form>
+    <label>Email: </label>
+    <input id= "Email" >
+    <button id= "recoverbutton">Bekräfta</button>
+    <div id="SentOrNotDiv"></div>
+    <a href="/">Logga in här</a>
+    <div id="errorDiv"></div>
+  </form>`
+root.innerHTML = emailform
 
-  let EmailLabel = document.createElement("label")
-  let EmailLabelText = document.createTextNode("Email: ")
+let SendButton = document.getElementById("recoverbutton")
+let SentOrNotDiv = document.getElementById("SentOrNotDiv")
+let Email = document.getElementById("Email")
 
-  EmailLabel.appendChild(EmailLabelText)
-
-  let Email = document.createElement("input")
-
-  let SentOrNotDiv = document.createElement("div");
-  SentOrNotDiv.setAttribute("id", "SentOrNotDiv")
-
-  let SendButton = document.createElement("button")
-  SendButton.innerHTML = "Bekräfta";
-
-  const HomepageLink = document.createElement("a");
-  HomepageLink.href = "/";
-  const HompageText = document.createTextNode("Logga in här");
-  HomepageLink.appendChild(HompageText);
-
-  formSendEmail.appendChild(EmailLabel)
-  formSendEmail.appendChild(Email)
-  formSendEmail.appendChild(SendButton)
-  formSendEmail.appendChild(SentOrNotDiv)
-  formSendEmail.appendChild(HomepageLink)
-
-  root.appendChild(formSendEmail);
 
   SendButton.onclick = function (e) {
     e.preventDefault()
