@@ -5,6 +5,7 @@ export const render = (root) => {
   var stringLista = `
     <div id="DivWithExpenses">
       <h1>Lista Utgifter</h1>
+      <div id="errorDiv"></div>
     </div>`;
   root.innerHTML = stringLista;
 
