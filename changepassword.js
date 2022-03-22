@@ -1,4 +1,5 @@
 import { getCookie } from "./cookie.js";
+import { defaultRender } from "./errorHandler.js";
 
 export const render = (root,token) => {
     root.innerHTML = "";
@@ -34,7 +35,7 @@ export const render = (root,token) => {
         ChangePasswordLink(NewPasswordDTO)
         }
         else{
-        console.log("Lösenorden matchar inte")
+        defaultRender("Lösenorden matchar inte")
         }
     
     }
@@ -52,10 +53,10 @@ export const render = (root,token) => {
           }
         ).then((response) => {
           if (response.ok) {
-            alert("Changed password successfully");
+            defaultRender("Changed password successfully")
             return true;
           } else {
-            alert("Could not change password")
+            defaultRender("Could not change password")
             // throw new Error("NETWORK RESPONSE ERROR");
           }
         });

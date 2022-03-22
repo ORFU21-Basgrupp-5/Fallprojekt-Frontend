@@ -40,6 +40,7 @@ export const render = (root) => {
 
   root.innerHTML = regform
   const form = document.getElementById("reg_form");
+  const pageContent = document.getElementById("pageContent");
 
   form.onsubmit = (e) => {
     e.preventDefault();
@@ -53,21 +54,9 @@ export const render = (root) => {
     const usernamevalidate = userRegister.every((x) => x != "");
     if (usernamevalidate) {
       if (userRegister[2] != userRegister[3]) {
-        let errorPassContainer = document.getElementById("hidden-message");
-        let newText = document
-          .createElement("p")
-          .appendChild(document.createTextNode("Lösenorden matchar inte!"));
-        errorPassContainer.appendChild(newText);
+        defaultRender("Lösenorden matchar inte")
       } else if (CheckPassword(userRegister[2]) === false) {
-        let errorPassContainer = document.getElementById("hidden-message");
-        let newText = document
-          .createElement("p")
-          .appendChild(
-            document.createTextNode(
-              "Ditt lösenord måste ha minst 12 tecken,en gemen, en storbokstav, en siffra och ett special tecken"
-            )
-          );
-        errorPassContainer.appendChild(newText);
+        defaultRender("Ditt lösenord måste ha minst 12 tecken,en gemen, en storbokstav, en siffra och ett special tecken")
       } else {
         const name = userRegister[0];
         const email = userRegister[1];
@@ -82,11 +71,7 @@ export const render = (root) => {
         FetchReg(userDTO);
       }
     } else {
-      let errorPassContainer = document.getElementById("hidden-message");
-      let newText = document
-        .createElement("p")
-        .appendChild(document.createTextNode("Du måste fylla i alla fälten!"));
-      errorPassContainer.appendChild(newText);
+      defaultRender("Du måste fylla i samtliga fält")
     }
   };
 
@@ -99,9 +84,9 @@ export const render = (root) => {
       },
       body: JSON.stringify(newUser),
     });
-    let textreponse = await response.text();
+    let textresponse = await response.text();
     if (!response.ok) {
-        defaultRender(`${text.error}`);
+      defaultRender(`${textresponse}`)
     } else {
       var activeUser = newUser.userName;
       sessionStorage.setItem("User", activeUser);

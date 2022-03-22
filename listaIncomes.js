@@ -27,7 +27,7 @@ function GetData() {
     } else {
       return response.text().then(function(text) 
     {
-      defaultRender(`${text.error}`);
+      defaultRender(`${text}`);
     })
     }
   })
