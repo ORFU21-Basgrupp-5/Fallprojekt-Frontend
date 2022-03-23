@@ -1,13 +1,113 @@
+
 body {
+  background-color: #064b73;
+  opacity: 1;
+  background-image:  linear-gradient(30deg, #233D53 12%, transparent 12.5%, transparent 87%, #233D53 87.5%, #233D53), linear-gradient(150deg, #233D53 12%, transparent 12.5%, transparent 87%, #233D53 87.5%, #233D53), linear-gradient(30deg, #233D53 12%, transparent 12.5%, transparent 87%, #233D53 87.5%, #233D53), linear-gradient(150deg, #233D53 12%, transparent 12.5%, transparent 87%, #233D53 87.5%, #233D53), linear-gradient(60deg, #233D5377 25%, transparent 25.5%, transparent 75%, #233D5377 75%, #233D5377), linear-gradient(60deg, #233D5377 25%, transparent 25.5%, transparent 75%, #233D5377 75%, #233D5377);
+  background-size: 80px 140px;
+  background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
 
-  width: 500px;
-  margin: 0 auto;
-  padding: 0 20px 20px 20px;
-  background: linear-gradient(to right, #F9F3E6, #FA532E);
-  text-align: center;
+}
+
+
+
+
+
+
+.button-1 {
+  align-items: center;
+  background-clip: padding-box;
+  background-color: #064b73;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
   font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 5px;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
 
-  
+.button-1:hover,
+.button-1:focus {
+  background-color: #233d53;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.button-1:hover {
+  transform: translateY(-1px);
+}
+
+.button-1:active {
+  background-color: #FA532e;
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  transform: translateY(0);
+}
+
+#header {
+  background-color: #F9F3E6;
+  border: 1px solid #064b73;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 5px;
+  padding: 10px;
+  text-shadow: 3px 3px 2px rgba(250, 83, 46, 1);
+  box-shadow: 3px 3px 2px 0px rgba(250, 83, 46, 1);
+}
+
+#errorDiv {
+  margin: 10px;
+  background-color:#FA532e;
+  border-radius: 5px;
+  box-shadow: 3px 3px 2px 0px #064b73;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+}
+#pageContent {
+  background-color: #F9F3E6;
+  border: 1px solid #064b73;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 5px;
+  padding: 10px;
+  box-shadow: 3px 3px 2px 0px rgba(250, 83, 46, 1);
+}
+
+#DivWithBudget{
+  width: 40%;
+  margin: auto;
+  background-color: #F9F3E6;
+  border: 1px solid black;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px;
+  box-shadow: 3px 3px 2px 0px rgba(250, 83, 46, 1);
+}
+.table-style {
+  margin-left: auto;
+  margin-right: auto;
+box-shadow: 3px 3px 2px 0px rgba(250, 83, 46, 1);
 }
 
 a:link {
@@ -17,7 +117,7 @@ a:visited {
   color: rgb(9, 11, 124);
 }
 a:hover {
-  color: purple;
+  color: #FA532e;
 }
 a:active {
   color: teal;
@@ -27,67 +127,84 @@ a:hover {
   text-decoration: underline;
 }
 #DivWithExpenses {
+  width: 33%;
+  margin: auto;
   background-color: #F9F3E6;
-  border: 3px solid black;
+  border: 1px solid black;
   border-radius: 10px;
   text-align: left;
   font-size: 20px;
   font-weight: 600;
+  box-shadow: 3px 3px 2px 0px rgba(250, 83, 46, 1);
   
 }
 #DivWithIncomes  {
+  width: 33%;
+  margin: auto;
   background-color: #F9F3E6;
-  border: 3px solid black;
+  border: 1px solid black;
   border-radius: 10px;
   text-align: left;
   font-size: 20px;
   font-weight: 600;
+  box-shadow: 3px 3px 2px 0px rgba(250, 83, 46, 1);
   
 }
-#buttonILista {
-  background-color: rgb(104, 168, 252);
-  margin: 0;
-  padding: 10px ;
-  width: 160px;
-  font-weight: 600;
-}
 
-#buttonInmatning {
-  background-color: rgb(104, 168, 252);
-  margin: 0;
-  padding: 10px ;
-  width: 160px;
-  font-weight: 600;
-}
-#buttonELista {
-  background-color: rgb(104, 168, 252);
-  margin: 0;
-  padding: 10px ;
-  width: 160px;
-  font-weight: 600;
-}
 
-#form1 {
+
+#budgetForm {
   width: 33%;
+  background-color: #F9F3E6;
+  border: 1px solid black;
   display: inline-block;
-  margin-top: 10px;
   font-weight: 700;
+  box-shadow: 3px 3px 2px 0px rgba(250, 83, 46, 1);
+  margin: 10px;
+  padding: 10px;
 }
 
 #Inkomster {
+  width: 33%;
+  margin: auto;
   background-color: #F9F3E6;
-  border: 3px solid black;
+  border: 1px solid black;
   border-radius: 10px;
   text-align: center;
   font-size: 20px;
   font-weight: 600;
+  box-shadow: 3px 3px 2px 0px rgba(250, 83, 46, 1);
 }
 
 #Utgifter {
+  width: 33%;
+  margin: auto;
   background-color: #F9F3E6;
-  border: 3px solid black;
+  border: 1px solid black;
   border-radius: 10px;
   text-align: center;
   font-size: 20px;
   font-weight: 600;
+  box-shadow: 3px 3px 2px 0px rgba(250, 83, 46, 1);
 }
+
+
+.container {
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "header header header header"
+    "pageContent pageContent pageContent pageContent"
+    "pageContent pageContent pageContent pageContent"
+    "pageContent pageContent pageContent pageContent"
+    "footer footer footer footer"; 
+  justify-items: center; 
+}
+.header { grid-area: header; }
+.pageContent { grid-area: pageContent; }
+.footer { grid-area: footer; }
+
+
+

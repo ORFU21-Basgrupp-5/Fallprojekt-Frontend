@@ -27,7 +27,7 @@ export const render = (root) => {
       <input type="number" id="Other"><br>
       
   </form>
-  <button id="budgetSumbit">Submit</button>
+  <button class="button-1" role="button" id="budgetSumbit">Submit</button>
 </div>
 <div id="errorDiv"></div>`;
 

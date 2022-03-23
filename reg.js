@@ -7,7 +7,7 @@ export const render = (root) => {
   root.innerHTML = "";
 
   const regform =  `
-  <div id="pageContent">
+  
     <div id="reg">
       <h1>Skapa ett konto</h1>
     </div>
@@ -35,7 +35,7 @@ export const render = (root) => {
       </div>
       <div id="errorDiv"></div>
     </form>
-  </div>
+  
   `
 
   root.innerHTML = regform

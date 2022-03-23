@@ -6,7 +6,6 @@ export const render = (root) => {
   // var stringInkomster = '<div><form id ="Inkomster"><div><p>Inmatning av Inkomster</p></div><div id="info-inkomst"></div><div><label for = "Saldo"> Inkomst, saldo:</label></div><div><input type = "text" id= "Saldo" name= saldo></div><div><label for="Konto">Inkomst, konto:</label></div><div><input type="text" id= "Konto" name= konto></div><div><label for="Description">Inkomst, beskrivning:</label></div><div><input type="text" id= "Description" name= description></div><div><label for="Date">Utgift, datum:</label></div><div> <input type="date" id= "Date" name= date> </div><div><button id= "income">Enter</button></div></form></div>'
 
   const html = `
-  <div id="pageContent">
     <div><h1>Inkomster</h1></div>
     <div id="errorDiv"></div>
     <div id="info-inkomst"></div>
@@ -40,7 +39,7 @@ export const render = (root) => {
           <input id="IDate" type="date">
         </div>
         <div>
-          <button id="ISubmit">Enter</button>
+          <button class="button-1" role="button" id="ISubmit">Enter</button>
         </div>
       </form>
         <div>
@@ -77,10 +76,10 @@ export const render = (root) => {
           <input id="EDate" type="date">
         </div>
         <div>
-          <button id="ESubmit">Enter</button>
+          <button class="button-1" role="button" id="ESubmit">Enter</button>
         </div>
     </form>
-  </div>`;
+  `;
                     
 root.innerHTML = html;
 

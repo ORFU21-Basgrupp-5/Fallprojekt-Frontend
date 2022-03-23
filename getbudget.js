@@ -5,6 +5,7 @@ export const render = (root) => {
   var stringbudget = `
   <h1>Lista Aktuell Budget</h1>
   <div id="DivWithBudget"></div>
+
   <div id="errorDiv"></div>`;
 
   root.innerHTML = stringbudget;
@@ -41,6 +42,7 @@ export const render = (root) => {
     var categoriesvalues = Object.values(budgetData.budgetCategories);
 
     let tbl = document.createElement("table");
+    tbl.setAttribute("class", "table-style");
     let tblBody = document.createElement("tbody");
 
     let row, cell;
