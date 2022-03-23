@@ -18,7 +18,6 @@ export const render = (root,token) => {
                 <div id="errorDiv"></div>
               </form>
               `
-
     root.innerHTML = html;
     
     const confirmPassword = document.getElementById('confirmPassword')
