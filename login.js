@@ -41,7 +41,7 @@ if (urlparams.get("token") != null) {
       password: "Admin2Lösen**"
       // password: document.forms["form1"]["password"].value,
     };
-    const upvalidate = userlogin.every((login) => login.value != "");
+    const upvalidate = userlogin.every((login) => login != "");
     if (upvalidate) {
       let isLoggedIn = false;
       async function fetchLogin() {
@@ -58,8 +58,9 @@ if (urlparams.get("token") != null) {
               return response.json();
             } else {
               return response.text().then(function (text) {
+                console.log(text)
                 defaultRender(
-                  `${text.error}`
+                  `${text}`
                 );
               });
             }
@@ -88,21 +89,24 @@ if (urlparams.get("token") != null) {
             welcomepage(pageContent);
             let header = new Header();
           })
+          return response.json().then ((body)=>{
+            const BodyError = new Error(body.error)
+          })
           .catch((error) => {
-            defaultRender(`Error: ${error.message} `);
+            console.log(`Error: ${error.message} `);
           })
           .catch((BodyError) => {
-            defaultRender(`Error: ${BodyError} `);
+            console.log(`Error: ${BodyError} `);
           });
       }
 
       fetchLogin().catch((error) => {
-        error.message;
+        console.log(error.message);
       });
 
       // 'An error has occurred: 404'
     } else {
-      defaultRender("Enter stuff");
+      defaultRender("Fyll i samtliga fält");
     }
   };
 

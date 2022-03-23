@@ -1,50 +1,30 @@
 export const Render = (root) => {
   root.innerHTML = "";
 
-  let pageContent = document.getElementById("pageContent");
-  let header = document.getElementById("header");
-  let welcome = document.createElement("h1");
-  welcome.innerHTML = "Welcome";
-  pageContent.appendChild(welcome);
+var ActiveUser = sessionStorage.getItem("User");
 
-  var ActiveUser = sessionStorage.getItem("User");
-  let active = document.createElement("div");
-  active.setAttribute("id", "active_user");
-  pageContent.appendChild(active);
-  let newText = document
-    .createElement("p")
-    .appendChild(document.createTextNode(ActiveUser));
-  active.appendChild(newText);
+const headertag = document.getElementById('header')
+const header = `
+    <div id="header">
+      <button id="buttonInmatning">Inmatning</button>
+      <button id="buttonELista">ListaExpenses</button>
+      <button id="buttonILista">ListaIncomes</button>
+      <button id="budgetPage">Skapa Budget</button>
+      <button id="budgetGetPage">Visa Budget</button>
+    </div>`
 
-  const inmatningButton = document.createElement("button");
-  inmatningButton.setAttribute("id", "buttonInmatning");
-  inmatningButton.innerHTML = "Inmatning";
+{/* <button id="emailknapp">Email</button>  */} 
 
-  const listaEButton = document.createElement("button");
-  listaEButton.setAttribute("id", "buttonELista");
-  listaEButton.innerHTML = "ListaExpenses";
-
-  const listaIButton = document.createElement("button");
-  listaIButton.setAttribute("id", "buttonILista");
-  listaIButton.innerHTML = "ListaIncomes";
-  const ErrorDiv = document.getElementById('DivWithIncomes')
-
-
-
-  const budgetPage = document.createElement("button");
-  budgetPage.setAttribute("id", "budgetPage");
-  budgetPage.innerHTML = "Budget";
-
-  const budgetGetPage = document.createElement("button");
-  budgetGetPage.setAttribute("id", "budgetGetPage");
-  budgetGetPage.innerHTML = "Show Budget";
+headertag.innerHTML = header;
   
-  header.appendChild(inmatningButton);
-  header.appendChild(listaEButton);
-  header.appendChild(listaIButton);
-  header.appendChild(budgetPage);
-  header.appendChild(budgetGetPage);
-  
+const html = `
+    <div id="pageContent">
+      <h1>Welcome</h1>
+      <div id="active_user">${ActiveUser}</div>
+      <div id="errorDiv"></div>
+    </div>`
+
+root.innerHTML = html
 
 };
 

@@ -3,8 +3,7 @@ body {
   width: 500px;
   margin: 0 auto;
   padding: 0 20px 20px 20px;
-  border: 5px solid black;
-  background: linear-gradient(to right, #ffffff, #5c9dda);
+  background: linear-gradient(to right, #F9F3E6, #FA532E);
   text-align: center;
   font-weight: 600;
 
@@ -28,7 +27,7 @@ a:hover {
   text-decoration: underline;
 }
 #DivWithExpenses {
-  background-color: rgb(193, 197, 241);
+  background-color: #F9F3E6;
   border: 3px solid black;
   border-radius: 10px;
   text-align: left;
@@ -37,7 +36,7 @@ a:hover {
   
 }
 #DivWithIncomes  {
-  background-color: rgb(193, 197, 241);
+  background-color: #F9F3E6;
   border: 3px solid black;
   border-radius: 10px;
   text-align: left;
@@ -73,7 +72,22 @@ a:hover {
   display: inline-block;
   margin-top: 10px;
   font-weight: 700;
- 
 }
 
+#Inkomster {
+  background-color: #F9F3E6;
+  border: 3px solid black;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+}
 
+#Utgifter {
+  background-color: #F9F3E6;
+  border: 3px solid black;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+}

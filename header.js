@@ -3,6 +3,8 @@ import { render as listIRender } from "./listaIncomes.js";
 import { render as inmatningRender } from "./inmatning.js";
 import { render as budgetRender } from "./budget.js";
 import { render as budgetGetRender } from "./getBudget.js";
+import { render as passwordrender } from "./changepassword.js";
+
 
 const pageContent = document.getElementById("pageContent");
 
@@ -13,6 +15,8 @@ export class Header {
     const button3 = document.getElementById("buttonInmatning");
     const button4 = document.getElementById("budgetPage");
     const button5 = document.getElementById("budgetGetPage");
+    //const button4 = document.getElementById("emailknapp"); 
+
 
     button1.addEventListener("click", () => {
       listERender(pageContent);
@@ -30,5 +34,10 @@ export class Header {
     button5.addEventListener("click", () => {
       budgetGetRender(pageContent);
     });
+
+    // button4.addEventListener("click", () => {
+    //   passwordrender(pageContent);
+    // });
+
   }
 }

@@ -1,40 +1,28 @@
 import { getCookie } from "./cookie.js";
+import { defaultRender } from "./errorHandler.js";
 
 export const render = (root,token) => {
     root.innerHTML = "";
 
-    let formPassword = document.createElement("form")
-    let breaker = document.createElement("br")
 
-    let NewPLabel= document.createElement("label")
-    let NewPLabelText=document.createTextNode("Nytt lösenord: ")
-
-    let ConfirmPLabel= document.createElement("label")
-    let ConfirmPLabelText=document.createTextNode("Bekräfta lösenord: ")
-
-    let newPassword = document.createElement("input")
-    let confirmPassword = document.createElement("input")
-
-    let ChangeButton = document.createElement("button")
-    ChangeButton.innerHTML = "Bekräfta";
-
-    const HomepageLink = document.createElement("a");
-    HomepageLink.href = "/";
-    const HomepageLinkText = document.createTextNode("Logga in här");
-    HomepageLink.appendChild(HomepageLinkText);
-
-    NewPLabel.appendChild(NewPLabelText)
-    ConfirmPLabel.appendChild(ConfirmPLabelText)
-
-    formPassword.appendChild(NewPLabel)
-    formPassword.appendChild(newPassword)
-    formPassword.appendChild(breaker)
-    formPassword.appendChild(ConfirmPLabel)
-    formPassword.appendChild(confirmPassword)
-    formPassword.appendChild(ChangeButton)
-    formPassword.appendChild(HomepageLink)
-
-    root.appendChild(formPassword)
+    const html = `
+              <form>
+                <label>Nytt lösenord: </label>
+                <input id="newPassword">
+                <br>
+                <label>Bekräfta lösenord: </label>
+                <input id="confirmPassword">
+                <button id="confirmButton">Bekräfta</button>
+                <br>
+                <a href="/">Logga in här</a>
+                <div id="errorDiv"></div>
+              </form>
+              `
+    root.innerHTML = html;
+    
+    const confirmPassword = document.getElementById('confirmPassword')
+    const newPassword = document.getElementById('newPassword')
+    let ChangeButton = document.getElementById('confirmButton')
 
     ChangeButton.onclick = function (e) {
         e.preventDefault()
@@ -46,7 +34,7 @@ export const render = (root,token) => {
         ChangePasswordLink(NewPasswordDTO)
         }
         else{
-        console.log("Lösenorden matchar inte")
+        defaultRender("Lösenorden matchar inte")
         }
     
     }
@@ -64,10 +52,10 @@ export const render = (root,token) => {
           }
         ).then((response) => {
           if (response.ok) {
-            alert("Changed password successfully");
+            defaultRender("Changed password successfully")
             return true;
           } else {
-            alert("Could not change password")
+            defaultRender("Could not change password")
             // throw new Error("NETWORK RESPONSE ERROR");
           }
         });

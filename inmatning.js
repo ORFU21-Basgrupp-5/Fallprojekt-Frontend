@@ -5,97 +5,107 @@ export const render = (root) => {
   // var stringUtgifter = '<div><form id="Utgifter"><div><p>Inmatning av utgifter</p></div><div id="info-utgift"></div><div><label for = "Saldo"> Utgift, saldo:</label></div> <div>   <input type = "text" id= "Saldo" name= saldo></div><div><label for="Konto">Utgift, konto:</label></div> <div><input type="text" id= "Konto" name= konto></div><div><label for="Description">Utgift, beskrivning:</label></div><div>  <input type="text" id= "Description" name= description></div><div> <label for="Date">Utgift, datum:</label></div> <div><input type="date" id= "Date" name= date></div><div><button id= "expense">Enter</button></div</form></div>'
   // var stringInkomster = '<div><form id ="Inkomster"><div><p>Inmatning av Inkomster</p></div><div id="info-inkomst"></div><div><label for = "Saldo"> Inkomst, saldo:</label></div><div><input type = "text" id= "Saldo" name= saldo></div><div><label for="Konto">Inkomst, konto:</label></div><div><input type="text" id= "Konto" name= konto></div><div><label for="Description">Inkomst, beskrivning:</label></div><div><input type="text" id= "Description" name= description></div><div><label for="Date">Utgift, datum:</label></div><div> <input type="date" id= "Date" name= date> </div><div><button id= "income">Enter</button></div></form></div>'
 
-  let elementStrings = [
-    "label",
-    "input",
-    "label",
-    "input",
-    "label",
-    "input",
-    "label",
-    "input",
-    "button",
-  ];
+  const html = `
+  <div id="pageContent">
+    <div><h1>Inkomster</h1></div>
+    <div id="errorDiv"></div>
+    <div id="info-inkomst"></div>
+      <form id="Inkomster">
+        <div>
+          <label>Category</label>
+        </div>
+        <select id="CategoryInc"></select>
+        <div>
+          <label for="ISaldo">Saldo</label>
+        </div>         
+        <div>
+          <input id="ISaldo">
+        </div>
+        <div>
+          <label for="IKonto">Konto</label>
+        </div>
+        <div>
+          <input id="IKonto">
+        </div>
+        <div>
+          <label for="IDesc">Desc</label>
+        </div>
+        <div>
+          <input id="IDesc">
+        </div>
+        <div>
+          <label for="IDate">Date</label>
+        </div>
+        <div>
+          <input id="IDate" type="date">
+        </div>
+        <div>
+          <button id="ISubmit">Enter</button>
+        </div>
+      </form>
+        <div>
+          <h1>Utgifter</h1>
+        </div>
+        <div id="info-utgift"></div>
+      <form id="Utgifter">
+        <div>
+          <label>Category</label>
+        </div>
+        <select id="CategoryExp"></select>            
+        <div>
+          <label for="ESaldo">Saldo</label>
+        </div>
+        <div>
+          <input id="ESaldo">
+        </div>
+        <div>
+          <label for="EKonto">Konto</label>
+        </div>
+        <div>
+          <input id="EKonto">
+        </div>
+        <div>
+          <label for="EDesc">Desc</label>
+        </div>
+        <div>
+          <input id="EDesc">
+        </div>
+        <div>
+          <label for="EDate">Date</label>
+        </div>
+        <div>
+          <input id="EDate" type="date">
+        </div>
+        <div>
+          <button id="ESubmit">Enter</button>
+        </div>
+    </form>
+  </div>`;
+                    
+root.innerHTML = html;
 
-  let attributes = [
-    "for",
-    "Saldo",
-    "id",
-    "Saldo",
-    "for",
-    "Konto",
-    "id",
-    "Konto",
-    "for",
-    "Desc",
-    "id",
-    "Desc",
-    "for",
-    "Date",
-    "id",
-    "Date",
-    "id",
-    "Submit",
-  ];
 
-  let pageContent = document.getElementById("pageContent");
-
-  let IncomeForm = document.createElement("form");
-  IncomeForm.setAttribute("id", "Inkomster");
-
-  let ExpenseForm = document.createElement("form");
-  ExpenseForm.setAttribute("id", "Utgifter");
-
-  let divutgift = document.createElement("div");
-  divutgift.setAttribute("id", "info-utgift");
-
-  let divinkomst = document.createElement("div");
-  divinkomst.setAttribute("id", "info-inkomst");
-
-  const inkomsterHeader = document.createElement("d");
-  const inkomsterText = document.createTextNode("Inkomster");
-  const inkomsterH3 = document.createElement("h3");
-  inkomsterHeader.appendChild(inkomsterH3);
-  inkomsterH3.appendChild(inkomsterText);
-
-  const utgifterHeader = document.createElement("d");
-  const utgifterText = document.createTextNode("Utgifter");
-  const utgifterH3 = document.createElement("h3");
-  utgifterHeader.appendChild(utgifterH3);
-  utgifterH3.appendChild(utgifterText);
-
-  const categorySelect = document.createElement("select");
-  categorySelect.setAttribute("id", "CategoryExp");
-  const opt1 = document.createElement("option");
-  opt1.setAttribute("value", "");
-  opt1.innerHTML = "-- Select -- " ;
- 
-
-  let div = document.createElement("div");
-  let categorylabel = document.createElement("label");
-  categorylabel.innerHTML = "Category";
-  div.appendChild(categorylabel);
-  categorySelect.appendChild(opt1);
-
-
-  const categorySelect2 = document.createElement("select");
-  categorySelect2.setAttribute("id", "CategoryInc");
-  const Incopt1 = document.createElement("option");
- 
+  let categorySelect = document.getElementById("CategoryExp")
+  let categorySelect2 = document.getElementById("CategoryInc")
   
-  Incopt1.setAttribute("value", "");
-  Incopt1.innerHTML = "-- Select --";
-  categorySelect2.appendChild(opt1);
   categorySelectFetch("Expenses",categorySelect);
   categorySelectFetch("Income",categorySelect2);
   //categorySelect("Expenses",categorySelect1)
+  
+  let IncomeForm = document.getElementById("Inkomster")
+  let ExpenseForm = document.getElementById("Utgifter")
+  let IncSubmit = document.getElementById("ISubmit");
+  let ExpSubmit = document.getElementById("ESubmit");
+
+
+
   function categorySelectFetch(choice,catDiv){
     fetch("http://localhost:7151/" + choice +"/categories", 
     {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        //Add authorization if custom categorys are added.
+        // Add authorization if custom categorys are added.
       },
 
     })
@@ -115,30 +125,6 @@ export const render = (root) => {
       
     })
   }
-
-  let div2 = document.createElement("div");
-  let categorylabel2 = document.createElement("label");
-  categorylabel2.innerHTML = "Category";
-  div2.appendChild(categorylabel2);
- 
-
-  IncomeForm.appendChild(div2);
-  IncomeForm.appendChild(categorySelect2);
-  ExpenseForm.appendChild(div);
-  ExpenseForm.appendChild(categorySelect);
-
-  pageContent.appendChild(inkomsterHeader);
-  pageContent.appendChild(divinkomst);
-  pageContent.appendChild(IncomeForm);
-  pageContent.appendChild(utgifterHeader);
-  pageContent.appendChild(divutgift);
-  pageContent.appendChild(ExpenseForm);
-
-  SetAttributes(elementStrings, attributes, "I", IncomeForm);
-  SetAttributes(elementStrings, attributes, "E", ExpenseForm);
-
-  let IncSubmit = document.getElementById("ISubmit");
-  let ExpSubmit = document.getElementById("ESubmit");
 
   IncSubmit.onclick = function (e) {
     e.preventDefault();
@@ -253,116 +239,40 @@ fetchExp();
   
 };
 
-function SetAttributes(arr, arr2, letter, form) {
-  let attnum = 0;
-  let elements = [];
-  for (let index = 0; index < arr.length; index++) {
-    let element = document.createElement(arr[index]);
-    elements.push(element);
-    elements[index].setAttribute(arr2[attnum], letter + arr2[attnum + 1]);
-    if ((index % 2 == 0 && index !== 8) || index == 7) {
-      elements[index].innerHTML = arr2[attnum + 1];
-    }
-    if (index == 7) {
-      elements[index].setAttribute("type", "date");
-    } else if (index == 8) {
-      elements[index].innerHTML = "Enter";
-    }
-    attnum += 2;
-  }
-  AppendElements(elements, form);
-}
-
-function AppendElements(arr, form) {
-  arr.forEach((x) => {
-    var d = document.createElement("div");
-    form.appendChild(d).appendChild(x);
-  });
-}
 
 function PrintAdded(string) {
-  let divutgift = document.getElementById("info-utgift");
-  let divinkomst = document.getElementById("info-inkomst");
   console.log(string);
   switch (string) {
     case "utgift":
-      divutgift.appendChild(
-        document
-          .createElement("p")
-          .appendChild(document.createTextNode("Du har lagt till en utgift."))
-      );
-      setTimeout(function () {
-        divutgift.removeChild(divutgift.lastChild);
-      }, 2000);
+      defaultRender("Du har lagt till en utgift")
       break;
     case "inkomst":
-      divinkomst.appendChild(
-        document
-          .createElement("p")
-          .appendChild(document.createTextNode("Du har lagt till en inkomst."))
-      );
-      setTimeout(function () {
-        divinkomst.removeChild(divinkomst.lastChild);
-      }, 2000);
+      defaultRender("Du har lagt till en inkomst")
       break;
     default:
       break;
   }
 }
 function IsInputNumber(string) {
-  let divutgift = document.getElementById("info-utgift");
-  let divinkomst = document.getElementById("info-inkomst");
-
   switch (string) {
     case "utgift":
-      divutgift.appendChild(
-        document
-          .createElement("p")
-          .appendChild(document.createTextNode("Saldo måste anges med siffror"))
-      );
-      setTimeout(function () {
-        divutgift.removeChild(divutgift.lastChild);
-      }, 2000);
+      defaultRender("Saldo måste anges med siffror")
       break;
     case "inkomst":
-      divinkomst.appendChild(
-        document
-          .createElement("p")
-          .appendChild(document.createTextNode("Saldo måste anges med siffror"))
-      );
-      setTimeout(function () {
-        divinkomst.removeChild(divinkomst.lastChild);
-      }, 2000);
+      defaultRender("Saldo måste anges med siffror")
       break;
     default:
       break;
   }
 }
 
-
 function IsInputEmpty(string) {
-  let divutgift = document.getElementById("info-utgift");
-  let divinkomst = document.getElementById("info-inkomst");
   switch (string) {
     case "utgift":
-      divutgift.appendChild(
-        document
-          .createElement("p")
-          .appendChild(document.createTextNode("Samtliga fält måste fyllas i"))
-      );
-      setTimeout(function () {
-        divutgift.removeChild(divutgift.lastChild);
-      }, 2000);
+      defaultRender("Samtliga fält måste fyllas i")
       break;
     case "inkomst":
-      divinkomst.appendChild(
-        document
-          .createElement("p")
-          .appendChild(document.createTextNode("Samtliga fält måste fyllas i"))
-      );
-      setTimeout(function () {
-        divinkomst.removeChild(divinkomst.lastChild);
-      }, 2000);
+      defaultRender("Samtliga fält måste fyllas i")
       break;
     default:
       break;
