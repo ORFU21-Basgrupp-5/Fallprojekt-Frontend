@@ -4,7 +4,8 @@ export const render = (root) => {
 
   var stringbudget = `
   <h1>Lista Aktuell Budget</h1>
-  <div id="DivWithBudget"></div>`;
+  <div id="DivWithBudget"></div>
+  <div id="errorDiv"></div>`;
 
   root.innerHTML = stringbudget;
 
@@ -32,7 +33,7 @@ export const render = (root) => {
     diven.appendChild(titleTag);
 
     let subTag = document.createElement("H4");
-    let subText = document.createTextNode(`Total Budget:${budgetData.totalSum} Used Budget:${budgetData.usedAmount}`);
+    let subText = document.createTextNode(`Total Budget:${budgetData.totalSum} Used Budget:${budgetData.usedAmount} Used Procent:${(parseInt(budgetData.usedAmount)*100/ parseInt(budgetData.totalSum)).toFixed(2)} %`);
     subTag.appendChild(subText);
     diven.appendChild(subTag);
 
@@ -58,6 +59,16 @@ export const render = (root) => {
     cell = row.insertCell();
     cell.textContent = "Spent";
     AddData(row, 1);
+
+    row = tbl.insertRow();
+    cell = row.insertCell();
+    cell.textContent = "Amount Left";
+    AddData(row, 2);
+
+    row = tbl.insertRow();
+    cell = row.insertCell();
+    cell.textContent = "Used procent";
+    AddData(row, 3);
 
     function AddData(row, int){
       for(var j = 0; j < categories.length; j++)

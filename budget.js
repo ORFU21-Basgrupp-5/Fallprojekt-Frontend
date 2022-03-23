@@ -1,4 +1,5 @@
 import { getCookie } from "./cookie.js";
+import { defaultRender } from "./errorHandler.js";
 export const render = (root) => {
   root.innerHTML = "";
 
@@ -27,12 +28,15 @@ export const render = (root) => {
       
   </form>
   <button id="budgetSumbit">Submit</button>
-</div>`;
+</div>
+<div id="errorDiv"></div>`;
 
   root.innerHTML = budgetForm;
   let budgetFormDiv = document.getElementById("budgetForm");
+
   budgetFormDiv.onclick = function (e) {
     //e.preventDefault();
+
     if (e.target.nodeName === "BUTTON") {
       const date = new Date(document.forms["form1"]["budgetDate"].value);
       let year = date.getFullYear();
@@ -51,7 +55,22 @@ export const render = (root) => {
           5: document.forms["form1"]["Other"].value,
         },
       };
-      postBudget(newBudgetDTO);
+      var categoriesvalues = Object.values(newBudgetDTO.categoriesAndAmount);
+      var categoriesValuesInt = categoriesvalues.map(Number);
+      var testBelop = categoriesValuesInt.reduce(function (a, b) {
+        return a + b;
+      }, 0)
+      console.log(testBelop)
+      if (parseInt(newBudgetDTO.totalSum) === testBelop) {
+        postBudget(newBudgetDTO);
+        document.getElementById("form1").reset();
+        defaultRender("Din budget är sparad.");
+      }
+      else
+      {
+        defaultRender("Ditt budget belopp matchar inte total belopet i kategorierna.")
+      }
+      
     }
   };
 
