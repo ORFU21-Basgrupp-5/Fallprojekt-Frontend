@@ -1,10 +1,13 @@
 body {
-  width: 400px;
+
+  width: 500px;
   margin: 0 auto;
   padding: 0 20px 20px 20px;
-  border: 5px solid black;
-  background: linear-gradient(to right, #ffffff, #5c9dda);
+  background: linear-gradient(to right, #F9F3E6, #FA532E);
   text-align: center;
+  font-weight: 600;
+
+  
 }
 
 a:link {
@@ -23,3 +26,53 @@ a:active {
 a:hover {
   text-decoration: underline;
 }
+#DivWithExpenses {
+  background-color: #F9F3E6;
+  border: 3px solid black;
+  border-radius: 10px;
+  text-align: left;
+  font-size: 20px;
+  font-weight: 600;
+  
+}
+#DivWithIncomes  {
+  background-color: #F9F3E6;
+  border: 3px solid black;
+  border-radius: 10px;
+  text-align: left;
+  font-size: 20px;
+  font-weight: 600;
+  
+}
+#buttonILista {
+  background-color: rgb(104, 168, 252);
+  margin: 0;
+  padding: 10px ;
+  width: 160px;
+  font-weight: 600;
+}
+
+#buttonInmatning {
+  background-color: rgb(104, 168, 252);
+  margin: 0;
+  padding: 10px ;
+  width: 160px;
+  font-weight: 600;
+}
+#buttonELista {
+  background-color: rgb(104, 168, 252);
+  margin: 0;
+  padding: 10px ;
+  width: 160px;
+  font-weight: 600;
+}
+
+#form1 {
+  width: 33%;
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+
+
