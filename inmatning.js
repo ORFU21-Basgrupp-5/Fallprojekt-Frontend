@@ -269,88 +269,38 @@ function AppendElements(arr, form) {
 }
 
 function PrintAdded(string) {
-  let divutgift = document.getElementById("info-utgift");
-  let divinkomst = document.getElementById("info-inkomst");
   console.log(string);
   switch (string) {
     case "utgift":
-      divutgift.appendChild(
-        document
-          .createElement("p")
-          .appendChild(document.createTextNode("Du har lagt till en utgift."))
-      );
-      setTimeout(function () {
-        divutgift.removeChild(divutgift.lastChild);
-      }, 2000);
+      defaultRender("Du har lagt till en utgift")
       break;
     case "inkomst":
-      divinkomst.appendChild(
-        document
-          .createElement("p")
-          .appendChild(document.createTextNode("Du har lagt till en inkomst."))
-      );
-      setTimeout(function () {
-        divinkomst.removeChild(divinkomst.lastChild);
-      }, 2000);
+      defaultRender("Du har lagt till en inkomst")
       break;
     default:
       break;
   }
 }
 function IsInputNumber(string) {
-  let divutgift = document.getElementById("info-utgift");
-  let divinkomst = document.getElementById("info-inkomst");
-
   switch (string) {
     case "utgift":
-      divutgift.appendChild(
-        document
-          .createElement("p")
-          .appendChild(document.createTextNode("Saldo måste anges med siffror"))
-      );
-      setTimeout(function () {
-        divutgift.removeChild(divutgift.lastChild);
-      }, 2000);
+      defaultRender("Saldo måste anges med siffror")
       break;
     case "inkomst":
-      divinkomst.appendChild(
-        document
-          .createElement("p")
-          .appendChild(document.createTextNode("Saldo måste anges med siffror"))
-      );
-      setTimeout(function () {
-        divinkomst.removeChild(divinkomst.lastChild);
-      }, 2000);
+      defaultRender("Saldo måste anges med siffror")
       break;
     default:
       break;
   }
 }
 
-
 function IsInputEmpty(string) {
-  let divutgift = document.getElementById("info-utgift");
-  let divinkomst = document.getElementById("info-inkomst");
   switch (string) {
     case "utgift":
-      divutgift.appendChild(
-        document
-          .createElement("p")
-          .appendChild(document.createTextNode("Samtliga fält måste fyllas i"))
-      );
-      setTimeout(function () {
-        divutgift.removeChild(divutgift.lastChild);
-      }, 2000);
+      defaultRender("Samtliga fält måste fyllas i")
       break;
     case "inkomst":
-      divinkomst.appendChild(
-        document
-          .createElement("p")
-          .appendChild(document.createTextNode("Samtliga fält måste fyllas i"))
-      );
-      setTimeout(function () {
-        divinkomst.removeChild(divinkomst.lastChild);
-      }, 2000);
+      defaultRender("Samtliga fält måste fyllas i")
       break;
     default:
       break;

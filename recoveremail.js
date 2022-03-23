@@ -15,7 +15,6 @@ const emailform = `
 root.innerHTML = emailform
 
 let SendButton = document.getElementById("recoverbutton")
-let SentOrNotDiv = document.getElementById("SentOrNotDiv")
 let Email = document.getElementById("Email")
 
 
@@ -26,8 +25,6 @@ let Email = document.getElementById("Email")
     };
     SendRecoveryEmail(EmailDTO);
   }
-
-  
 
   async function SendRecoveryEmail(emailrecdto) {
     
@@ -42,13 +39,15 @@ let Email = document.getElementById("Email")
       }
     ).then((response) => {
       if (response.ok) {
-        RecoveryMessage("Email sent.");
+        RecoveryMessage();
         return true;
       } else {
-        return response.text().then(function(text) 
-      {
-        defaultRender(`${text.error}`);
-      })
+        return response.text().then(function (text) {
+          console.log(text)
+          defaultRender(
+            `${text}`
+          );
+        });
       }
     })
     .catch((error) => {
@@ -57,14 +56,7 @@ let Email = document.getElementById("Email")
   }
 
   function RecoveryMessage(string){
-    SentOrNotDiv.appendChild(
-        document
-          .createElement("p")
-          .appendChild(document.createTextNode(string))
-      );
-      setTimeout(function () {
-        SentOrNotDiv.removeChild(SentOrNotDiv.lastChild);
-      }, 2000);
+   defaultRender("Email sent.")
   }
 }
 
