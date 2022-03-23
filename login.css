@@ -93,7 +93,7 @@ body {
 }
 
 #DivWithBudget{
-  width: 40%;
+  max-width: 900px;
   margin: auto;
   background-color: #F9F3E6;
   border: 1px solid black;
@@ -127,7 +127,7 @@ a:hover {
   text-decoration: underline;
 }
 #DivWithExpenses {
-  width: 33%;
+  max-width: 600px;
   margin: auto;
   background-color: #F9F3E6;
   border: 1px solid black;
@@ -139,7 +139,7 @@ a:hover {
   
 }
 #DivWithIncomes  {
-  width: 33%;
+  max-width: 600px;
   margin: auto;
   background-color: #F9F3E6;
   border: 1px solid black;
@@ -154,7 +154,7 @@ a:hover {
 
 
 #budgetForm {
-  width: 33%;
+  max-width: 900px;
   background-color: #F9F3E6;
   border: 1px solid black;
   display: inline-block;
@@ -162,10 +162,11 @@ a:hover {
   box-shadow: 3px 3px 2px 0px rgba(250, 83, 46, 1);
   margin: 10px;
   padding: 10px;
+  border-radius: 10px;
 }
 
 #Inkomster {
-  width: 33%;
+  max-width: 600px;
   margin: auto;
   background-color: #F9F3E6;
   border: 1px solid black;
@@ -177,7 +178,7 @@ a:hover {
 }
 
 #Utgifter {
-  width: 33%;
+  max-width: 600px;
   margin: auto;
   background-color: #F9F3E6;
   border: 1px solid black;
