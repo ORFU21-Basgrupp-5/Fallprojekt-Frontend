@@ -21,7 +21,7 @@ if (urlparams.get("token") != null) {
   };
 
   let reglink = document.getElementById("reglink");
-  console.log("Password to TestKonto1: Admin2Lösen**")
+  //console.log("Password to TestKonto1: Admin2Lösen**")
   reglink.onclick = function (e) {
     e.preventDefault();
     RegRender(pageContent);
@@ -38,8 +38,8 @@ if (urlparams.get("token") != null) {
 
     const userLoginDTO = {
       userName: document.forms["form1"]["username"].value,
-      password: "Admin2Lösen**"
-      // password: document.forms["form1"]["password"].value,
+      //password: "Admin2Lösen**"
+      password: document.forms["form1"]["password"].value,
     };
     const upvalidate = userlogin.every((login) => login != "");
     if (upvalidate) {
