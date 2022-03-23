@@ -48,31 +48,37 @@ export const render = (root) => {
     row = tbl.insertRow();
     cell = row.insertCell();
     cell.textContent = "Categories";
+    cell.style.backgroundColor = 'white';
     AddData(row, -1);
 
     row = tbl.insertRow();
     cell = row.insertCell();
     cell.textContent = "Cap";
+    cell.style.backgroundColor = 'white';
     AddData(row, 0);
 
     row = tbl.insertRow();
     cell = row.insertCell();
     cell.textContent = "Spent";
+    cell.style.backgroundColor = 'white';
     AddData(row, 1);
 
     row = tbl.insertRow();
     cell = row.insertCell();
     cell.textContent = "Amount Left";
+    cell.style.backgroundColor = 'white';
     AddData(row, 2);
 
     row = tbl.insertRow();
     cell = row.insertCell();
     cell.textContent = "Used procent";
+    cell.style.backgroundColor = 'white';
     AddData(row, 3);
 
     function AddData(row, int){
       for(var j = 0; j < categories.length; j++)
       {
+        
         if(int == -1)
         {
           cell = row.insertCell();
@@ -80,9 +86,26 @@ export const render = (root) => {
         }
         else
         {
+          
           cell = row.insertCell();
           cell.textContent = categoriesvalues[j][int];
+
+          if(int === 3)
+          {
+            if(parseInt(categoriesvalues[j][int]) > 80 && parseInt(categoriesvalues[j][int]) < 100)
+            {
+              
+              cell.style.color = '#FA532E';
+              
+            }
+            else if (parseInt(categoriesvalues[j][int]) >= 100)
+            {
+              cell.style.color = 'red';
+            }
+          }
+          
         }
+        cell.style.backgroundColor = 'white';
       }
     }
 
