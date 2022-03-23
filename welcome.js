@@ -16,11 +16,14 @@ const header = `
 headertag.innerHTML = header;
   
 const html = `
+    
     <div id="pageContent">
+      <div  class="spacer1"> . </div>
       <h1>Welcome</h1>
       <div id="active_user">${ActiveUser}</div>
       <div id="errorDiv"></div>
-    </div>`
+    </div>
+    <div  class="spacer2"> . </div>`
 
 
 root.innerHTML = html

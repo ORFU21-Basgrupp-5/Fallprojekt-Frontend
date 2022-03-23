@@ -80,7 +80,8 @@ export const render = (root) => {
           <button id="ESubmit">Enter</button>
         </div>
     </form>
-  </div>`;
+  </div>
+  <div  class="spacer3"> . </div>`;
                     
 root.innerHTML = html;
 

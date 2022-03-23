@@ -7,7 +7,8 @@ export const render = (root) => {
   <h1>Lista Utgifter</h1>
     <div id="DivWithExpenses">
       <div id="errorDiv"></div>
-    </div>`;
+    </div>
+    <div  class="spacer4"> . </div>`;
   root.innerHTML = stringLista;
 
   GetData();

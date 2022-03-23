@@ -174,8 +174,39 @@ footer{
   text-align: center;
   border-top:1px dotted #F9F3E6 ;
 }
-.spacer{
-  margin-bottom: 200px; /* how high is your footer */
+
+/* div i index.html */
+.spacer{ 
+  margin-bottom: 317px; 
+  visibility: hidden;
+}
+
+/* div i welcome.js */
+.spacer1{
+  height: 28px;
   visibility: hidden; 
 }
 
+/* div i welcome.js */
+.spacer2{
+  height: 130;
+  visibility: hidden; 
+}
+
+/* div i inmatning.js */
+.spacer3{
+  margin-top: -250px;
+  visibility: hidden;
+}
+
+/* div i listExpenses.js */
+.spacer4{
+  margin-top: -250px;
+  visibility: hidden;
+}
+ 
+/* div i listIncomes.js */
+.spacer5{
+  margin-top: -250px;
+  visibility: hidden;
+}

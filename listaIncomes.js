@@ -6,7 +6,8 @@ export const render = (root) => {
     <h1>Lista Inkomster</h1>
       <div id="DivWithIncomes">
       <div id="errorDiv"></div>
-    </div>`;
+    </div>
+    <div  class="spacer5"> . </div>`;
   root.innerHTML = html;
 
   GetData();
