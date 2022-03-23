@@ -9,6 +9,8 @@ const header = `
       <button id="buttonInmatning">Inmatning</button>
       <button id="buttonELista">ListaExpenses</button>
       <button id="buttonILista">ListaIncomes</button>
+      <button id="budgetPage">Skapa Budget</button>
+      <button id="budgetGetPage">Visa Budget</button>
     </div>`
 
 {/* <button id="emailknapp">Email</button>  */} 
@@ -22,7 +24,7 @@ const html = `
       <div id="errorDiv"></div>
     </div>`
 
-
 root.innerHTML = html
+
 };
 
