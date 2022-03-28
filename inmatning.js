@@ -10,7 +10,7 @@ export const render = (root) => {
     <div><h1>Inkomster</h1></div>
     <div id="errorDiv"></div>
     <div id="info-inkomst"></div>
-      <form id="Inkomster">
+      <form id="inmatning-inkomster">
         <div>
           <label>Category</label>
         </div>
@@ -47,7 +47,7 @@ export const render = (root) => {
           <h1>Utgifter</h1>
         </div>
         <div id="info-utgift"></div>
-      <form id="Utgifter">
+      <form id="inmatning-utgifter">
         <div>
           <label>Category</label>
         </div>
@@ -80,8 +80,7 @@ export const render = (root) => {
           <button id="ESubmit">Enter</button>
         </div>
     </form>
-  </div>
-  <div  class="spacer3"> . </div>`;
+  </div>`;
                     
 root.innerHTML = html;
 
@@ -93,8 +92,8 @@ root.innerHTML = html;
   categorySelectFetch("Income",categorySelect2);
   //categorySelect("Expenses",categorySelect1)
   
-  let IncomeForm = document.getElementById("Inkomster")
-  let ExpenseForm = document.getElementById("Utgifter")
+  let IncomeForm = document.getElementById("inmatning-inkomster")
+  let ExpenseForm = document.getElementById("inmatning-utgifter")
   let IncSubmit = document.getElementById("ISubmit");
   let ExpSubmit = document.getElementById("ESubmit");
 
@@ -242,38 +241,88 @@ fetchExp();
 
 
 function PrintAdded(string) {
+  let divutgift = document.getElementById("info-utgift");
+  let divinkomst = document.getElementById("info-inkomst");
   console.log(string);
   switch (string) {
     case "utgift":
-      defaultRender("Du har lagt till en utgift")
+      divutgift.appendChild(
+        document
+          .createElement("p")
+          .appendChild(document.createTextNode("Du har lagt till en utgift."))
+      );
+      setTimeout(function () {
+        divutgift.removeChild(divutgift.lastChild);
+      }, 2000);
       break;
     case "inkomst":
-      defaultRender("Du har lagt till en inkomst")
+      divinkomst.appendChild(
+        document
+          .createElement("p")
+          .appendChild(document.createTextNode("Du har lagt till en inkomst."))
+      );
+      setTimeout(function () {
+        divinkomst.removeChild(divinkomst.lastChild);
+      }, 2000);
       break;
     default:
       break;
   }
 }
 function IsInputNumber(string) {
+  let divutgift = document.getElementById("info-utgift");
+  let divinkomst = document.getElementById("info-inkomst");
+
   switch (string) {
     case "utgift":
-      defaultRender("Saldo måste anges med siffror")
+      divutgift.appendChild(
+        document
+          .createElement("p")
+          .appendChild(document.createTextNode("Saldo måste anges med siffror"))
+      );
+      setTimeout(function () {
+        divutgift.removeChild(divutgift.lastChild);
+      }, 2000);
       break;
     case "inkomst":
-      defaultRender("Saldo måste anges med siffror")
+      divinkomst.appendChild(
+        document
+          .createElement("p")
+          .appendChild(document.createTextNode("Saldo måste anges med siffror"))
+      );
+      setTimeout(function () {
+        divinkomst.removeChild(divinkomst.lastChild);
+      }, 2000);
       break;
     default:
       break;
   }
 }
 
+
 function IsInputEmpty(string) {
+  let divutgift = document.getElementById("info-utgift");
+  let divinkomst = document.getElementById("info-inkomst");
   switch (string) {
     case "utgift":
-      defaultRender("Samtliga fält måste fyllas i")
+      divutgift.appendChild(
+        document
+          .createElement("p")
+          .appendChild(document.createTextNode("Samtliga fält måste fyllas i"))
+      );
+      setTimeout(function () {
+        divutgift.removeChild(divutgift.lastChild);
+      }, 2000);
       break;
     case "inkomst":
-      defaultRender("Samtliga fält måste fyllas i")
+      divinkomst.appendChild(
+        document
+          .createElement("p")
+          .appendChild(document.createTextNode("Samtliga fält måste fyllas i"))
+      );
+      setTimeout(function () {
+        divinkomst.removeChild(divinkomst.lastChild);
+      }, 2000);
       break;
     default:
       break;

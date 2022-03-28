@@ -10,11 +10,11 @@ const pageContent = document.getElementById("pageContent");
 
 export class Header {
   constructor() {
-    const button1 = document.getElementById("buttonELista");
-    const button2 = document.getElementById("buttonILista");
-    const button3 = document.getElementById("buttonInmatning");
-    const button4 = document.getElementById("budgetPage");
-    const button5 = document.getElementById("budgetGetPage");
+    const button1 = document.getElementById("button-listaexpenses");
+    const button2 = document.getElementById("button-listaincomes");
+    const button3 = document.getElementById("button-inmatning");
+    const button4 = document.getElementById("button-createbudget");
+    const button5 = document.getElementById("button-listabudget");
     //const button4 = document.getElementById("emailknapp"); 
 
 

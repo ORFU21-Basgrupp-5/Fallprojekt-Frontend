@@ -5,10 +5,9 @@ export const render = (root) => {
   
   var stringLista = `
   <h1>Lista Utgifter</h1>
-    <div id="DivWithExpenses">
+    <div id="div-expenses">
       <div id="errorDiv"></div>
-    </div>
-    <div  class="spacer4"> . </div>`;
+    </div>`;
   root.innerHTML = stringLista;
 
   GetData();
@@ -45,7 +44,7 @@ function GetData() {
 
   function upgiftsLista(data) {
     data.forEach((item) => {
-      let diven = document.getElementById("DivWithExpenses");
+      let diven = document.getElementById("div-expenses");
       let listContainer = document.createElement("ul");
       diven.appendChild(listContainer);
       for (let row in item) {

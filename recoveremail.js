@@ -1,5 +1,4 @@
 import { getCookie } from "./cookie.js";
-import { defaultRender } from "./errorHandler.js";
 export const render = (root) => {
   root.innerHTML = "";
 
@@ -15,6 +14,7 @@ const emailform = `
 root.innerHTML = emailform
 
 let SendButton = document.getElementById("recoverbutton")
+let SentOrNotDiv = document.getElementById("SentOrNotDiv")
 let Email = document.getElementById("Email")
 
 
@@ -39,24 +39,40 @@ let Email = document.getElementById("Email")
       }
     ).then((response) => {
       if (response.ok) {
-        RecoveryMessage();
+        RecoveryMessege("Email sent.");
         return true;
       } else {
-        return response.text().then(function (text) {
-          console.log(text)
-          defaultRender(
-            `${text}`
-          );
-        });
+        return response.text().then(function(text) 
+      {
+        renderError(`${response.status} ${response.statusText} ${text}`);
+      })
       }
     })
     .catch((error) => {
-      defaultRender(`Error: ${error.message} `);
+      renderError(`Error: ${error.message} `);
     });
   }
 
-  function RecoveryMessage(string){
-   defaultRender("Email sent.")
+  function RecoveryMessege(string){
+    SentOrNotDiv.appendChild(
+        document
+          .createElement("p")
+          .appendChild(document.createTextNode(string))
+      );
+      setTimeout(function () {
+        SentOrNotDiv.removeChild(SentOrNotDiv.lastChild);
+      }, 2000);
+  }
+
+  function renderError(string){
+    SentOrNotDiv.appendChild(
+        document
+          .createElement("p")
+          .appendChild(document.createTextNode(string))
+      );
+      setTimeout(function () {
+        SentOrNotDiv.removeChild(SentOrNotDiv.lastChild);
+      }, 2000);
   }
 }
 

@@ -4,10 +4,9 @@ export const render = (root) => {
   root.innerHTML = "";
   const html = `
     <h1>Lista Inkomster</h1>
-      <div id="DivWithIncomes">
+      <div id="div-incomes">
       <div id="errorDiv"></div>
-    </div>
-    <div  class="spacer5"> . </div>`;
+    </div>`;
   root.innerHTML = html;
 
   GetData();
@@ -44,7 +43,7 @@ function GetData() {
 
 function upgiftsLista(data) {
   data.forEach((item) => {
-    let diven = document.getElementById("DivWithIncomes");
+    let diven = document.getElementById("div-incomes");
     let listContainer = document.createElement("ul");
     diven.appendChild(listContainer);
     for (let row in item) {
