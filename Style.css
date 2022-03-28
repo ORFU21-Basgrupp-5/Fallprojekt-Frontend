@@ -1,0 +1,190 @@
+body {
+  width: 500px;
+  margin: 0 auto ;
+  padding: 0 20px 0px 20px;
+  background: linear-gradient(to right, #F9F3E6, #FA532E);
+  text-align: center;
+  font-weight: 600;
+}
+
+a:link {
+  color: rgb(104, 114, 252);
+}
+a:visited {
+  color: rgb(9, 11, 124);
+
+}
+a:hover {
+  color: purple;
+}
+a:active {
+  color: teal;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+#div-expenses {
+  background-color: #F9F3E6;
+  border: 3px solid black;
+  border-radius: 10px;
+  text-align: left;
+  font-size: 20px;
+  font-weight: 600;
+  
+}
+#div-incomes  {
+  background-color: #F9F3E6;
+  border: 3px solid black;
+  border-radius: 10px;
+  text-align: left;
+  font-size: 20px;
+  font-weight: 600;
+   
+}
+#button-listaincomes {
+  background-color: rgb(104, 168, 252);
+  margin: 0;
+  padding: 10px;
+  width: 160px;
+  font-weight: 600;
+}
+
+#button-inmatning {
+  background-color: rgb(104, 168, 252);
+  margin: 0;
+  padding: 10px ;
+  width: 160px;
+  font-weight: 600;
+}
+#button-listaexpenses {
+  background-color: rgb(104, 168, 252);
+  margin: 0;
+  padding: 10px ;
+  width: 160px;
+  font-weight: 600;
+}
+#button-createbudget{
+  background-color: rgb(104, 168, 252);
+  margin: 0;
+  padding: 10px ;
+  width: 160px;
+  font-weight: 600;
+}
+#button-listabudget{
+  background-color: rgb(104, 168, 252);
+  margin: 0;
+  padding: 10px ;
+  width: 160px;
+  font-weight: 600;
+}
+
+#login-form {
+  width: 33%;
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+#inmatning-inkomster {
+  background-color: #F9F3E6;
+  border: 3px solid black;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+#inmatning-utgifter {
+  background-color: #F9F3E6;
+  border: 3px solid black;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+
+/* Footer */
+
+*{ 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+footer{
+  position: relative; 
+  bottom: 0px;
+  background: linear-gradient(.26turn,#F9F3E6,  #064B73,#233D53);
+  height: 200px;
+  width: 100vw;
+  padding-top: 40px;
+  color: #F9F3E6;
+ 
+}
+.footer-content{  
+  position: relative;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.socials{
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0 3rem 0;
+}
+.socials li{
+  margin: 0 10px;
+}
+.socials a{
+  text-decoration: none;
+  color: #F9F3E6;
+}
+
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.fa:hover {
+  opacity: 0.7;
+}
+.fa-twitter {
+  background: #233D53;
+  color: #F9F3E6;
+}
+.fa-facebook {
+  background: #233D53;
+  color: #F9F3E6;
+}
+.fa-linkedin-square {
+  background: #233D53;
+  color: #F9F3E6;
+}
+.fa {
+  padding: 10px;
+  width: 40px;
+  height: auto;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+  border: 1px solid #F9F3E6;
+}
+
+.footer-bottom{
+  background: linear-gradient(.20turn,#F9F3E6, #064B73,#233D53);
+  width: 100vw;
+  padding: 10px 0;
+  text-align: center;
+  border-top:1px dotted #F9F3E6 ;
+}
