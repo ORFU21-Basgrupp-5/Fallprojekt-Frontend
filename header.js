@@ -15,6 +15,8 @@ export class Header {
     const button3 = document.getElementById("buttonInmatning");
     const button4 = document.getElementById("budgetPage");
     const button5 = document.getElementById("budgetGetPage");
+    const button6 = document.getElementById("LogOut");
+
     //const button4 = document.getElementById("emailknapp"); 
 
 
@@ -34,6 +36,10 @@ export class Header {
     button5.addEventListener("click", () => {
       budgetGetRender(pageContent);
     });
+    button6.addEventListener("click", () => {
+      location.reload();
+    });
+    
 
     // button4.addEventListener("click", () => {
     //   passwordrender(pageContent);
