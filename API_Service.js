@@ -29,7 +29,7 @@ const API_Service = {
         }
     },
     async PostService (endpoint, body) {
-    
+        
         const settings = {
             method: "POST",
             headers: {
@@ -41,8 +41,9 @@ const API_Service = {
 
         try{
             const result = await fetch(`http://localhost:7151/api/${endpoint}`, settings);
-            const data = await result.json();
+            
             if (result.ok) {
+                const data = await result.json();
                 console.log(data);
                 return data;
             } else if(result.status === 401){
@@ -50,7 +51,7 @@ const API_Service = {
             } else {
                 const message = "Error with Status Code: " + result.status;
                 defaultRender(message);
-                return "";
+                
             }
         }
         catch(e){
