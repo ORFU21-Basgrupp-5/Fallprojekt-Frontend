@@ -1,5 +1,5 @@
-import { getCookie } from "./cookie.js";
-import API_Service from "./API_Service.js";
+import { getCookie } from "./services/cookie.js";
+import API_Service from ".services/API_Service.js";
 
 export const render = (root) => {
   root.innerHTML = "";

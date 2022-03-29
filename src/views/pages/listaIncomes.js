@@ -1,20 +1,21 @@
-import { getCookie } from "./cookie.js";
-import { defaultRender } from "./errorHandler.js";
-import API_Service from "./API_Service.js";
+import { getCookie } from "./services/cookie.js";
+import {defaultRender} from "./services/errorHandler.js";
+import API_Service from "./services/API_Service.js";
 export const render = (root) => {
   root.innerHTML = "";
-  
-  var stringLista = `
-  <h1>Lista Utgifter</h1>
-    <div id="DivWithExpenses">
+  const html = `
+    <h1>Lista Inkomster</h1>
+      <div id="DivWithIncomes">
       <div id="errorDiv"></div>
     </div>
-    <div  class="spacer4"> . </div>`;
-  root.innerHTML = stringLista;
+    <div  class="spacer5"> . </div>`;
+  root.innerHTML = html;
+  
   fetchresult();
 };
+
 async function fetchresult() {
-  const data = await API_Service.GetService("Expense");
+  const data = await API_Service.GetService("Income");
   if(data != null){
     upgiftsLista(data);
   }
@@ -22,7 +23,7 @@ async function fetchresult() {
 
 function upgiftsLista(data) {
   data.forEach((item) => {
-    let diven = document.getElementById("DivWithExpenses");
+    let diven = document.getElementById("DivWithIncomes");
     let listContainer = document.createElement("ul");
     diven.appendChild(listContainer);
     for (let row in item) {

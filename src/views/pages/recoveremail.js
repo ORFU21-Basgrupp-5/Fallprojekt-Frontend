@@ -1,5 +1,5 @@
-import { getCookie } from "./cookie.js";
-import { defaultRender } from "./errorHandler.js";
+import { getCookie } from "../service/cookie.js";
+import { defaultRender } from "/src/services/errorHandler.js";
 export const render = (root) => {
   root.innerHTML = "";
 

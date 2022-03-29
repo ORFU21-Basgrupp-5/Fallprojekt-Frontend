@@ -1,9 +1,9 @@
-import { render as listERender } from "./listaExpenses.js";
-import { render as listIRender } from "./listaIncomes.js";
-import { render as inmatningRender } from "./inmatning.js";
-import { render as budgetRender } from "./budget.js";
-import { render as budgetGetRender } from "./getBudget.js";
-import { render as passwordrender } from "./changepassword.js";
+import { render as listERender } from "../pages/listaExpenses.js";
+import { render as listIRender } from "../pages/listaIncomes.js";
+import { render as inmatningRender } from "../pages/inmatning.js";
+import { render as budgetRender } from "../pages/budget.js";
+import { render as budgetGetRender } from "../pages/getbudget.js";
+import { render as passwordrender } from "../pages/changepassword.js";
 
 
 const pageContent = document.getElementById("pageContent");
