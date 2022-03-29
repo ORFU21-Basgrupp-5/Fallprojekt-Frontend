@@ -50,8 +50,8 @@ const API_Service = {
                 window.location.reload();
             } else {
                 const message = "Error with Status Code: " + result.status;
-                defaultRender(message);
-                
+                console.log(message);
+                return false;
             }
         }
         catch(e){

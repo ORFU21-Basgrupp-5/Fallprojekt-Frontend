@@ -54,7 +54,8 @@ if (urlparams.get("token") != null) {
 
   async function fetchLogin(userBody) {
     const fetchresult =  await API_Service.PostService("User/login", userBody);
-    if(fetchresult != ""){
+    console.log(fetchresult);
+    if(fetchresult != false){
       CreateLoginToken(fetchresult);
     }else {
       defaultRender("Användarnamn eller lösenord är fel.")
