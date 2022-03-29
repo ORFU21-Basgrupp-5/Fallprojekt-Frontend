@@ -81,6 +81,7 @@ export const render = (root) => {
 
   async function fetchresult(newBudget) {
     const fetchresult =  await API_Service.PostService("Budget", newBudget);
+    console.log(fetchresult);
     return fetchresult;
   }
 

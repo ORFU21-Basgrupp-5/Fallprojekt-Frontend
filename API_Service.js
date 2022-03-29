@@ -29,16 +29,29 @@ const API_Service = {
         }
     },
     async PostService (endpoint, body) {
+        let theTooken = getCookie("token");
+        let settings; 
+        if(theTooken === null){
+            settings = {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json"                
+                },
+                body: JSON.stringify(body),
+              };
+        }
+        else
+        {
+            settings = {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: "Bearer " + theTooken
+                },
+                body: JSON.stringify(body),
+              };
+        }
         
-        const settings = {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + getCookie("token"),
-            },
-            body: JSON.stringify(body),
-          };
-
         try{
             const result = await fetch(`http://localhost:7151/api/${endpoint}`, settings);
             
