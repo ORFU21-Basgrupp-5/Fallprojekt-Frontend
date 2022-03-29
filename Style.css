@@ -1,4 +1,42 @@
-body {
+#theGrid {
+  width: 98vw;
+  height: 98vh;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 10% 70% 20%;
+  overflow: auto;
+}
+#header {
+  grid-column: 1 / 5;
+  grid-row: 1 / 1;
+}
+#pageContent {
+  grid-column: 2 / 4;
+  grid-row: 2 / 2;
+  place-items: center center;
+}
+#errorDiv {
+  grid-column: 2 / 4;
+  grid-row: 2 / 2;
+  place-items: center center;
+}
+#footer {
+  grid-column: 1 / 5;
+  grid-row: 3 / 3;
+  place-items: center center;
+}
+#login {
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+/* body {
   width: 500px;
   margin: 0 auto ;
   padding: 0 20px 0px 20px;
@@ -107,7 +145,7 @@ a:hover {
 
 /* Footer */
 
-*{ 
+/*{ 
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -187,4 +225,4 @@ footer{
   padding: 10px 0;
   text-align: center;
   border-top:1px dotted #F9F3E6 ;
-}
+} */

@@ -9,10 +9,9 @@
     <title>Login</title>
   </head>
   <body>
+    <div id="theGrid">
     <div id="header">
-      <!-- <button id="buttonInmatning">Inmatning</button>
-    <button id="buttonLista">Lista</button>
-    <button id="buttonRegistrera">Registrera</button> -->
+      
     </div>
     <div id="pageContent">
       <div id="login">
@@ -21,16 +20,18 @@
 
         <form id="login-form">
           <div id="uname">
-            <label for="username">Användarnamn: </label>
+            <label for="username">Användarnamn </label>
+            <br>
             <input
               type="text"
               name="username"
               placeholder="Fyll i ditt användarnamn"
             />
           </div>
-
+          <br>
           <div id="pswrd">
-            <label for="password">Lösenord: </label>
+            <label for="password">Lösenord </label>
+            <br>
             <input
               type="password"
               name="password"
@@ -44,11 +45,11 @@
           <div id="btn">
             <input type="submit" />
           </div>
-          <div id="errorDiv"></div>
         </form>
       </div>
     </div>
-    <div class="footer-content">
+    <div id="errorDiv"></div>
+    <div id="footer">
       <footer class="site-footer">
         <h3>Johannas budget-app</h3>
         <ul class="socials">
@@ -61,6 +62,7 @@
         </div>
       </footer>
     </div>
+  </div>
   </body>
   <!-- <script src="main.js" type="module"></script> -->
   <script src="login.js" type="module"></script>
