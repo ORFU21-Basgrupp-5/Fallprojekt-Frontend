@@ -4,8 +4,10 @@ export const render = (root) => {
 
 const emailform = ` 
   <form>
-    <label>Email: </label>
-    <input id= "Email" >
+    <h1>Recover</h1>
+    <label for="Email">Email </label>
+    <br>
+    <input id= "Email" ><br>
     <button id= "recoverbutton">Bekräfta</button>
     <div id="SentOrNotDiv"></div>
     <a href="/">Logga in här</a>

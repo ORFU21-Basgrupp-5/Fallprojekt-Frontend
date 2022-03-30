@@ -11,23 +11,23 @@ export const render = (root) => {
     <div id="reg">
       <h1>Skapa ett konto</h1>
     </div>
-    <p>Har du redan ett konto?<a href="/">Logga in här</a> </p>
+    <p>Har du redan ett konto?<a href="/"> Logga in här</a> </p>
     <form id="reg_form"><div id="hidden-message">
 
       <div id="uname">
-        <label for="username">Användarnamn</label>
+        <label for="username">Användarnamn</label><br>
         <input type="text" name="username" placeholder="Välj ett användarnamn">
       </div>
       <div id="email">
-        <label for="email">Email:</label>
+        <label for="email">Email</label><br>
         <input type="text" name="email" placeholder="Fyll i din epost">
       </div>
       <div id="pswrd">
-        <label for="password">Lösenord: </label>
+        <label for="password">Lösenord </label><br>
         <input type="text" name="password" placeholder="Välj ett lösenord">
       </div>
       <div id="pswrdvalid">
-        <label for="password2">Bekräfta lösenord:</label>
+        <label for="password2">Bekräfta lösenord</label><br>
         <input type="text" name="password2" placeholder="Bekräfta lösenord">
         </div>
       <div>

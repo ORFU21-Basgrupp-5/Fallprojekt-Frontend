@@ -1,29 +1,57 @@
-#theGrid {
-  width: 98vw;
+body {
   height: 98vh;
+  width: 98vw;
+  /*https://bggenerator.com/graphics_background.php#graphics*/
+  background-image: url("./images/test_background.png");
+}
+#theGrid {
+  width: 98%;
+  height: 98%;
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
   grid-template-rows: 10% 70% 20%;
   overflow: auto;
 }
 #header {
-  grid-column: 1 / 5;
+  grid-column: 2 / 4;
   grid-row: 1 / 1;
+  background-color: #F9F3E6;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 #pageContent {
   grid-column: 2 / 4;
   grid-row: 2 / 2;
   place-items: center center;
+  text-align: center;
+  background-color: #faf8f3;
+  border-style: solid outset solid outset;
 }
-#errorDiv {
+#pageContent [href]{
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 100%;
+  color: black;
+}
+#pageContent [href]:hover{
+  text-transform: uppercase;
+  text-decoration: none;
+  text-decoration: underline;
+  text-shadow: 1px 1px #000;
+  color: #FA532E
+}
+/* #errorDiv {
   grid-column: 2 / 4;
   grid-row: 2 / 2;
   place-items: center center;
-}
+} */
 #footer {
-  grid-column: 1 / 5;
+  background-color: #F9F3E6;
+  grid-column: 2 / 4;
   grid-row: 3 / 3;
   place-items: center center;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 #login {
   text-align: center;
