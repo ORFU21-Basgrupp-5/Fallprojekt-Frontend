@@ -1,44 +1,159 @@
+
+
+
 /* reactiv grid css  */
+
+
 
 .gridstyle.container {
   display: grid;
   height: 100vh;
-  background-color: #2b0c0c;
+  background-color: #064B73;
   grid-template-rows: auto auto 1fr auto auto auto;
   gap: 24px;
   color: white;
-  text-align: center;
+  
 }
-a{
-  text-decoration:none;
-  color:#ffffff;
- }
- 
+a:link {
+  color: #FA532E;
+}
+a:visited {
+  color: #FA532E;
+
+}
+a:hover {
+  color: #b63e23;
+}
+a:active {
+  color: #FA532E;
+}
+#navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: inline-flex;
+
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+
+}
+
+
+.navigation-menu{
+  margin: 0 auto;
+  font-size: 20px;
+}
+
+ul#navbar li a {
+  display: block;
+  color: #ffffff;
+  font-weight:bold;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius:5px;
+  cursor:pointer;
+  box-shadow: 0 0 5px #000000;
+  margin: 3px;
+}
+ul#navbar li a:hover {
+  background-color: #FA532E;
+  color: white;
+}
+.site-footer{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.socials a{
+  text-decoration: none;
+  color: #F9F3E6;
+}
+
+.fa:hover {
+  background: #FA532E;
+}
+.fa-twitter {
+  background: #233D53;
+  color: #F9F3E6;
+}
+.fa-facebook {
+  background: #233D53;
+  color: #F9F3E6;
+}
+.fa-linkedin-square {
+  background: #233D53;
+  color: #F9F3E6;
+}
+.fa {
+  padding: 10px;
+  width: 20px;
+  height: auto;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+  border: 1px solid #F9F3E6;
+}
  
 
 .header{
-  background-color: #5c0808;
+  margin: auto;
   padding: 10px;
+
+}
+.header h1{
+  
+  
+    font-size: 72px;
+    background: linear-gradient(to top, #FA532E, #F9F3E6 );
+    background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  filter: drop-shadow(2px 2px #333);
+  font-family: 'winkleregular', Arial, sans-serif;
+font-weight:normal;
+font-style:normal;
+  
 }
 .navigation{
-  background-color: #a17474;
+  background-color: #064B73;
   padding: 10px;
+  margin: auto;
 }
 .main{
-  background-color: #551a1a;
+  background-color: #064B73;
   padding: 10px;
+  margin: auto;
+  
 }
 .sidebar{
-  background-color: #994d4d;
+  background-color: #064B73;
   padding: 10px;
+  margin: auto;
 }
 .ads{
-  background-color: #2b0c0c;
+  background-color: #064B73;
   padding: 10px;
+  
 }
 .footer{
-  background-color: #080101;
   padding: 10px;
+  border-top: 2px solid #233D53;
+  border-radius: 5px;
+ 
+
+    
+  
+
 }
 @media (min-width: 720px) {
  
@@ -112,4 +227,40 @@ a{
     
     grid-column: 1 / span 12;
   }
+}
+
+#login h1{
+  text-align: center;
+}
+input{
+  
+
+  border-radius: 5px;
+}
+label {
+  color: #ffffff;
+  font-size: 16px;
+  display: block;
+}
+#btn{
+  text-align: center;
+}
+#recover{
+  margin:10px;
+}
+
+input[type = submit] {
+  background-color: #064B73;
+  border: none;
+  text-decoration: none;
+  color: white;
+  padding: 10px 10px;
+  margin: 20px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #000000;
+}
+
+input[type = submit]:hover{
+  background-color: #FA532E;
 }

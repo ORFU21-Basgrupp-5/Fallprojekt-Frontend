@@ -3,20 +3,26 @@ let NavigationBar = {
         let view = `
             <div class="container">
                 <div id="header" class="navigation-menu">
-                    <a class"nav-item" href="./#/inmatning">Inmatning</a>
-                    <a class"nav-item" href="./#/listaexpenses">ListaExpenses</a>
-                    <a class"nav-item" href="./#/listaincomes">ListaIncomes</a>
-                    <a class"nav-item" href="./#/budget">Skapa Budget</a>
-                    <a class"nav-item" href="./#/getbudget">Visa Budget</a>
-                    <a class"nav-item" href="./#/logout">Loga ut</a>
+                <ul id="navbar">
+                <li><a class"button" href="./#/inmatning">Inmatning</a></li>
+                <li><a class"button" href="./#/listaexpenses">ListaExpenses</a></li>
+                <li><a class"button" href="./#/listaincomes">ListaIncomes</a></li>
+                <li><a class"button" href="./#/budget">Skapa Budget</a></li>
+                <li><a class"button" href="./#/getbudget">Visa Budget</a></li>
+                <li><a class"button" href="./#/logout">Loga ut</a></li>
+                    </ul>
                 </div>
             </div>
         `;
         let viewNotLogedIn = `
         <div class="container">
             <div id="header" class="navigation-menu">
-                <a class"nav-item" href="./#/login">Logain</a>
-                <a class"nav-item" href="./#/RegisterUser">Registera dig</a>
+            <ul id="navbar">
+            <li><a href="./#/login" class"button">Logain</a></li>
+            <li><a class"button" href="./#/RegisterUser">Registera dig</a></li>
+            </ul>
+                
+                
             </div>
         </div>
     `;

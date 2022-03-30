@@ -14,21 +14,24 @@ let login = {
           <form id="form1" class="inputForm">
             <div id="uname">
               <label for="username">Användarnamn: </label>
+              
               <input
                 type="text"
                 name="username"
                 placeholder="Fyll i ditt användarnamn"
               />
-            </div>
+              </div>
+            
         
             <div id="pswrd">
               <label for="password">Lösenord: </label>
+              
               <input
                 type="password"
                 name="password"
                 placeholder="Fyll i ditt lösenord"
-              />
-            </div>
+              /></div>
+            
             <div id="recover">
               <a href="" id="recover-btn">Glömt lösenordet?</a>
             </div>

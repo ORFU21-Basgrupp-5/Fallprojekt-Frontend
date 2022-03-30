@@ -29,8 +29,8 @@ let RegisterUser = {
                 <label for="password2">Bekräfta lösenord:</label>
                 <input type="text" name="password2" placeholder="Bekräfta lösenord">
                 </div>
-              <div>
-                <button class="submit_button" type="submit">Submit</button>
+                <div id="btn">
+              <input type="submit" />
               </div>
               <div id="errorDiv" class="errorMessage"></div>
             </form>
