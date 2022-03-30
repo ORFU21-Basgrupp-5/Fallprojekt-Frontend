@@ -2,12 +2,12 @@ import API_Service from "/src/services/API_Service.js";
 import { defaultRender } from "/src/services/errorHandler.js";
 import { setCookie } from "/src/services/cookie.js";
 
-let listaExpenses = {
+let login = {
     render: async () => {
         let view = `
         <div id="login">
         <h1>Login</h1>
-        <p>Saknar du ett konto? <a href="" id="reglink">Skapa konto</a></p>
+        <p>Saknar du ett konto? <a href="./#/registeruser" id="reglink">Skapa konto</a></p>
       
         <form id="form1">
           <div id="uname">
@@ -34,7 +34,7 @@ let listaExpenses = {
           <div id="btn">
             <input type="submit" />
           </div>
-          <div id="errorDiv"></div>
+          <div id="errorDiv" class="errorMessage"></div>
         </form>
       </div>`;
 
@@ -46,14 +46,14 @@ let listaExpenses = {
         const linkToRecover = document.getElementById("recover-btn");
         linkToRecover.onclick = function (e) {
             e.preventDefault();
-            render(pageContent);
+            window.location.hash = "#/recoverymail";
         };
 
         let reglink = document.getElementById("reglink");
         //console.log("Password to TestKonto1: Admin2Lösen**")
         reglink.onclick = function (e) {
             e.preventDefault();
-            window.location.hash = "#/register";
+            window.location.hash = "#/registeruser";
         };
 
         let form = document.getElementById("form1");
@@ -102,4 +102,4 @@ let listaExpenses = {
     },
 };
 
-export default listaExpenses;
+export default login;

@@ -23,7 +23,7 @@ const html = `
       <div  class="spacer1"> . </div>
       <h1>Welcome</h1>
       <div id="active_user">${ActiveUser}</div>
-      <div id="errorDiv"></div>
+      <div id="errorDiv" class="errorMessage"></div>
     </div>
     <div  class="spacer2"> . </div>`
 

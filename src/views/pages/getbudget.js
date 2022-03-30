@@ -1,17 +1,17 @@
-import { getCookie } from "./services/cookie.js";
-import API_Service from ".services/API_Service.js";
+import { getCookie } from "/src/services/cookie.js";
+import API_Service from "/src/services/API_Service.js";
+import { defaultRender } from "/src/services/errorHandler.js";
 
-export const render = (root) => {
-  root.innerHTML = "";
-
-  var stringbudget = `
-  <h1>Lista Aktuell Budget</h1>
-  <div id="DivWithBudget"></div>
-  <div id="errorDiv"></div>`;
-
-  root.innerHTML = stringbudget;
-
-  fetchresult();
+let GetBudget = {
+  render : async () => {
+   
+    let view =  `
+    <h1>Lista Aktuell Budget</h1>
+    <div id="DivWithBudget"></div>
+    <div id="errorDiv" class="errorMessage"></div>`;
+    return view;
+  }, after_render: async () => {
+    fetchresult();
 
   function budgetLista(data) {
     data.forEach((item) => {
@@ -125,7 +125,7 @@ export const render = (root) => {
       generate_table(fetchresult);
     }
   }
-};
+  }
 
-//get budget information
-//filter den pågående budgeten att visa
+}
+export default GetBudget;

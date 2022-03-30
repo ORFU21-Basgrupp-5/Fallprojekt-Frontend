@@ -1,29 +1,41 @@
 "use strict";
-
+//pages
+import Budget from './views/pages/Budget.js';
+import ChangePassword from './views/pages/ChangePassword.js';
+import Error404 from './views/pages/Error404.js';
+import GetBudget from './views/pages/getbudget.js';
 import Home from './views/pages/home.js';
 import Inmatning from './views/pages/Inmatning.js';
-import Error404 from './views/pages/Error404.js';
-import listaExpenses from './views/pages/listaExpenses.js';
+import ListaExpenses from './views/pages/listaExpenses.js';
+import ListaIncomes from './views/pages/ListaIncomes.js';
 import Login from './views/pages/Login.js';
-import register from './views/pages/reg.js';
-//import Login from './src/views/pages/login.js';
-//import Budget from './src/views/pages/budget.js';
+import RecoveryMail from './views/pages/Recoverymail.js';
+import RegisterUser from './views/pages/reg.js';
 
+
+//components
 import NavigationBar from './views/components/NavigationBar.js';
 import Footer from './views/components/Footer.js';
 
+//services
 import routerService from './services/routerService.js'
+import { getCookie } from "./services/cookie.js";
 import { defaultRender } from "./services/errorHandler.js";
 import API_Service from './services/API_Service.js';
 
 
 const routes = {
     '/'                 : Home
+    , '/budget'         : Budget
     , '/inmatning'      : Inmatning
-    , '/budget'         : Home
-    , '/register'       : register
-    , '/listaexpenses'  : listaExpenses
-    , '/login'  : Login
+    , '/changepassword' : ChangePassword
+    , '/getbudget'      : GetBudget
+    , '/listaexpenses'  : ListaExpenses
+    , '/listaincomes'   : ListaIncomes
+    , '/login'          : Login
+    , '/recoverymail'   : RecoveryMail
+    , '/registeruser'   : RegisterUser
+
 
 };
 
@@ -33,7 +45,12 @@ const router = async () => {
     const content = null || document.getElementById('pageContent');
     const footer = null || document.getElementById('footerContent');
 
-    header.innerHTML = await NavigationBar.render();
+    var userString = getCookie('user');
+    var userLogedIn = false;
+    if(userString != null) 
+    userLogedIn = true;
+
+    header.innerHTML = await NavigationBar.render(userLogedIn);
     await NavigationBar.after_render();
     footer.innerHTML = await Footer.render();
     await Footer.after_render();

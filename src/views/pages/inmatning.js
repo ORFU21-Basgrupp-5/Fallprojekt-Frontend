@@ -1,12 +1,13 @@
 import API_Service from '/src/services/API_Service.js';
 import { defaultRender } from "/src/services/errorHandler.js";
+import { getCookie } from "/src/services/cookie.js";
 
 let Inmatning = {
     render: async () => {
         let view = `
-    <div id="pageContent">
+    
       <div><h1>Inkomster</h1></div>
-      <div id="errorDiv"></div>
+      <div id="errorDiv" class="errorMessage"></div>
       <div id="info-inkomst"></div>
         <form id="Inkomster">
           <div>
@@ -78,8 +79,8 @@ let Inmatning = {
             <button id="ESubmit">Enter</button>
           </div>
       </form>
-    </div>
-    <div  class="spacer3"> . </div>`;
+    
+    `;
         return view;
     },
     after_render: async () => {

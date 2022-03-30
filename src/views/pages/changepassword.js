@@ -1,25 +1,27 @@
+import API_Service from "/src/services/API_Service.js";
 import { defaultRender } from "/src/services/errorHandler.js";
+import { setCookie } from "/src/services/cookie.js";
 
-export const render = (root,token) => {
-    root.innerHTML = "";
+let ChangePassword = {
+    render: async () => {
+        let view = `
+        <form>
+          <label>Nytt lösenord: </label>
+          <input id="newPassword">
+          <br>
+          <label>Bekräfta lösenord: </label>
+          <input id="confirmPassword">
+          <button id="confirmButton">Bekräfta</button>
+          <br>
+          <a href="/">Logga in här</a>
+          <div id="errorDiv" class="errorMessage"></div>
+        </form>
+        `;
 
-
-    const html = `
-              <form>
-                <label>Nytt lösenord: </label>
-                <input id="newPassword">
-                <br>
-                <label>Bekräfta lösenord: </label>
-                <input id="confirmPassword">
-                <button id="confirmButton">Bekräfta</button>
-                <br>
-                <a href="/">Logga in här</a>
-                <div id="errorDiv"></div>
-              </form>
-              `
-    root.innerHTML = html;
-    
-    const confirmPassword = document.getElementById('confirmPassword')
+        return view;
+    },
+    after_render: async () => {
+      const confirmPassword = document.getElementById('confirmPassword')
     const newPassword = document.getElementById('newPassword')
     let ChangeButton = document.getElementById('confirmButton')
 
@@ -40,7 +42,7 @@ export const render = (root,token) => {
     async function ChangePasswordLink(emailrecdto) {
     
         const recoverPass = await fetch(
-          "http://localhost:7151/User/recover",
+          "http://localhost:7151/api/User/recover",
           {
             method: "put",
             headers: {
@@ -59,4 +61,7 @@ export const render = (root,token) => {
           }
         });
     }
-}
+    },
+};
+
+export default ChangePassword;

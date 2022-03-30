@@ -2,14 +2,14 @@ import API_Service from "/src/services/API_Service.js";
 import { defaultRender } from "/src/services/errorHandler.js";
 import { getCookie } from "/src/services/cookie.js";
 
-let listaExpenses = {
+let RegisterUser = {
     render: async () => {
         let view =  `
         <div class="register-container">
           <div id="reg">
             <h1>Skapa ett konto</h1>
           </div>
-          <p>Har du redan ett konto?<a href="/">Logga in här</a> </p>
+          <p>Har du redan ett konto?<a href="./#/login">Logga in här</a> </p>
           <form id="reg_form"><div id="hidden-message">
             
             <div id="uname">
@@ -31,7 +31,7 @@ let listaExpenses = {
             <div>
               <button type="submit">Submit</button>
             </div>
-            <div id="errorDiv"></div>
+            <div id="errorDiv" class="errorMessage"></div>
           </form>
         </div>
         `
@@ -107,4 +107,4 @@ let listaExpenses = {
     },
 };
 
-export default listaExpenses;
+export default RegisterUser;

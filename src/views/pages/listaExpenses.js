@@ -1,12 +1,12 @@
 import API_Service from '/src/services/API_Service.js';
 import { defaultRender } from "/src/services/errorHandler.js";
 
-let listaExpenses = {
+let ListaExpenses = {
     render: async () => {
         let view = `
         <h1>Lista Utgifter</h1>
           <div id="DivWithExpenses">
-            <div id="errorDiv"></div>
+            <div id="errorDiv" class="errorMessage"></div>
           </div>
           <div  class="spacer4"> . </div>`;
 
@@ -37,4 +37,4 @@ let listaExpenses = {
 }
   
 
-export default listaExpenses;
+export default ListaExpenses;
