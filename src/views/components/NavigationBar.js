@@ -20,6 +20,7 @@ let NavigationBar = {
             </div>
         </div>
     `;
+    //if user is loged in we will show menu with links to the difrent pages, other wise we just show login and registera for now
     if(logedin === true)
         return view
         else
