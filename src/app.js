@@ -2,18 +2,18 @@
 //makes this page not tollerate any errors
 
 //pages 
-import Budget from '/views/pages/Budget.js';
-import ChangePassword from '/views/pages/ChangePassword.js';
-import Error404 from '/views/pages/Error404.js';
-import GetBudget from '/views/pages/getbudget.js';
-import Home from '/views/pages/home.js';
-import Inmatning from '/views/pages/Inmatning.js';
-import ListaExpenses from '/views/pages/listaExpenses.js';
-import ListaIncomes from '/views/pages/ListaIncomes.js';
-import Login from '/views/pages/Login.js';
-import RecoveryMail from '/views/pages/Recoverymail.js';
-import RegisterUser from '/views/pages/reg.js';
-import logout from '/views/pages/logout.js';
+import Budget from './views/pages/Budget.js';
+import ChangePassword from './views/pages/ChangePassword.js';
+import Error404 from './views/pages/Error404.js';
+import GetBudget from './views/pages/getbudget.js';
+import Home from './views/pages/home.js';
+import Inmatning from './views/pages/Inmatning.js';
+import ListaExpenses from './views/pages/listaExpenses.js';
+import ListaIncomes from './views/pages/ListaIncomes.js';
+import Login from './views/pages/Login.js';
+import RecoveryMail from './views/pages/Recoverymail.js';
+import RegisterUser from './views/pages/reg.js';
+import logout from './views/pages/logout.js';
 
 //components
 import NavigationBar from '/views/components/NavigationBar.js';
