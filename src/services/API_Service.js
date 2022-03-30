@@ -1,7 +1,7 @@
 import { getCookie } from "./cookie.js";
 import { removeCookies } from "./cookie.js";
 
-import { defaultRender } from "/src/services/errorHandler.js";
+import { defaultRender } from "/services/errorHandler.js";
 
 function headerCheck() {
     let theTooken = getCookie("token");

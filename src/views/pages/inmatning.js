@@ -1,85 +1,83 @@
-import API_Service from '/src/services/API_Service.js';
-import { defaultRender } from "/src/services/errorHandler.js";
-import { getCookie } from "/src/services/cookie.js";
+import API_Service from '/services/API_Service.js';
+import { defaultRender } from "/services/errorHandler.js";
+import { getCookie } from "/services/cookie.js";
 
 let Inmatning = {
     render: async () => {
         let view = `
-    
-      <div><h1>Inkomster</h1></div>
-      <div id="errorDiv" class="errorMessage"></div>
-      <div id="info-inkomst"></div>
-        <form id="Inkomster">
-          <div>
-            <label>Category</label>
-          </div>
-          <select id="CategoryInc"></select>
-          <div>
-            <label for="ISaldo">Saldo</label>
-          </div>         
-          <div>
-            <input id="ISaldo">
-          </div>
-          <div>
-            <label for="IKonto">Konto</label>
-          </div>
-          <div>
-            <input id="IKonto">
-          </div>
-          <div>
-            <label for="IDesc">Desc</label>
-          </div>
-          <div>
-            <input id="IDesc">
-          </div>
-          <div>
-            <label for="IDate">Date</label>
-          </div>
-          <div>
-            <input id="IDate" type="date">
-          </div>
-          <div>
-            <button id="ISubmit">Enter</button>
-          </div>
+        <div class="container">
+            <h1>Inkomster</h1>
+            <div id="errorDiv" class="errorMessage"></div>
+            <div id="info-inkomst"></div>
+            <form id="Inkomster" class="inputForm">
+                <div>
+                    <label>Category</label>
+                </div>
+                <select id="CategoryInc"></select>
+                <div>
+                    <label for="ISaldo">Saldo</label>
+                </div>         
+                <div>
+                    <input id="ISaldo">
+                </div>
+                <div>
+                    <label for="IKonto">Konto</label>
+                </div>
+                <div>
+                    <input id="IKonto">
+                </div>
+                <div>
+                    <label for="IDesc">Desc</label>
+                </div>
+                <div>
+                    <input id="IDesc">
+                </div>
+                <div>
+                    <label for="IDate">Date</label>
+                </div>
+                <div>
+                    <input id="IDate" type="date">
+                </div>
+                <div>
+                    <button class="submit_button" id="ISubmit">Enter</button>
+                </div>
+            </form>
+                    <h1>Utgifter</h1>               
+            <div id="info-utgift"></div>
+            <form id="Utgifter" class="inputForm">
+                <div>
+                    <label>Category</label>
+                </div>
+                <select id="CategoryExp"></select>            
+                <div>
+                    <label for="ESaldo">Saldo</label>
+                </div>
+                <div>
+                    <input id="ESaldo">
+                </div>
+                <div>
+                    <label for="EKonto">Konto</label>
+                </div>
+                <div>
+                    <input id="EKonto">
+                </div>
+                <div>
+                    <label for="EDesc">Desc</label>
+                </div>
+                <div>
+                    <input id="EDesc">
+                </div>
+                <div>
+                    <label for="EDate">Date</label>
+                </div>
+                <div>
+                    <input id="EDate" type="date">
+                </div>
+                <div>
+                    <button class="submit_button" id="ESubmit">Enter</button>
+                </div>
         </form>
-          <div>
-            <h1>Utgifter</h1>
-          </div>
-          <div id="info-utgift"></div>
-        <form id="Utgifter">
-          <div>
-            <label>Category</label>
-          </div>
-          <select id="CategoryExp"></select>            
-          <div>
-            <label for="ESaldo">Saldo</label>
-          </div>
-          <div>
-            <input id="ESaldo">
-          </div>
-          <div>
-            <label for="EKonto">Konto</label>
-          </div>
-          <div>
-            <input id="EKonto">
-          </div>
-          <div>
-            <label for="EDesc">Desc</label>
-          </div>
-          <div>
-            <input id="EDesc">
-          </div>
-          <div>
-            <label for="EDate">Date</label>
-          </div>
-          <div>
-            <input id="EDate" type="date">
-          </div>
-          <div>
-            <button id="ESubmit">Enter</button>
-          </div>
-      </form>
-    
+      </div>
     `;
         return view;
     },

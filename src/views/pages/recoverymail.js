@@ -1,18 +1,20 @@
-import API_Service from "/src/services/API_Service.js";
-import { defaultRender } from "/src/services/errorHandler.js";
-import { setCookie } from "/src/services/cookie.js";
+import API_Service from "/services/API_Service.js";
+import { defaultRender } from "/services/errorHandler.js";
+import { setCookie } from "/services/cookie.js";
 
 let RecoveryMail = {
     render: async () => {
         let view =  ` 
-        <form>
-          <label>Email: </label>
-          <input id= "Email" >
-          <button id= "recoverbutton">Bekräfta</button>
-          <div id="SentOrNotDiv"></div>
-          <a href="/">Logga in här</a>
-          <div id="errorDiv" class="errorMessage"></div>
-        </form>`;
+        <div class="container">
+          <form class="inputForm">
+            <label>Email: </label>
+            <input id= "Email" >
+            <button class="submit_button" id="recoverbutton">Bekräfta</button>
+            <div id="SentOrNotDiv"></div>
+            <a href="/">Logga in här</a>
+            <div id="errorDiv" class="errorMessage"></div>
+          </form>
+        </div>`;
 
         return view;
     },

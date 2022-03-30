@@ -1,13 +1,15 @@
-import API_Service from '/src/services/API_Service.js';
-import { defaultRender } from "/src/services/errorHandler.js";
+import API_Service from '/services/API_Service.js';
+import { defaultRender } from "/services/errorHandler.js";
 
 let ListaIncomes = {
     render: async () => {
         let view =  `
-        <h1>Lista Inkomster</h1>
-          <div id="DivWithIncomes">
-          <div id="errorDiv" class="errorMessage"></div>
-        </div>`;
+        <div class="container">
+          <h1>Lista Utgifter</h1>
+            <div id="DivWithIncomes" class="budget_list">
+              <div id="errorDiv" class="errorMessage"></div>
+            </div>
+          </div>`;
 
         return view;
     },

@@ -1,41 +1,43 @@
-import API_Service from "/src/services/API_Service.js";
-import { defaultRender } from "/src/services/errorHandler.js";
-import { setCookie } from "/src/services/cookie.js";
+import API_Service from "/services/API_Service.js";
+import { defaultRender } from "/services/errorHandler.js";
+import { setCookie } from "/services/cookie.js";
 
 let login = {
     render: async () => {
         let view = `
-        <div id="login">
-        <h1>Login</h1>
-        <p>Saknar du ett konto? <a href="./#/registeruser" id="reglink">Skapa konto</a></p>
-      
-        <form id="form1">
-          <div id="uname">
-            <label for="username">Användarnamn: </label>
-            <input
-              type="text"
-              name="username"
-              placeholder="Fyll i ditt användarnamn"
-            />
-          </div>
-      
-          <div id="pswrd">
-            <label for="password">Lösenord: </label>
-            <input
-              type="password"
-              name="password"
-              placeholder="Fyll i ditt lösenord"
-            />
-          </div>
-          <div id="recover">
-            <a href="" id="recover-btn">Glömt lösenordet?</a>
-          </div>
-      
-          <div id="btn">
-            <input type="submit" />
-          </div>
-          <div id="errorDiv" class="errorMessage"></div>
-        </form>
+        <div class="container">
+          <div id="login">
+          <h1>Login</h1>
+          <p>Saknar du ett konto? <a href="./#/registeruser" id="reglink">Skapa konto</a></p>
+        
+          <form id="form1" class="inputForm">
+            <div id="uname">
+              <label for="username">Användarnamn: </label>
+              <input
+                type="text"
+                name="username"
+                placeholder="Fyll i ditt användarnamn"
+              />
+            </div>
+        
+            <div id="pswrd">
+              <label for="password">Lösenord: </label>
+              <input
+                type="password"
+                name="password"
+                placeholder="Fyll i ditt lösenord"
+              />
+            </div>
+            <div id="recover">
+              <a href="" id="recover-btn">Glömt lösenordet?</a>
+            </div>
+        
+            <div id="btn">
+              <input type="submit" />
+            </div>
+            <div id="errorDiv" class="errorMessage"></div>
+          </form>
+        </div>
       </div>`;
 
         return view;

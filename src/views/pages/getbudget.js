@@ -1,14 +1,16 @@
-import { getCookie } from "/src/services/cookie.js";
-import API_Service from "/src/services/API_Service.js";
-import { defaultRender } from "/src/services/errorHandler.js";
+import { getCookie } from "/services/cookie.js";
+import API_Service from "/services/API_Service.js";
+import { defaultRender } from "/services/errorHandler.js";
 
 let GetBudget = {
   render : async () => {
    
     let view =  `
-    <h1>Lista Aktuell Budget</h1>
-    <div id="DivWithBudget"></div>
-    <div id="errorDiv" class="errorMessage"></div>`;
+    <div class="container">
+      <h1>Lista Aktuell Budget</h1>
+      <div id="DivWithBudget"></div>
+      <div id="errorDiv" class="errorMessage"></div>
+    </div>`;
     return view;
   }, after_render: async () => {
     fetchresult();

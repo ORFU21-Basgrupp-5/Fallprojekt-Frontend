@@ -1,0 +1,36 @@
+/* Alla globala style classer. */
+
+
+
+.budget_list
+{
+  text-align: center;
+}
+/* alla inputforms class */
+.inputForm
+{
+  text-align: center;
+}
+.errorMessage
+{
+  text-align: center;
+}
+/* headerns style */
+.navigation-menu
+{
+  text-align: center;
+}
+.container
+{
+  text-align: center;
+}
+/* menu länkarnas style */
+.nav-item
+{
+  text-align: center;
+}
+/* alla sumbit buttons style */
+.submit_button
+{
+  text-align: center;
+}

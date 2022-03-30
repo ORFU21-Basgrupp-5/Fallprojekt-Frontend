@@ -8,6 +8,7 @@ let NavigationBar = {
                     <a class"nav-item" href="./#/listaincomes">ListaIncomes</a>
                     <a class"nav-item" href="./#/budget">Skapa Budget</a>
                     <a class"nav-item" href="./#/getbudget">Visa Budget</a>
+                    <a class"nav-item" href="./#/logout">Loga ut</a>
                 </div>
             </div>
         `;

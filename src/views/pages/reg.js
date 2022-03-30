@@ -1,38 +1,40 @@
-import API_Service from "/src/services/API_Service.js";
-import { defaultRender } from "/src/services/errorHandler.js";
-import { getCookie } from "/src/services/cookie.js";
+import API_Service from "/services/API_Service.js";
+import { defaultRender } from "/services/errorHandler.js";
+import { getCookie } from "/services/cookie.js";
 
 let RegisterUser = {
     render: async () => {
         let view =  `
-        <div class="register-container">
-          <div id="reg">
-            <h1>Skapa ett konto</h1>
-          </div>
-          <p>Har du redan ett konto?<a href="./#/login">Logga in här</a> </p>
-          <form id="reg_form"><div id="hidden-message">
-            
-            <div id="uname">
-              <label for="username">Användarnamn</label>
-              <input type="text" name="username" placeholder="Välj ett användarnamn">
+        <div class="container">
+          <div class="register-container">
+            <div id="reg">
+              <h1>Skapa ett konto</h1>
             </div>
-            <div id="email">
-              <label for="email">Email:</label>
-              <input type="text" name="email" placeholder="Fyll i din epost">
-            </div>
-            <div id="pswrd">
-              <label for="password">Lösenord: </label>
-              <input type="text" name="password" placeholder="Välj ett lösenord">
-            </div>
-            <div id="pswrdvalid">
-              <label for="password2">Bekräfta lösenord:</label>
-              <input type="text" name="password2" placeholder="Bekräfta lösenord">
+            <p>Har du redan ett konto?<a href="./#/login">Logga in här</a> </p>
+            <form id="reg_form" class="inputForm"><div id="hidden-message">
+              
+              <div id="uname">
+                <label for="username">Användarnamn</label>
+                <input type="text" name="username" placeholder="Välj ett användarnamn">
               </div>
-            <div>
-              <button type="submit">Submit</button>
-            </div>
-            <div id="errorDiv" class="errorMessage"></div>
-          </form>
+              <div id="email">
+                <label for="email">Email:</label>
+                <input type="text" name="email" placeholder="Fyll i din epost">
+              </div>
+              <div id="pswrd">
+                <label for="password">Lösenord: </label>
+                <input type="text" name="password" placeholder="Välj ett lösenord">
+              </div>
+              <div id="pswrdvalid">
+                <label for="password2">Bekräfta lösenord:</label>
+                <input type="text" name="password2" placeholder="Bekräfta lösenord">
+                </div>
+              <div>
+                <button class="submit_button" type="submit">Submit</button>
+              </div>
+              <div id="errorDiv" class="errorMessage"></div>
+            </form>
+          </div>
         </div>
         `
 

@@ -1,37 +1,39 @@
-import API_Service from "/src/services/API_Service.js";
-import { defaultRender } from "/src/services/errorHandler.js";
-import { setCookie } from "/src/services/cookie.js";
+import API_Service from "/services/API_Service.js";
+import { defaultRender } from "/services/errorHandler.js";
+import { setCookie } from "/services/cookie.js";
 
 let Budget = {
   render : async () => {
 
     let view = `
-    <div id="budgetForm">
-    <form id="form1">
-        <label for="budgetName">Budget name:</label><br>
-        <input type="text" id="budgetName" name="budgetName"><br>
-        <label for="maxAmount">Budget total amount:</label>
-        <input type="number" id="maxAmount"><br>
-        <label for="budgetDate">Budget date:</label><br>
-        <input type="date" id="budgetDate" name="budgetDate"><br>
-        <label for="">Budget categories:</label>
-        <label for="Food">Food:</label>
-        <input type="number" id="Food"><br>
-        <label for="Car">Car:</label>
-        <input type="number" id="Car"><br>
-        <label for="Subscriptions">Subscriptions:</label>
-        <input type="number" id="Subscriptions"><br>
-        <label for="Clothes">Clothes:</label>
-        <input type="number" id="Clothes"><br>
-        <label for="Treat">Treat:</label>
-        <input type="number" id="Treat"><br>
-        <label for="Other">Other:</label>
-        <input type="number" id="Other"><br>
-        
-    </form>
-    <button id="budgetSumbit">Submit</button>
-  </div>
-  <div id="errorDiv" class="errorMessage"></div>`;
+    <div class="container">
+      <div id="budgetForm" class="inputForm">
+      <form id="form1">
+          <label for="budgetName">Budget name:</label><br>
+          <input type="text" id="budgetName" name="budgetName"><br>
+          <label for="maxAmount">Budget total amount:</label>
+          <input type="number" id="maxAmount"><br>
+          <label for="budgetDate">Budget date:</label><br>
+          <input type="date" id="budgetDate" name="budgetDate"><br>
+          <label for="">Budget categories:</label>
+          <label for="Food">Food:</label>
+          <input type="number" id="Food"><br>
+          <label for="Car">Car:</label>
+          <input type="number" id="Car"><br>
+          <label for="Subscriptions">Subscriptions:</label>
+          <input type="number" id="Subscriptions"><br>
+          <label for="Clothes">Clothes:</label>
+          <input type="number" id="Clothes"><br>
+          <label for="Treat">Treat:</label>
+          <input type="number" id="Treat"><br>
+          <label for="Other">Other:</label>
+          <input type="number" id="Other"><br>
+          
+      </form>
+      <button class="submit_button" id="budgetSumbit">Submit</button>
+    </div>
+    <div id="errorDiv" class="errorMessage"></div>
+  </div>`;
     return view;
   }, after_render: async () => {
     let budgetFormDiv = document.getElementById("budgetForm");

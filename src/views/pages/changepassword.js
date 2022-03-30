@@ -1,21 +1,23 @@
-import API_Service from "/src/services/API_Service.js";
-import { defaultRender } from "/src/services/errorHandler.js";
-import { setCookie } from "/src/services/cookie.js";
+import API_Service from "/services/API_Service.js";
+import { defaultRender } from "/services/errorHandler.js";
+import { setCookie } from "/services/cookie.js";
 
 let ChangePassword = {
     render: async () => {
         let view = `
-        <form>
-          <label>Nytt lösenord: </label>
-          <input id="newPassword">
-          <br>
-          <label>Bekräfta lösenord: </label>
-          <input id="confirmPassword">
-          <button id="confirmButton">Bekräfta</button>
-          <br>
-          <a href="/">Logga in här</a>
-          <div id="errorDiv" class="errorMessage"></div>
-        </form>
+        <div class="container">
+          <form class="inputForm">
+            <label>Nytt lösenord: </label>
+            <input id="newPassword">
+            <br>
+            <label>Bekräfta lösenord: </label>
+            <input id="confirmPassword">
+            <button class="submit_button" id="confirmButton">Bekräfta</button>
+            <br>
+            <a href="/">Logga in här</a>
+            <div id="errorDiv" class="errorMessage"></div>
+          </form>
+        </div>
         `;
 
         return view;
