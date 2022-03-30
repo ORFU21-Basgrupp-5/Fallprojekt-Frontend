@@ -5,7 +5,8 @@ import { getCookie } from "/services/cookie.js";
 let Inmatning = {
     render: async () => {
         let view = `
-        <div class="container">
+        <div class="input-container">
+        <div id="inkomster-container">
             <h1>Inkomster</h1>
             <div id="errorDiv" class="errorMessage"></div>
             <div id="info-inkomst"></div>
@@ -42,6 +43,8 @@ let Inmatning = {
                     <button class="submit_button" id="ISubmit">Enter</button>
                 </div>
             </form>
+            </div>
+            <div id="utgifter-container">
                     <h1>Utgifter</h1>               
             <div id="info-utgift"></div>
             <form id="Utgifter" class="inputForm">
@@ -77,6 +80,7 @@ let Inmatning = {
                     <button class="submit_button" id="ESubmit">Enter</button>
                 </div>
         </form>
+        </div>
       </div>
     `;
         return view;

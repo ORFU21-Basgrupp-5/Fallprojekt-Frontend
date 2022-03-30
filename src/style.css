@@ -2,7 +2,9 @@
 
 
 /* reactiv grid css  */
-
+body{
+  background-color: #064B73;
+}
 
 
 .gridstyle.container {
@@ -118,7 +120,7 @@ ul#navbar li a:hover {
   -moz-text-fill-color: transparent;
   -webkit-text-fill-color: transparent;
   display: inline-block;
-  filter: drop-shadow(2px 2px #333);
+  filter: drop-shadow(3px 3px #241714);
   font-family: 'winkleregular', Arial, sans-serif;
 font-weight:normal;
 font-style:normal;
@@ -248,6 +250,25 @@ label {
 #recover{
   margin:10px;
 }
+input:focus{
+  background-color: #f8cac0;
+}
+input:hover{
+  background-color: #f5cdc4;
+}
+
+.input-container{
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+#inkomster-container{
+  padding-left: 50px;
+  padding-right: 50px;
+}
+#utgifter-container{
+  padding-left: 50px;
+  padding-right: 50px;
+}
 
 input[type = submit] {
   background-color: #064B73;
@@ -264,3 +285,7 @@ input[type = submit] {
 input[type = submit]:hover{
   background-color: #FA532E;
 }
+.inputForm
+ {
+  padding: 10px;
+  }

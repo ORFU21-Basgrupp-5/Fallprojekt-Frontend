@@ -5,7 +5,7 @@ let ListaIncomes = {
     render: async () => {
         let view =  `
         <div class="container">
-          <h1>Lista Utgifter</h1>
+          <h1>Lista Inkomster</h1>
             <div id="DivWithIncomes" class="budget_list">
               <div id="errorDiv" class="errorMessage"></div>
             </div>
