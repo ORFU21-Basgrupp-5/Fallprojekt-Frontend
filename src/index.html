@@ -10,17 +10,22 @@
     <script type="module" src="./app.js"></script>
   </head>
   <body>
-    <div id="headerContent">
+    <div class="gridstyle container">
+      <div class="item header">header</div>
+      <div id="headerContent" class="item navigation">
       <!-- loads header and menu component-->
     </div>
-    <div id="pageContent">
+    
+    <div id="pageContent" class="item main">
        <!-- loads main content page -->
       <article> Loading....</article>
     </div>
-  
-  <div id="footerContent"></div>
+    <div class="item sidebar">sidebar</div>
+    <div class="item ads">ads</div>
+  <div id="footerContent" class="item footer"></div>
    <!-- loads footer component -->
     </div>
+  </div>
   </body>
   
 </html>
