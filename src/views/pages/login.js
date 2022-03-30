@@ -2,6 +2,7 @@ import API_Service from "/services/API_Service.js";
 import { defaultRender } from "/services/errorHandler.js";
 import { setCookie } from "/services/cookie.js";
 
+//first we create a "view" that is the html code we want to display
 let login = {
     render: async () => {
         let view = `
@@ -41,8 +42,11 @@ let login = {
       </div>`;
 
         return view;
+        //we then return the view to app.js so it can be displayed
     },
     after_render: async () => {
+      //async so that the html will be done before we try and get elements and set events
+      //here we add all functions and code . every page is build with same structure
         let pageContent = document.getElementById("pageContent");
 
         const linkToRecover = document.getElementById("recover-btn");
@@ -81,7 +85,7 @@ let login = {
                 defaultRender("Fyll i samtliga fält");
             }
         };
-
+        //using the global fetch service function postService with parameters.
         async function fetchLogin(userBody) {
             const fetchresult = await API_Service.PostService(
                 "User/login",
@@ -95,7 +99,7 @@ let login = {
                 defaultRender("Användarnamn eller lösenord är fel.");
             }
         }
-
+        //creates 1 token for our JWT encoding and one for just the user name so that we can use username as well.
         function CreateLoginToken(data) {
             setCookie("token",data.token)
             setCookie("user",data.user)
@@ -103,5 +107,5 @@ let login = {
         }
     },
 };
-
+//we export this page so that app.js can call on it when the route is correct aka /#/login
 export default login;

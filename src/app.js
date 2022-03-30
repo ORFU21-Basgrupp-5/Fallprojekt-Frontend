@@ -1,5 +1,7 @@
 "use strict";
-//pages
+//makes this page not tollerate any errors
+
+//pages 
 import Budget from '/views/pages/Budget.js';
 import ChangePassword from '/views/pages/ChangePassword.js';
 import Error404 from '/views/pages/Error404.js';
@@ -61,6 +63,8 @@ const router = async () => {
     }
     else
     page = routes[parsedURL] ? routes[parsedURL] : Error404
+    //if the route adress isent one of the ones in const routes then we go to the Error404 page
+
 
     //if  user is logged in we send "loged in menu to header"
     var userString = getCookie('user');
