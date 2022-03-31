@@ -1,7 +1,7 @@
 import { getCookie } from "./cookie.js";
 import { Render as welcomepage } from "./welcome.js";
 import { Header } from "./header.js"
-import { defaultRender } from "./errorHandler.js";
+import { DefaultRender } from "./errorHandler.js";
 
 export const render = (root) => {
   root.innerHTML = "";
@@ -102,7 +102,7 @@ export const render = (root) => {
     });
     let textreponse = await response.text();
     if (!response.ok) {
-        defaultRender(`${text.error}`);
+        DefaultRender(`${text.error}`);
     } else {
       var activeUser = newUser.userName;
       sessionStorage.setItem("User", activeUser);

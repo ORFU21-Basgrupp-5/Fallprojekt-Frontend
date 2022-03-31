@@ -1,15 +1,15 @@
-import { Render as welcomepage } from "./welcome.js";
+import { Render as Welcomepage } from "./welcome.js";
 import { render as RegRender } from "./reg.js";
 import { Header } from "./header.js";
 import { render } from "./recoveremail.js";
-import { render as recoverpassword } from "./changepassword.js";
-import {defaultRender} from "./errorHandler.js";
+import { render as Recoverpassword } from "./changepassword.js";
+import {DefaultRender} from "./errorHandler.js";
 
 let currenturl = new URL(document.URL);
 let urlparams = new URLSearchParams(currenturl.search);
 
 if (urlparams.get("token") != null) {
-  recoverpassword(pageContent, urlparams.get("token"));
+  Recoverpassword(pageContent, urlparams.get("token"));
   console.log("token param found");
 } else {
   let pageContent = document.getElementById("pageContent");
@@ -28,8 +28,9 @@ if (urlparams.get("token") != null) {
   };
 
   let form = document.getElementById("login-form");
+  let loginButton = document.getElementById("btn")
 
-  form.onsubmit = (e) => {
+  loginButton.onclick = (e) => {
     e.preventDefault();
     const userlogin = [
       document.forms["login-form"]["username"].value,
@@ -44,7 +45,7 @@ if (urlparams.get("token") != null) {
     const upvalidate = userlogin.every((login) => login != "");
     if (upvalidate) {
       let isLoggedIn = false;
-      async function fetchLogin() {
+      async function FetchLogin() {
         const response = await fetch("http://localhost:7151/User/login", {
           method: "post",
           headers: {
@@ -59,7 +60,7 @@ if (urlparams.get("token") != null) {
             } else {
               return response.text().then(function (text) {
                 console.log(text)
-                defaultRender(
+                DefaultRender(
                   `${text}`
                 );
               });
@@ -86,7 +87,7 @@ if (urlparams.get("token") != null) {
             let activeUser = userLoginDTO.userName;
             sessionStorage.setItem("User", activeUser);
 
-            welcomepage(pageContent);
+            Welcomepage(pageContent);
             let header = new Header();
           })
           return response.json().then ((body)=>{
@@ -100,13 +101,13 @@ if (urlparams.get("token") != null) {
           });
       }
 
-      fetchLogin().catch((error) => {
+      FetchLogin().catch((error) => {
         console.log(error.message);
       });
 
       // 'An error has occurred: 404'
     } else {
-      defaultRender("Fyll i samtliga fält");
+      DefaultRender("Fyll i samtliga fält");
     }
   };
 

@@ -1,10 +1,10 @@
 import { getCookie } from "./cookie.js";
-import { defaultRender } from "./errorHandler.js";
+import { DefaultRender } from "./errorHandler.js";
 export const render = (root) => {
   root.innerHTML = "";
   
   var stringLista = `
-  <h1>Lista Utgifter</h1>
+  <h1>List expenses</h1>
     <div id="div-expenses">
       <div id="errorDiv"></div>
     </div>`;
@@ -28,21 +28,21 @@ function GetData() {
     } else {
       return response.text().then(function(text) 
     {
-      defaultRender(`${text}`);
+      DefaultRender(`${text}`);
     })
     }
   })
   .then((data) => {
     console.log(data);
-    upgiftsLista(data);
+    ExpenseList(data);
   })
   .catch((error) => {
-    defaultRender(`Error: ${error.message} `)
+    DefaultRender(`Error: ${error.message} `)
   })
   }
 
 
-  function upgiftsLista(data) {
+  function ExpenseList(data) {
     data.forEach((item) => {
       let diven = document.getElementById("div-expenses");
       let listContainer = document.createElement("ul");

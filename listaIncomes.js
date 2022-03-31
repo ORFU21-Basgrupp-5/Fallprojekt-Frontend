@@ -1,9 +1,9 @@
 import { getCookie } from "./cookie.js";
-import {defaultRender} from "./errorHandler.js";
+import {DefaultRender} from "./errorHandler.js";
 export const render = (root) => {
   root.innerHTML = "";
   const html = `
-    <h1>Lista Inkomster</h1>
+    <h1>List incomes</h1>
       <div id="div-incomes">
       <div id="errorDiv"></div>
     </div>`;
@@ -27,21 +27,21 @@ function GetData() {
     } else {
       return response.text().then(function(text) 
     {
-      defaultRender(`${text}`);
+      DefaultRender(`${text}`);
     })
     }
   })
   .then((data) => {
     console.log(data);
-    upgiftsLista(data);
+    IncomeList(data);
   })
   .catch((error) => {
-    defaultRender(`Error: ${error.message} `)
+    DefaultRender(`Error: ${error.message} `)
   })
 }
 
 
-function upgiftsLista(data) {
+function IncomeList(data) {
   data.forEach((item) => {
     let diven = document.getElementById("div-incomes");
     let listContainer = document.createElement("ul");

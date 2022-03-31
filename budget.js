@@ -1,5 +1,5 @@
 import { getCookie } from "./cookie.js";
-import { defaultRender } from "./errorHandler.js";
+import { DefaultRender } from "./errorHandler.js";
 export const render = (root) => {
   root.innerHTML = "";
 
@@ -55,26 +55,26 @@ export const render = (root) => {
           5: document.forms["form1"]["Other"].value,
         },
       };
-      var categoriesvalues = Object.values(newBudgetDTO.categoriesAndAmount);
-      var categoriesValuesInt = categoriesvalues.map(Number);
-      var testBelop = categoriesValuesInt.reduce(function (a, b) {
+      var categoriesValues = Object.values(newBudgetDTO.categoriesAndAmount);
+      var categoriesValuesInt = categoriesValues.map(Number);
+      var testBelopp = categoriesValuesInt.reduce(function (a, b) {
         return a + b;
       }, 0)
-      console.log(testBelop)
-      if (parseInt(newBudgetDTO.totalSum) === testBelop) {
-        postBudget(newBudgetDTO);
+      console.log(testBelopp)
+      if (parseInt(newBudgetDTO.totalSum) === testBelopp) {
+        PostBudget(newBudgetDTO);
         document.getElementById("form1").reset();
-        defaultRender("Din budget är sparad.");
+        DefaultRender("Budget saved");
       }
       else
       {
-        defaultRender("Ditt budget belopp matchar inte total belopet i kategorierna.")
+        DefaultRender("Your budget amount does not match the total amount in the categories")
       }
       
     }
   };
 
-  const postBudget = async (newBudget) => {
+  const PostBudget = async (newBudget) => {
     const settings = {
       method: "POST",
       headers: {
@@ -89,7 +89,7 @@ export const render = (root) => {
         settings
       );
       if (response.ok) {
-        console.log("A ok!");
+        console.log("Success");
       } else {
         const message = "Error with Status Code: " + response.status;
         throw new Error(message);

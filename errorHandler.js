@@ -1,4 +1,4 @@
-export const defaultRender = function(msg) {
+export const DefaultRender = function(msg) {
     const errorDiv = document.getElementById('errorDiv')
     const childErrorDiv = document.createElement('div')
     childErrorDiv.insertAdjacentText('beforeend', msg)

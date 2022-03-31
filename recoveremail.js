@@ -13,15 +13,15 @@ const emailform = `
   </form>`
 root.innerHTML = emailform
 
-let SendButton = document.getElementById("recoverbutton")
-let SentOrNotDiv = document.getElementById("SentOrNotDiv")
-let Email = document.getElementById("Email")
+let sendButton = document.getElementById("recoverbutton")
+let sentOrNotDiv = document.getElementById("SentOrNotDiv")
+let email = document.getElementById("Email")
 
 
-  SendButton.onclick = function (e) {
+  sendButton.onclick = function (e) {
     e.preventDefault()
     const EmailDTO = {
-      Email: Email.value
+      Email: email.value
     };
     SendRecoveryEmail(EmailDTO);
   }
@@ -54,24 +54,24 @@ let Email = document.getElementById("Email")
   }
 
   function RecoveryMessege(string){
-    SentOrNotDiv.appendChild(
+    sentOrNotDiv.appendChild(
         document
           .createElement("p")
           .appendChild(document.createTextNode(string))
       );
       setTimeout(function () {
-        SentOrNotDiv.removeChild(SentOrNotDiv.lastChild);
+        sentOrNotDiv.removeChild(sentOrNotDiv.lastChild);
       }, 2000);
   }
 
   function renderError(string){
-    SentOrNotDiv.appendChild(
+    sentOrNotDiv.appendChild(
         document
           .createElement("p")
           .appendChild(document.createTextNode(string))
       );
       setTimeout(function () {
-        SentOrNotDiv.removeChild(SentOrNotDiv.lastChild);
+        sentOrNotDiv.removeChild(sentOrNotDiv.lastChild);
       }, 2000);
   }
 }

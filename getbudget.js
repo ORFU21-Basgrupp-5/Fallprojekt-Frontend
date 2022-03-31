@@ -1,29 +1,16 @@
 import { getCookie } from "./cookie.js";
+import { DefaultRender } from "./errorHandler.js";
 export const render = (root) => {
   root.innerHTML = "";
 
   var stringbudget = `
-  <h1>Lista Aktuell Budget</h1>
+  <h1>List current budget</h1>
   <div id="DivWithBudget"></div>
   <div id="errorDiv"></div>`;
 
   root.innerHTML = stringbudget;
 
-
-
-  function budgetLista(data) {
-    data.forEach((item) => {
-      let diven = document.getElementById("DivWithBudget");
-      let listContainer = document.createElement("ul");
-      diven.appendChild(listContainer);
-      for (let row in item) {
-        let li = document.createElement("li");
-        li.innerText = `${row}: ${item[row]}`;
-        listContainer.appendChild(li);
-      }
-    });
-  }
-  function generate_table(budgetData) {
+  function GenerateTable(budgetData) {
 
     let diven = document.getElementById("DivWithBudget");
 
@@ -115,7 +102,7 @@ export const render = (root) => {
     tbl.setAttribute("border","2");
   }
 
-  const getBudget = async () => {
+  const GetBudget = async () => {
     const settings = {
       method: "GET",
       headers: {
@@ -132,17 +119,16 @@ export const render = (root) => {
         console.log("A ok!");
         const result = await response.json();
         console.log(result);
-        generate_table(result);
+        GenerateTable(result);
         return result;
       } else {
-        const message = "Error with Status Code: " + response.status;
-        throw new Error(message);
+        DefaultRender("Error with Status Code: " + response.status)
       }
     } catch (e) {
       console.log(e);
     }
   };
-  var budgetData = getBudget();
+  var budgetData = GetBudget();
 
 
 };

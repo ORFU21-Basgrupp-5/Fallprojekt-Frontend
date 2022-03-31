@@ -1,5 +1,5 @@
 import { getCookie } from "./cookie.js";
-import { defaultRender } from "./errorHandler.js";
+import { DefaultRender } from "./errorHandler.js";
 export const render = (root) => {
   root.innerHTML = "";
   // var stringUtgifter = '<div><form id="Utgifter"><div><p>Inmatning av utgifter</p></div><div id="info-utgift"></div><div><label for = "Saldo"> Utgift, saldo:</label></div> <div>   <input type = "text" id= "Saldo" name= saldo></div><div><label for="Konto">Utgift, konto:</label></div> <div><input type="text" id= "Konto" name= konto></div><div><label for="Description">Utgift, beskrivning:</label></div><div>  <input type="text" id= "Description" name= description></div><div> <label for="Date">Utgift, datum:</label></div> <div><input type="date" id= "Date" name= date></div><div><button id= "expense">Enter</button></div</form></div>'
@@ -7,7 +7,7 @@ export const render = (root) => {
 
   const html = `
   <div id="pageContent">
-    <div><h1>Inkomster</h1></div>
+    <div><h1>Incomes</h1></div>
     <div id="errorDiv"></div>
     <div id="info-inkomst"></div>
       <form id="inmatning-inkomster">
@@ -16,19 +16,19 @@ export const render = (root) => {
         </div>
         <select id="CategoryInc"></select>
         <div>
-          <label for="ISaldo">Saldo</label>
+          <label for="ISaldo">Balance</label>
         </div>         
         <div>
           <input id="ISaldo">
         </div>
         <div>
-          <label for="IKonto">Konto</label>
+          <label for="IKonto">Account</label>
         </div>
         <div>
           <input id="IKonto">
         </div>
         <div>
-          <label for="IDesc">Desc</label>
+          <label for="IDesc">Description</label>
         </div>
         <div>
           <input id="IDesc">
@@ -44,7 +44,7 @@ export const render = (root) => {
         </div>
       </form>
         <div>
-          <h1>Utgifter</h1>
+          <h1>Expenses</h1>
         </div>
         <div id="info-utgift"></div>
       <form id="inmatning-utgifter">
@@ -53,19 +53,19 @@ export const render = (root) => {
         </div>
         <select id="CategoryExp"></select>            
         <div>
-          <label for="ESaldo">Saldo</label>
+          <label for="ESaldo">Balance</label>
         </div>
         <div>
           <input id="ESaldo">
         </div>
         <div>
-          <label for="EKonto">Konto</label>
+          <label for="EKonto">Account</label>
         </div>
         <div>
           <input id="EKonto">
         </div>
         <div>
-          <label for="EDesc">Desc</label>
+          <label for="EDesc">Description</label>
         </div>
         <div>
           <input id="EDesc">
@@ -88,18 +88,18 @@ root.innerHTML = html;
   let categorySelect = document.getElementById("CategoryExp")
   let categorySelect2 = document.getElementById("CategoryInc")
   
-  categorySelectFetch("Expenses",categorySelect);
-  categorySelectFetch("Income",categorySelect2);
+  CategorySelectFetch("Expenses",categorySelect);
+  CategorySelectFetch("Income",categorySelect2);
   //categorySelect("Expenses",categorySelect1)
   
-  let IncomeForm = document.getElementById("inmatning-inkomster")
-  let ExpenseForm = document.getElementById("inmatning-utgifter")
-  let IncSubmit = document.getElementById("ISubmit");
-  let ExpSubmit = document.getElementById("ESubmit");
+  let incomeForm = document.getElementById("inmatning-inkomster")
+  let expenseForm = document.getElementById("inmatning-utgifter")
+  let incSubmit = document.getElementById("ISubmit");
+  let expSubmit = document.getElementById("ESubmit");
 
 
 
-  function categorySelectFetch(choice,catDiv){
+  function CategorySelectFetch(choice,catDiv){
     fetch("http://localhost:7151/" + choice +"/categories", 
     {
       method: "GET",
@@ -126,38 +126,38 @@ root.innerHTML = html;
     })
   }
 
-  IncSubmit.onclick = function (e) {
+  incSubmit.onclick = function (e) {
     e.preventDefault();
-    if (isNaN(IncomeForm.ISaldo.value))
+    if (isNaN(incomeForm.ISaldo.value))
     {
       IsInputNumber("inkomst")
     }
-    else if (IncomeForm.IKonto.value === "" || IncomeForm.IDesc.value === "" || IncomeForm.IDate === "" || IncomeForm.ISaldo.value === "") 
+    else if (incomeForm.IKonto.value === "" || incomeForm.IDesc.value === "" || incomeForm.IDate === "" || incomeForm.ISaldo.value === "") 
     {
       IsInputEmpty("inkomst")
     }
     else {
-    income();
+    Income();
     }
   };
-  ExpSubmit.onclick = function (e) {
+  expSubmit.onclick = function (e) {
     e.preventDefault();
-    if (isNaN(ExpenseForm.ESaldo.value))
+    if (isNaN(expenseForm.ESaldo.value))
     {
       IsInputNumber("utgift")
     }
-    else if (ExpenseForm.EKonto.value === "" || ExpenseForm.EDesc.value === "" || ExpenseForm.EDate.value === "" || ExpenseForm.ESaldo.value === "") 
+    else if (expenseForm.EKonto.value === "" || expenseForm.EDesc.value === "" || expenseForm.EDate.value === "" || expenseForm.ESaldo.value === "") 
     {
       IsInputEmpty("utgift")
     }
     else{
-    expense();
+    Expense();
     }
   };
 
-  const income = (e) => {
+  const Income = (e) => {
     let Inc = document.getElementById("Inkomster");
-    console.log("Du lade till en inkomst");
+    console.log("Added income");
     const incinputsDTO = {
       incomeDate: Inc.IDate.value,
       incomeDescription: Inc.IDesc.value,
@@ -166,7 +166,7 @@ root.innerHTML = html;
       incomeCategory: parseInt(Inc.CategoryInc.value),
     };
     
-    async function fetchInc() {
+    async function FetchInc() {
       
       const AddInc = await fetch(
         "http://localhost:7151/Income/AddIncome",
@@ -185,20 +185,20 @@ root.innerHTML = html;
         } else {
           return response.text().then(function(text) 
       {
-        defaultRender(`${text.status}`);
+        DefaultRender(`${text.status}`);
       })
         }
       })
       .catch((error) => { 
         debugger
-        defaultRender(`Error: ${error.message} `)
+        DefaultRender(`Error: ${error.message} `)
       })
     }
-    fetchInc();
+    FetchInc();
   };
 
-  const expense = (e) => {
-    console.log("Du lade till en utgift");
+  const Expense = (e) => {
+    console.log("Added expense");
     let Exp = document.getElementById("Utgifter")
     const expinputsDTO = {
       expenseDate: Exp.EDate.value,
@@ -207,8 +207,8 @@ root.innerHTML = html;
       accountId: Exp.EKonto.value,
       expenseCategory: parseInt(Exp.CategoryExp.value),
     };
-    async function fetchExp() {
-  const AddExp = await fetch(
+    async function FetchExp() {
+  const addExp = await fetch(
     "http://localhost:7151/Expenses/AddExpense",
     {
       method: "post",
@@ -226,15 +226,15 @@ root.innerHTML = html;
     else {
       return response.text().then(function(text) 
       {
-        defaultRender(`${text.error}`);
+        DefaultRender(`${text.error}`);
       })
     }
   })
   .catch((error) => {  
-    defaultRender(`Error: ${error.message} `)
+    DefaultRender(`Error: ${error.message} `)
   })
 }
-fetchExp();
+FetchExp();
   };
   
 };
@@ -249,7 +249,7 @@ function PrintAdded(string) {
       divutgift.appendChild(
         document
           .createElement("p")
-          .appendChild(document.createTextNode("Du har lagt till en utgift."))
+          .appendChild(document.createTextNode("Added expense"))
       );
       setTimeout(function () {
         divutgift.removeChild(divutgift.lastChild);
@@ -259,7 +259,7 @@ function PrintAdded(string) {
       divinkomst.appendChild(
         document
           .createElement("p")
-          .appendChild(document.createTextNode("Du har lagt till en inkomst."))
+          .appendChild(document.createTextNode("Added income"))
       );
       setTimeout(function () {
         divinkomst.removeChild(divinkomst.lastChild);
@@ -278,7 +278,7 @@ function IsInputNumber(string) {
       divutgift.appendChild(
         document
           .createElement("p")
-          .appendChild(document.createTextNode("Saldo måste anges med siffror"))
+          .appendChild(document.createTextNode("Balance must be indicated by numbers"))
       );
       setTimeout(function () {
         divutgift.removeChild(divutgift.lastChild);
@@ -288,7 +288,7 @@ function IsInputNumber(string) {
       divinkomst.appendChild(
         document
           .createElement("p")
-          .appendChild(document.createTextNode("Saldo måste anges med siffror"))
+          .appendChild(document.createTextNode("Balance must be indicated by numbers"))
       );
       setTimeout(function () {
         divinkomst.removeChild(divinkomst.lastChild);
@@ -308,7 +308,7 @@ function IsInputEmpty(string) {
       divutgift.appendChild(
         document
           .createElement("p")
-          .appendChild(document.createTextNode("Samtliga fält måste fyllas i"))
+          .appendChild(document.createTextNode("All fields must be filled in"))
       );
       setTimeout(function () {
         divutgift.removeChild(divutgift.lastChild);
@@ -318,7 +318,7 @@ function IsInputEmpty(string) {
       divinkomst.appendChild(
         document
           .createElement("p")
-          .appendChild(document.createTextNode("Samtliga fält måste fyllas i"))
+          .appendChild(document.createTextNode("All fields must be filled in"))
       );
       setTimeout(function () {
         divinkomst.removeChild(divinkomst.lastChild);
