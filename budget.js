@@ -64,7 +64,6 @@ export const render = (root) => {
       if (parseInt(newBudgetDTO.totalSum) === testBelopp) {
         PostBudget(newBudgetDTO);
         document.getElementById("form1").reset();
-        DefaultRender("Budget saved");
       }
       else
       {
@@ -89,7 +88,7 @@ export const render = (root) => {
         settings
       );
       if (response.ok) {
-        console.log("Success");
+        DefaultRender("Budget saved")
       } else {
         DefaultRender("Error with Status Code: " + response.status);
       }
