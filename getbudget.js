@@ -4,7 +4,7 @@ export const render = (root) => {
   root.innerHTML = "";
 
   var stringbudget = `
-  <h1>List current budget</h1>
+  <h1 class="header-div">List current budget</h1>
   <div id="DivWithBudget"></div>
   <div id="errorDiv"></div>`;
 

@@ -3,14 +3,19 @@ export const render = (root) => {
   root.innerHTML = "";
 
 const emailform = ` 
-  <form>
-    <label>Email: </label>
-    <input id= "Email" >
-    <button id= "recoverbutton">Bekräfta</button>
-    <div id="SentOrNotDiv"></div>
-    <a href="/">Logga in här</a>
-    <div id="errorDiv"></div>
-  </form>`
+<div id="recoveremail">
+    <form>
+        <label>Email: </label>
+        <input id= "Email" >
+        <button id= "recoverbutton">Bekräfta</button>
+        <div id="SentOrNotDiv"></div>
+        <a href="/">Logga in här</a>
+        <div id="errorDiv"></div>
+      </form>
+</div>
+<div id="picture">
+  <img src="https://d6f6d0kpz0gyr.cloudfront.net/uploads/transforms/bc9e33244d2d8a7bebbefa89bb319b9f/312172/method-design-madebyshape_6c0c164bd2b597ee32b68b8b5755bd2e.webp" alt="">
+</div>`
 root.innerHTML = emailform
 
 let sendButton = document.getElementById("recoverbutton")

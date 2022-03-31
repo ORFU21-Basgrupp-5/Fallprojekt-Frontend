@@ -4,6 +4,7 @@ export const render = (root) => {
   root.innerHTML = "";
 
   const budgetForm = `
+  <div class="header-div"><h1>Create budget</h1></div>
   <div id="budgetForm">
   <form id="form1">
       <label for="budgetName">Budget name:</label><br>
@@ -27,7 +28,7 @@ export const render = (root) => {
       <input type="number" id="Other"><br>
       
   </form>
-  <button id="budgetSumbit">Submit</button>
+  <button class="primarybtn">Submit</button>
 </div>
 <div id="errorDiv"></div>`;
 

@@ -20,9 +20,11 @@ headertag.innerHTML = header;
 const html = `
     
     <div id="pageContent">
+    <div class="header-div">
       <h1>Welcome</h1>
       <div id="active_user">${ActiveUser}</div>
       <div id="errorDiv"></div>
+      </div>
     </div>`
 
 root.innerHTML = html

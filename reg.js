@@ -2,42 +2,43 @@ import { getCookie } from "./cookie.js";
 import { Render as welcomepage } from "./welcome.js";
 import { Header } from "./header.js"
 import { DefaultRender } from "./errorHandler.js";
-
 export const render = (root) => {
   root.innerHTML = "";
 
   const regform =  `
-  <div id="pageContent">
-    <div id="reg">
-      <h1>Skapa ett konto</h1>
+<div id="pageContent">
+  <div id="reg">
+    <h1>Create account</h1>
+  <p>Already have an account?<a href="/">Login here!</a> </p>
+  <form id="reg_form"><div id="hidden-message">
+
+    <div id="uname">
+      <label for="username">Användarnamn</label>
+      <input class="input" type="text" name="username" placeholder="Välj ett användarnamn">
     </div>
-    <p>Har du redan ett konto?<a href="/">Logga in här</a> </p>
-    <form id="reg_form"><div id="hidden-message">
-
-      <div id="uname">
-        <label for="username">Användarnamn</label>
-        <input type="text" name="username" placeholder="Välj ett användarnamn">
+    <div id="email">
+      <label for="email">Email:</label>
+      <input class="input" type="text" name="email" placeholder="Fyll i din epost">
+    </div>
+    <div id="pswrd">
+      <label for="password">Lösenord: </label>
+      <input class="input" type="text" name="password" placeholder="Välj ett lösenord">
+    </div>
+    <div id="pswrdvalid">
+      <label for="password2">Bekräfta lösenord:</label>
+      <input class="input" type="text" name="password2" placeholder="Bekräfta lösenord">
       </div>
-      <div id="email">
-        <label for="email">Email:</label>
-        <input type="text" name="email" placeholder="Fyll i din epost">
-      </div>
-      <div id="pswrd">
-        <label for="password">Lösenord: </label>
-        <input type="text" name="password" placeholder="Välj ett lösenord">
-      </div>
-      <div id="pswrdvalid">
-        <label for="password2">Bekräfta lösenord:</label>
-        <input type="text" name="password2" placeholder="Bekräfta lösenord">
-        </div>
-      <div>
-        <button type="submit">Submit</button>
-      </div>
-      <div id="errorDiv"></div>
-    </form>
-  </div>
+    <div>
+      <button class="primarybtn" type="submit">Register</button>
+    </div>
+    <div id="errorDiv"></div>
+  </form>
+</div>
+</div>
+<div id="picture">
+  <img src="https://d6f6d0kpz0gyr.cloudfront.net/uploads/transforms/bc9e33244d2d8a7bebbefa89bb319b9f/312172/method-design-madebyshape_6c0c164bd2b597ee32b68b8b5755bd2e.webp" alt="">
+</div>
   `
-
   root.innerHTML = regform
   const form = document.getElementById("reg_form");
 
@@ -120,7 +121,6 @@ export const render = (root) => {
       return false;
     }
   }
-};
-
+}
 //Orginalsträng till html
 // const stringReg = '<div id="reg"><h1>Skapa ett konto</h1><p>Har du redan ett konto? <a href="/">Logga in här</a></p><form id="reg_form"><div id="hidden-message"></div><div id="uname"><label for="username">Användarnamn </label><input type="text" name="username" placeholder="Välj ett användarnamn"></div><div id="email"><label for="email">Email: </label><input type="text" name="email" placeholder="Fyll i din epost"></div><div id="pswrd"><label for="password">Lösenord: </label><input type="text" name="password" placeholder="Välj ett lösenord"></div><div id="pswrdvalid"><label for="password2">Bekräfta lösenord: </label><input type="text" name="password2" placeholder="Bekräfta lösenord"></div><div id="btn"><input type="submit"></div></form></div>'

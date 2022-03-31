@@ -7,43 +7,43 @@ export const render = (root) => {
 
   const html = `
   <div id="pageContent">
-    <div><h1>Incomes</h1></div>
+    <div class="header-div"><h1>Incomes</h1></div>
     <div id="errorDiv"></div>
     <div id="info-inkomst"></div>
       <form id="inmatning-inkomster">
         <div>
           <label>Category</label>
         </div>
-        <select id="CategoryInc"></select>
+        <select id="CategoryInc" class="input"></select>
         <div>
           <label for="ISaldo">Balance</label>
         </div>         
         <div>
-          <input id="ISaldo">
+          <input id="ISaldo" class="input">
         </div>
         <div>
           <label for="IKonto">Account</label>
         </div>
         <div>
-          <input id="IKonto">
+          <input id="IKonto" class="input">
         </div>
         <div>
           <label for="IDesc">Description</label>
         </div>
         <div>
-          <input id="IDesc">
+          <input id="IDesc" class="input">
         </div>
         <div>
           <label for="IDate">Date</label>
         </div>
         <div>
-          <input id="IDate" type="date">
+          <input id="IDate" type="date" class="input">
         </div>
         <div>
           <button id="ISubmit">Enter</button>
         </div>
       </form>
-        <div>
+        <div id="header-div-exp">
           <h1>Expenses</h1>
         </div>
         <div id="info-utgift"></div>
@@ -51,30 +51,30 @@ export const render = (root) => {
         <div>
           <label>Category</label>
         </div>
-        <select id="CategoryExp"></select>            
+        <select id="CategoryExp" class="input"></select>            
         <div>
           <label for="ESaldo">Balance</label>
         </div>
         <div>
-          <input id="ESaldo">
+          <input id="ESaldo" class="input">
         </div>
         <div>
           <label for="EKonto">Account</label>
         </div>
         <div>
-          <input id="EKonto">
+          <input id="EKonto" class="input">
         </div>
         <div>
           <label for="EDesc">Description</label>
         </div>
         <div>
-          <input id="EDesc">
+          <input id="EDesc" class="input">
         </div>
         <div>
           <label for="EDate">Date</label>
         </div>
         <div>
-          <input id="EDate" type="date">
+          <input id="EDate" type="date" class="input">
         </div>
         <div>
           <button id="ESubmit">Enter</button>

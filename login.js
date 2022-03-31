@@ -5,6 +5,7 @@ import { render } from "./recoveremail.js";
 import { render as Recoverpassword } from "./changepassword.js";
 import {DefaultRender} from "./errorHandler.js";
 
+
 let currenturl = new URL(document.URL);
 let urlparams = new URLSearchParams(currenturl.search);
 
@@ -114,3 +115,4 @@ if (urlparams.get("token") != null) {
   //'Authorization': 'Bearer ' + cookies.get('token')
 
 }
+

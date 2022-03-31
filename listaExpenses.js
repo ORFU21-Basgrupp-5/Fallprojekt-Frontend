@@ -4,7 +4,7 @@ export const render = (root) => {
   root.innerHTML = "";
   
   var stringLista = `
-  <h1>List expenses</h1>
+  <h1 class="header-div">List expenses</h1>
     <div id="div-expenses">
       <div id="errorDiv"></div>
     </div>`;

@@ -3,7 +3,7 @@ import {DefaultRender} from "./errorHandler.js";
 export const render = (root) => {
   root.innerHTML = "";
   const html = `
-    <h1>List incomes</h1>
+    <h1 class="header-div">List incomes</h1>
       <div id="div-incomes">
       <div id="errorDiv"></div>
     </div>`;

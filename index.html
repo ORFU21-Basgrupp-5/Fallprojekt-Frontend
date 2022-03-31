@@ -6,13 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="Style.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Login</title>
+    <title>Index</title>
   </head>
   <body>
     <div id="header">
-      <!-- <button id="buttonInmatning">Inmatning</button>
-    <button id="buttonLista">Lista</button>
-    <button id="buttonRegistrera">Registrera</button> -->
+      <h1><a href="/">Budget</a></h1>
+    <div id="links"></div>
+      <a id="loginlink" href="/">Login</a>
+      <a href="/">Register</a>
+    </div>
+    <div id="picture">
+      <img src="https://d6f6d0kpz0gyr.cloudfront.net/uploads/transforms/bc9e33244d2d8a7bebbefa89bb319b9f/312172/method-design-madebyshape_6c0c164bd2b597ee32b68b8b5755bd2e.webp" alt="">
+    </div>
+    <div id="filler">
+      <img src="https://d6f6d0kpz0gyr.cloudfront.net/uploads/transforms/eaff266b3b1d7bc3a0c54f13626cac77/184739/madebyshape-web-design-enquiry_6c0c164bd2b597ee32b68b8b5755bd2e.webp" alt="">
     </div>
     <div id="pageContent">
       <div id="login">
@@ -22,7 +29,7 @@
         <form id="login-form">
           <div id="uname">
             <label for="username">Username: </label>
-            <input
+            <input class="input"
               type="text"
               name="username"
               placeholder="Enter username"
@@ -31,7 +38,7 @@
 
           <div id="pswrd">
             <label for="password">Password: </label>
-            <input
+            <input class="input"
               type="password"
               name="password"
               placeholder="Enter password"
@@ -42,13 +49,13 @@
           </div>
 
           <div id="btn">
-            <button type="submit">Login</button>
+            <button class="primarybtn" type="submit">Login</button>
           </div>
           <div id="errorDiv"></div>
         </form>
       </div>
     </div>
-    <div class="footer-content">
+    <!-- <div class="footer-content">
       <footer class="site-footer">
         <h3>Budgetera mera</h3>
         <ul class="socials">
@@ -60,7 +67,7 @@
           <p>@Copyright Grupp 5- All Right Reserved.  </p>
         </div>
       </footer>
-    </div>
+    </div> -->
   </body>
   <!-- <script src="main.js" type="module"></script> -->
   <script src="login.js" type="module"></script>
