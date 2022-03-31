@@ -35,31 +35,31 @@ export const render = (root) => {
     row = tbl.insertRow();
     cell = row.insertCell();
     cell.textContent = "Categories";
-    cell.style.backgroundColor = 'white';
+    cell.style.backgroundColor = "white";
     AddData(row, -1);
 
     row = tbl.insertRow();
     cell = row.insertCell();
     cell.textContent = "Cap";
-    cell.style.backgroundColor = 'white';
+    cell.style.backgroundColor = "white";
     AddData(row, 0);
 
     row = tbl.insertRow();
     cell = row.insertCell();
     cell.textContent = "Spent";
-    cell.style.backgroundColor = 'white';
+    cell.style.backgroundColor = "white";
     AddData(row, 1);
 
     row = tbl.insertRow();
     cell = row.insertCell();
     cell.textContent = "Amount Left";
-    cell.style.backgroundColor = 'white';
+    cell.style.backgroundColor = "white";
     AddData(row, 2);
 
     row = tbl.insertRow();
     cell = row.insertCell();
     cell.textContent = "Used procent";
-    cell.style.backgroundColor = 'white';
+    cell.style.backgroundColor = "white";
     AddData(row, 3);
 
     function AddData(row, int){
@@ -82,17 +82,17 @@ export const render = (root) => {
             if(parseInt(categoriesvalues[j][int]) > 80 && parseInt(categoriesvalues[j][int]) < 100)
             {
               
-              cell.style.color = '#FA532E';
+              cell.style.color = "#FA532E";
               
             }
             else if (parseInt(categoriesvalues[j][int]) >= 100)
             {
-              cell.style.color = 'red';
+              cell.style.color = "red";
             }
           }
           
         }
-        cell.style.backgroundColor = 'white';
+        cell.style.backgroundColor = "white";
       }
     }
 
@@ -110,13 +110,14 @@ export const render = (root) => {
         Authorization: "Bearer " + getCookie("token"),
       },
     };
+
     try {
       const response = await fetch(
         "http://localhost:7151/api/Budget/RetrieveBudget",
         settings
       );
       if (response.ok) {
-        console.log("A ok!");
+        console.log("Success");
         const result = await response.json();
         console.log(result);
         GenerateTable(result);

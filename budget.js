@@ -91,8 +91,7 @@ export const render = (root) => {
       if (response.ok) {
         console.log("Success");
       } else {
-        const message = "Error with Status Code: " + response.status;
-        throw new Error(message);
+        DefaultRender("Error with Status Code: " + response.status);
       }
     } catch (e) {
       console.log(e);
