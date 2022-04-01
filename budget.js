@@ -1,5 +1,7 @@
 import { getCookie } from "./cookie.js";
 import { defaultRender } from "./errorHandler.js";
+import API_Service from "./API_Service.js";
+
 export const render = (root) => {
   root.innerHTML = "";
 
@@ -62,9 +64,12 @@ export const render = (root) => {
       }, 0)
       console.log(testBelop)
       if (parseInt(newBudgetDTO.totalSum) === testBelop) {
-        postBudget(newBudgetDTO);
-        document.getElementById("form1").reset();
-        defaultRender("Din budget är sparad.");
+        if(fetchresult(newBudgetDTO)){
+          document.getElementById("form1").reset();
+          defaultRender("Din budget är sparad.");
+        }else {
+          defaultRender("Din budget är INTE sparad.")
+        };
       }
       else
       {
@@ -74,28 +79,34 @@ export const render = (root) => {
     }
   };
 
-  const postBudget = async (newBudget) => {
-    const settings = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + getCookie("token"),
-      },
-      body: JSON.stringify(newBudget),
-    };
-    try {
-      const response = await fetch(
-        "http://localhost:7151/api/Budget/Create",
-        settings
-      );
-      if (response.ok) {
-        console.log("A ok!");
-      } else {
-        const message = "Error with Status Code: " + response.status;
-        throw new Error(message);
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  async function fetchresult(newBudget) {
+    const fetchresult =  await API_Service.PostService("Budget", newBudget);
+    console.log(fetchresult);
+    return fetchresult;
+  }
+
+  // const postBudget = async (newBudget) => {
+  //   const settings = {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: "Bearer " + getCookie("token"),
+  //     },
+  //     body: JSON.stringify(newBudget),
+  //   };
+  //   try {
+  //     const response = await fetch(
+  //       "http://localhost:7151/api/Budget/Create",
+  //       settings
+  //     );
+  //     if (response.ok) {
+  //       console.log("A ok!");
+  //     } else {
+  //       const message = "Error with Status Code: " + response.status;
+  //       throw new Error(message);
+  //     }
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
 };

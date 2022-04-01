@@ -1,5 +1,6 @@
 import { getCookie } from "./cookie.js";
 import { defaultRender } from "./errorHandler.js";
+import API_Service from "./API_Service.js";
 export const render = (root) => {
   root.innerHTML = "";
   
@@ -10,50 +11,24 @@ export const render = (root) => {
     </div>
     <div  class="spacer4"> . </div>`;
   root.innerHTML = stringLista;
-
-  GetData();
+  fetchresult();
 };
-
-
-function GetData() {
-  fetch("http://localhost:7151/ListExpenses", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + getCookie("token"),
-    },
-  })
-  .then((response) => {
-    if (response.ok) {
-      return response.json();
-    } else {
-      return response.text().then(function(text) 
-    {
-      defaultRender(`${text}`);
-    })
-    }
-  })
-  .then((data) => {
-    console.log(data);
+async function fetchresult() {
+  const data = await API_Service.GetService("Expense");
+  if(data != null){
     upgiftsLista(data);
-  })
-  .catch((error) => {
-    defaultRender(`Error: ${error.message} `)
-  })
   }
+}
 
-
-  function upgiftsLista(data) {
-    data.forEach((item) => {
-      let diven = document.getElementById("DivWithExpenses");
-      let listContainer = document.createElement("ul");
-      diven.appendChild(listContainer);
-      for (let row in item) {
-        let li = document.createElement("li");
-        li.innerText = `${row}: ${item[row]}`;
-        listContainer.appendChild(li);
-      }
-    });
-  }
-
-
+function upgiftsLista(data) {
+  data.forEach((item) => {
+    let diven = document.getElementById("DivWithExpenses");
+    let listContainer = document.createElement("ul");
+    diven.appendChild(listContainer);
+    for (let row in item) {
+      let li = document.createElement("li");
+      li.innerText = `${row}: ${item[row]}`;
+      listContainer.appendChild(li);
+    }
+  });
+}
