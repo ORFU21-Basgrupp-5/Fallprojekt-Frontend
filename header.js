@@ -4,6 +4,7 @@ import { render as inmatningRender } from "./inmatning.js";
 import { render as budgetRender } from "./budget.js";
 import { render as budgetGetRender } from "./getBudget.js";
 import { render as passwordrender } from "./changepassword.js";
+import { deleteCookie } from "./cookie.js";
 
 
 const pageContent = document.getElementById("pageContent");
@@ -37,8 +38,11 @@ export class Header {
       budgetGetRender(pageContent);
     });
     button6.addEventListener("click", () => {
-      location.reload();
+      deleteCookie("token");
+      window.location.href = "http://127.0.0.1:5500/";
     });
+    
+
     
 
     // button4.addEventListener("click", () => {

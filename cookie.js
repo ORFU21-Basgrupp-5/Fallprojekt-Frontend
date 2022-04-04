@@ -16,3 +16,7 @@ export function getCookie(name) {
   // Return null if not found
   return null;
 }
+
+export function deleteCookie(name) {
+  document.cookie = name + '=; expires=Thu, 01 Jan 2020 00:00:01 GMT;';
+}
