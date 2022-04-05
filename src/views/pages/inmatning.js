@@ -8,7 +8,7 @@ let Inmatning = {
         <div class="input-container">
         <div id="inkomster-container">
             <h1>Inkomster</h1>
-            <div id="errorDiv" class="errorMessage"></div>
+           
             <div id="info-inkomst"></div>
             <form id="Inkomster" class="inputForm">
                 <div>
@@ -80,7 +80,9 @@ let Inmatning = {
                     <button class="submit_button" id="ESubmit">Enter</button>
                 </div>
         </form>
+        <div id="errorDiv" class="errorMessage"></div>
         </div>
+        
       </div>
     `;
         return view;

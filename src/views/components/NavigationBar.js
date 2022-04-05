@@ -3,6 +3,7 @@ let NavigationBar = {
         let view = `
             <div class="container">
                 <div id="header" class="navigation-menu">
+                <img id="mainLogo" src = "./images/Asset_1.svg" alt="My Happy SVG"/>
                 <ul id="navbar">
                 <li><a class"button" href="./#/inmatning">Inmatning</a></li>
                 <li><a class"button" href="./#/listaexpenses">ListaExpenses</a></li>
@@ -17,6 +18,7 @@ let NavigationBar = {
         let viewNotLogedIn = `
         <div class="container">
             <div id="header" class="navigation-menu">
+            <img id="mainLogo" src = "./images/Asset_1.svg" alt="My Happy SVG"/>
             <ul id="navbar">
             <li><a href="./#/login" class"button">Logain</a></li>
             <li><a class"button" href="./#/RegisterUser">Registera dig</a></li>

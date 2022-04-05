@@ -3,17 +3,19 @@
 
 /* reactiv grid css  */
 body{
-  background-color: #064B73;
+  background-color: #F1F5F9;
 }
 
-
+#mainLogo{
+  width: 200px;
+  
+}
 .gridstyle.container {
   display: grid;
   height: 100vh;
-  background-color: #064B73;
   grid-template-rows: auto auto 1fr auto auto auto;
   gap: 24px;
-  color: white;
+  color: #535353;
   
 }
 a:link {
@@ -44,24 +46,32 @@ a:active {
 
 
 .navigation-menu{
-  margin: 0 auto;
+  /* margin: 0 auto; */
   font-size: 20px;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  flex-direction: row;
+  justify-content: space-between;
+
+
+
 }
 
 ul#navbar li a {
   display: block;
-  color: #ffffff;
+  color: #535353;
   font-weight:bold;
   padding: 8px 16px;
   text-decoration: none;
   border-radius:5px;
   cursor:pointer;
-  box-shadow: 0 0 5px #000000;
+  /* box-shadow: 0 0 5px #000000; */
   margin: 3px;
 }
 ul#navbar li a:hover {
   background-color: #FA532E;
-  color: white;
+  color: #535353;
 }
 .site-footer{
   list-style-type: none;
@@ -75,7 +85,7 @@ ul#navbar li a:hover {
 }
 .socials a{
   text-decoration: none;
-  color: #F9F3E6;
+  color: #535353;
 }
 
 .fa:hover {
@@ -113,30 +123,29 @@ ul#navbar li a:hover {
 }
 
 .navigation{
-  background-color: #064B73;
+ 
   padding: 10px;
-  margin: auto;
+
 }
 .main{
-  background-color: #064B73;
+ 
   padding: 10px;
   margin: auto;
   
 }
 .sidebar{
-  background-color: #064B73;
+  
   padding: 10px;
   margin: auto;
 }
 .ads{
-  background-color: #064B73;
+  
   padding: 10px;
   
 }
-.footer{
+.site-footer{
   padding: 10px;
-  border-top: 2px solid #233D53;
-  border-radius: 5px;
+background-color: #CCD6DF;
  
 
     
@@ -226,7 +235,7 @@ input{
   border-radius: 5px;
 }
 label {
-  color: #ffffff;
+  color: #535353;
   font-size: 16px;
   display: block;
 }
@@ -257,10 +266,10 @@ input:hover{
 }
 
 input[type = submit] {
-  background-color: #064B73;
+  background-color: #F1F5F9;
   border: none;
   text-decoration: none;
-  color: white;
+  color: 535353;
   padding: 10px 10px;
   margin: 20px 20px;
   cursor: pointer;
