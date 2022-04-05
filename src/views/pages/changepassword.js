@@ -41,28 +41,23 @@ let ChangePassword = {
         }
     
     }
-    async function ChangePasswordLink(emailrecdto) {
-    
-        const recoverPass = await fetch(
-          "http://localhost:7151/api/User/recover",
-          {
-            method: "put",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + token
-            },
-            body: JSON.stringify(emailrecdto)
+    async function ChangePasswordLink(NewPasswordDTO) {
+        const fetchresult = await API_Service.PutService(
+          'User/recover',
+          NewPasswordDTO
+        );
+        console.log(fetchresult);
+        if (fetchresult != false) {
+          defaultRender('Changed password successfully');
+          setTimeout(moveToLoging, 2000);
+          function moveToLoging() {
+            window.location.hash = "#/login";
           }
-        ).then((response) => {
-          if (response.ok) {
-            defaultRender("Changed password successfully")
-            return true;
-          } else {
-            defaultRender("Could not change password")
-            // throw new Error("NETWORK RESPONSE ERROR");
-          }
-        });
-    }
+        } else {
+          defaultRender('Could not change passwor');
+        }
+      }
+
     },
 };
 

@@ -1,6 +1,8 @@
 import API_Service from "/services/API_Service.js";
 import { defaultRender } from "/services/errorHandler.js";
 import { getCookie } from "/services/cookie.js";
+import { setCookie } from "/services/cookie.js";
+
 
 let RegisterUser = {
     render: async () => {
@@ -23,11 +25,11 @@ let RegisterUser = {
               </div>
               <div id="pswrd">
                 <label for="password">Lösenord: </label>
-                <input type="text" name="password" placeholder="Välj ett lösenord">
+                <input type="password" name="password" placeholder="Välj ett lösenord">
               </div>
               <div id="pswrdvalid">
                 <label for="password2">Bekräfta lösenord:</label>
-                <input type="text" name="password2" placeholder="Bekräfta lösenord">
+                <input type="password" name="password2" placeholder="Bekräfta lösenord">
                 </div>
                 <div id="btn">
               <input type="submit" />
@@ -78,26 +80,28 @@ let RegisterUser = {
       };
     
       async function FetchReg(newUser) {
-        let response = await fetch("http://localhost:7151/api/User/register", {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + getCookie("token"),
-          },
-          body: JSON.stringify(newUser),
-        });
-        let textresponse = await response.text();
-        if (!response.ok) {
-          defaultRender(`${textresponse}`)
-        } else {
-          var activeUser = newUser.userName;
-          sessionStorage.setItem("User", activeUser);
-          alert("Du är nu registrerad!");
-          window.location.hash = "#/";
-          let header = new Header();;
-        }
+              const fetchresult = await API_Service.PostService(
+              "User/register",
+              newUser
+          );
+          console.log(fetchresult);
+          if (fetchresult != false) {
+              CreateLoginToken(fetchresult);
+              form.reset();
+              defaultRender("Du är nu registrerad!");
+              setTimeout(logedIn, 2000);
+              function logedIn() {
+                window.location.hash = "#/";
+              }
+          } else {
+              defaultRender(fetchresult);
+          }
       }
-    
+      //creates 1 token for our JWT encoding and one for just the user name so that we can use username as well.
+      function CreateLoginToken(data) {
+          setCookie("token",data.token)
+          setCookie("user",data.user)
+      }
       function CheckPassword(password) {
         var paswd = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{12,50}$/;
         if (password.match(paswd)) {

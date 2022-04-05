@@ -1,4 +1,19 @@
-
+/* <!-- <div class="gridstyle container">
+      <div class="item header"><h1>Budgetera Mera</h1></div>
+      <div id="headerContent" class="item navigation">
+      <!-- loads header and menu component-->
+    </div>
+    
+    <div id="pageContent" class="item main">
+       <!-- loads main content page -->
+      <article> Loading....</article>
+    </div>
+    <div class="item sidebar"></div>
+    <div class="item ads"></div>
+  <div id="footerContent" class="item footer"></div>
+   <!-- loads footer component -->
+    </div>
+  </div> --> */ 
 
 
 /* reactiv grid css  */
@@ -102,16 +117,30 @@ ul#navbar li a:hover {
   border-radius: 50%;
   border: 1px solid #F9F3E6;
 }
- .header img{
-   width: 500px;
- }
  
+
 .header{
   margin: auto;
   padding: 10px;
 
 }
-
+.header h1{
+  
+  
+    font-size: 72px;
+    background: linear-gradient(to top, #FA532E, #F9F3E6 );
+    background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  filter: drop-shadow(3px 3px #241714);
+  font-family: 'winkleregular', Arial, sans-serif;
+font-weight:normal;
+font-style:normal;
+  
+}
 .navigation{
   background-color: #064B73;
   padding: 10px;

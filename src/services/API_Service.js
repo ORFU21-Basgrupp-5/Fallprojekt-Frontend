@@ -29,10 +29,11 @@ function headerCheck() {
     return settings;
 }
 const API_Service = {
+    
+
     async GetService (endpoint) {
         let theTooken = getCookie("token");
-        let settings; 
-        
+        let settings;         
         settings = {
             method: "GET",
             headers: {
@@ -107,16 +108,19 @@ const API_Service = {
         }
     },
     async PutService (endpoint, body) {
-    
-        const settings = {
+        let theTooken = getCookie("token");
+        let settings;         
+        settings = {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
               Authorization: "Bearer " + getCookie("token"),
             },
-            body: JSON.stringify(body),
           };
-
+          if(theTooken === null){ 
+            //delete settings.Authorization;
+            delete settings.headers.Authorization;
+          }
         try{
             const result = await fetch(`http://localhost:7151/api/${endpoint}`, settings);
             if (result.ok) {
