@@ -5,10 +5,22 @@
 body{
   background-color: #F1F5F9;
 }
-
+#footerPicture{
+  width: 200px;
+}
 #mainLogo{
   width: 200px;
   
+}
+.background_image{
+  background-image: url("./images/sax.svg");
+  background-repeat: no-repeat;
+  background-size: 300px 100px;
+  
+}
+#welcome_image{
+  width: 300px;
+  display: grid;
 }
 .gridstyle.container {
   display: grid;
@@ -169,7 +181,6 @@ background-color: #CCD6DF;
   
   .gridstyle .main {
     grid-column: 3 / span 10;
-    
   }
 
   

@@ -20,7 +20,7 @@ let NavigationBar = {
             <div id="header" class="navigation-menu">
             <img id="mainLogo" src = "./images/Asset_1.svg" alt="My Happy SVG"/>
             <ul id="navbar">
-            <li><a href="./#/login" class"button">Logain</a></li>
+            <li><a href="./#/login" class"button">Login</a></li>
             <li><a class"button" href="./#/RegisterUser">Registera dig</a></li>
             </ul>
                 
