@@ -15,7 +15,6 @@ export const render = (root,token) => {
                 <button id="confirmButton">Bekräfta</button>
                 <br>
                 <a href="/">Logga in här</a>
-                <div id="errorDiv"></div>
               </form>
               `
     root.innerHTML = html;

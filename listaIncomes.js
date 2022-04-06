@@ -6,7 +6,6 @@ export const render = (root) => {
   const html = `
     <h1>Lista Inkomster</h1>
       <div id="div-incomes">
-      <div id="errorDiv"></div>
     </div>`;
   root.innerHTML = html;
   

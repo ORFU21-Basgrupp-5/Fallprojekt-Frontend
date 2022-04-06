@@ -8,30 +8,47 @@ export const render = (root) => {
   const budgetForm = `
   <div id="budgetForm">
   <form id="form1">
-      <label for="budgetName">Budget name:</label><br>
-      <input type="text" id="budgetName" name="budgetName"><br>
-      <label for="maxAmount">Budget total amount:</label>
-      <input type="number" id="maxAmount"><br>
-      <label for="budgetDate">Budget date:</label><br>
-      <input type="date" id="budgetDate" name="budgetDate"><br>
-      <label for="">Budget categories:</label>
-      <label for="Food">Food:</label>
-      <input type="number" id="Food"><br>
-      <label for="Car">Car:</label>
-      <input type="number" id="Car"><br>
-      <label for="Subscriptions">Subscriptions:</label>
-      <input type="number" id="Subscriptions"><br>
-      <label for="Clothes">Clothes:</label>
-      <input type="number" id="Clothes"><br>
-      <label for="Treat">Treat:</label>
-      <input type="number" id="Treat"><br>
-      <label for="Other">Other:</label>
-      <input type="number" id="Other"><br>
+      <div class="input">
+        <label for="budgetName">Budget name</label><br>
+        <input type="text" id="budgetName" name="budgetName">
+      </div>
+      <div class="input">
+        <label for="maxAmount">Budget total amount</label><br>
+        <input type="number" id="maxAmount">
+      </div>
+      <div class="input">
+        <label for="budgetDate">Budget date</label><br>
+        <input type="date" id="budgetDate" name="budgetDate">
+      </div>
+      <h3>Budget categories</h3>
+      <div class="input">
+        <label for="Food">Food</label><br>
+        <input type="number" id="Food">
+      </div>
+      <div class="input">
+        <label for="Car">Car</label><br>
+        <input type="number" id="Car">
+      </div>
+      <div class="input">
+        <label for="Subscriptions">Subscriptions</label><br>
+        <input type="number" id="Subscriptions">
+      </div>
+      <div class="input">
+        <label for="Clothes">Clothes</label><br>
+        <input type="number" id="Clothes">
+      </div>
+      <div class="input">
+        <label for="Treat">Treat</label><br>
+        <input type="number" id="Treat">
+      </div>
+      <div class="input">
+        <label for="Other">Other</label><br>
+        <input type="number" id="Other">
+      </div>
       
   </form>
   <button id="budgetSumbit">Submit</button>
-</div>
-<div id="errorDiv"></div>`;
+</div>`;
 
   root.innerHTML = budgetForm;
   let budgetFormDiv = document.getElementById("budgetForm");
@@ -84,29 +101,4 @@ export const render = (root) => {
     console.log(fetchresult);
     return fetchresult;
   }
-
-  // const postBudget = async (newBudget) => {
-  //   const settings = {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: "Bearer " + getCookie("token"),
-  //     },
-  //     body: JSON.stringify(newBudget),
-  //   };
-  //   try {
-  //     const response = await fetch(
-  //       "http://localhost:7151/api/Budget/Create",
-  //       settings
-  //     );
-  //     if (response.ok) {
-  //       console.log("A ok!");
-  //     } else {
-  //       const message = "Error with Status Code: " + response.status;
-  //       throw new Error(message);
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
 };
