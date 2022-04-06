@@ -67,7 +67,7 @@ export const Render = (root) => {
       if (parseInt(newBudgetDTO.totalSum) === testBelopp) {
         if(fetchresult(newBudgetDTO)){
           document.getElementById("form1").reset();
-          DefaultRender("Your budget is saved.");
+          DefaultRender("Your budget is savedI.");
         }else {
           DefaultRender("Your budget is NOT saved.")
         };
