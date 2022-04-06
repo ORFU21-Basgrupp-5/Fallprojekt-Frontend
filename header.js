@@ -39,7 +39,7 @@ export class Header {
     });
     button6.addEventListener("click", () => {
       deleteCookie("token");
-      window.location.href = "http://127.0.0.1:5500/";
+      window.location.href = "/";
     });
     
 
