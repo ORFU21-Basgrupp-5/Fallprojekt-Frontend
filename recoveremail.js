@@ -44,38 +44,17 @@ let email = document.getElementById("Email")
       } else {
         return response.text().then(function(text) 
       {
-<<<<<<< HEAD
         DefaultRender(`${response.status} ${response.statusText} ${text}`);
-=======
-        RenderError(`${response.status} ${response.statusText} ${text}`);
->>>>>>> 8aadeb8ff58ad38067efb38aaca2b6528aa82d27
       })
       }
     })
     .catch((error) => {
-<<<<<<< HEAD
       DefaultRender(`Error: ${error.message} `);
-=======
-      RenderError(`Error: ${error.message} `);
->>>>>>> 8aadeb8ff58ad38067efb38aaca2b6528aa82d27
     });
   }
 
   
 
-<<<<<<< HEAD
-=======
-  function RenderError(string){
-    sentOrNotDiv.appendChild(
-        document
-          .createElement("p")
-          .appendChild(document.createTextNode(string))
-      );
-      setTimeout(function () {
-        sentOrNotDiv.removeChild(sentOrNotDiv.lastChild);
-      }, 2000);
-  }
->>>>>>> 8aadeb8ff58ad38067efb38aaca2b6528aa82d27
 }
 
 
