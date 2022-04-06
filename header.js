@@ -12,11 +12,11 @@ const pageContent = document.getElementById("pageContent");
 export class Header {
   constructor() {
 
-    const button1 = document.getElementById("button-listaexpenses");
-    const button2 = document.getElementById("button-listaincomes");
-    const button3 = document.getElementById("button-inmatning");
+    const button1 = document.getElementById("button-listexpenses");
+    const button2 = document.getElementById("button-listincomes");
+    const button3 = document.getElementById("button-inputs");
     const button4 = document.getElementById("button-createbudget");
-    const button5 = document.getElementById("button-listabudget");
+    const button5 = document.getElementById("button-listbudget");
     const button6 = document.getElementById("LogOut");
 
     //const button4 = document.getElementById("emailknapp"); 

@@ -6,11 +6,11 @@ var ActiveUser = sessionStorage.getItem("User");
 const headertag = document.getElementById('header')
 const header = `
     <div id="header">
-      <button id="button-inmatning">Add balance change</button>
-      <button id="button-listaexpenses">List expenses</button>
-      <button id="button-listaincomes">List incomes</button>
+      <button id="button-inputs">Add balance change</button>
+      <button id="button-listexpenses">List expenses</button>
+      <button id="button-listincomes">List incomes</button>
       <button id="button-createbudget">Create budget</button>
-      <button id="button-listabudget">Display budget</button>
+      <button id="button-listbudget">Display budget</button>
       <button id="LogOut">Log out </button>
     </div>`
 

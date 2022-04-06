@@ -42,7 +42,7 @@ a:hover {
   font-weight: 600;
    
 }
-#button-listaincomes {
+#button-listincomes {
   background-color: rgb(104, 168, 252);
   margin: 0;
   padding: 10px;
@@ -50,14 +50,14 @@ a:hover {
   font-weight: 600;
 }
 
-#button-inmatning {
+#button-inputs {
   background-color: rgb(104, 168, 252);
   margin: 0;
   padding: 10px ;
   width: 160px;
   font-weight: 600;
 }
-#button-listaexpenses {
+#button-listexpenses {
   background-color: rgb(104, 168, 252);
   margin: 0;
   padding: 10px ;
@@ -78,7 +78,7 @@ a:hover {
   width: 160px;
   font-weight: 600;
 }
-#button-listabudget{
+#button-listbudget{
   background-color: rgb(104, 168, 252);
   margin: 0;
   padding: 10px ;

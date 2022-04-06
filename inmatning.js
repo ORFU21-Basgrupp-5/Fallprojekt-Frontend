@@ -19,16 +19,16 @@ export const Render = (root) => {
         </div>
         <select id="CategoryInc"></select>
         <div>
-          <label for="ISaldo">Balance</label>
+          <label for="IAmount">Balance</label>
         </div>         
         <div>
-          <input id="ISaldo">
+          <input id="IAmount">
         </div>
         <div>
-          <label for="IKonto">Account</label>
+          <label for="IAccount">Account</label>
         </div>
         <div>
-          <input id="IKonto">
+          <input id="IAccount">
         </div>
         <div>
           <label for="IDesc">Description</label>
@@ -56,16 +56,16 @@ export const Render = (root) => {
         </div>
         <select id="CategoryExp"></select>            
         <div>
-          <label for="ESaldo">Balance</label>
+          <label for="EAmount">Balance</label>
         </div>
         <div>
-          <input id="ESaldo">
+          <input id="EAmount">
         </div>
         <div>
-          <label for="EKonto">Account</label>
+          <label for="EAccount">Account</label>
         </div>
         <div>
-          <input id="EKonto">
+          <input id="EAccount">
         </div>
         <div>
           <label for="EDesc">Description</label>
@@ -106,11 +106,11 @@ root.innerHTML = html;
 
   incSubmit.onclick = function (e) {
     e.preventDefault();
-    if (isNaN(incomeForm.ISaldo.value))
+    if (isNaN(incomeForm.IAmount.value))
     {
       IsInputNumber("income")
     }
-    else if (incomeForm.IKonto.value === "" || incomeForm.IDesc.value === "" || incomeForm.IDate === "" || incomeForm.ISaldo.value === "") 
+    else if (incomeForm.IAccount.value === "" || incomeForm.IDesc.value === "" || incomeForm.IDate === "" || incomeForm.IAmount.value === "") 
     {
       IsInputEmpty("income")
     }
@@ -120,11 +120,11 @@ root.innerHTML = html;
   };
   expSubmit.onclick = function (e) {
     e.preventDefault();
-    if (isNaN(expenseForm.ESaldo.value))
+    if (isNaN(expenseForm.EAmount.value))
     {
       IsInputNumber("expense")
     }
-    else if (expenseForm.EKonto.value === "" || expenseForm.EDesc.value === "" || expenseForm.EDate.value === "" || expenseForm.ESaldo.value === "") 
+    else if (expenseForm.EAccount.value === "" || expenseForm.EDesc.value === "" || expenseForm.EDate.value === "" || expenseForm.EAmount.value === "") 
     {
       IsInputEmpty("expense")
     }
@@ -139,8 +139,8 @@ root.innerHTML = html;
     const incinputsDTO = {
       incomeDate: Inc.IDate.value,
       incomeDescription: Inc.IDesc.value,
-      incomeBalanceChange: Inc.ISaldo.value,
-      accountId: Inc.IKonto.value,
+      incomeBalanceChange: Inc.IAmount.value,
+      accountId: Inc.IAccount.value,
       incomeCategory: parseInt(Inc.CategoryInc.value),
     };
     
@@ -181,8 +181,8 @@ root.innerHTML = html;
     const expinputsDTO = {
       expenseDate: Exp.EDate.value,
       expenseDescription: Exp.EDesc.value,
-      expenseBalanceChange: Exp.ESaldo.value,
-      accountId: Exp.EKonto.value,
+      expenseBalanceChange: Exp.EAmount.value,
+      accountId: Exp.EAccount.value,
       expenseCategory: parseInt(Exp.CategoryExp.value),
     };
     async function FetchExp() {
