@@ -65,6 +65,13 @@ a:hover {
   width: 160px;
   font-weight: 600;
 }
+#buttonInmatning {
+  background-color: rgb(104, 168, 252);
+  margin: 0;
+  padding: 10px ;
+  width: 160px;
+  font-weight: 600;
+}
 #budgetPage{
   background-color: rgb(104, 168, 252);
   margin: 0;
@@ -73,6 +80,13 @@ a:hover {
   font-weight: 600;
 }
 #budgetGetPage{
+  background-color: rgb(104, 168, 252);
+  margin: 0;
+  padding: 10px ;
+  width: 160px;
+  font-weight: 600;
+}
+#LogOut {
   background-color: rgb(104, 168, 252);
   margin: 0;
   padding: 10px ;
