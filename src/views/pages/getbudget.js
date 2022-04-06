@@ -99,7 +99,7 @@ let GetBudget = {
             if(parseInt(categoriesvalues[j][int]) > 80 && parseInt(categoriesvalues[j][int]) < 100)
             {
               
-              cell.style.color = '#FA532E';
+              cell.style.color = '#838E83';
               
             }
             else if (parseInt(categoriesvalues[j][int]) >= 100)

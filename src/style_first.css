@@ -32,17 +32,17 @@ body{
   
 }
 a:link {
-  color: #FA532E;
+  color: #838E83;
 }
 a:visited {
-  color: #FA532E;
+  color: #838E83;
 
 }
 a:hover {
   color: #b63e23;
 }
 a:active {
-  color: #FA532E;
+  color: #838E83;
 }
 #navbar {
   list-style-type: none;
@@ -75,7 +75,7 @@ ul#navbar li a {
   margin: 3px;
 }
 ul#navbar li a:hover {
-  background-color: #FA532E;
+  background-color: #838E83;
   color: white;
 }
 .site-footer{
@@ -94,7 +94,7 @@ ul#navbar li a:hover {
 }
 
 .fa:hover {
-  background: #FA532E;
+  background: #838E83;
 }
 .fa-twitter {
   background: #233D53;
@@ -128,7 +128,7 @@ ul#navbar li a:hover {
   
   
     font-size: 72px;
-    background: linear-gradient(to top, #FA532E, #F9F3E6 );
+    background: linear-gradient(to top, #838E83, #F9F3E6 );
     background-clip: text;
   -webkit-background-clip: text;
   -moz-background-clip: text;
@@ -298,7 +298,7 @@ input[type = submit] {
 }
 
 input[type = submit]:hover{
-  background-color: #FA532E;
+  background-color: #838E83;
 }
 .inputForm
  {

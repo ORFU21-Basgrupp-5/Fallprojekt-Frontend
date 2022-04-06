@@ -3,7 +3,7 @@
 
 /* reactiv grid css  */
 body{
-  background-color: #F3CDCD;
+  background-color: #C9CEBD;
 }
 #footerPicture{
   width: 200px;
@@ -31,17 +31,17 @@ body{
   
 }
 a:link {
-  color: #C64C4C;
+  color: #838E83;
 }
 a:visited {
-  color: #C64C4C;
+  color: #838E83;
 
 }
 a:hover {
   color: #b63e23;
 }
 a:active {
-  color: #C64C4C;
+  color: #838E83;
 }
 #navbar {
   list-style-type: none;
@@ -82,7 +82,7 @@ ul#navbar li a {
   margin: 3px;
 }
 ul#navbar li a:hover {
-  background-color: #C64C4C;
+  background-color: #838E83;
   color: #535353;
 }
 .site-footer{
@@ -104,19 +104,19 @@ ul#navbar li a:hover {
 }
 
 .fa:hover {
-  background: #A62727;
+  background: #838E83;
 }
 .fa-twitter {
-  background: #F6DBDB;
-  color: #C64C4C;
+  background: #233D53;
+  color: #F9F3E6;
 }
 .fa-facebook {
-  background: #F6DBDB;
-  color: #C64C4C;
+  background: #233D53;
+  color: #F9F3E6;
 }
 .fa-linkedin-square {
-  background: #F6DBDB;
-  color: #C64C4C;
+  background: #233D53;
+  color: #F9F3E6;
 }
 .fa {
   padding: 10px;
@@ -160,7 +160,7 @@ ul#navbar li a:hover {
 }
 .site-footer{
   padding: 10px;
-background-color: #DF9898;
+background-color: #B2BCAA;
  
 
     
@@ -292,7 +292,7 @@ input[type = submit] {
 }
 
 input[type = submit]:hover{
-  background-color: #C64C4C;
+  background-color: #838E83;
 }
 .inputForm
  {
