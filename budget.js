@@ -67,9 +67,9 @@ export const Render = (root) => {
       if (parseInt(newBudgetDTO.totalSum) === testBelopp) {
         if(fetchresult(newBudgetDTO)){
           document.getElementById("form1").reset();
-          DefaultRender("Din budget är sparad.");
+          DefaultRender("Your budget is saved.");
         }else {
-          DefaultRender("Din budget är INTE sparad.")
+          DefaultRender("Your budget is NOT saved.")
         };
 
       }

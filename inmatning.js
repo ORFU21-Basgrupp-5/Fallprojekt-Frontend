@@ -5,15 +5,15 @@ import API_Service from "./API_Service.js";
 
 export const Render = (root) => {
   root.innerHTML = "";
-  // var stringUtgifter = '<div><form id="Utgifter"><div><p>Inmatning av utgifter</p></div><div id="info-utgift"></div><div><label for = "Saldo"> Utgift, saldo:</label></div> <div>   <input type = "text" id= "Saldo" name= saldo></div><div><label for="Konto">Utgift, konto:</label></div> <div><input type="text" id= "Konto" name= konto></div><div><label for="Description">Utgift, beskrivning:</label></div><div>  <input type="text" id= "Description" name= description></div><div> <label for="Date">Utgift, datum:</label></div> <div><input type="date" id= "Date" name= date></div><div><button id= "expense">Enter</button></div</form></div>'
-  // var stringInkomster = '<div><form id ="Inkomster"><div><p>Inmatning av Inkomster</p></div><div id="info-inkomst"></div><div><label for = "Saldo"> Inkomst, saldo:</label></div><div><input type = "text" id= "Saldo" name= saldo></div><div><label for="Konto">Inkomst, konto:</label></div><div><input type="text" id= "Konto" name= konto></div><div><label for="Description">Inkomst, beskrivning:</label></div><div><input type="text" id= "Description" name= description></div><div><label for="Date">Utgift, datum:</label></div><div> <input type="date" id= "Date" name= date> </div><div><button id= "income">Enter</button></div></form></div>'
+  // var stringExpenses = '<div><form id="Expenses"><div><p>Inmatning av expenseer</p></div><div id="info-expense"></div><div><label for = "Saldo"> Utgift, saldo:</label></div> <div>   <input type = "text" id= "Saldo" name= saldo></div><div><label for="Konto">Utgift, konto:</label></div> <div><input type="text" id= "Konto" name= konto></div><div><label for="Description">Utgift, beskrivning:</label></div><div>  <input type="text" id= "Description" name= description></div><div> <label for="Date">Utgift, datum:</label></div> <div><input type="date" id= "Date" name= date></div><div><button id= "expense">Enter</button></div</form></div>'
+  // var stringIncomes = '<div><form id ="Incomes"><div><p>Inmatning av Incomes</p></div><div id="info-income"></div><div><label for = "Saldo"> Inkomst, saldo:</label></div><div><input type = "text" id= "Saldo" name= saldo></div><div><label for="Konto">Inkomst, konto:</label></div><div><input type="text" id= "Konto" name= konto></div><div><label for="Description">Inkomst, beskrivning:</label></div><div><input type="text" id= "Description" name= description></div><div><label for="Date">Utgift, datum:</label></div><div> <input type="date" id= "Date" name= date> </div><div><button id= "income">Enter</button></div></form></div>'
 
   const html = `
   <div id="pageContent">
     <div><h1>Incomes</h1></div>
     <div id="errorDiv"></div>
-    <div id="info-inkomst"></div>
-      <form id="inmatning-inkomster">
+    <div id="info-income"></div>
+      <form id="input-incomes">
         <div>
           <label>Category</label>
         </div>
@@ -49,8 +49,8 @@ export const Render = (root) => {
         <div>
           <h1>Expenses</h1>
         </div>
-        <div id="info-utgift"></div>
-      <form id="inmatning-utgifter">
+        <div id="info-expense"></div>
+      <form id="input-expense">
         <div>
           <label>Category</label>
         </div>
@@ -90,8 +90,8 @@ root.innerHTML = html;
   CategorySelectFetch("Expense", document.getElementById("CategoryExp"));
   CategorySelectFetch("Income", document.getElementById("CategoryInc"));
   
-  let incomeForm = document.getElementById("inmatning-inkomster")
-  let expenseForm = document.getElementById("inmatning-utgifter")
+  let incomeForm = document.getElementById("input-incomes")
+  let expenseForm = document.getElementById("input-expense")
   let incSubmit = document.getElementById("ISubmit");
   let expSubmit = document.getElementById("ESubmit");
 
@@ -108,11 +108,11 @@ root.innerHTML = html;
     e.preventDefault();
     if (isNaN(incomeForm.ISaldo.value))
     {
-      IsInputNumber("inkomst")
+      IsInputNumber("income")
     }
     else if (incomeForm.IKonto.value === "" || incomeForm.IDesc.value === "" || incomeForm.IDate === "" || incomeForm.ISaldo.value === "") 
     {
-      IsInputEmpty("inkomst")
+      IsInputEmpty("income")
     }
     else {
     Income();
@@ -122,11 +122,11 @@ root.innerHTML = html;
     e.preventDefault();
     if (isNaN(expenseForm.ESaldo.value))
     {
-      IsInputNumber("utgift")
+      IsInputNumber("expense")
     }
     else if (expenseForm.EKonto.value === "" || expenseForm.EDesc.value === "" || expenseForm.EDate.value === "" || expenseForm.ESaldo.value === "") 
     {
-      IsInputEmpty("utgift")
+      IsInputEmpty("expense")
     }
     else{
     Expense();
@@ -134,7 +134,7 @@ root.innerHTML = html;
   };
 
   const Income = (e) => {
-    let Inc = document.getElementById("Inkomster");
+    let Inc = document.getElementById("Incomes");
     console.log("Added income");
     const incinputsDTO = {
       incomeDate: Inc.IDate.value,
@@ -158,7 +158,7 @@ root.innerHTML = html;
         }
       ).then((response) => {
         if (response.ok) {
-          PrintAdded("inkomst");
+          PrintAdded("income");
           return true;
         } else {
           return response.text().then(function(text) 
@@ -177,7 +177,7 @@ root.innerHTML = html;
 
   const Expense = (e) => {
     console.log("Added expense");
-    let Exp = document.getElementById("Utgifter")
+    let Exp = document.getElementById("Expenses")
     const expinputsDTO = {
       expenseDate: Exp.EDate.value,
       expenseDescription: Exp.EDesc.value,
@@ -198,7 +198,7 @@ root.innerHTML = html;
     }
   ).then((response) => {
     if (response.ok) {
-      PrintAdded("utgift");
+      PrintAdded("expense");
       return true;
     } 
     else {
@@ -219,42 +219,33 @@ FetchExp();
 
 
 function PrintAdded(string) {
-  let divutgift = document.getElementById("info-utgift");
-  let divinkomst = document.getElementById("info-inkomst");
+  let divexpense = document.getElementById("info-expense");
+  let divincome = document.getElementById("info-income");
   console.log(string);
   switch (string) {
-    case "utgift":
+    case "expense":
       DefaultRender("Added expense");
-      setTimeout(function () {
-        divutgift.removeChild(divutgift.lastChild);
-      }, 2000);
-      break;
-    case "inkomst":
+      
+    case "income":
       DefaultRender("Added income");
-      setTimeout(function () {
-        divinkomst.removeChild(divinkomst.lastChild);
-      }, 2000);
+      
       break;
     default:
       break;
   }
 }
 function IsInputNumber(string) {
-  let divutgift = document.getElementById("info-utgift");
-  let divinkomst = document.getElementById("info-inkomst");
+  let divexpense = document.getElementById("info-expense");
+  let divincome = document.getElementById("info-income");
 
   switch (string) {
-    case "utgift":
+    case "expense":
       DefaultRender("Balance must be indicated by numbers");
-      setTimeout(function () {
-        divutgift.removeChild(divutgift.lastChild);
-      }, 2000);
+      
       break;
-    case "inkomst":
+    case "income":
       DefaultRender("Balance must be indicated by numbers");
-      setTimeout(function () {
-        divinkomst.removeChild(divinkomst.lastChild);
-      }, 2000);
+     
       break;
     default:
       break;
@@ -263,20 +254,16 @@ function IsInputNumber(string) {
 
 
 function IsInputEmpty(string) {
-  let divutgift = document.getElementById("info-utgift");
-  let divinkomst = document.getElementById("info-inkomst");
+  let divexpense = document.getElementById("info-expense");
+  let divincome = document.getElementById("info-income");
   switch (string) {
-    case "utgift":
+    case "expense":
       DefaultRender("All fields must be filled in");
-      setTimeout(function () {
-        divutgift.removeChild(divutgift.lastChild);
-      }, 2000);
+      
       break;
-    case "inkomst":
+    case "income":
       DefaultRender("All fields must be filled in");
-      setTimeout(function () {
-        divinkomst.removeChild(divinkomst.lastChild);
-      }, 2000);
+     
       break;
     default:
       break;

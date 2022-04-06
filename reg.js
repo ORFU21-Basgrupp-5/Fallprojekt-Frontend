@@ -1,9 +1,9 @@
-import { getCookie } from "./cookie.js";
-import { Render as welcomepage } from "./welcome.js";
+import { GetCookie } from "./cookie.js";
+import { Render as Welcomepage } from "./welcome.js";
 import { Header } from "./header.js"
 import { DefaultRender } from "./errorHandler.js";
 
-export const render = (root) => {
+export const Render = (root) => {
   root.innerHTML = "";
 
   const regform =  `
@@ -53,21 +53,14 @@ export const render = (root) => {
     const usernamevalidate = userRegister.every((x) => x != "");
     if (usernamevalidate) {
       if (userRegister[2] != userRegister[3]) {
-        let errorPassContainer = document.getElementById("hidden-message");
-        let newText = document
-          .createElement("p")
-          .appendChild(document.createTextNode("Lösenorden matchar inte!"));
-        errorPassContainer.appendChild(newText);
+       DefaultRender("Passwords do not match!");
+        
       } else if (CheckPassword(userRegister[2]) === false) {
-        let errorPassContainer = document.getElementById("hidden-message");
-        let newText = document
-          .createElement("p")
-          .appendChild(
-            document.createTextNode(
-              "Ditt lösenord måste ha minst 12 tecken,en gemen, en storbokstav, en siffra och ett special tecken"
-            )
-          );
-        errorPassContainer.appendChild(newText);
+        DefaultRender(
+          "Your password must be at least 12 characters long, one small letter, one big letter, one number and one special character."    
+          
+            );
+        
       } else {
         const name = userRegister[0];
         const email = userRegister[1];
@@ -82,11 +75,7 @@ export const render = (root) => {
         FetchReg(userDTO);
       }
     } else {
-      let errorPassContainer = document.getElementById("hidden-message");
-      let newText = document
-        .createElement("p")
-        .appendChild(document.createTextNode("Du måste fylla i alla fälten!"));
-      errorPassContainer.appendChild(newText);
+      DefaultRender("All fields must be filled.");
     }
   };
 
@@ -96,7 +85,7 @@ export const render = (root) => {
       method: "post",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + getCookie("token"),
+        Authorization: "Bearer " + GetCookie("token"),
       },
       body: JSON.stringify(newUser),
     });
@@ -106,8 +95,8 @@ export const render = (root) => {
     } else {
       var activeUser = newUser.userName;
       sessionStorage.setItem("User", activeUser);
-      alert("Du är nu registrerad!");
-      welcomepage(pageContent);
+      alert("Registration completed successfully!");
+      Welcomepage(pageContent);
       let header = new Header();;
     }
   }

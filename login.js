@@ -2,7 +2,7 @@ import { Render as Welcomepage } from "./welcome.js";
 import { Render as RegRender } from "./reg.js";
 import { Header } from "./header.js";
 import { Render } from "./recoveremail.js";
-import { Render as recoverpassword } from "./changepassword.js";
+import { Render as Recoverpassword } from "./changepassword.js";
 import {DefaultRender} from "./errorHandler.js";
 import API_Service from "./API_Service.js";
 
@@ -49,7 +49,7 @@ if (urlparams.get("token") != null) {
     }
       // 'An error has occurred: 404'
     else {
-      DefaultRender("Fyll i samtliga fält");
+      DefaultRender("All fields must be filled.");
     }
   };
 
@@ -59,7 +59,7 @@ if (urlparams.get("token") != null) {
     if(fetchresult != false){
       CreateLoginToken(fetchresult);
     }else {
-      DefaultRender("Användarnamn eller lösenord är fel.")
+      DefaultRender("Username or password is incorrect.");
     }
   }
 

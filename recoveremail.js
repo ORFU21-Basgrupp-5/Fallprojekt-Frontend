@@ -1,5 +1,5 @@
-import { getCookie } from "./cookie.js";
-export const render = (root) => {
+import { GetCookie } from "./cookie.js";
+export const Render = (root) => {
   root.innerHTML = "";
 
 const emailform = ` 
@@ -39,41 +39,22 @@ let email = document.getElementById("Email")
       }
     ).then((response) => {
       if (response.ok) {
-        RecoveryMessege("Email sent.");
+        DefaultRender("Email sent.");
         return true;
       } else {
         return response.text().then(function(text) 
       {
-        renderError(`${response.status} ${response.statusText} ${text}`);
+        DefaultRender(`${response.status} ${response.statusText} ${text}`);
       })
       }
     })
     .catch((error) => {
-      renderError(`Error: ${error.message} `);
+      DefaultRender(`Error: ${error.message} `);
     });
   }
 
-  function RecoveryMessege(string){
-    sentOrNotDiv.appendChild(
-        document
-          .createElement("p")
-          .appendChild(document.createTextNode(string))
-      );
-      setTimeout(function () {
-        sentOrNotDiv.removeChild(sentOrNotDiv.lastChild);
-      }, 2000);
-  }
+  
 
-  function renderError(string){
-    sentOrNotDiv.appendChild(
-        document
-          .createElement("p")
-          .appendChild(document.createTextNode(string))
-      );
-      setTimeout(function () {
-        sentOrNotDiv.removeChild(sentOrNotDiv.lastChild);
-      }, 2000);
-  }
 }
 
 

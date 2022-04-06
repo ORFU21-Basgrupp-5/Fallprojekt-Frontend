@@ -1,5 +1,5 @@
-import { getCookie } from "./cookie.js";
-import { defaultRender } from "./errorHandler.js";
+import { GetCookie } from "./cookie.js";
+import { DefaultRender } from "./errorHandler.js";
 
 const API_Service = {
     async GetService (endpoint) {
@@ -8,7 +8,7 @@ const API_Service = {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + getCookie("token"),
+              Authorization: "Bearer " + GetCookie("token"),
             },
           };
 
@@ -29,7 +29,7 @@ const API_Service = {
         }
     },
     async PostService (endpoint, body) {
-        let theTooken = getCookie("token");
+        let theTooken = GetCookie("token");
         let settings; 
         if(theTooken === null){
             settings = {
@@ -77,7 +77,7 @@ const API_Service = {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + getCookie("token"),
+              Authorization: "Bearer " + GetCookie("token"),
             },
             body: JSON.stringify(body),
           };
@@ -90,7 +90,7 @@ const API_Service = {
                 window.location.reload();
             } else {
                 const message = "Error with Status Code: " + result.status;
-                defaultRender(message);
+                DefaultRender(message);
                 return false;
             }
         }
@@ -104,7 +104,7 @@ const API_Service = {
             method: "DELETE",
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + getCookie("token"),
+              Authorization: "Bearer " + GetCookie("token"),
             },
             body: JSON.stringify(body),
           };
@@ -117,7 +117,7 @@ const API_Service = {
                 window.location.reload();
             } else {
                 const message = "Error with Status Code: " + result.status;
-                defaultRender(message);
+                DefaultRender(message);
                 return false;
             }
         }
