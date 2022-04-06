@@ -1,9 +1,9 @@
-import { getCookie } from "./cookie.js";
+import { GetCookie } from "./cookie.js";
 import { Render as welcomepage } from "./welcome.js";
 import { Header } from "./header.js"
 import { DefaultRender } from "./errorHandler.js";
 
-export const render = (root) => {
+export const Render = (root) => {
   root.innerHTML = "";
 
   const regform =  `
@@ -96,7 +96,7 @@ export const render = (root) => {
       method: "post",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + getCookie("token"),
+        Authorization: "Bearer " + GetCookie("token"),
       },
       body: JSON.stringify(newUser),
     });

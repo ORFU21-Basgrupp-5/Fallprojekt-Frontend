@@ -1,5 +1,5 @@
-import { getCookie } from "./cookie.js";
-export const render = (root) => {
+import { GetCookie } from "./cookie.js";
+export const Render = (root) => {
   root.innerHTML = "";
 
 const emailform = ` 
@@ -44,12 +44,12 @@ let email = document.getElementById("Email")
       } else {
         return response.text().then(function(text) 
       {
-        renderError(`${response.status} ${response.statusText} ${text}`);
+        RenderError(`${response.status} ${response.statusText} ${text}`);
       })
       }
     })
     .catch((error) => {
-      renderError(`Error: ${error.message} `);
+      RenderError(`Error: ${error.message} `);
     });
   }
 
@@ -64,7 +64,7 @@ let email = document.getElementById("Email")
       }, 2000);
   }
 
-  function renderError(string){
+  function RenderError(string){
     sentOrNotDiv.appendChild(
         document
           .createElement("p")

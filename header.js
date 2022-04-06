@@ -39,7 +39,7 @@ export class Header {
       budgetGetRender(pageContent);
     });
     button6.addEventListener("click", () => {
-      deleteCookie("token");
+      DeleteCookie("token");
       window.location.href = "/";
     });
     

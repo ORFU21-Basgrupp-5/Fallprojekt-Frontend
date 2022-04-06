@@ -1,7 +1,7 @@
-import { getCookie } from "./cookie.js";
+import { GetCookie } from "./cookie.js";
 import { DefaultRender } from "./errorHandler.js";
 
-export const render = (root,token) => {
+export const Render = (root,token) => {
     root.innerHTML = "";
 
 
