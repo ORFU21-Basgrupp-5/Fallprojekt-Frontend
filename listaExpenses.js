@@ -1,13 +1,12 @@
-import { getCookie } from "./cookie.js";
-import { defaultRender } from "./errorHandler.js";
+import { GetCookie } from "./cookie.js";
+import { DefaultRender } from "./errorHandler.js";
 import API_Service from "./API_Service.js";
-export const render = (root) => {
+export const Render = (root) => {
   root.innerHTML = "";
   
   var stringLista = `
-  <h1>Lista Utgifter</h1>
-    <div id="div-expenses">
-    </div>`;
+  <h1>List expenses</h1>
+    <div id="div-expenses">>`;
   root.innerHTML = stringLista;
   fetchresult();
 };
@@ -15,11 +14,11 @@ export const render = (root) => {
 async function fetchresult() {
   const data = await API_Service.GetService("Expense");
   if(data != null){
-    upgiftsLista(data);
+    ExpenseList(data);
   }
 }
 
-function upgiftsLista(data) {
+function ExpenseList(data) {
   data.forEach((item) => {
     let diven = document.getElementById("div-expenses");
     let listContainer = document.createElement("ul");
@@ -31,5 +30,3 @@ function upgiftsLista(data) {
     }
   });
 }
-
-

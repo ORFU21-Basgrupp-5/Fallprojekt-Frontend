@@ -1,33 +1,33 @@
-import { getCookie } from "./cookie.js";
-import { Render as welcomepage } from "./welcome.js";
+import { GetCookie } from "./cookie.js";
+import { Render as Welcomepage } from "./welcome.js";
 import { Header } from "./header.js"
-import { defaultRender } from "./errorHandler.js";
+import { DefaultRender } from "./errorHandler.js";
 
-export const render = (root) => {
+export const Render = (root) => {
   root.innerHTML = "";
 
   const regform =  `
     <div id="reg">
       <h1>Skapa ett konto</h1>
     </div>
-    <p>Har du redan ett konto?<a href="/"> Logga in här</a> </p>
+    <p>Already registered?<a href="/">Log in here</a> </p>
     <form id="reg_form"><div id="hidden-message">
 
       <div id="uname" class="input">
-        <label for="username">Användarnamn</label><br>
-        <input type="text" name="username" placeholder="Välj ett användarnamn">
+        <label for="username">Username:</label><br>
+        <input type="text" name="username" placeholder="Choose a username">
       </div>
       <div id="email" class="input">
-        <label for="email">Email</label><br>
-        <input type="text" name="email" placeholder="Fyll i din epost">
+        <label for="email">Email:</label><br>
+        <input type="text" name="email" placeholder="Fill in your email">
       </div>
       <div id="pswrd" class="input">
-        <label for="password">Lösenord </label><br>
-        <input type="password" name="password" placeholder="Välj ett lösenord">
+        <label for="password">Password: </label><br>
+        <input type="text" name="password" placeholder="Choose a password">
       </div>
       <div id="pswrdvalid" class="input">
-        <label for="password2">Bekräfta lösenord</label><br>
-        <input type="password" name="password2" placeholder="Bekräfta lösenord">
+        <label for="password2">Confirm password:</label><br>
+        <input type="text" name="password2" placeholder="Confirm password">
         </div>
       <div>
         <button type="submit">Submit</button>
@@ -51,21 +51,14 @@ export const render = (root) => {
     const usernamevalidate = userRegister.every((x) => x != "");
     if (usernamevalidate) {
       if (userRegister[2] != userRegister[3]) {
-        let errorPassContainer = document.getElementById("hidden-message");
-        let newText = document
-          .createElement("p")
-          .appendChild(document.createTextNode("Lösenorden matchar inte!"));
-        errorPassContainer.appendChild(newText);
+       DefaultRender("Passwords do not match!");
+        
       } else if (CheckPassword(userRegister[2]) === false) {
-        let errorPassContainer = document.getElementById("hidden-message");
-        let newText = document
-          .createElement("p")
-          .appendChild(
-            document.createTextNode(
-              "Ditt lösenord måste ha minst 12 tecken,en gemen, en storbokstav, en siffra och ett special tecken"
-            )
-          );
-        errorPassContainer.appendChild(newText);
+        DefaultRender(
+          "Your password must be at least 12 characters long, one small letter, one big letter, one number and one special character."    
+          
+            );
+        
       } else {
         const name = userRegister[0];
         const email = userRegister[1];
@@ -80,12 +73,7 @@ export const render = (root) => {
         FetchReg(userDTO);
       }
     } else {
-      defaultRender("Du måste fylla i alla fälten!");
-      // let errorPassContainer = document.getElementById("hidden-message");
-      // let newText = document
-      //   .createElement("p")
-      //   .appendChild(document.createTextNode("Du måste fylla i alla fälten!"));
-      // errorPassContainer.appendChild(newText);
+      DefaultRender("All fields must be filled.");
     }
   };
 
@@ -95,18 +83,18 @@ export const render = (root) => {
       method: "post",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + getCookie("token"),
+        Authorization: "Bearer " + GetCookie("token"),
       },
       body: JSON.stringify(newUser),
     });
-    let textreponse = await response.text();
+    
     if (!response.ok) {
-        defaultRender(`${text.error}`);
+        DefaultRender(`${text.error}`);
     } else {
       var activeUser = newUser.userName;
       sessionStorage.setItem("User", activeUser);
-      alert("Du är nu registrerad!");
-      welcomepage(pageContent);
+      alert("Registration completed successfully!");
+      Welcomepage(pageContent);
       let header = new Header();;
     }
   }

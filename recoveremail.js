@@ -1,5 +1,6 @@
-import { getCookie } from "./cookie.js";
-export const render = (root) => {
+import { GetCookie } from "./cookie.js";
+import { DefaultRender } from "./errorHandler.js";
+export const Render = (root) => {
   root.innerHTML = "";
 
 const emailform = ` 
@@ -16,15 +17,15 @@ const emailform = `
   </form>`
 root.innerHTML = emailform
 
-let SendButton = document.getElementById("recoverbutton")
-let SentOrNotDiv = document.getElementById("SentOrNotDiv")
-let Email = document.getElementById("Email")
+let sendButton = document.getElementById("recoverbutton")
+let sentOrNotDiv = document.getElementById("SentOrNotDiv")
+let email = document.getElementById("Email")
 
 
-  SendButton.onclick = function (e) {
+  sendButton.onclick = function (e) {
     e.preventDefault()
     const EmailDTO = {
-      Email: Email.value
+      Email: email.value
     };
     SendRecoveryEmail(EmailDTO);
   }
@@ -42,40 +43,18 @@ let Email = document.getElementById("Email")
       }
     ).then((response) => {
       if (response.ok) {
-        RecoveryMessege("Email sent.");
+        DefaultRender("Email sent.");
         return true;
       } else {
         return response.text().then(function(text) 
       {
-        renderError(`${response.status} ${response.statusText} ${text}`);
+        DefaultRender(`${response.status} ${response.statusText} ${text}`);
       })
       }
     })
     .catch((error) => {
-      renderError(`Error: ${error.message} `);
+      DefaultRender(`Error: ${error.message} `);
     });
-  }
-
-  function RecoveryMessege(string){
-    SentOrNotDiv.appendChild(
-        document
-          .createElement("p")
-          .appendChild(document.createTextNode(string))
-      );
-      setTimeout(function () {
-        SentOrNotDiv.removeChild(SentOrNotDiv.lastChild);
-      }, 2000);
-  }
-
-  function renderError(string){
-    SentOrNotDiv.appendChild(
-        document
-          .createElement("p")
-          .appendChild(document.createTextNode(string))
-      );
-      setTimeout(function () {
-        SentOrNotDiv.removeChild(SentOrNotDiv.lastChild);
-      }, 2000);
   }
 }
 

@@ -7,13 +7,13 @@ const headertag = document.getElementById('navmenu')
 const header = `
 <input type="checkbox" id="menuclick" value="Menu">
 <div id="testmenu" class="menu">
-  <button id="button-inmatning">Inmatning</button>
-  <button id="button-listaexpenses">ListaExpenses</button>
-  <button id="button-listaincomes">ListaIncomes</button>
-  <button id="button-createbudget">Skapa Budget</button>
-  <button id="button-listabudget">Visa Budget</button>
-  <button id="LogOut">Logga ut </button>
-</div>`
+      <button id="button-inputs">Add balance change</button>
+      <button id="button-listexpenses">List expenses</button>
+      <button id="button-listincomes">List incomes</button>
+      <button id="button-createbudget">Create budget</button>
+      <button id="button-listbudget">Display budget</button>
+      <button id="LogOut">Log out </button>
+    </div>`
 
 {/* <button id="emailknapp">Email</button>  */} 
 

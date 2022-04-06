@@ -1,16 +1,16 @@
-import { Render as welcomepage } from "./welcome.js";
-import { render as RegRender } from "./reg.js";
+import { Render as Welcomepage } from "./welcome.js";
+import { Render as RegRender } from "./reg.js";
 import { Header } from "./header.js";
-import { render } from "./recoveremail.js";
-import { render as recoverpassword } from "./changepassword.js";
-import {defaultRender} from "./errorHandler.js";
+import { Render } from "./recoveremail.js";
+import { Render as Recoverpassword } from "./changepassword.js";
+import {DefaultRender} from "./errorHandler.js";
 import API_Service from "./API_Service.js";
 
 let currenturl = new URL(document.URL);
 let urlparams = new URLSearchParams(currenturl.search);
 
 if (urlparams.get("token") != null) {
-  recoverpassword(pageContent, urlparams.get("token"));
+  Recoverpassword(pageContent, urlparams.get("token"));
   console.log("token param found");
 } else {
   let pageContent = document.getElementById("pageContent");
@@ -18,7 +18,7 @@ if (urlparams.get("token") != null) {
   const linkToRecover = document.getElementById("recover-btn");
   linkToRecover.onclick = function (e) {
     e.preventDefault();
-    render(pageContent);
+    Render(pageContent);
   };
 
   let reglink = document.getElementById("reglink");
@@ -29,8 +29,9 @@ if (urlparams.get("token") != null) {
   };
 
   let form = document.getElementById("login-form");
+  let loginButton = document.getElementById("btn")
 
-  form.onsubmit = (e) => {
+  loginButton.onclick = (e) => {
     e.preventDefault();
     const userlogin = [
       document.forms["login-form"]["username"].value,
@@ -48,7 +49,7 @@ if (urlparams.get("token") != null) {
     }
       // 'An error has occurred: 404'
     else {
-      defaultRender("Fyll i samtliga fält");
+      DefaultRender("All fields must be filled.");
     }
   };
 
@@ -58,7 +59,7 @@ if (urlparams.get("token") != null) {
     if(fetchresult != false){
       CreateLoginToken(fetchresult);
     }else {
-      defaultRender("Användarnamn eller lösenord är fel.")
+      DefaultRender("Username or password is incorrect.");
     }
   }
 
@@ -82,7 +83,7 @@ if (urlparams.get("token") != null) {
     // let activeUser = userLoginDTO.userName;
     // sessionStorage.setItem("User", activeUser);
 
-    welcomepage(pageContent);
+    Welcomepage(pageContent);
     let header = new Header();
 }
   //'Authorization': 'Bearer ' + cookies.get('token')
