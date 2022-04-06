@@ -1,6 +1,6 @@
-import { getCookie } from "./cookie.js";
-import { defaultRender } from "./errorHandler.js";
-export const render = (root) => {
+import { GetCookie } from "./cookie.js";
+import { DefaultRender } from "./errorHandler.js";
+export const Render = (root) => {
   root.innerHTML = "";
 
 const emailform = ` 
@@ -14,14 +14,15 @@ const emailform = `
   </form>`
 root.innerHTML = emailform
 
-let SendButton = document.getElementById("recoverbutton")
-let Email = document.getElementById("Email")
+let sendButton = document.getElementById("recoverbutton")
+let sentOrNotDiv = document.getElementById("SentOrNotDiv")
+let email = document.getElementById("Email")
 
 
-  SendButton.onclick = function (e) {
+  sendButton.onclick = function (e) {
     e.preventDefault()
     const EmailDTO = {
-      Email: Email.value
+      Email: email.value
     };
     SendRecoveryEmail(EmailDTO);
   }
@@ -39,25 +40,22 @@ let Email = document.getElementById("Email")
       }
     ).then((response) => {
       if (response.ok) {
-        RecoveryMessage();
+        DefaultRender("Email sent.");
         return true;
       } else {
-        return response.text().then(function (text) {
-          console.log(text)
-          defaultRender(
-            `${text}`
-          );
-        });
+        return response.text().then(function(text) 
+      {
+        DefaultRender(`${response.status} ${response.statusText} ${text}`);
+      })
       }
     })
     .catch((error) => {
-      defaultRender(`Error: ${error.message} `);
+      DefaultRender(`Error: ${error.message} `);
     });
   }
 
-  function RecoveryMessage(string){
-   defaultRender("Email sent.")
-  }
+  
+
 }
 
 

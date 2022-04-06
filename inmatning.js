@@ -1,35 +1,37 @@
-import { getCookie } from "./cookie.js";
-import { defaultRender } from "./errorHandler.js";
+import { GetCookie } from "./cookie.js";
+
+import { DefaultRender } from "./errorHandler.js";
 import API_Service from "./API_Service.js";
-export const render = (root) => {
+
+export const Render = (root) => {
   root.innerHTML = "";
-  // var stringUtgifter = '<div><form id="Utgifter"><div><p>Inmatning av utgifter</p></div><div id="info-utgift"></div><div><label for = "Saldo"> Utgift, saldo:</label></div> <div>   <input type = "text" id= "Saldo" name= saldo></div><div><label for="Konto">Utgift, konto:</label></div> <div><input type="text" id= "Konto" name= konto></div><div><label for="Description">Utgift, beskrivning:</label></div><div>  <input type="text" id= "Description" name= description></div><div> <label for="Date">Utgift, datum:</label></div> <div><input type="date" id= "Date" name= date></div><div><button id= "expense">Enter</button></div</form></div>'
-  // var stringInkomster = '<div><form id ="Inkomster"><div><p>Inmatning av Inkomster</p></div><div id="info-inkomst"></div><div><label for = "Saldo"> Inkomst, saldo:</label></div><div><input type = "text" id= "Saldo" name= saldo></div><div><label for="Konto">Inkomst, konto:</label></div><div><input type="text" id= "Konto" name= konto></div><div><label for="Description">Inkomst, beskrivning:</label></div><div><input type="text" id= "Description" name= description></div><div><label for="Date">Utgift, datum:</label></div><div> <input type="date" id= "Date" name= date> </div><div><button id= "income">Enter</button></div></form></div>'
+  // var stringExpenses = '<div><form id="Expenses"><div><p>Inmatning av expenseer</p></div><div id="info-expense"></div><div><label for = "Saldo"> Utgift, saldo:</label></div> <div>   <input type = "text" id= "Saldo" name= saldo></div><div><label for="Konto">Utgift, konto:</label></div> <div><input type="text" id= "Konto" name= konto></div><div><label for="Description">Utgift, beskrivning:</label></div><div>  <input type="text" id= "Description" name= description></div><div> <label for="Date">Utgift, datum:</label></div> <div><input type="date" id= "Date" name= date></div><div><button id= "expense">Enter</button></div</form></div>'
+  // var stringIncomes = '<div><form id ="Incomes"><div><p>Inmatning av Incomes</p></div><div id="info-income"></div><div><label for = "Saldo"> Inkomst, saldo:</label></div><div><input type = "text" id= "Saldo" name= saldo></div><div><label for="Konto">Inkomst, konto:</label></div><div><input type="text" id= "Konto" name= konto></div><div><label for="Description">Inkomst, beskrivning:</label></div><div><input type="text" id= "Description" name= description></div><div><label for="Date">Utgift, datum:</label></div><div> <input type="date" id= "Date" name= date> </div><div><button id= "income">Enter</button></div></form></div>'
 
   const html = `
   <div id="pageContent">
-    <div><h1>Inkomster</h1></div>
+    <div><h1>Incomes</h1></div>
     <div id="errorDiv"></div>
-    <div id="info-inkomst"></div>
-      <form id="Inkomster">
+    <div id="info-income"></div>
+      <form id="input-incomes">
         <div>
           <label>Category</label>
         </div>
         <select id="CategoryInc"></select>
         <div>
-          <label for="ISaldo">Saldo</label>
+          <label for="IAmount">Balance</label>
         </div>         
         <div>
-          <input id="ISaldo">
+          <input id="IAmount">
         </div>
         <div>
-          <label for="IKonto">Konto</label>
+          <label for="IAccount">Account</label>
         </div>
         <div>
-          <input id="IKonto">
+          <input id="IAccount">
         </div>
         <div>
-          <label for="IDesc">Desc</label>
+          <label for="IDesc">Description</label>
         </div>
         <div>
           <input id="IDesc">
@@ -45,28 +47,28 @@ export const render = (root) => {
         </div>
       </form>
         <div>
-          <h1>Utgifter</h1>
+          <h1>Expenses</h1>
         </div>
-        <div id="info-utgift"></div>
-      <form id="Utgifter">
+        <div id="info-expense"></div>
+      <form id="input-expense">
         <div>
           <label>Category</label>
         </div>
         <select id="CategoryExp"></select>            
         <div>
-          <label for="ESaldo">Saldo</label>
+          <label for="EAmount">Balance</label>
         </div>
         <div>
-          <input id="ESaldo">
+          <input id="EAmount">
         </div>
         <div>
-          <label for="EKonto">Konto</label>
+          <label for="EAccount">Account</label>
         </div>
         <div>
-          <input id="EKonto">
+          <input id="EAccount">
         </div>
         <div>
-          <label for="EDesc">Desc</label>
+          <label for="EDesc">Description</label>
         </div>
         <div>
           <input id="EDesc">
@@ -81,20 +83,19 @@ export const render = (root) => {
           <button id="ESubmit">Enter</button>
         </div>
     </form>
-  </div>
-  <div  class="spacer3"> . </div>`;
+  </div>`;
                     
 root.innerHTML = html;
 
-  categorySelectFetch("Expense", document.getElementById("CategoryExp"));
-  categorySelectFetch("Income", document.getElementById("CategoryInc"));
+  CategorySelectFetch("Expense", document.getElementById("CategoryExp"));
+  CategorySelectFetch("Income", document.getElementById("CategoryInc"));
   
-  let IncomeForm = document.getElementById("Inkomster")
-  let ExpenseForm = document.getElementById("Utgifter")
-  let IncSubmit = document.getElementById("ISubmit");
-  let ExpSubmit = document.getElementById("ESubmit");
+  let incomeForm = document.getElementById("input-incomes")
+  let expenseForm = document.getElementById("input-expense")
+  let incSubmit = document.getElementById("ISubmit");
+  let expSubmit = document.getElementById("ESubmit");
 
-  async function categorySelectFetch(choice,catDiv){
+  async function CategorySelectFetch(choice,catDiv){
     const fetchresult =  await API_Service.GetService(`${choice}/categories`);
     if(fetchresult != null){
       for(var i = 0; i < fetchresult.length; i++) {
@@ -102,48 +103,48 @@ root.innerHTML = html;
       '<option value="' + i + '">' + fetchresult[i] + '</option>';
     }
   }
-  
-  IncSubmit.onclick = function (e) {
+
+  incSubmit.onclick = function (e) {
     e.preventDefault();
-    if (isNaN(IncomeForm.ISaldo.value))
+    if (isNaN(incomeForm.IAmount.value))
     {
-      IsInputNumber("inkomst")
+      IsInputNumber("income")
     }
-    else if (IncomeForm.IKonto.value === "" || IncomeForm.IDesc.value === "" || IncomeForm.IDate === "" || IncomeForm.ISaldo.value === "") 
+    else if (incomeForm.IAccount.value === "" || incomeForm.IDesc.value === "" || incomeForm.IDate === "" || incomeForm.IAmount.value === "") 
     {
-      IsInputEmpty("inkomst")
+      IsInputEmpty("income")
     }
     else {
-    income();
+    Income();
     }
   };
-  ExpSubmit.onclick = function (e) {
+  expSubmit.onclick = function (e) {
     e.preventDefault();
-    if (isNaN(ExpenseForm.ESaldo.value))
+    if (isNaN(expenseForm.EAmount.value))
     {
-      IsInputNumber("utgift")
+      IsInputNumber("expense")
     }
-    else if (ExpenseForm.EKonto.value === "" || ExpenseForm.EDesc.value === "" || ExpenseForm.EDate.value === "" || ExpenseForm.ESaldo.value === "") 
+    else if (expenseForm.EAccount.value === "" || expenseForm.EDesc.value === "" || expenseForm.EDate.value === "" || expenseForm.EAmount.value === "") 
     {
-      IsInputEmpty("utgift")
+      IsInputEmpty("expense")
     }
     else{
-    expense();
+    Expense();
     }
   };
 
-  const income = (e) => {
-    let Inc = document.getElementById("Inkomster");
-    console.log("Du lade till en inkomst");
+  const Income = (e) => {
+    let Inc = document.getElementById("Incomes");
+    console.log("Added income");
     const incinputsDTO = {
       incomeDate: Inc.IDate.value,
       incomeDescription: Inc.IDesc.value,
-      incomeBalanceChange: Inc.ISaldo.value,
-      accountId: Inc.IKonto.value,
+      incomeBalanceChange: Inc.IAmount.value,
+      accountId: Inc.IAccount.value,
       incomeCategory: parseInt(Inc.CategoryInc.value),
     };
     
-    async function fetchInc() {
+    async function FetchInc() {
       
       const AddInc = await fetch(
         "http://localhost:7151/Income/AddIncome",
@@ -151,105 +152,118 @@ root.innerHTML = html;
           method: "post",
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + getCookie("token"),
+            Authorization: "Bearer " + GetCookie("token"),
           },
           body: JSON.stringify(incinputsDTO)
         }
       ).then((response) => {
         if (response.ok) {
-          PrintAdded("inkomst");
+          PrintAdded("income");
           return true;
         } else {
           return response.text().then(function(text) 
       {
-        defaultRender(`${text.status}`);
+        DefaultRender(`${text.status}`);
       })
         }
       })
       .catch((error) => { 
         debugger
-        defaultRender(`Error: ${error.message} `)
+        DefaultRender(`Error: ${error.message} `)
       })
     }
-    fetchInc();
+    FetchInc();
   };
 
-  const expense = (e) => {
-    console.log("Du lade till en utgift");
-    let Exp = document.getElementById("Utgifter")
+  const Expense = (e) => {
+    console.log("Added expense");
+    let Exp = document.getElementById("Expenses")
     const expinputsDTO = {
       expenseDate: Exp.EDate.value,
       expenseDescription: Exp.EDesc.value,
-      expenseBalanceChange: Exp.ESaldo.value,
-      accountId: Exp.EKonto.value,
+      expenseBalanceChange: Exp.EAmount.value,
+      accountId: Exp.EAccount.value,
       expenseCategory: parseInt(Exp.CategoryExp.value),
     };
-    async function fetchExp() {
-  const AddExp = await fetch(
+    async function FetchExp() {
+  const addExp = await fetch(
     "http://localhost:7151/Expenses/AddExpense",
     {
       method: "post",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + getCookie("token"),
+        Authorization: "Bearer " + GetCookie("token"),
       },
       body: JSON.stringify(expinputsDTO)
     }
   ).then((response) => {
     if (response.ok) {
-      PrintAdded("utgift");
+      PrintAdded("expense");
       return true;
     } 
     else {
       return response.text().then(function(text) 
       {
-        defaultRender(`${text.error}`);
+        DefaultRender(`${text.error}`);
       })
     }
   })
   .catch((error) => {  
-    defaultRender(`Error: ${error.message} `)
+    DefaultRender(`Error: ${error.message} `)
   })
 }
-fetchExp();
+FetchExp();
   };
   
 };
 
 
 function PrintAdded(string) {
+  let divexpense = document.getElementById("info-expense");
+  let divincome = document.getElementById("info-income");
   console.log(string);
   switch (string) {
-    case "utgift":
-      defaultRender("Du har lagt till en utgift")
-      break;
-    case "inkomst":
-      defaultRender("Du har lagt till en inkomst")
+    case "expense":
+      DefaultRender("Added expense");
+      
+    case "income":
+      DefaultRender("Added income");
+      
       break;
     default:
       break;
   }
 }
 function IsInputNumber(string) {
+  let divexpense = document.getElementById("info-expense");
+  let divincome = document.getElementById("info-income");
+
   switch (string) {
-    case "utgift":
-      defaultRender("Saldo måste anges med siffror")
+    case "expense":
+      DefaultRender("Balance must be indicated by numbers");
+      
       break;
-    case "inkomst":
-      defaultRender("Saldo måste anges med siffror")
+    case "income":
+      DefaultRender("Balance must be indicated by numbers");
+     
       break;
     default:
       break;
   }
 }
 
+
 function IsInputEmpty(string) {
+  let divexpense = document.getElementById("info-expense");
+  let divincome = document.getElementById("info-income");
   switch (string) {
-    case "utgift":
-      defaultRender("Samtliga fält måste fyllas i")
+    case "expense":
+      DefaultRender("All fields must be filled in");
+      
       break;
-    case "inkomst":
-      defaultRender("Samtliga fält måste fyllas i")
+    case "income":
+      DefaultRender("All fields must be filled in");
+     
       break;
     default:
       break;
