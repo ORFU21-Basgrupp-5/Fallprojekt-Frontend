@@ -1,5 +1,9 @@
 import { GetCookie } from "./cookie.js";
+<<<<<<< HEAD
 import { Render as Welcomepage } from "./welcome.js";
+=======
+import { Render as welcomepage } from "./welcome.js";
+>>>>>>> 8aadeb8ff58ad38067efb38aaca2b6528aa82d27
 import { Header } from "./header.js"
 import { DefaultRender } from "./errorHandler.js";
 
