@@ -89,7 +89,7 @@ export const Render = (root) => {
       },
       body: JSON.stringify(newUser),
     });
-    let textreponse = await response.text();
+    
     if (!response.ok) {
         DefaultRender(`${text.error}`);
     } else {
