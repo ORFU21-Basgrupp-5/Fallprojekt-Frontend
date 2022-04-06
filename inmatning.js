@@ -1,35 +1,37 @@
-import { getCookie } from "./cookie.js";
-import { defaultRender } from "./errorHandler.js";
+import { GetCookie } from "./cookie.js";
+
+import { DefaultRender } from "./errorHandler.js";
 import API_Service from "./API_Service.js";
-export const render = (root) => {
+
+export const Render = (root) => {
   root.innerHTML = "";
   // var stringUtgifter = '<div><form id="Utgifter"><div><p>Inmatning av utgifter</p></div><div id="info-utgift"></div><div><label for = "Saldo"> Utgift, saldo:</label></div> <div>   <input type = "text" id= "Saldo" name= saldo></div><div><label for="Konto">Utgift, konto:</label></div> <div><input type="text" id= "Konto" name= konto></div><div><label for="Description">Utgift, beskrivning:</label></div><div>  <input type="text" id= "Description" name= description></div><div> <label for="Date">Utgift, datum:</label></div> <div><input type="date" id= "Date" name= date></div><div><button id= "expense">Enter</button></div</form></div>'
   // var stringInkomster = '<div><form id ="Inkomster"><div><p>Inmatning av Inkomster</p></div><div id="info-inkomst"></div><div><label for = "Saldo"> Inkomst, saldo:</label></div><div><input type = "text" id= "Saldo" name= saldo></div><div><label for="Konto">Inkomst, konto:</label></div><div><input type="text" id= "Konto" name= konto></div><div><label for="Description">Inkomst, beskrivning:</label></div><div><input type="text" id= "Description" name= description></div><div><label for="Date">Utgift, datum:</label></div><div> <input type="date" id= "Date" name= date> </div><div><button id= "income">Enter</button></div></form></div>'
 
   const html = `
   <div id="pageContent">
-    <div><h1>Inkomster</h1></div>
+    <div><h1>Incomes</h1></div>
     <div id="errorDiv"></div>
     <div id="info-inkomst"></div>
-      <form id="Inkomster">
+      <form id="inmatning-inkomster">
         <div>
           <label>Category</label>
         </div>
         <select id="CategoryInc"></select>
         <div>
-          <label for="ISaldo">Saldo</label>
+          <label for="ISaldo">Balance</label>
         </div>         
         <div>
           <input id="ISaldo">
         </div>
         <div>
-          <label for="IKonto">Konto</label>
+          <label for="IKonto">Account</label>
         </div>
         <div>
           <input id="IKonto">
         </div>
         <div>
-          <label for="IDesc">Desc</label>
+          <label for="IDesc">Description</label>
         </div>
         <div>
           <input id="IDesc">
@@ -45,28 +47,28 @@ export const render = (root) => {
         </div>
       </form>
         <div>
-          <h1>Utgifter</h1>
+          <h1>Expenses</h1>
         </div>
         <div id="info-utgift"></div>
-      <form id="Utgifter">
+      <form id="inmatning-utgifter">
         <div>
           <label>Category</label>
         </div>
         <select id="CategoryExp"></select>            
         <div>
-          <label for="ESaldo">Saldo</label>
+          <label for="ESaldo">Balance</label>
         </div>
         <div>
           <input id="ESaldo">
         </div>
         <div>
-          <label for="EKonto">Konto</label>
+          <label for="EKonto">Account</label>
         </div>
         <div>
           <input id="EKonto">
         </div>
         <div>
-          <label for="EDesc">Desc</label>
+          <label for="EDesc">Description</label>
         </div>
         <div>
           <input id="EDesc">
@@ -81,20 +83,19 @@ export const render = (root) => {
           <button id="ESubmit">Enter</button>
         </div>
     </form>
-  </div>
-  <div  class="spacer3"> . </div>`;
+  </div>`;
                     
 root.innerHTML = html;
 
-  categorySelectFetch("Expense", document.getElementById("CategoryExp"));
-  categorySelectFetch("Income", document.getElementById("CategoryInc"));
+  CategorySelectFetch("Expense", document.getElementById("CategoryExp"));
+  CategorySelectFetch("Income", document.getElementById("CategoryInc"));
   
-  let IncomeForm = document.getElementById("Inkomster")
-  let ExpenseForm = document.getElementById("Utgifter")
-  let IncSubmit = document.getElementById("ISubmit");
-  let ExpSubmit = document.getElementById("ESubmit");
+  let incomeForm = document.getElementById("inmatning-inkomster")
+  let expenseForm = document.getElementById("inmatning-utgifter")
+  let incSubmit = document.getElementById("ISubmit");
+  let expSubmit = document.getElementById("ESubmit");
 
-  async function categorySelectFetch(choice,catDiv){
+  async function CategorySelectFetch(choice,catDiv){
     const fetchresult =  await API_Service.GetService(`${choice}/categories`);
     if(fetchresult != null){
       for(var i = 0; i < fetchresult.length; i++) {
@@ -102,39 +103,39 @@ root.innerHTML = html;
       '<option value="' + i + '">' + fetchresult[i] + '</option>';
     }
   }
-  
-  IncSubmit.onclick = function (e) {
+
+  incSubmit.onclick = function (e) {
     e.preventDefault();
-    if (isNaN(IncomeForm.ISaldo.value))
+    if (isNaN(incomeForm.ISaldo.value))
     {
       IsInputNumber("inkomst")
     }
-    else if (IncomeForm.IKonto.value === "" || IncomeForm.IDesc.value === "" || IncomeForm.IDate === "" || IncomeForm.ISaldo.value === "") 
+    else if (incomeForm.IKonto.value === "" || incomeForm.IDesc.value === "" || incomeForm.IDate === "" || incomeForm.ISaldo.value === "") 
     {
       IsInputEmpty("inkomst")
     }
     else {
-    income();
+    Income();
     }
   };
-  ExpSubmit.onclick = function (e) {
+  expSubmit.onclick = function (e) {
     e.preventDefault();
-    if (isNaN(ExpenseForm.ESaldo.value))
+    if (isNaN(expenseForm.ESaldo.value))
     {
       IsInputNumber("utgift")
     }
-    else if (ExpenseForm.EKonto.value === "" || ExpenseForm.EDesc.value === "" || ExpenseForm.EDate.value === "" || ExpenseForm.ESaldo.value === "") 
+    else if (expenseForm.EKonto.value === "" || expenseForm.EDesc.value === "" || expenseForm.EDate.value === "" || expenseForm.ESaldo.value === "") 
     {
       IsInputEmpty("utgift")
     }
     else{
-    expense();
+    Expense();
     }
   };
 
-  const income = (e) => {
+  const Income = (e) => {
     let Inc = document.getElementById("Inkomster");
-    console.log("Du lade till en inkomst");
+    console.log("Added income");
     const incinputsDTO = {
       incomeDate: Inc.IDate.value,
       incomeDescription: Inc.IDesc.value,
@@ -143,7 +144,7 @@ root.innerHTML = html;
       incomeCategory: parseInt(Inc.CategoryInc.value),
     };
     
-    async function fetchInc() {
+    async function FetchInc() {
       
       const AddInc = await fetch(
         "http://localhost:7151/Income/AddIncome",
@@ -151,7 +152,7 @@ root.innerHTML = html;
           method: "post",
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + getCookie("token"),
+            Authorization: "Bearer " + GetCookie("token"),
           },
           body: JSON.stringify(incinputsDTO)
         }
@@ -162,20 +163,20 @@ root.innerHTML = html;
         } else {
           return response.text().then(function(text) 
       {
-        defaultRender(`${text.status}`);
+        DefaultRender(`${text.status}`);
       })
         }
       })
       .catch((error) => { 
         debugger
-        defaultRender(`Error: ${error.message} `)
+        DefaultRender(`Error: ${error.message} `)
       })
     }
-    fetchInc();
+    FetchInc();
   };
 
-  const expense = (e) => {
-    console.log("Du lade till en utgift");
+  const Expense = (e) => {
+    console.log("Added expense");
     let Exp = document.getElementById("Utgifter")
     const expinputsDTO = {
       expenseDate: Exp.EDate.value,
@@ -184,14 +185,14 @@ root.innerHTML = html;
       accountId: Exp.EKonto.value,
       expenseCategory: parseInt(Exp.CategoryExp.value),
     };
-    async function fetchExp() {
-  const AddExp = await fetch(
+    async function FetchExp() {
+  const addExp = await fetch(
     "http://localhost:7151/Expenses/AddExpense",
     {
       method: "post",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + getCookie("token"),
+        Authorization: "Bearer " + GetCookie("token"),
       },
       body: JSON.stringify(expinputsDTO)
     }
@@ -203,53 +204,79 @@ root.innerHTML = html;
     else {
       return response.text().then(function(text) 
       {
-        defaultRender(`${text.error}`);
+        DefaultRender(`${text.error}`);
       })
     }
   })
   .catch((error) => {  
-    defaultRender(`Error: ${error.message} `)
+    DefaultRender(`Error: ${error.message} `)
   })
 }
-fetchExp();
+FetchExp();
   };
   
 };
 
 
 function PrintAdded(string) {
+  let divutgift = document.getElementById("info-utgift");
+  let divinkomst = document.getElementById("info-inkomst");
   console.log(string);
   switch (string) {
     case "utgift":
-      defaultRender("Du har lagt till en utgift")
+      DefaultRender("Added expense");
+      setTimeout(function () {
+        divutgift.removeChild(divutgift.lastChild);
+      }, 2000);
       break;
     case "inkomst":
-      defaultRender("Du har lagt till en inkomst")
+      DefaultRender("Added income");
+      setTimeout(function () {
+        divinkomst.removeChild(divinkomst.lastChild);
+      }, 2000);
       break;
     default:
       break;
   }
 }
 function IsInputNumber(string) {
+  let divutgift = document.getElementById("info-utgift");
+  let divinkomst = document.getElementById("info-inkomst");
+
   switch (string) {
     case "utgift":
-      defaultRender("Saldo måste anges med siffror")
+      DefaultRender("Balance must be indicated by numbers");
+      setTimeout(function () {
+        divutgift.removeChild(divutgift.lastChild);
+      }, 2000);
       break;
     case "inkomst":
-      defaultRender("Saldo måste anges med siffror")
+      DefaultRender("Balance must be indicated by numbers");
+      setTimeout(function () {
+        divinkomst.removeChild(divinkomst.lastChild);
+      }, 2000);
       break;
     default:
       break;
   }
 }
 
+
 function IsInputEmpty(string) {
+  let divutgift = document.getElementById("info-utgift");
+  let divinkomst = document.getElementById("info-inkomst");
   switch (string) {
     case "utgift":
-      defaultRender("Samtliga fält måste fyllas i")
+      DefaultRender("All fields must be filled in");
+      setTimeout(function () {
+        divutgift.removeChild(divutgift.lastChild);
+      }, 2000);
       break;
     case "inkomst":
-      defaultRender("Samtliga fält måste fyllas i")
+      DefaultRender("All fields must be filled in");
+      setTimeout(function () {
+        divinkomst.removeChild(divinkomst.lastChild);
+      }, 2000);
       break;
     default:
       break;

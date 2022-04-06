@@ -1,31 +1,22 @@
-import { getCookie } from "./cookie.js";
+import { GetCookie } from "./cookie.js";
 import API_Service from "./API_Service.js";
 
-export const render = (root) => {
+import { DefaultRender } from "./errorHandler.js";
+export const Render = (root) => {
   root.innerHTML = "";
 
   var stringbudget = `
-  <h1>Lista Aktuell Budget</h1>
+  <h1>List current budget</h1>
   <div id="DivWithBudget"></div>
   <div id="errorDiv"></div>`;
 
   root.innerHTML = stringbudget;
 
+
   fetchresult();
 
-  function budgetLista(data) {
-    data.forEach((item) => {
-      let diven = document.getElementById("DivWithBudget");
-      let listContainer = document.createElement("ul");
-      diven.appendChild(listContainer);
-      for (let row in item) {
-        let li = document.createElement("li");
-        li.innerText = `${row}: ${item[row]}`;
-        listContainer.appendChild(li);
-      }
-    });
-  }
-  function generate_table(budgetData) {
+  function GenerateTable(budgetData) {
+
 
     let diven = document.getElementById("DivWithBudget");
 
@@ -50,31 +41,31 @@ export const render = (root) => {
     row = tbl.insertRow();
     cell = row.insertCell();
     cell.textContent = "Categories";
-    cell.style.backgroundColor = 'white';
+    cell.style.backgroundColor = "white";
     AddData(row, -1);
 
     row = tbl.insertRow();
     cell = row.insertCell();
     cell.textContent = "Cap";
-    cell.style.backgroundColor = 'white';
+    cell.style.backgroundColor = "white";
     AddData(row, 0);
 
     row = tbl.insertRow();
     cell = row.insertCell();
     cell.textContent = "Spent";
-    cell.style.backgroundColor = 'white';
+    cell.style.backgroundColor = "white";
     AddData(row, 1);
 
     row = tbl.insertRow();
     cell = row.insertCell();
     cell.textContent = "Amount Left";
-    cell.style.backgroundColor = 'white';
+    cell.style.backgroundColor = "white";
     AddData(row, 2);
 
     row = tbl.insertRow();
     cell = row.insertCell();
     cell.textContent = "Used procent";
-    cell.style.backgroundColor = 'white';
+    cell.style.backgroundColor = "white";
     AddData(row, 3);
 
     function AddData(row, int){
@@ -97,17 +88,17 @@ export const render = (root) => {
             if(parseInt(categoriesvalues[j][int]) > 80 && parseInt(categoriesvalues[j][int]) < 100)
             {
               
-              cell.style.color = '#FA532E';
+              cell.style.color = "#FA532E";
               
             }
             else if (parseInt(categoriesvalues[j][int]) >= 100)
             {
-              cell.style.color = 'red';
+              cell.style.color = "red";
             }
           }
           
         }
-        cell.style.backgroundColor = 'white';
+        cell.style.backgroundColor = "white";
       }
     }
 
@@ -122,10 +113,9 @@ export const render = (root) => {
   async function fetchresult() {
     const fetchresult =  await API_Service.GetService("Budget");
     if(fetchresult != null){
-      generate_table(fetchresult);
+      GenerateTable(fetchresult);
     }
   }
 };
 
-//get budget information
-//filter den pågående budgeten att visa
+

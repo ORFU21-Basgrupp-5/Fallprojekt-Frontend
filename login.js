@@ -1,16 +1,16 @@
-import { Render as welcomepage } from "./welcome.js";
-import { render as RegRender } from "./reg.js";
+import { Render as Welcomepage } from "./welcome.js";
+import { Render as RegRender } from "./reg.js";
 import { Header } from "./header.js";
-import { render } from "./recoveremail.js";
-import { render as recoverpassword } from "./changepassword.js";
-import {defaultRender} from "./errorHandler.js";
+import { Render } from "./recoveremail.js";
+import { Render as recoverpassword } from "./changepassword.js";
+import {DefaultRender} from "./errorHandler.js";
 import API_Service from "./API_Service.js";
 
 let currenturl = new URL(document.URL);
 let urlparams = new URLSearchParams(currenturl.search);
 
 if (urlparams.get("token") != null) {
-  recoverpassword(pageContent, urlparams.get("token"));
+  Recoverpassword(pageContent, urlparams.get("token"));
   console.log("token param found");
 } else {
   let pageContent = document.getElementById("pageContent");
@@ -18,7 +18,7 @@ if (urlparams.get("token") != null) {
   const linkToRecover = document.getElementById("recover-btn");
   linkToRecover.onclick = function (e) {
     e.preventDefault();
-    render(pageContent);
+    Render(pageContent);
   };
 
   let reglink = document.getElementById("reglink");
@@ -28,19 +28,20 @@ if (urlparams.get("token") != null) {
     RegRender(pageContent);
   };
 
-  let form = document.getElementById("form1");
+  let form = document.getElementById("login-form");
+  let loginButton = document.getElementById("btn")
 
-  form.onsubmit = (e) => {
+  loginButton.onclick = (e) => {
     e.preventDefault();
     const userlogin = [
-      document.forms["form1"]["username"].value,
-      document.forms["form1"]["password"].value,
+      document.forms["login-form"]["username"].value,
+      document.forms["login-form"]["password"].value,
     ];
 
     const userLoginDTO = {
-      userName: document.forms["form1"]["username"].value,
+      userName: document.forms["login-form"]["username"].value,
       //password: "Admin2Lösen**"
-      password: document.forms["form1"]["password"].value,
+      password: document.forms["login-form"]["password"].value,
     };
     const upvalidate = userlogin.every((login) => login != "");
     if (upvalidate) {
@@ -48,7 +49,7 @@ if (urlparams.get("token") != null) {
     }
       // 'An error has occurred: 404'
     else {
-      defaultRender("Fyll i samtliga fält");
+      DefaultRender("Fyll i samtliga fält");
     }
   };
 
@@ -58,7 +59,7 @@ if (urlparams.get("token") != null) {
     if(fetchresult != false){
       CreateLoginToken(fetchresult);
     }else {
-      defaultRender("Användarnamn eller lösenord är fel.")
+      DefaultRender("Användarnamn eller lösenord är fel.")
     }
   }
 
@@ -82,7 +83,7 @@ if (urlparams.get("token") != null) {
     // let activeUser = userLoginDTO.userName;
     // sessionStorage.setItem("User", activeUser);
 
-    welcomepage(pageContent);
+    Welcomepage(pageContent);
     let header = new Header();
 }
   //'Authorization': 'Bearer ' + cookies.get('token')

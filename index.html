@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="login.css" rel="stylesheet" />
+    <link href="Style.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Login</title>
   </head>
@@ -17,42 +17,40 @@
     <div id="pageContent">
       <div id="login">
         <h1>Login</h1>
-        <p>Saknar du ett konto? <a href="" id="reglink">Skapa konto</a></p>
+        <p>Not registered yet? <a href="" id="reglink">Create account</a></p>
 
-        <form id="form1">
+        <form id="login-form">
           <div id="uname">
-            <label for="username">Användarnamn: </label>
+            <label for="username">Username: </label>
             <input
               type="text"
               name="username"
-              placeholder="Fyll i ditt användarnamn"
+              placeholder="Enter username"
             />
           </div>
 
           <div id="pswrd">
-            <label for="password">Lösenord: </label>
+            <label for="password">Password: </label>
             <input
               type="password"
               name="password"
-              placeholder="Fyll i ditt lösenord"
+              placeholder="Enter password"
             />
           </div>
           <div id="recover">
-            <a href="" id="recover-btn">Glömt lösenordet?</a>
+            <a href="" id="recover-btn">Forgot password?</a>
           </div>
 
           <div id="btn">
-            <input type="submit" />
+            <button type="submit">Login</button>
           </div>
           <div id="errorDiv"></div>
         </form>
       </div>
     </div>
-  </body>
-  <div  class="spacer"> . </div>
     <div class="footer-content">
       <footer class="site-footer">
-        <h3>Johannas budget-app</h3>
+        <h3>Budgetera mera</h3>
         <ul class="socials">
           <li><a href="#"><i class="fa fa-facebook"></i></a></li>
           <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -61,9 +59,9 @@
         <div class="footer-bottom">
           <p>@Copyright Grupp 5- All Right Reserved.  </p>
         </div>
-
       </footer>
     </div>
+  </body>
   <!-- <script src="main.js" type="module"></script> -->
   <script src="login.js" type="module"></script>
 </html>

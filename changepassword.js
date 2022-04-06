@@ -1,5 +1,5 @@
 import { getCookie } from "./cookie.js";
-import { defaultRender } from "./errorHandler.js";
+import { DefaultRender } from "./errorHandler.js";
 
 export const render = (root,token) => {
     root.innerHTML = "";
@@ -7,24 +7,24 @@ export const render = (root,token) => {
 
     const html = `
               <form>
-                <label>Nytt lösenord: </label>
+                <label>New password: </label>
                 <input id="newPassword">
                 <br>
-                <label>Bekräfta lösenord: </label>
+                <label>Confirm password: </label>
                 <input id="confirmPassword">
-                <button id="confirmButton">Bekräfta</button>
+                <button id="confirmButton">Confirm</button>
                 <br>
-                <a href="/">Logga in här</a>
+                <a href="/">Login here!</a>
                 <div id="errorDiv"></div>
               </form>
               `
     root.innerHTML = html;
     
-    const confirmPassword = document.getElementById('confirmPassword')
-    const newPassword = document.getElementById('newPassword')
-    let ChangeButton = document.getElementById('confirmButton')
+    const confirmPassword = document.getElementById("confirmPassword")
+    const newPassword = document.getElementById("newPassword")
+    let changeButton = document.getElementById("confirmButton")
 
-    ChangeButton.onclick = function (e) {
+    changeButton.onclick = function (e) {
         e.preventDefault()
         if (newPassword.value===confirmPassword.value) {
         const NewPasswordDTO = {
@@ -34,7 +34,7 @@ export const render = (root,token) => {
         ChangePasswordLink(NewPasswordDTO)
         }
         else{
-        defaultRender("Lösenorden matchar inte")
+        DefaultRender("Passwords do not match")
         }
     
     }
@@ -52,10 +52,10 @@ export const render = (root,token) => {
           }
         ).then((response) => {
           if (response.ok) {
-            defaultRender("Changed password successfully")
+            DefaultRender("Password changed successfully")
             return true;
           } else {
-            defaultRender("Could not change password")
+            DefaultRender("Could not change password")
             // throw new Error("NETWORK RESPONSE ERROR");
           }
         });

@@ -1,7 +1,7 @@
 import { getCookie } from "./cookie.js";
 import { Render as welcomepage } from "./welcome.js";
 import { Header } from "./header.js"
-import { defaultRender } from "./errorHandler.js";
+import { DefaultRender } from "./errorHandler.js";
 
 export const render = (root) => {
   root.innerHTML = "";
@@ -13,7 +13,7 @@ export const render = (root) => {
     </div>
     <p>Har du redan ett konto?<a href="/">Logga in här</a> </p>
     <form id="reg_form"><div id="hidden-message">
-      
+
       <div id="uname">
         <label for="username">Användarnamn</label>
         <input type="text" name="username" placeholder="Välj ett användarnamn">
@@ -40,7 +40,6 @@ export const render = (root) => {
 
   root.innerHTML = regform
   const form = document.getElementById("reg_form");
-  const pageContent = document.getElementById("pageContent");
 
   form.onsubmit = (e) => {
     e.preventDefault();
@@ -54,9 +53,21 @@ export const render = (root) => {
     const usernamevalidate = userRegister.every((x) => x != "");
     if (usernamevalidate) {
       if (userRegister[2] != userRegister[3]) {
-        defaultRender("Lösenorden matchar inte")
+        let errorPassContainer = document.getElementById("hidden-message");
+        let newText = document
+          .createElement("p")
+          .appendChild(document.createTextNode("Lösenorden matchar inte!"));
+        errorPassContainer.appendChild(newText);
       } else if (CheckPassword(userRegister[2]) === false) {
-        defaultRender("Ditt lösenord måste ha minst 12 tecken,en gemen, en storbokstav, en siffra och ett special tecken")
+        let errorPassContainer = document.getElementById("hidden-message");
+        let newText = document
+          .createElement("p")
+          .appendChild(
+            document.createTextNode(
+              "Ditt lösenord måste ha minst 12 tecken,en gemen, en storbokstav, en siffra och ett special tecken"
+            )
+          );
+        errorPassContainer.appendChild(newText);
       } else {
         const name = userRegister[0];
         const email = userRegister[1];
@@ -71,9 +82,14 @@ export const render = (root) => {
         FetchReg(userDTO);
       }
     } else {
-      defaultRender("Du måste fylla i samtliga fält")
+      let errorPassContainer = document.getElementById("hidden-message");
+      let newText = document
+        .createElement("p")
+        .appendChild(document.createTextNode("Du måste fylla i alla fälten!"));
+      errorPassContainer.appendChild(newText);
     }
   };
+
 
   async function FetchReg(newUser) {
     let response = await fetch("http://localhost:7151/User/register", {
@@ -84,9 +100,9 @@ export const render = (root) => {
       },
       body: JSON.stringify(newUser),
     });
-    let textresponse = await response.text();
+    let textreponse = await response.text();
     if (!response.ok) {
-      defaultRender(`${textresponse}`)
+        DefaultRender(`${text.error}`);
     } else {
       var activeUser = newUser.userName;
       sessionStorage.setItem("User", activeUser);

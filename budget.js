@@ -1,8 +1,8 @@
-import { getCookie } from "./cookie.js";
-import { defaultRender } from "./errorHandler.js";
+import { GetCookie } from "./cookie.js";
 import API_Service from "./API_Service.js";
+import { DefaultRender } from "./errorHandler.js";
 
-export const render = (root) => {
+export const Render = (root) => {
   root.innerHTML = "";
 
   const budgetForm = `
@@ -57,27 +57,30 @@ export const render = (root) => {
           5: document.forms["form1"]["Other"].value,
         },
       };
-      var categoriesvalues = Object.values(newBudgetDTO.categoriesAndAmount);
-      var categoriesValuesInt = categoriesvalues.map(Number);
-      var testBelop = categoriesValuesInt.reduce(function (a, b) {
+      var categoriesValues = Object.values(newBudgetDTO.categoriesAndAmount);
+      var categoriesValuesInt = categoriesValues.map(Number);
+      var testBelopp = categoriesValuesInt.reduce(function (a, b) {
         return a + b;
       }, 0)
-      console.log(testBelop)
-      if (parseInt(newBudgetDTO.totalSum) === testBelop) {
+
+      console.log(testBelopp)
+      if (parseInt(newBudgetDTO.totalSum) === testBelopp) {
         if(fetchresult(newBudgetDTO)){
           document.getElementById("form1").reset();
-          defaultRender("Din budget är sparad.");
+          DefaultRender("Din budget är sparad.");
         }else {
-          defaultRender("Din budget är INTE sparad.")
+          DefaultRender("Din budget är INTE sparad.")
         };
+
       }
       else
       {
-        defaultRender("Ditt budget belopp matchar inte total belopet i kategorierna.")
+        DefaultRender("Your budget amount does not match the total amount in the categories")
       }
       
     }
   };
+
 
   async function fetchresult(newBudget) {
     const fetchresult =  await API_Service.PostService("Budget", newBudget);
@@ -90,7 +93,7 @@ export const render = (root) => {
   //     method: "POST",
   //     headers: {
   //       "Content-Type": "application/json",
-  //       Authorization: "Bearer " + getCookie("token"),
+  //       Authorization: "Bearer " + GetCookie("token"),
   //     },
   //     body: JSON.stringify(newBudget),
   //   };
@@ -109,4 +112,5 @@ export const render = (root) => {
   //     console.log(e);
   //   }
   // };
+
 };

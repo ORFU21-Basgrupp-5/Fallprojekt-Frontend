@@ -1,5 +1,4 @@
 import { getCookie } from "./cookie.js";
-import { defaultRender } from "./errorHandler.js";
 export const render = (root) => {
   root.innerHTML = "";
 
@@ -14,14 +13,15 @@ const emailform = `
   </form>`
 root.innerHTML = emailform
 
-let SendButton = document.getElementById("recoverbutton")
-let Email = document.getElementById("Email")
+let sendButton = document.getElementById("recoverbutton")
+let sentOrNotDiv = document.getElementById("SentOrNotDiv")
+let email = document.getElementById("Email")
 
 
-  SendButton.onclick = function (e) {
+  sendButton.onclick = function (e) {
     e.preventDefault()
     const EmailDTO = {
-      Email: Email.value
+      Email: email.value
     };
     SendRecoveryEmail(EmailDTO);
   }
@@ -39,24 +39,40 @@ let Email = document.getElementById("Email")
       }
     ).then((response) => {
       if (response.ok) {
-        RecoveryMessage();
+        RecoveryMessege("Email sent.");
         return true;
       } else {
-        return response.text().then(function (text) {
-          console.log(text)
-          defaultRender(
-            `${text}`
-          );
-        });
+        return response.text().then(function(text) 
+      {
+        renderError(`${response.status} ${response.statusText} ${text}`);
+      })
       }
     })
     .catch((error) => {
-      defaultRender(`Error: ${error.message} `);
+      renderError(`Error: ${error.message} `);
     });
   }
 
-  function RecoveryMessage(string){
-   defaultRender("Email sent.")
+  function RecoveryMessege(string){
+    sentOrNotDiv.appendChild(
+        document
+          .createElement("p")
+          .appendChild(document.createTextNode(string))
+      );
+      setTimeout(function () {
+        sentOrNotDiv.removeChild(sentOrNotDiv.lastChild);
+      }, 2000);
+  }
+
+  function renderError(string){
+    sentOrNotDiv.appendChild(
+        document
+          .createElement("p")
+          .appendChild(document.createTextNode(string))
+      );
+      setTimeout(function () {
+        sentOrNotDiv.removeChild(sentOrNotDiv.lastChild);
+      }, 2000);
   }
 }
 
