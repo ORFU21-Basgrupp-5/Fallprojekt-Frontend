@@ -4,6 +4,7 @@ import { render as inmatningRender } from "./inmatning.js";
 import { render as budgetRender } from "./budget.js";
 import { render as budgetGetRender } from "./getBudget.js";
 import { render as passwordrender } from "./changepassword.js";
+import { deleteCookie } from "./cookie.js";
 
 
 const pageContent = document.getElementById("pageContent");
@@ -15,6 +16,7 @@ export class Header {
     const button3 = document.getElementById("button-inmatning");
     const button4 = document.getElementById("button-createbudget");
     const button5 = document.getElementById("button-listabudget");
+    const button6 = document.getElementById("LogOut");
     //const button4 = document.getElementById("emailknapp"); 
 
 
@@ -34,6 +36,13 @@ export class Header {
     button5.addEventListener("click", () => {
       budgetGetRender(pageContent);
     });
+    button6.addEventListener("click", () => {
+      deleteCookie("token");
+      window.location.href = "/";
+    });
+    
+
+    
 
     // button4.addEventListener("click", () => {
     //   passwordrender(pageContent);

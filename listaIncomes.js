@@ -1,5 +1,6 @@
 import { getCookie } from "./cookie.js";
 import {defaultRender} from "./errorHandler.js";
+import API_Service from "./API_Service.js";
 export const render = (root) => {
   root.innerHTML = "";
   const html = `
@@ -8,38 +9,16 @@ export const render = (root) => {
       <div id="errorDiv"></div>
     </div>`;
   root.innerHTML = html;
-
-  GetData();
+  
+  fetchresult();
 };
 
-
-function GetData() {
-  fetch("http://localhost:7151/ListIncome", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + getCookie("token"),
-    },
-  })
-  .then((response) => {
-    if (response.ok) {
-      return response.json();
-    } else {
-      return response.text().then(function(text) 
-    {
-      defaultRender(`${text}`);
-    })
-    }
-  })
-  .then((data) => {
-    console.log(data);
+async function fetchresult() {
+  const data = await API_Service.GetService("Income");
+  if(data != null){
     upgiftsLista(data);
-  })
-  .catch((error) => {
-    defaultRender(`Error: ${error.message} `)
-  })
+  }
 }
-
 
 function upgiftsLista(data) {
   data.forEach((item) => {

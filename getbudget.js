@@ -1,4 +1,6 @@
 import { getCookie } from "./cookie.js";
+import API_Service from "./API_Service.js";
+
 export const render = (root) => {
   root.innerHTML = "";
 
@@ -9,7 +11,7 @@ export const render = (root) => {
 
   root.innerHTML = stringbudget;
 
-
+  fetchresult();
 
   function budgetLista(data) {
     data.forEach((item) => {
@@ -113,38 +115,16 @@ export const render = (root) => {
     tbl.appendChild(tblBody);
     diven.appendChild(tbl);
     tbl.setAttribute("border","2");
+
+
   }
 
-  const getBudget = async () => {
-    const settings = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + getCookie("token"),
-      },
-    };
-    try {
-      const response = await fetch(
-        "http://localhost:7151/api/Budget/RetrieveBudget",
-        settings
-      );
-      if (response.ok) {
-        console.log("A ok!");
-        const result = await response.json();
-        console.log(result);
-        generate_table(result);
-        return result;
-      } else {
-        const message = "Error with Status Code: " + response.status;
-        throw new Error(message);
-      }
-    } catch (e) {
-      console.log(e);
+  async function fetchresult() {
+    const fetchresult =  await API_Service.GetService("Budget");
+    if(fetchresult != null){
+      generate_table(fetchresult);
     }
-  };
-  var budgetData = getBudget();
-
-
+  }
 };
 
 //get budget information

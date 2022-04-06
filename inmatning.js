@@ -1,5 +1,6 @@
 import { getCookie } from "./cookie.js";
 import { defaultRender } from "./errorHandler.js";
+import API_Service from "./API_Service.js";
 export const render = (root) => {
   root.innerHTML = "";
   // var stringUtgifter = '<div><form id="Utgifter"><div><p>Inmatning av utgifter</p></div><div id="info-utgift"></div><div><label for = "Saldo"> Utgift, saldo:</label></div> <div>   <input type = "text" id= "Saldo" name= saldo></div><div><label for="Konto">Utgift, konto:</label></div> <div><input type="text" id= "Konto" name= konto></div><div><label for="Description">Utgift, beskrivning:</label></div><div>  <input type="text" id= "Description" name= description></div><div> <label for="Date">Utgift, datum:</label></div> <div><input type="date" id= "Date" name= date></div><div><button id= "expense">Enter</button></div</form></div>'
@@ -84,48 +85,23 @@ export const render = (root) => {
                     
 root.innerHTML = html;
 
-
-  let categorySelect = document.getElementById("CategoryExp")
-  let categorySelect2 = document.getElementById("CategoryInc")
-  
-  categorySelectFetch("Expenses",categorySelect);
-  categorySelectFetch("Income",categorySelect2);
-  //categorySelect("Expenses",categorySelect1)
+  categorySelectFetch("Expense", document.getElementById("CategoryExp"));
+  categorySelectFetch("Income", document.getElementById("CategoryInc"));
   
   let IncomeForm = document.getElementById("inmatning-inkomster")
   let ExpenseForm = document.getElementById("inmatning-utgifter")
   let IncSubmit = document.getElementById("ISubmit");
   let ExpSubmit = document.getElementById("ESubmit");
 
-
-
-  function categorySelectFetch(choice,catDiv){
-    fetch("http://localhost:7151/" + choice +"/categories", 
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        // Add authorization if custom categorys are added.
-      },
-
-    })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-        
-      } else {
-        throw new Error("No categorySelect respons ERROR");
-      }
-    })
-    .then((data) => {
-      for(var i = 0; i < data.length; i++) {
+  async function categorySelectFetch(choice,catDiv){
+    const fetchresult =  await API_Service.GetService(`${choice}/categories`);
+    if(fetchresult != null){
+      for(var i = 0; i < fetchresult.length; i++) {
         catDiv.innerHTML = catDiv.innerHTML + 
-        '<option value="' + i + '">' + data[i] + '</option>';
-      }
-      
-    })
+      '<option value="' + i + '">' + fetchresult[i] + '</option>';
+    }
   }
-
+  
   IncSubmit.onclick = function (e) {
     e.preventDefault();
     if (isNaN(IncomeForm.ISaldo.value))
@@ -328,4 +304,4 @@ function IsInputEmpty(string) {
       break;
   }
 }
-
+}

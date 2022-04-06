@@ -4,6 +4,7 @@ import { Header } from "./header.js";
 import { render } from "./recoveremail.js";
 import { render as recoverpassword } from "./changepassword.js";
 import {defaultRender} from "./errorHandler.js";
+import API_Service from "./API_Service.js";
 
 let currenturl = new URL(document.URL);
 let urlparams = new URLSearchParams(currenturl.search);
@@ -43,73 +44,47 @@ if (urlparams.get("token") != null) {
     };
     const upvalidate = userlogin.every((login) => login != "");
     if (upvalidate) {
-      let isLoggedIn = false;
-      async function fetchLogin() {
-        const response = await fetch("http://localhost:7151/User/login", {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(userLoginDTO),
-        })
-          .then((response) => {
-            if (response.ok) {
-              isLoggedIn = true;
-              return response.json();
-            } else {
-              return response.text().then(function (text) {
-                console.log(text)
-                defaultRender(
-                  `${text}`
-                );
-              });
-            }
-          })
-          .then((data) => {
-            //console.log(data);
-            let token = data.token;
-            let user = data.user;
-            let expires = new Date(Date.now() + 86400 * 1000).toUTCString();
-
-            const cookie = (document.cookie =
-              "token=" +
-              token +
-              ";" +
-              "user=" +
-              user +
-              ";" +
-              "expires=" +
-              expires +
-              86400 +
-              ";path=/;");
-
-            let activeUser = userLoginDTO.userName;
-            sessionStorage.setItem("User", activeUser);
-
-            welcomepage(pageContent);
-            let header = new Header();
-          })
-          return response.json().then ((body)=>{
-            const BodyError = new Error(body.error)
-          })
-          .catch((error) => {
-            console.log(`Error: ${error.message} `);
-          })
-          .catch((BodyError) => {
-            console.log(`Error: ${BodyError} `);
-          });
-      }
-
-      fetchLogin().catch((error) => {
-        console.log(error.message);
-      });
-
+      fetchLogin(userLoginDTO);
+    }
       // 'An error has occurred: 404'
-    } else {
+    else {
       defaultRender("Fyll i samtliga fält");
     }
   };
 
+  async function fetchLogin(userBody) {
+    const fetchresult =  await API_Service.PostService("User/login", userBody);
+    console.log(fetchresult);
+    if(fetchresult != false){
+      CreateLoginToken(fetchresult);
+    }else {
+      defaultRender("Användarnamn eller lösenord är fel.")
+    }
+  }
+
+  function CreateLoginToken(data){
+    let token = data.token;
+    let user = data.user;
+    let expires = new Date(Date.now() + 86400 * 1000).toUTCString();
+
+    const cookie = (document.cookie =
+      "token=" +
+      token +
+      ";" +
+      "user=" +
+      user +
+      ";" +
+      "expires=" +
+      expires +
+      86400 +
+      ";path=/;");
+
+    // let activeUser = userLoginDTO.userName;
+    // sessionStorage.setItem("User", activeUser);
+
+    welcomepage(pageContent);
+    let header = new Header();
+}
   //'Authorization': 'Bearer ' + cookies.get('token')
 
 }

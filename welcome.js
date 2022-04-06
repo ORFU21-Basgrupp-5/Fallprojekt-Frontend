@@ -11,6 +11,7 @@ const header = `
       <button id="button-listaincomes">ListaIncomes</button>
       <button id="button-createbudget">Skapa Budget</button>
       <button id="button-listabudget">Visa Budget</button>
+      <button id="LogOut">Logga ut </button>
     </div>`
 
 {/* <button id="emailknapp">Email</button>  */} 
