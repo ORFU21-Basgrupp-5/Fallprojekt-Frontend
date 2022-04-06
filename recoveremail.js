@@ -5,13 +5,14 @@ export const render = (root) => {
 const emailform = ` 
   <form>
     <h1>Recover</h1>
+    <div class="input">
     <label for="Email">Email </label>
     <br>
-    <input id= "Email" ><br>
+    <input id= "Email" placeholder="Fyll i din email"><br>
+    </div>
     <button id= "recoverbutton">Bekräfta</button>
     <div id="SentOrNotDiv"></div>
     <a href="/">Logga in här</a>
-    <div id="errorDiv"></div>
   </form>`
 root.innerHTML = emailform
 
