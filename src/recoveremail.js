@@ -54,8 +54,6 @@ let email = document.getElementById("Email")
     });
   }
 
-  
-
 }
 
 
