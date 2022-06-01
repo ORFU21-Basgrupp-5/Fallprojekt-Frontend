@@ -1,18 +1,14 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
-import { DefaultRender } from './errorHandler.js';
-import { GetCookie } from './cookie.js';
-import API_Service from './API_Service.js';
-
+import { useState} from 'react';
+import { DefaultRender } from '../errorHandler.js';
+import API_Service from '../../API/API_Service.js';
 //first we create a "view" that is the html code we want to display
-const login = () => {
+const Login = () => {
 	const [inputFields, setInputFields] = useState({
 		userName: '',
 		password: '',
 	});
-	let currenturl = new URL(document.URL);
-	let urlparams = new URLSearchParams(currenturl.search);
+	//let currenturl = new URL(document.URL);
+	//let urlparams = new URLSearchParams(currenturl.search);
 	const handleFormChange = (e) => {
 		setInputFields((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 	};
@@ -21,59 +17,24 @@ const login = () => {
 	//   Recoverpassword(pageContent, urlparams.get("token"));
 	//   console.log("token param found");
 	// } else {
-	let pageContent = document.getElementById('pageContent');
 
-	const linkToRecover = document.getElementById('recover-btn');
-	linkToRecover.onclick = function (e) {
-		e.preventDefault();
-		Render(pageContent);
-	};
-
-	let reglink = document.getElementById('reglink');
-	//console.log("Password to TestKonto1: Admin2Lösen**")
-	reglink.onclick = function (e) {
-		e.preventDefault();
-		RegRender(pageContent);
-	};
-
-	let form = document.getElementById('login-form');
-	let loginButton = document.getElementById('btn');
-
-	loginButton.onclick = (e) => {
-		e.preventDefault();
-		const userlogin = [document.forms['login-form']['username'].value, document.forms['login-form']['password'].value];
-
-		const userLoginDTO = {
-			userName: document.forms['login-form']['username'].value,
-			//password: "Admin2Lösen**"
-			password: document.forms['login-form']['password'].value,
-		};
-		const upvalidate = userlogin.every((login) => login != '');
-		if (upvalidate) {
-			fetchLogin(userLoginDTO);
-		}
-		// 'An error has occurred: 404'
-		else {
-			DefaultRender('All fields must be filled.');
-		}
-	};
-
+  let handleSubmit = (event) => {
+    event.preventDefault();
+  };
 	const tryLogin = async (e) => {
 		e.preventDefault();
 		const post = inputFields;
 		try {
 			const fetchresult = await API_Service.PostService('User/login', post);
 
-			if (fetchresult != false) {
+			if (fetchresult !== false) {
 				CreateLoginToken(fetchresult);
 			}
 		} catch (e) {
 			DefaultRender('Username or password is incorrect.');
 		}
 
-		let handleSubmit = (event) => {
-			event.preventDefault();
-		};
+		
 
 		function CreateLoginToken(data) {
 			let token = data.token;
@@ -85,14 +46,14 @@ const login = () => {
 			// let activeUser = userLoginDTO.userName;
 			// sessionStorage.setItem("User", activeUser);
 
-			Welcomepage(pageContent);
-			let header = new Header();
+			//Welcomepage(pageContent);
+			//let header = new Header();
 		}
 		//'Authorization': 'Bearer ' + cookies.get('token')
 	};
 
 	return (
-		<div class='container'>
+		<div className='container'>
 			<div id='login'>
 				<h1>Login</h1>
 				<p>
@@ -102,13 +63,13 @@ const login = () => {
 					</a>
 				</p>
 
-				<form id='form1' class='inputForm' onSubmit={handleSubmit}>
+				<form id='form1' className='inputForm' onSubmit={handleSubmit}>
 					<div id='uname'>
-						<label for='username'>Användarnamn: </label>
+						<label htmlFor='username'>Användarnamn: </label>
 
 						<input
 							type='text'
-							name='username'
+							name='userName'
 							placeholder='Fyll i ditt användarnamn'
 							value={inputFields.userName}
 							onChange={(event) => handleFormChange(event)}
@@ -116,7 +77,7 @@ const login = () => {
 					</div>
 
 					<div id='pswrd'>
-						<label for='password'>Lösenord: </label>
+						<label htmlFor='password'>Lösenord: </label>
 
 						<input
 							type='password'
@@ -128,17 +89,18 @@ const login = () => {
 					</div>
 
 					<div id='recover'>
-						<a href='' id='recover-btn'>
+						<button  id='recover-btn'>
 							Glömt lösenordet?
-						</a>
-					</div>
-
-					<div id='btn'>
+						</button>
+            
 						<button className='login-btn' onClick={tryLogin}>
 							login
 						</button>
+					
 					</div>
-					<div id='errorDiv' class='errorMessage'></div>
+
+					
+					<div id='errorDiv' className='errorMessage'></div>
 				</form>
 			</div>
 		</div>
@@ -146,4 +108,4 @@ const login = () => {
 };
 
 //we export this page so that app.js can call on it when the route is correct aka /#/login
-export default login;
+export default Login;
