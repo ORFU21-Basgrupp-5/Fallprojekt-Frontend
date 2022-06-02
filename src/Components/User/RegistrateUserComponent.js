@@ -1,5 +1,5 @@
 import { GetCookie } from "../cookie.js";
-import { Render as Welcomepage } from "./welcome.js";
+import { Render as Welcomepage } from "./WelcomeComponent.js";
 import { Header } from "../header.js"
 import { DefaultRender } from "../errorHandler.js";
 

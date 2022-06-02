@@ -1,8 +1,8 @@
-import { Render as Welcomepage } from "./welcome.js";
-import { Render as RegRender } from "./reg.js";
+import { Render as Welcomepage } from "./WelcomeComponent.js";
+import { Render as RegRender } from "./RegistrateUserComponent.js";
 import { Header } from "./header.js";
-import { Render } from "./recoveremail.js";
-import { Render as Recoverpassword } from "./changepassword.js";
+import { Render } from "./RecoveryEmailComponent.js";
+import { Render as Recoverpassword } from "./ChangePasswordComponent.js";
 import {DefaultRender} from "./errorHandler.js";
 import API_Service from "./API_Service.js";
 

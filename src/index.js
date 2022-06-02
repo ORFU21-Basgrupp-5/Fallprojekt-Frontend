@@ -3,24 +3,27 @@ import ReactDOM from 'react-dom/client';
 import './CSS/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LoginComponent from './Components/User/LoginComponent';
+import ChangePasswordComponent from './Components/User/ChangePasswordComponent';
+import RecoveryEmailComponent from './Components/User/RecoveryEmailComponent';
+import GetBudgetComponent from './Components/Budget/GetBudgetComponent';
+import BudgetComponent from './Components/Budget/BudgetComponent';
 
-const root = ReactDOM.createRoot(document.getElementById('pageContent'));
+// const root = ReactDOM.createRoot(document.getElementById('pageContent'));
 root.render(
   <React.StrictMode>
-        {/* <Routes>
+        <Routes>
             <Route path='/' element={<App />}>
-                <Route index element={<Home />} />
-
-                <Route exact path='articles' element={<Articles />} />
-                <Route exact path='articles/new' element={<NewArticle />} />
-                <Route path='/articles/:id' element={<EditArticle />} />
-
-                <Route exact path='/journalists' element={<Journalists />} />
-                <Route exact path='journalists/new' element={<NewJournalist />} />
-                <Route path='/journalists/:id' element={<EditJournalist />} />
-                <Route exact path='/images' element={<Images />} />
+              <Route path="login" element={<LoginComponent />}/>
+              <Route path="changePassword" element={<ChangePasswordComponent />}/>
+              {/* <Route path="AddBalanceChange" element={<AddBalanceChangeComponent />}/> */}
+              <Route path="recoveryEmail" element={<RecoveryEmailComponent />}/>
+              <Route path="getBudget" element={<GetBudgetComponent />}/>     
+              <Route path="listBudget" element={<listBudgetComponent />}/>     
+              <Route path="budget" element={<BudgetComponent />}/>        
             </Route>
-        </Routes> */}
+        </Routes>
   </React.StrictMode>
 );
 
