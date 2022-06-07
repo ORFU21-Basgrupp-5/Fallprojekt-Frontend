@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 
 const [message, setMessage] = useState("");
-const errorDiv = document.getElementById("errorDiv");
+
 export const DefaultRender = function (msg) {
+  const errorDiv = document.getElementById("errorDiv");
   message = setMessage(msg);
 
-  return (
-    <div id={errorDiv}>
-      <div>
-        <p>{msg}</p>
-      </div>
-    </div>
-  )
+  <div id="child">
+    <p>Hello</p>
+  </div>
+
+  errorDiv.appendChild("child");
+
+  setTimeout(function () {
+    errorDiv.removeChild(errorDiv.lastChild);
+  }, 4000);
 }
-setTimeout(function () {
-  errorDiv.removeChild(errorDiv.lastChild);
-}, 4000);
