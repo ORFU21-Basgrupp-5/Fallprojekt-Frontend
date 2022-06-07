@@ -1,11 +1,18 @@
-export const DefaultRender = function(msg) {
-    const errorDiv = document.getElementById("errorDiv")
-    const childErrorDiv = document.createElement("div")
-    childErrorDiv.insertAdjacentText("beforeend", msg)
-    errorDiv.appendChild (childErrorDiv)
-    setTimeout(function () {
-      errorDiv.removeChild(errorDiv.lastChild);
-    }, 4000)
-  }
+import React, { useState } from 'react';
 
- 
+const [message, setMessage] = useState("");
+
+export const DefaultRender = function (msg) {
+  message = setMessage(msg);
+  return (
+    <div id="errorDiv">
+      <div>
+        <p>{msg}</p>
+      </div>
+    </div>
+  )
+}
+setTimeout(function () {
+  errorDiv;
+}, 4000);
+
