@@ -16,6 +16,7 @@ ReactDOM.render(
         <Routes>
             <Route path='/' element={<App />}/>
               <Route path="/login" element={<Login />}/>
+              {/* <Route path="/register" element={<Register/>}/> */}
               {/* <Route path="changePassword" element={<ChangePasswordComponent />}/> */}
               {/* <Route path="AddBalanceChange" element={<AddBalanceChangeComponent />}/> */}
               {/* <Route path="recoveryEmail" element={<RecoveryEmailComponent />}/> */}

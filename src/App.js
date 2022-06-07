@@ -1,22 +1,24 @@
-import { Fragment  } from 'react';
+import { Fragment, Image  } from 'react';
 import { Outlet,NavLink } from 'react-router-dom';
 import './CSS/App.css';
+import Logo from './Images/LoggaBudgeteraMera.png';
 
 function App() {
   return (
     <Fragment>
     <div className="App">
-      <header className="App-header">
-        
-        <p>
-         hey hey start
-        </p>
-        <a>
-        <NavLink to="/login">
+        <div className='header'>
+        <NavLink className='links' to="/login">
           Login
         </NavLink>
-        </a>
-      </header>
+        <NavLink className='links' to="/register">
+          Register
+        </NavLink>
+        </div>
+        <div className='logo'>
+         <img src={Logo}>
+         </img>
+        </div>
       <Outlet/>
     </div>
     </Fragment>
