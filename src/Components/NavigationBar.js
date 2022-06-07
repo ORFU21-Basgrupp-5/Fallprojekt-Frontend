@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const NavigationBar = (logedin) => {
 	//if user is loged in we will show menu with links to the difrent pages, other wise we just show login and registera for now
@@ -10,39 +10,39 @@ const NavigationBar = (logedin) => {
 					<img id='mainLogo' src='./images/Asset_1.svg' alt='My Happy SVG' />
 					<ul id='navbar'>
 						<li>
-							<Link to='/inmatning' className='button'>
+							<NavLink to='/inmatning' className='button'>
 								Inmatning
-							</Link>
+							</NavLink>
 						</li>
 						<li>
-                        <Link to='/listaexpenses' className='button'>
+                        <NavLink to='/listaexpenses' className='button'>
                         ListaExpenses
 
-							</Link>
+							</NavLink>
 					
 						</li>
 						<li>
-                        <Link to='/listaincomes' className='button'>
+                        <NavLink to='/listaincomes' className='button'>
                         ListaIncomes
 
-							</Link>
+							</NavLink>
 						
 						</li>
 						<li>
-                        <Link to='/budget' className='button'>
+                        <NavLink to='/budget' className='button'>
                         Skapa Budget
 
-							</Link>
+							</NavLink>
 						
 						</li>
 						<li>
-                        <Link to='/getbudget' className='button'>
+                        <NavLink to='/getbudget' className='button'>
 								Visa Budget
-							</Link>
+							</NavLink>
 						</li>
-						<li><Link to='/logout' className='button'>
+						<li><NavLink to='/logout' className='button'>
 								Loga ut
-							</Link>
+							</NavLink>
 							
 						</li>
 					</ul>
@@ -56,14 +56,14 @@ const NavigationBar = (logedin) => {
 					<img id='mainLogo' src='./images/Asset_1.svg' alt='My Happy SVG' />
 					<ul id='navbar'>
 						<li>
-							<Link to='/login' className='button'>
+							<NavLink to='/login' className='button'>
 								Login
-							</Link>
+							</NavLink>
 						</li>
 						<li>
-							<Link to='/register' className='button'>
+							<NavLink to='/register' className='button'>
 								Registera dig
-							</Link>
+							</NavLink>
 						</li>
 					</ul>
 				</div>
