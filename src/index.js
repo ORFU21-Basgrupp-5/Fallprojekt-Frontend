@@ -4,13 +4,13 @@ import './CSS/index.css';
 import App from './App.js';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Login from './Components/User/LoginComponent';
-import ChangePasswordComponent from './Components/User/ChangePasswordComponent';
-import RecoveryEmailComponent from './Components/User/RecoveryEmailComponent';
-import GetBudgetComponent from './Components/Budget/GetBudgetComponent';
-import BudgetComponent from './Components/Budget/BudgetComponent';
+import Login from './Components/User/LoginComponent.js';
+import ChangePasswordComponent from './Components/User/ChangePasswordComponent.js';
+import RecoveryEmailComponent from './Components/User/RecoveryEmailComponent.js';
+import GetBudgetComponent from './Components/Budget/GetBudgetComponent.js';
+import BudgetComponent from './Components/Budget/BudgetComponent.js';
 
-const rootElement = document.getElementById('root');
+const rootElement = document.getElementById('pageContent');
 ReactDOM.render(
   <BrowserRouter>
         <Routes>
