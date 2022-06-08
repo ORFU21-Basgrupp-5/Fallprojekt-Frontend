@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react'
 import { GetCookie } from "../Services/cookie";
 import { DefaultRender } from "../Services/errorHandler.js";
+import API_Service from '../../API/API_Service';
 
 const Register = () => {
     

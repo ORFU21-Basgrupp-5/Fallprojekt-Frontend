@@ -5,28 +5,32 @@ import App from './App.js';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './Components/User/LoginComponent.js';
-import Register from './Components/User/RegisterUserComponent.js'
+import Register from './Components/User/RegisterUserComponent.js';
 import ChangePassword from './Components/User/ChangePasswordComponent.js';
 import RecoverEmail from './Components/User/RecoveryEmailComponent.js';
 import GetBudget from './Components/Budget/GetBudgetComponent';
+import Home from './Components/home.js';
 import Budget from './Components/Budget/BudgetComponent';
 import AddBalanceChange from './Components/Budget/AddBalanceChangeComponent';
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path='/' element={<App />} />
-      <Route path='/login' element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/recover" element={<RecoverEmail />} />
-      <Route path="/addbalancechange" element={<AddBalanceChange />}/>
-      <Route path="/getbudget" element={<GetBudget />}/>     
-      <Route path="/addbudget" element={<Budget />}/>    
-      {/* <Route path="/changePassword" element={<ChangePassword />} /> */}
-    </Routes>
-  </BrowserRouter>,
-  rootElement
+	<BrowserRouter>
+		<Routes>
+			<Route path='/' element={<App />}>
+				<Route index element={<Home />} />
+				<Route exact path='/login' element={<Login />} />
+				<Route exact path='/register' element={<Register />} />
+				<Route exact path='/recover' element={<RecoverEmail />} />
+				<Route exact path='/addbalancechange' element={<AddBalanceChange />} />
+				<Route exact path='/GetBudget' element={<GetBudget />} />
+				<Route exact path='/addbudget' element={<Budget />} />
+        <Route path="/changePassword" element={<ChangePassword />} />
+			</Route>
+
+		</Routes>
+	</BrowserRouter>,
+	rootElement
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -9,16 +9,17 @@ const Budget = () => {
     date:'',
     month: '',
     year: '',
-    categoriesAndAmount: {
+  })
+  const [catData,setCatData] = useState({
+    
       Food:0,
       Car:0,
       Subscriptions:0,
       Clothes:0,
       Treat:0,
       Other:0,
-    }
-  })
-  const [posted,setPosted] = (false);
+     })
+  const [posted,setPosted] = useState(false);
   const [validated,setValidated] = useState(false);
   const [disableSubmit,setdisableSubmit] = useState(true);
   const [sumLeft,setSumLeft] = useState(0);
@@ -29,13 +30,18 @@ const Budget = () => {
     setSumLeft(e.target.value);
     calculateTotal();
 	};
+  const handleCatChange = (e) => {
+    setCatData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    calculateTotal();
+  }
   const handleSubmit = (event) => {
     event.preventDefault();
   };
   const calculateTotal = () => {
     let tempSums = data;
     let tempSumLeft = sumLeft;
-    var categoriesvalues = Object.values(tempSums.categoriesAndAmount);
+    let tempCatSumn = catData;
+    var categoriesvalues = Object.values(tempCatSumn);
       var categoriesValuesInt = categoriesvalues.map(Number);
       var testBelop = categoriesValuesInt.reduce(function (a, b) {
         return a + b;
@@ -104,27 +110,27 @@ const Budget = () => {
           </div>
           <div className="inputRow">
           <label for="Food">Food:</label>
-          <input type="number" name="Food" value={data.categoriesAndAmount.Food} onChange={(event) => handleFormChange(event)} />
+          <input type="number" name="Food" value={catData.Food} onChange={(event) => handleCatChange(event)} />
           </div>
           <div className="inputRow">
           <label for="Car">Car:</label>
-          <input type="number" name="Car" value={data.categoriesAndAmount.Car} onChange={(event) => handleFormChange(event)} />
+          <input type="number" name="Car" value={catData.Car} onChange={(event) => handleCatChange(event)} />
           </div>
           <div className="inputRow">
           <label for="Subscriptions">Subscriptions:</label>
-          <input type="number" name="Subscriptions"value={data.categoriesAndAmount.Subscriptions} onChange={(event) => handleFormChange(event)} />
+          <input type="number" name="Subscriptions"value={catData.Subscriptions} onChange={(event) => handleCatChange(event)} />
           </div>
           <div className="inputRow">
           <label for="Clothes">Clothes:</label>
-          <input type="number" name="Clothes"value={data.categoriesAndAmount.Clothes} onChange={(event) => handleFormChange(event)} />
+          <input type="number" name="Clothes"value={catData.Clothes} onChange={(event) => handleCatChange(event)} />
           </div>
           <div className="inputRow">
           <label for="Treat">Treat:</label>
-          <input type="number" name="Treat"value={data.categoriesAndAmount.Treat} onChange={(event) => handleFormChange(event)} />
+          <input type="number" name="Treat"value={catData.Treat} onChange={(event) => handleCatChange(event)} />
           </div>
           <div className="inputRow">
           <label for="Other">Other:</label>
-          <input type="number" name="Other"value={data.categoriesAndAmount.Other} onChange={(event) => handleFormChange(event)} />
+          <input type="number" name="Other"value={catData.Other} onChange={(event) => handleCatChange(event)} />
           </div>
           
           

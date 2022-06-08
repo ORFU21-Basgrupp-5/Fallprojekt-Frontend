@@ -1,13 +1,22 @@
 import React from 'react';
+import { useState } from 'react';
 import { NavLink } from "react-router-dom";
+import NavImage from '../Images/Asset_1.svg';
 
-const NavigationBar = (logedin) => {
+const NavigationBar = () => {
+	const [logedIn,SetLogedIn] = useState(false);
+	const forceLogin = () => {
+		if(logedIn === false)
+		SetLogedIn(true);
+		else
+		SetLogedIn(false);
+	}
 	//if user is loged in we will show menu with links to the difrent pages, other wise we just show login and registera for now
-	if (logedin === true) {
+	if (logedIn === true) {
 		return (
-			<div class='container'>
-				<div id='header' class='navigation-menu'>
-					<img id='mainLogo' src='./images/Asset_1.svg' alt='My Happy SVG' />
+			<div className='container'>
+				<div id='header' className='navigation-menu'>
+					<img id='mainLogo' src={NavImage} alt='My Happy SVG' />
 					<ul id='navbar'>
 						<li>
 							<NavLink to='/inmatning' className='button'>
@@ -29,7 +38,7 @@ const NavigationBar = (logedin) => {
 						
 						</li>
 						<li>
-                        <NavLink to='/budget' className='button'>
+                        <NavLink to='/addbudget' className='button'>
                         Skapa Budget
 
 							</NavLink>
@@ -40,9 +49,9 @@ const NavigationBar = (logedin) => {
 								Visa Budget
 							</NavLink>
 						</li>
-						<li><NavLink to='/logout' className='button'>
+						<li><a  onClick={forceLogin} className='button'>
 								Loga ut
-							</NavLink>
+							</a>
 							
 						</li>
 					</ul>
@@ -52,8 +61,8 @@ const NavigationBar = (logedin) => {
 	} else {
 		return (
 			<div className='container'>
-				<div id='header' class='navigation-menu'>
-					<img id='mainLogo' src='./images/Asset_1.svg' alt='My Happy SVG' />
+				<div id='header' className='navigation-menu'>
+					<img id='mainLogo' src={NavImage} alt='My Happy SVG' />
 					<ul id='navbar'>
 						<li>
 							<NavLink to='/login' className='button'>
@@ -64,6 +73,11 @@ const NavigationBar = (logedin) => {
 							<NavLink to='/register' className='button'>
 								Registera dig
 							</NavLink>
+						</li>
+						<li>
+							<a  onClick={forceLogin} className='button'>
+								dev-login
+							</a>
 						</li>
 					</ul>
 				</div>
