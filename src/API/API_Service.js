@@ -1,5 +1,5 @@
-import { GetCookie } from "./cookie.js";
-import { DefaultRender } from "./errorHandler.js";
+import { GetCookie } from "../Components/cookie";
+import { DefaultRender } from "../Components/errorHandler.js";
 
 const API_Service = {
     async GetService (endpoint) {

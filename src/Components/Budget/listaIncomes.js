@@ -1,27 +1,28 @@
 import { GetCookie } from "./cookie.js";
-import { DefaultRender } from "./errorHandler.js";
-import API_Service from "./API_Service.js";
+import {DefaultRender} from "./errorHandler.js";
+import API_Service from "../API/API_Service.js";
 export const Render = (root) => {
   root.innerHTML = "";
-  
-  var stringLista = `
-  <h1>List expenses</h1>
-    <div id="div-expenses">
+  const html = `
+    <h1>List incomes</h1>
+      <div id="div-incomes">
       <div id="errorDiv"></div>
     </div>`;
-  root.innerHTML = stringLista;
+  root.innerHTML = html;
+  
   fetchresult();
 };
+
 async function fetchresult() {
-  const data = await API_Service.GetService("Expense");
+  const data = await API_Service.GetService("Income");
   if(data != null){
-    ExpenseList(data);
+    IncomeList(data);
   }
 }
 
-function ExpenseList(data) {
+function IncomeList(data) {
   data.forEach((item) => {
-    let diven = document.getElementById("DivWithExpenses");
+    let diven = document.getElementById("div-incomes");
     let listContainer = document.createElement("ul");
     diven.appendChild(listContainer);
     for (let row in item) {

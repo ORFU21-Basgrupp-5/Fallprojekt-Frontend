@@ -1,20 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
-import RegForm from './Pages/RegForm'
-import RecoverEmail from './Components/RecoverEmail'
+import './CSS/App.css';
+import RecoverEmail from './Components/User/recoveremail'
+import Inmatning from './Components/Budget/inmatning'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import RegForm from './Components/User/reg'
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <RegForm/>
-        <RecoverEmail/>
-        <p>
-         hey hey start
-        </p>
-        
-        
-      </header>
+      <BrowserRouter >
+      <Routes>
+      <Route path="/inmatning" element={<Inmatning/>} />
+      <Route path="/recoveremail" element={<RecoverEmail/>} />
+      <Route path="/RegForm" element={<RegForm/>} />
+      <Route path="/RegForm" element={<RegForm/>} />
+
+
+
+    
+
+      </Routes>
+      </BrowserRouter>
     </div>
   );
 }
