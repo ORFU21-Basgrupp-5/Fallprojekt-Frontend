@@ -1,10 +1,11 @@
-import { GetCookie } from "./cookie.js.js";
-import { DefaultRender } from "./errorHandler.js.js";
-import API_Service from "/users/erikw/onedrive/programmering/skola/fallprojekt/fallprojektfrontend/fallprojekt-frontend/src/api/api_service.js";
+import { GetCookie } from "../cookie";
+import { useState} from 'react';
+import { DefaultRender } from "../errorHandler";
+import API_Service from "../../API/API_Service";
 
   const changePassword = () => {
     const [inputFields, setInputFields] = useState({
-      password: '',
+      NewPassword: '',
       ConfirmPassword: ''
     });
   
@@ -18,93 +19,61 @@ import API_Service from "/users/erikw/onedrive/programmering/skola/fallprojekt/f
         [name]: value,
       };
     });
-    };
-
-    const passwordMatch = async (e) => {
-      e.preventDefault()
-      if (newPassword.value===confirmPassword.value) {
-        const NewPasswordDTO = {
-            NewPassword: newPassword.value,
-            ConfirmPassword: confirmPassword.value
-        };
-        ChangePasswordLink(NewPasswordDTO)
+  }
+  
+  function checkPassword (e) {
+    e.preventDefault();
+    if (newPassword.value===confirmPassword.value) {
+      const NewPasswordDTO = {
+          NewPassword: newPassword.value,
+          ConfirmPassword: confirmPassword.value
+      };
+      ChangePasswordLink(NewPasswordDTO)
+      }
+      else{
+      DefaultRender("Lösenorden matchar inte")
+      }
+  }
+  
+    async function ChangePasswordLink(NewPasswordDTO) {
+      const fetchresult = await API_Service.PutService(
+        'User/recover',
+        NewPasswordDTO
+        );
+        console.log(fetchresult);
+        if (fetchresult != false) {
+          DefaultRender('Changed password successfully');
+          setTimeout(moveToLoging, 2000);
+        function moveToLoging() {
+          window.location.hash = "#/login";
         }
-        else{
-        DefaultRender("Passwords do not match")
-        }
-    } 
- 
-
-    // changeButton.onclick = function (e) {
-    //     e.preventDefault()
-    //     if (newPassword.value===confirmPassword.value) {
-    //     const NewPasswordDTO = {
-    //         NewPassword: newPassword.value,
-    //         ConfirmPassword: confirmPassword.value
-    //     };
-    //     ChangePasswordLink(NewPasswordDTO)
-    //     }
-    //     else{
-    //     DefaultRender("Passwords do not match")
-    //     }  
-    // }
-
-    const ChangePasswordLink = async (e) => {
-      e.preventDefault();     
-      const put = inputFields;
-      try {
-        const recoverPass = await API_Service.PutService('User/recover', put);
-
-        if (recoverPass === true) {
-          DefaultRender("Password changed successfully");
-          return true;
-        }
-      } catch (e) {
-        DefaultRender("Password do not match")
+      } else {
+        DefaultRender('Could not change password');
       }
     }
-
-    // async function ChangePasswordLink(emailrecdto) {
     
-    //     const recoverPass = await fetch(
-    //       "http://localhost:7151/User/recover",
-    //       {
-    //         method: "put",
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //           Authorization: "Bearer " + token
-    //         },
-    //         body: JSON.stringify(emailrecdto)
-    //       }
-    //     ).then((response) => {
-    //       if (response.ok) {
-    //         DefaultRender("Password changed successfully")
-    //         return true;
-    //       } else {
-    //         DefaultRender("Could not change password")
-    //         // throw new Error("NETWORK RESPONSE ERROR");
-    //       }
-    //     });
-    // }
-
+    
+  
     return (
-      <form >
+      <form>
       <label>New password: </label>
       <input 
+      type="text"
       id="newPassword"
       name="newpassword"
-      value={inputFields.password}
+      value={inputFields.NewPassword}
       onChange={handleChange}
       />
       <br/>
       <label>Confirm password: </label>
       <input
+       type="text"
        id="confirmPassword"
        name="confirmPassword"
        value={inputFields.ConfirmPassword}
        onChange={handleChange}
        />
-      <button id="confirmButton" onclick={passwordMatch}>Confirm</button>
+      <button id="confirmButton" onclick={checkPassword}>Confirm</button>
       <br/>
       <a href="/">Login here!</a>
       <div id="errorDiv"></div>
