@@ -7,7 +7,8 @@ const RegForm = () => {
   const [formData, setFormData] = useState({
     username: "",
     email: '',
-    password: ''
+    password: '',
+    confirmpassword: ''
   })
 
   const handleChange = (e) => {
@@ -79,39 +80,7 @@ const RegForm = () => {
                   errorPassContainer.appendChild(newText);
                 }
               };
-              
-            
-            // form.onsubmit = (e) => {
-              //     e.preventDefault();
-              //     const userRegister = [
-                //     document.forms["reg_form"]["username"].value,
-                //     document.forms["reg_form"]["email"].value,
-                //     document.forms["reg_form"]["password"].value,
-                //     document.forms["reg_form"]["password2"].value,
-                // ];
-                
-                // async function FetchReg(newUser) {
-                //     let response = await fetch("http://localhost:7151/User/register", {
-                //         method: "post",
-                //         headers: {
-                //             "Content-Type": "application/json",
-                //             Authorization: "Bearer " + GetCookie("token"),
-                //         },
-                //         body: JSON.stringify(newUser),
-                //     });
-                //     let textreponse = await response.text();
-                //     if (!response.ok) {
-                //         DefaultRender(`${text.error}`);
-                //     } else {
-                //         var activeUser = newUser.userName;
-                //         sessionStorage.setItem("User", activeUser);
-                //         alert("Du är nu registrerad!");
-                //         Welcomepage(pageContent);
-                //         let Header = new Header();;
-                //     }
-                // }
-
-    
+               
     function CheckPassword(password) {
         var paswd = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{12,50}$/;
         if (password.match(paswd)) {
@@ -132,22 +101,22 @@ const RegForm = () => {
             
             <div id="uname">
               <label for="username">Användarnamn</label>
-              <input type="text" name="username" placeholder="Välj ett användarnamn"/>
+              <input type="text" value={formData.username} name="username" placeholder="Välj ett användarnamn"/>
             </div>
             <div id="email">
               <label for="email">Email:</label>
-              <input type="text" name="email" placeholder="Fyll i din epost"/>
+              <input type="text" value={formData.email} name="email" placeholder="Fyll i din epost"/>
             </div>
             <div id="pswrd">
               <label for="password">Lösenord: </label>
-              <input type="text" name="password" placeholder="Välj ett lösenord"/>
+              <input type="text" value={formData.password} name="password" placeholder="Välj ett lösenord"/>
             </div>
             <div id="pswrdvalid">
               <label for="password2">Bekräfta lösenord:</label>
-              <input type="text" name="password2" placeholder="Bekräfta lösenord"/>
+              <input type="text" value={formData.confirmpassword} onchange={handleChange} name="password2" placeholder="Bekräfta lösenord"/>
               </div>
             <div>
-              <button type="submit">Submit</button>
+              <button type="submit" onSubmit = {handleSubmit}>Submit</button>
             </div>
             <div id="errorDiv"></div>
           </form>
