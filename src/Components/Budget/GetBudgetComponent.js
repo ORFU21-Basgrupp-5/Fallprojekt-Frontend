@@ -1,4 +1,4 @@
-import { getCookie } from '../cookie.js';
+import { GetCookie } from "../Services/cookie.js";
 import { useState, useEffect } from 'react';
 import API_Service from '../../API/API_Service.js';
 

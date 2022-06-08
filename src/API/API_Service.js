@@ -1,4 +1,4 @@
-import { GetCookie } from "../Components/cookie";
+import { GetCookie } from "../Components/Services/cookie.js";
 import { DefaultRender } from "../Components/Services/errorHandler.js";
 
 const API_Service = {
