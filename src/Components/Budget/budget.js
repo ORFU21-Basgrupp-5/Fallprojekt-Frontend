@@ -18,6 +18,7 @@ const Budget = () => {
       Other:0,
     }
   })
+  const [posted,setPosted] = (false);
   const [validated,setValidated] = useState(false);
   const [disableSubmit,setdisableSubmit] = useState(true);
   const [sumLeft,setSumLeft] = useState(0);
@@ -25,7 +26,7 @@ const Budget = () => {
     
 		setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     if(e.target.name === 'totalSum')
-    setData((prev) => ({ ...prev, [sumToAdd]: e.target.value }));
+    setSumLeft(e.target.value);
     calculateTotal();
 	};
   const handleSubmit = (event) => {
@@ -50,7 +51,7 @@ const Budget = () => {
     }
     else if (tempSums.sumToAdd === tempSums.totalSum)
      {
-       if(Posted === false)
+       if(posted === false)
        {
       setdisableSubmit(false);
       setValidated(true);
@@ -66,9 +67,9 @@ const Budget = () => {
       const fetchresult =  await API_Service.PostService("Budget", postData);
       if (fetchresult !== false)
       {
-        setPosted = true;
-        setdisableSubmit = true;
-        defaultRender("Your budget is saved!");
+        setPosted(true);
+        setdisableSubmit(true);
+        DefaultRender("Your budget is saved!");
       }
         }
         catch (error) {
