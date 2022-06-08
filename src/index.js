@@ -5,13 +5,13 @@ import App from './App.js';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './Components/User/LoginComponent.js';
-import ChangePasswordComponent from './Components/User/ChangePasswordComponent.js';
-import RecoveryEmailComponent from './Components/User/RecoveryEmailComponent.js';
-import GetBudgetComponent from './Components/Budget/GetBudgetComponent.js';
-import BudgetComponent from './Components/Budget/BudgetComponent.js';
+import ChangePasswordComponent from './Components/User/ChangePasswordComponent';
+import RecoveryEmailComponent from './Components/User/RecoveryEmailComponent';
+import GetBudgetComponent from './Components/Budget/GetBudgetComponent';
+import BudgetComponent from './Components/Budget/BudgetComponent';
 
 const rootElement = document.getElementById('pageContent');
-ReactDOM.render(
+rootElement.render(
   <BrowserRouter>
         <Routes>
             <Route path='/' element={<App />}/>
@@ -25,8 +25,7 @@ ReactDOM.render(
               {/* <Route path="budget" element={<BudgetComponent />}/>         */}
           
         </Routes>
-  </BrowserRouter>,
-  rootElement
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
