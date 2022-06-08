@@ -8,8 +8,9 @@ import Login from './Components/User/LoginComponent.js';
 import Register from './Components/User/RegistrateUserComponent.js'
 import ChangePassword from './Components/User/ChangePasswordComponent.js';
 import RecoverEmail from './Components/User/RecoveryEmailComponent.js';
-import GetBudgetComponent from './Components/Budget/GetBudgetComponent';
-import BudgetComponent from './Components/Budget/BudgetComponent';
+import GetBudget from './Components/Budget/GetBudgetComponent';
+import Budget from './Components/Budget/BudgetComponent';
+import AddBalanceChange from './Components/Budget/AddBalanceChangeComponent';
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(
@@ -19,12 +20,10 @@ ReactDOM.render(
       <Route path='/login' element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/recover" element={<RecoverEmail />} />
-      {/* <Route path="AddBalanceChange" element={<AddBalanceChangeComponent />}/> */}
-      {/* <Route path="getBudget" element={<GetBudgetComponent />}/>      */}
-      {/* <Route path="listBudget" element={<listBudgetComponent />}/>      */}
-      {/* <Route path="budget" element={<BudgetComponent />}/>         */}
+      <Route path="/addbalancechange" element={<AddBalanceChange />}/>
+      <Route path="/getbudget" element={<GetBudget />}/>     
+      <Route path="/addbudget" element={<Budget />}/>    
       {/* <Route path="/changePassword" element={<ChangePassword />} /> */}
-
     </Routes>
   </BrowserRouter>,
   rootElement

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { DefaultRender } from '../Services/errorHandler.js';
-import { NavigationBar } from '../NavigationBar.js'
+import NavigationBar  from '../NavigationBar.js'
 import API_Service from '../../API/API_Service.js';
 //first we create a "view" that is the html code we want to display
 const Login = () => {
