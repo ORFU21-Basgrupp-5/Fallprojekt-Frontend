@@ -1,63 +1,84 @@
-import { GetCookie } from "./cookie.js.js";
-import { DefaultRender } from "./errorHandler.js.js";
+import { GetCookie } from "../cookie";
+import { useState} from 'react';
+import { DefaultRender } from "../errorHandler";
+import API_Service from "../../API/API_Service";
 
-export const Render = (root,token) => {
-    root.innerHTML = "";
-
-
-    const html = `
-              <form>
-                <label>New password: </label>
-                <input id="newPassword">
-                <br>
-                <label>Confirm password: </label>
-                <input id="confirmPassword">
-                <button id="confirmButton">Confirm</button>
-                <br>
-                <a href="/">Login here!</a>
-                <div id="errorDiv"></div>
-              </form>
-              `
-    root.innerHTML = html;
+  const changePassword = () => {
+    const [inputFields, setInputFields] = useState({
+      NewPassword: '',
+      ConfirmPassword: ''
+    });
+  
     
-    const confirmPassword = document.getElementById("confirmPassword")
-    const newPassword = document.getElementById("newPassword")
-    let changeButton = document.getElementById("confirmButton")
-
-    changeButton.onclick = function (e) {
-        e.preventDefault()
-        if (newPassword.value===confirmPassword.value) {
-        const NewPasswordDTO = {
-            NewPassword: newPassword.value,
-            ConfirmPassword: confirmPassword.value
-        };
-        ChangePasswordLink(NewPasswordDTO)
+  const handleChange = (e) => {
+    const {name, value} = e.target;
+    
+    setInputFields((prevState) => {
+      return {
+        ...prevState,
+        [name]: value,
+      };
+    });
+  }
+  
+  function checkPassword (e) {
+    e.preventDefault();
+    if (newPassword.value===confirmPassword.value) {
+      const NewPasswordDTO = {
+          NewPassword: newPassword.value,
+          ConfirmPassword: confirmPassword.value
+      };
+      ChangePasswordLink(NewPasswordDTO)
+      }
+      else{
+      DefaultRender("Lösenorden matchar inte")
+      }
+  }
+  
+    async function ChangePasswordLink(NewPasswordDTO) {
+      const fetchresult = await API_Service.PutService(
+        'User/recover',
+        NewPasswordDTO
+        );
+        console.log(fetchresult);
+        if (fetchresult != false) {
+          DefaultRender('Changed password successfully');
+          setTimeout(moveToLoging, 2000);
+        function moveToLoging() {
+          window.location.hash = "#/login";
         }
-        else{
-        DefaultRender("Passwords do not match")
-        }
-    
+      } else {
+        DefaultRender('Could not change password');
+      }
     }
-    async function ChangePasswordLink(emailrecdto) {
     
-        const recoverPass = await fetch(
-          "http://localhost:7151/User/recover",
-          {
-            method: "put",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + token
-            },
-            body: JSON.stringify(emailrecdto)
-          }
-        ).then((response) => {
-          if (response.ok) {
-            DefaultRender("Password changed successfully")
-            return true;
-          } else {
-            DefaultRender("Could not change password")
-            // throw new Error("NETWORK RESPONSE ERROR");
-          }
-        });
-    }
+    
+  
+    return (
+      <form>
+      <label>New password: </label>
+      <input 
+      type="text"
+      id="newPassword"
+      name="newpassword"
+      value={inputFields.NewPassword}
+      onChange={handleChange}
+      />
+      <br/>
+      <label>Confirm password: </label>
+      <input
+       type="text"
+       id="confirmPassword"
+       name="confirmPassword"
+       value={inputFields.ConfirmPassword}
+       onChange={handleChange}
+       />
+      <button id="confirmButton" onclick={checkPassword}>Confirm</button>
+      <br/>
+      <a href="/">Login here!</a>
+      <div id="errorDiv"></div>
+    </form>
+    ) 
 }
+
+export default changePassword
