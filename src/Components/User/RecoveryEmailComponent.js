@@ -1,63 +1,70 @@
-import { GetCookie } from "../Services/cookie.js";
-import { DefaultRender } from "../Services/errorHandler.js";
-const RecoverEmail = (root) => {
-  root.innerHTML = "";
+import { GetCookie } from "../cookie";
+import { useState} from 'react';
+import { DefaultRender } from "../errorHandler.js";
+import API_Service from '../../API/API_Service';
 
-  const emailform = ` 
-  <form>
-    <label>Email: </label>
-    <input id= "Email" >
-    <button id= "recoverbutton">Bekräfta</button>
+
+const recoverEmail = () => {
+  
+  const [formValue, setFormValue] = useState({
+    email: ''
+  });
+
+
+const handleChange = (e) => {
+const {name, value} = e.target;
+
+setFormValue((prevState) => {
+  return {
+    ...prevState,
+    [name]: value,
+  };
+});
+};
+
+  let handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
+  const sendEmail = async (e) => {
+  e.preventDefault();
+    const post = formValue;
+    try {
+      const fetchresult = await API_Service.PostService('User/SendRecoveryEmail', post);
+      if (fetchresult !== false) {
+        // DefaultRender(fetchresult);
+        // return true;
+        return fetchresult;
+      } 
+    } catch(e) {
+      DefaultRender("Something went wrong");
+      }
+   }
+
+
+  return (
+    <form onSubmit = {handleSubmit}>
+
+    <label htmlFor="Email">Email: </label>
+    <input
+    type="text"
+    name="email"
+    placeholder="Enter your email address"
+    value={formValue.email} 
+    onChange={handleChange}
+    />
+
+    <button id="recoverbutton" onClick={sendEmail}>Bekräfta</button>
     <div id="SentOrNotDiv"></div>
-    <a href="/">Logga in här</a>
+    <a href="/">Logga in här byt till rätt route</a>
     <div id="errorDiv"></div>
-  </form>`
-  root.innerHTML = emailform
-
-  let sendButton = document.getElementById("recoverbutton")
-  let sentOrNotDiv = document.getElementById("SentOrNotDiv")
-  let email = document.getElementById("Email")
-
-
-  sendButton.onclick = function (e) {
-    e.preventDefault()
-    const EmailDTO = {
-      Email: email.value
-    };
-    SendRecoveryEmail(EmailDTO);
-  }
-
-  async function SendRecoveryEmail(emailrecdto) {
-
-    const recoverPass = await fetch(
-      "http://localhost:7151/User/SendRecoveryEmail",
-      {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(emailrecdto)
-      }
-    ).then((response) => {
-      if (response.ok) {
-        DefaultRender("Email sent.");
-        return true;
-      } else {
-        return response.text().then(function (text) {
-          DefaultRender(`${response.status} ${response.statusText} ${text}`);
-        })
-      }
-    })
-      .catch((error) => {
-        DefaultRender(`Error: ${error.message} `);
-      });
-  }
-
-
+  </form>
+  )
 
 }
 export default RecoverEmail;
 
+export default recoverEmail
 
 
 
