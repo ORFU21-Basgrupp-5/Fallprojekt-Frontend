@@ -96,7 +96,7 @@ const Register = () => {
             <div id="reg">
               <h1>Skapa ett konto</h1>
             </div>
-            <p>Har du redan ett konto?<a href="/">Logga in här</a> </p>
+            <p>Har du redan ett konto?<a href="/login">Logga in här</a> </p>
             <form id="reg_form"><div id="hidden-message"/>
               
               <div id="uname">
