@@ -10,22 +10,23 @@ import RecoveryEmailComponent from './Components/User/RecoveryEmailComponent';
 import GetBudgetComponent from './Components/Budget/GetBudgetComponent';
 import BudgetComponent from './Components/Budget/BudgetComponent';
 
-const rootElement = document.getElementById('pageContent');
-rootElement.render(
+const rootElement = document.getElementById('root');
+ReactDOM.render(
   <BrowserRouter>
-        <Routes>
-            <Route path='/' element={<App />}/>
-              <Route path="/login" element={<Login />}/>
-              {/* <Route path="/register" element={<Register/>}/> */}
-              {/* <Route path="changePassword" element={<ChangePasswordComponent />}/> */}
-              {/* <Route path="AddBalanceChange" element={<AddBalanceChangeComponent />}/> */}
-              {/* <Route path="recoveryEmail" element={<RecoveryEmailComponent />}/> */}
-              {/* <Route path="getBudget" element={<GetBudgetComponent />}/>      */}
-              {/* <Route path="listBudget" element={<listBudgetComponent />}/>      */}
-              {/* <Route path="budget" element={<BudgetComponent />}/>         */}
-          
-        </Routes>
-  </BrowserRouter>
+    <Routes>
+      <Route path='/' element={<App />} />
+      <Route path='/login' element={<Login />} />
+      {/* <Route path="/register" element={<Register/>}/> */}
+      {/* <Route path="changePassword" element={<ChangePasswordComponent />}/> */}
+      {/* <Route path="AddBalanceChange" element={<AddBalanceChangeComponent />}/> */}
+      {/* <Route path="recoveryEmail" element={<RecoveryEmailComponent />}/> */}
+      {/* <Route path="getBudget" element={<GetBudgetComponent />}/>      */}
+      {/* <Route path="listBudget" element={<listBudgetComponent />}/>      */}
+      {/* <Route path="budget" element={<BudgetComponent />}/>         */}
+
+    </Routes>
+  </BrowserRouter>,
+  rootElement
 );
 
 // If you want to start measuring performance in your app, pass a function
