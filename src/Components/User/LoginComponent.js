@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import { useState,NavLink} from 'react';
 import { DefaultRender } from '../Services/errorHandler.js';
 import API_Service from '../../API/API_Service.js';
 //first we create a "view" that is the html code we want to display
@@ -58,9 +58,9 @@ const Login = () => {
 				<h1>Login</h1>
 				<p>
 					Saknar du ett konto?{' '}
-					<a href='./#/registeruser' id='reglink'>
+					<NavLink to='/registeruser' id='reglink'>
 						Skapa konto
-					</a>
+					</NavLink>
 				</p>
 
 				<form id='form1' className='inputForm' onSubmit={handleSubmit}>
@@ -89,9 +89,9 @@ const Login = () => {
 					</div>
 
 					<div id='recover'>
-						<button  id='recover-btn'>
+						<NavLink to='/recover'  id='recover-btn'>
 							Glömt lösenordet?
-						</button>
+						</NavLink>
             
 						<button className='login-btn' onClick={tryLogin}>
 							login
@@ -107,5 +107,5 @@ const Login = () => {
 	);
 };
 
-//we export this page so that app.js can call on it when the route is correct aka /#/login
+//we export this page so that app.js can call on it when the route is correct aka /login
 export default Login;
