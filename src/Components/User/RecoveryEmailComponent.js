@@ -1,10 +1,10 @@
-import { GetCookie } from "../cookie";
+import { GetCookie } from "../Services/cookie";
 import { useState} from 'react';
-import { DefaultRender } from "../errorHandler.js";
+import { DefaultRender } from "../Services/errorHandler.js";
 import API_Service from '../../API/API_Service';
 
 
-const recoverEmail = () => {
+const RecoverEmail = () => {
   
   const [formValue, setFormValue] = useState({
     email: ''
@@ -64,7 +64,6 @@ setFormValue((prevState) => {
 }
 export default RecoverEmail;
 
-export default recoverEmail
 
 
 

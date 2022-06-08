@@ -1,8 +1,8 @@
-import { GetCookie } from "../cookie";
-import { DefaultRender } from "../errorHandler";
-import API_Service from "/Users/erikw/OneDrive/Programmering/Skola/Fallprojekt/fallprojektFrontend/Fallprojekt-Frontend/src/API/API_Service";
+import { GetCookie } from "../Services/cookie.js"
+import { DefaultRender } from "../Services/errorHandler";
+import API_Service from "../../API/API_Service.js";
 
-const inmatning  = () => {
+const AddBalanceChange  = () => {
 
   CategorySelectFetch("Expense", document.getElementById("CategoryExp"));
   CategorySelectFetch("Income", document.getElementById("CategoryInc"));
@@ -262,9 +262,5 @@ return (
 );
 
 }
-<<<<<<< HEAD:src/Components/Budget/AddBalanceChangeComponent.js
 
 export default AddBalanceChange;
-=======
-export default inmatning;
->>>>>>> eb6ac23adb0112f9591ad52a1dbc2b69ad1bef14:src/Components/Budget/inmatning.js

@@ -1,5 +1,14 @@
+// import { useState } from 'react';
 
 export const DefaultRender = (msg) => {
+  // const [errorMessage, setError] = useState("");
+  // setError(msg)
+  // return (
+  //   <div>
+  //     <p>{errorMessage}</p>
+  //   </div>
+  // );
+
   const errorDiv = document.getElementById("errorDiv")
   const childErrorDiv = document.createElement("div")
   childErrorDiv.insertAdjacentText("beforeend", msg)
@@ -8,4 +17,3 @@ export const DefaultRender = (msg) => {
     errorDiv.removeChild(errorDiv.lastChild);
   }, 4000)
 }
-
