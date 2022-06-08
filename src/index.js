@@ -5,8 +5,9 @@ import App from './App.js';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './Components/User/LoginComponent.js';
-import ChangePasswordComponent from './Components/User/ChangePasswordComponent';
-import RecoveryEmailComponent from './Components/User/RecoveryEmailComponent';
+import Register from './Components/User/RegistrateUserComponent.js'
+import ChangePassword from './Components/User/ChangePasswordComponent.js';
+import RecoverEmail from './Components/User/RecoveryEmailComponent.js';
 import GetBudgetComponent from './Components/Budget/GetBudgetComponent';
 import BudgetComponent from './Components/Budget/BudgetComponent';
 
@@ -16,13 +17,13 @@ ReactDOM.render(
     <Routes>
       <Route path='/' element={<App />} />
       <Route path='/login' element={<Login />} />
-      {/* <Route path="/register" element={<Register/>}/> */}
-      {/* <Route path="changePassword" element={<ChangePasswordComponent />}/> */}
+      <Route path="/register" element={<Register />} />
+      <Route path="/recover" element={<RecoverEmail />} />
       {/* <Route path="AddBalanceChange" element={<AddBalanceChangeComponent />}/> */}
-      {/* <Route path="recoveryEmail" element={<RecoveryEmailComponent />}/> */}
       {/* <Route path="getBudget" element={<GetBudgetComponent />}/>      */}
       {/* <Route path="listBudget" element={<listBudgetComponent />}/>      */}
       {/* <Route path="budget" element={<BudgetComponent />}/>         */}
+      {/* <Route path="/changePassword" element={<ChangePassword />} /> */}
 
     </Routes>
   </BrowserRouter>,

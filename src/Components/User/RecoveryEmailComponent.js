@@ -1,9 +1,9 @@
 import { GetCookie } from "../Services/cookie.js";
 import { DefaultRender } from "../Services/errorHandler.js";
-export const Render = (root) => {
+const RecoverEmail = (root) => {
   root.innerHTML = "";
 
-const emailform = ` 
+  const emailform = ` 
   <form>
     <label>Email: </label>
     <input id= "Email" >
@@ -12,11 +12,11 @@ const emailform = `
     <a href="/">Logga in här</a>
     <div id="errorDiv"></div>
   </form>`
-root.innerHTML = emailform
+  root.innerHTML = emailform
 
-let sendButton = document.getElementById("recoverbutton")
-let sentOrNotDiv = document.getElementById("SentOrNotDiv")
-let email = document.getElementById("Email")
+  let sendButton = document.getElementById("recoverbutton")
+  let sentOrNotDiv = document.getElementById("SentOrNotDiv")
+  let email = document.getElementById("Email")
 
 
   sendButton.onclick = function (e) {
@@ -28,7 +28,7 @@ let email = document.getElementById("Email")
   }
 
   async function SendRecoveryEmail(emailrecdto) {
-    
+
     const recoverPass = await fetch(
       "http://localhost:7151/User/SendRecoveryEmail",
       {
@@ -43,20 +43,20 @@ let email = document.getElementById("Email")
         DefaultRender("Email sent.");
         return true;
       } else {
-        return response.text().then(function(text) 
-      {
-        DefaultRender(`${response.status} ${response.statusText} ${text}`);
-      })
+        return response.text().then(function (text) {
+          DefaultRender(`${response.status} ${response.statusText} ${text}`);
+        })
       }
     })
-    .catch((error) => {
-      DefaultRender(`Error: ${error.message} `);
-    });
+      .catch((error) => {
+        DefaultRender(`Error: ${error.message} `);
+      });
   }
 
-  
+
 
 }
+export default RecoverEmail;
 
 
 
