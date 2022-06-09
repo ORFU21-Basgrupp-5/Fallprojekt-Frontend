@@ -1,9 +1,9 @@
-import { Render as listERender } from "./listaExpenses.js";
-import { Render as listIRender } from "./listaIncomes.js";
-import { Render as inmatningRender } from "./inmatning.js";
-import { Render as budgetRender } from "./budget.js";
-import { Render as budgetGetRender } from "./getBudget.js";
-import { Render as passwordRender } from "./changepassword.js";
+import { Render as listERender } from "../Budget/listaExpenses.js";
+import { Render as listIRender } from "../Budget/listaIncomes.js";
+import { Render as inmatningRender } from "../Budget/AddBalanceChangeComponent.js";
+import { Render as budgetRender } from "../Budget/BudgetComponent.js";
+import { Render as budgetGetRender } from "../Budget/GetBudgetComponent.js";
+import { Render as passwordRender } from "../User/ChangePasswordComponent.js";
 import { DeleteCookie } from "./cookie.js";
 
 

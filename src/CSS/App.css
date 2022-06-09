@@ -1,0 +1,14 @@
+.header{
+  display: flex;
+  justify-content: space-around;
+  
+}
+.links{
+  text-decoration: none;
+  color: black;
+}
+.logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
