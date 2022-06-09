@@ -32,7 +32,7 @@ const Register = () => {
       try {
         const fetchUser = await API_Service.PostService('User/register', post); 
         if (fetchUser !== false){
-          ValidateUser(fetchUser);
+          // ValidateUser(fetchUser);
         }
       } catch (e) {
         DefaultRender("Username or password incorrect")
@@ -40,47 +40,47 @@ const Register = () => {
     }
     
     
-    function ValidateUser()
-    {
-      const usernamevalidate = userRegister.every((x) => x != "");
-          if (usernamevalidate) {
-            if (userRegister[2] != userRegister[3]) {
-              let errorPassContainer = document.getElementById("hidden-message");
-              let newText = document
-              .createElement("p")
-              .appendChild(document.createTextNode("Lösenorden matchar inte!"));
-              errorPassContainer.appendChild(newText);
-            } else if (CheckPassword(userRegister[2]) === false) {
-              let errorPassContainer = document.getElementById("hidden-message");
-                  let newText = document
-                  .createElement("p")
-                  .appendChild(
-                      document.createTextNode(
-                      "Ditt lösenord måste ha minst 12 tecken,en gemen, en storbokstav, en siffra och ett special tecken"
-                      )
-                      );
-                      errorPassContainer.appendChild(newText);
-                    } else {
-                      const name = userRegister[0];
-                      const email = userRegister[1];
-                      const password = userRegister[2];
+    // function ValidateUser()
+    // {
+    //   const usernamevalidate = userRegister.every((x) => x != "");
+    //       if (usernamevalidate) {
+    //         if (userRegister[2] != userRegister[3]) {
+    //           let errorPassContainer = document.getElementById("hidden-message");
+    //           let newText = document
+    //           .createElement("p")
+    //           .appendChild(document.createTextNode("Lösenorden matchar inte!"));
+    //           errorPassContainer.appendChild(newText);
+    //         } else if (CheckPassword(userRegister[2]) === false) {
+    //           let errorPassContainer = document.getElementById("hidden-message");
+    //               let newText = document
+    //               .createElement("p")
+    //               .appendChild(
+    //                   document.createTextNode(
+    //                   "Ditt lösenord måste ha minst 12 tecken,en gemen, en storbokstav, en siffra och ett special tecken"
+    //                   )
+    //                   );
+    //                   errorPassContainer.appendChild(newText);
+    //                 } else {
+    //                   const name = userRegister[0];
+    //                   const email = userRegister[1];
+    //                   const password = userRegister[2];
                       
-                      const userDTO = {
-                        userName: name,
-                        password: password,
-                        email: email,
-                      };
+    //                   const userDTO = {
+    //                     userName: name,
+    //                     password: password,
+    //                     email: email,
+    //                   };
                       
-                      FetchReg(userDTO);
-                    }
-                  } else {
-                    let errorPassContainer = document.getElementById("hidden-message");
-                    let newText = document
-                    .createElement("p")
-                    .appendChild(document.createTextNode("Du måste fylla i alla fälten!"));
-                    errorPassContainer.appendChild(newText);
-                  }
-                };
+    //                   FetchReg(userDTO);
+    //                 }
+    //               } else {
+    //                 let errorPassContainer = document.getElementById("hidden-message");
+    //                 let newText = document
+    //                 .createElement("p")
+    //                 .appendChild(document.createTextNode("Du måste fylla i alla fälten!"));
+    //                 errorPassContainer.appendChild(newText);
+    //               }
+    //             };
                  
       function CheckPassword(password) {
           var paswd = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{12,50}$/;
