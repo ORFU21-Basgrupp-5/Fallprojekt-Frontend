@@ -12,6 +12,7 @@ import GetBudget from './Components/Budget/GetBudgetComponent';
 import Home from './Components/home.js';
 import Budget from './Components/Budget/BudgetComponent';
 import AddBalanceChange from './Components/Budget/AddBalanceChangeComponent';
+import History from './Components/Budget/HistoryComponent.js'
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(
@@ -25,7 +26,8 @@ ReactDOM.render(
 				<Route exact path='/addbalancechange' element={<AddBalanceChange />} />
 				<Route exact path='/GetBudget' element={<GetBudget />} />
 				<Route exact path='/addbudget' element={<Budget />} />
-        <Route path="/changePassword" element={<ChangePassword />} />
+				<Route exact path='/History' element={<History />} />
+        		<Route path="/changePassword" element={<ChangePassword />} />
 			</Route>
 
 		</Routes>

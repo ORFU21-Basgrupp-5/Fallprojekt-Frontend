@@ -1,10 +1,14 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink } from "react-router-dom";
 import NavImage from '../Images/Asset_1.svg';
+import { GetCookie } from './Services/cookie';
 
-const NavigationBar = () => {
+const NavigationBar = (props) => {
 	const [logedIn,SetLogedIn] = useState(false);
+	useEffect(() => {
+		console.log("called")
+	},[]);
 	const forceLogin = () => {
 		if(logedIn === false)
 		SetLogedIn(true);
@@ -19,40 +23,29 @@ const NavigationBar = () => {
 					<img id='mainLogo' src={NavImage} alt='My Happy SVG' />
 					<ul id='navbar'>
 						<li>
-							<NavLink to='/inmatning' className='button'>
+							<NavLink to='/addbalancechange' className='button'>
 								Inmatning
 							</NavLink>
 						</li>
 						<li>
-                        <NavLink to='/listaexpenses' className='button'>
-                        ListaExpenses
-
+                        	<NavLink to='/History' className='button'>
+                        		History
 							</NavLink>
-					
 						</li>
 						<li>
-                        <NavLink to='/listaincomes' className='button'>
-                        ListaIncomes
-
+                        	<NavLink to='/addbudget' className='button'>
+                        		Skapa Budget
 							</NavLink>
-						
 						</li>
 						<li>
-                        <NavLink to='/addbudget' className='button'>
-                        Skapa Budget
-
-							</NavLink>
-						
-						</li>
-						<li>
-                        <NavLink to='/getbudget' className='button'>
+                        	<NavLink to='/getbudget' className='button'>
 								Visa Budget
 							</NavLink>
 						</li>
-						<li><a  onClick={forceLogin} className='button'>
+						<li>
+							<a onClick={forceLogin} className='button'>
 								Loga ut
 							</a>
-							
 						</li>
 					</ul>
 				</div>

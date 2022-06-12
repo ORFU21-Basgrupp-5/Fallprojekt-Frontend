@@ -46,7 +46,7 @@ const Budget = () => {
       var testBelop = categoriesValuesInt.reduce(function (a, b) {
         return a + b;
       }, 0)
-      tempSumLeft -= testBelop;
+      tempSumLeft += testBelop;
       setSumLeft(tempSumLeft);
 
 
