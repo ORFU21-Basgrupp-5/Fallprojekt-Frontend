@@ -7,11 +7,11 @@ import { DeleteCookie } from './Services/cookie';
 const NavigationBar = () => {
 	const { loginStatus, setLoginStatus } = useAuth();
 	const forceLogout = () => {
+		//will remove cookie and set auth context to false, aka not loged in.
 		setLoginStatus(false);
 		DeleteCookie('token');
 	};
 
-	//if user is loged in we will show menu with links to the difrent pages, other wise we just show login and registera for now
 	if (loginStatus === true) {
 		return (
 			<div className='header'>

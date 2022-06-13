@@ -40,7 +40,7 @@ const Login = () => {
 			}
 		} catch (e) {
 			DefaultRender('Username or password is incorrect.');
-			// setMessage('Username or password is incorrect.');
+
 		}
 
 		function CreateLoginToken(data) {
