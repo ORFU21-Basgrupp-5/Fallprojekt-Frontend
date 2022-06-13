@@ -12,15 +12,19 @@ const History = () => {
       const res2 = await API_Service.GetService('Income');
       if (res != null && res != null) {
         res2.map(x => res.push(x))
+        res.map( x => ('expenseDate' in x) ? x['Date'] = x.expenseDate : x['Date'] = x.incomeDate);
+        res.map( x=> ('expenseDate' in x) ? delete x.expenseDate : delete x.incomeDate)
         res.sort(function (a, b) {
-          return a.expenseDate - b.incomeDate;
+          return b.Date - a.Date;
         });
         setData(res);
       }
     };
     fetchData();
+    console.log(data);
   }, []);
 
+  
   return(
     <div className='container'>
     <h1>History</h1>
