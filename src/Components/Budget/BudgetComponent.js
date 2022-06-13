@@ -42,7 +42,7 @@ const Budget = () => {
         setValidated(true);
        }
      }
-  });
+  }, [catData, data.totalSum, sumLeft, posted]);
   const handleFormChange = (e) => {
 		setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
    

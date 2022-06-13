@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import NavImage from '../Images/Asset_1.svg';
 import { useAuth } from './Services/AuthProvider.js';
@@ -40,9 +39,9 @@ const NavigationBar = () => {
 								</NavLink>
 							</li>
 							<li>
-								<a onClick={forceLogout} className='button'>
+								<NavLink to='/' onClick={forceLogout} className='button'>
 									Logout
-								</a>
+								</NavLink>
 							</li>
 						</ul>
 					</div>

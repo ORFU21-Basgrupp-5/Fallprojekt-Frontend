@@ -47,7 +47,7 @@ const Login = () => {
 			let user = data.user;
 			let expires = new Date(Date.now() + 86400 * 1000).toUTCString();
 
-			document.cookie = 'token=' + token + ';' + 'user=' + user + ';' + 'expires=' + expires + 86400 + ';path=/;';
+			document.cookie = `token=${token};user=${user};expires=${expires + 86400};path=/;`;
 		}
 	};
 	return loginStatus ? (
