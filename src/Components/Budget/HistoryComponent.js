@@ -15,16 +15,15 @@ const History = () => {
         res.map( x => ('expenseDate' in x) ? x['Date'] = x.expenseDate : x['Date'] = x.incomeDate);
         res.map( x=> ('expenseDate' in x) ? delete x.expenseDate : delete x.incomeDate)
         res.sort(function (a, b) {
-          return b.Date - a.Date;
+          return new Date(a.Date) - new Date(b.Date);
         });
         setData(res);
       }
     };
     fetchData();
-    console.log(data);
+    
   }, []);
 
-  
   return(
     <div className='container'>
     <h1>History</h1>
@@ -38,7 +37,7 @@ const History = () => {
           {data?.map(x => 
           <tr>
             <td>
-              {("expenseDate" in x) ? new Date(x.expenseDate).toDateString() : new Date(x.incomeDate).toDateString()}
+              {new Date(x.Date).toDateString()}
             </td>
             <td>
                 {("expenseDescription" in x) ? x.expenseDescription : x.incomeDescription} 
