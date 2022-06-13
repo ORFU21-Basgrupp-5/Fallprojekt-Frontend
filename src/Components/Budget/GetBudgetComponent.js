@@ -4,7 +4,7 @@ import API_Service from '../../API/API_Service.js';
 
 const GetBudget = () => {
   const [data, setData] = useState();
-
+  const [backgroundColor, setBackgroundColor] = UseState('white');
   useEffect(() => {
     const fetchData = async () => {
       const fetchresult = await API_Service.GetService('Budget');
@@ -45,7 +45,7 @@ const GetBudget = () => {
           </tr>
           <tr>
             <td>Used procent</td>
-            {Object.values(data.budgetCategories).map(x =><td>{x[3]}</td>  )}
+            {Object.values(data.budgetCategories).map(x =><td {true ? setBackgroundColor('orange'): false ? setBackgroundColor('red') : setBackgroundColor('white')} style={{backgroundColor: backgroundColor}}>{x[3]}</td>  )}
           </tr>
         </table>
         </div>
