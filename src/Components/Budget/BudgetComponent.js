@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import { useEffect, useState} from 'react';
 import { DefaultRender } from '../Services/errorHandler.js';
 import API_Service from '../../API/API_Service.js';
 
@@ -11,63 +11,49 @@ const Budget = () => {
     year: '',
   })
   const [catData,setCatData] = useState({
-    
       Food:0,
       Car:0,
       Subscriptions:0,
       Clothes:0,
       Treat:0,
       Other:0,
-      sumLeft:0,
      })
   const [posted,setPosted] = useState(false);
   const [validated,setValidated] = useState(false);
   const [disableSubmit,setdisableSubmit] = useState(true);
-
-  const handleFormChange = (e) => {
+  const [sumLeft, setSumLeft] = useState();
+  
+  useEffect(() => {
+    const catSum = Object.values(catData).map(Number).reduce(function (a, b) {
+      return a + b;
+    }, 0)
+    setSumLeft(data.totalSum - catSum );
     
+    if (sumLeft > 0 || sumLeft < 0) {
+      setValidated(false);
+      setdisableSubmit(true);
+    }
+    else if (sumLeft === 0)
+     {
+       if(posted === false)
+       {
+        setdisableSubmit(false);
+        setValidated(true);
+       }
+     }
+  });
+  const handleFormChange = (e) => {
 		setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    calulateTotalCat();
    
 	};
   const handleCatChange = (e) => {
     setCatData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    calulateTotalCat();
 
-    
   }
   const handleSubmit = (event) => {
     event.preventDefault();
   };
-  const calulateTotalCat = () => {
-    let tempCat = catData;
-    var categoriesvalues = Object.values(tempCat);
-      var categoriesValuesInt = categoriesvalues.map(Number);
-      var testBelop = categoriesValuesInt.reduce(function (a, b) {
-        return a + b;
-      }, 0)
-      let test2 = testBelop - tempCat.sumLeft;
-      let test = data.totalSum - test2;
-      tempCat.sumLeft = test;
-      setCatData(tempCat);
 
-     if (test > 0) {
-      
-      setValidated(false);
-      setdisableSubmit(true);
-    }
-    else if (test === 0)
-     {
-       if(posted === false)
-       {
-      setdisableSubmit(false);
-      setValidated(true);
-       }
-     }
-
-    }
-  
-    
   const uploadBudget = async (e) => {
       if(validated){
         try {
@@ -93,45 +79,45 @@ const Budget = () => {
       <form id="form1" className='inputForm' onSubmit={handleSubmit}>
         <div className="inputRow">
           
-          <label for="budgetName">Budget name:</label>
+          <label htmlFor="budgetName">Budget name:</label>
           <input type="text" id="budgetName" value={data.usnameerName} onChange={(event) => handleFormChange(event)} name="budgetName"/>
           </div>
           <div className="inputRow">
-          <label for="totalSum">Budget total amount:</label>
+          <label htmlFor="totalSum">Budget total amount:</label>
           <input type="number" name='totalSum' id="totalSum" value={data.totalSum} onChange={(event) => handleFormChange(event)} />
           </div>
           <div className="inputRow">
-            <p>Amount left to place: {catData.sumLeft}</p>
+            <p>Amount left to place: {sumLeft}</p>
             </div>
                     <div className="inputRow">
-          <label for="date">Budget date:</label>
+          <label htmlFor="date">Budget date:</label>
           <input type="date" id="budgetDate" name="date" value={data.date} onChange={(event) => handleFormChange(event)} />
           </div>
           <div className="inputRow">
-          <label for="">Budget categories:</label>
+          <label htmlFor="">Budget categories:</label>
           </div>
           <div className="inputRow">
-          <label for="Food">Food:</label>
+          <label htmlFor="Food">Food:</label>
           <input type="number" name="Food" value={catData.Food} onChange={(event) => handleCatChange(event)} />
           </div>
           <div className="inputRow">
-          <label for="Car">Car:</label>
+          <label htmlFor="Car">Car:</label>
           <input type="number" name="Car" value={catData.Car} onChange={(event) => handleCatChange(event)} />
           </div>
           <div className="inputRow">
-          <label for="Subscriptions">Subscriptions:</label>
+          <label htmlFor="Subscriptions">Subscriptions:</label>
           <input type="number" name="Subscriptions"value={catData.Subscriptions} onChange={(event) => handleCatChange(event)} />
           </div>
           <div className="inputRow">
-          <label for="Clothes">Clothes:</label>
+          <label htmlFor="Clothes">Clothes:</label>
           <input type="number" name="Clothes"value={catData.Clothes} onChange={(event) => handleCatChange(event)} />
           </div>
           <div className="inputRow">
-          <label for="Treat">Treat:</label>
+          <label htmlFor="Treat">Treat:</label>
           <input type="number" name="Treat"value={catData.Treat} onChange={(event) => handleCatChange(event)} />
           </div>
           <div className="inputRow">
-          <label for="Other">Other:</label>
+          <label htmlFor="Other">Other:</label>
           <input type="number" name="Other"value={catData.Other} onChange={(event) => handleCatChange(event)} />
           </div>
           
