@@ -18,44 +18,45 @@ const Budget = () => {
       Clothes:0,
       Treat:0,
       Other:0,
+      sumLeft:0,
      })
   const [posted,setPosted] = useState(false);
   const [validated,setValidated] = useState(false);
   const [disableSubmit,setdisableSubmit] = useState(true);
-  const [sumLeft,setSumLeft] = useState(0);
+
   const handleFormChange = (e) => {
     
 		setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    if(e.target.name === 'totalSum')
-    setSumLeft(e.target.value);
-    calculateTotal();
+    calulateTotalCat();
+   
 	};
   const handleCatChange = (e) => {
     setCatData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    calculateTotal();
+    calulateTotalCat();
+
+    
   }
   const handleSubmit = (event) => {
     event.preventDefault();
   };
-  const calculateTotal = () => {
-    let tempSums = data;
-    let tempSumLeft = sumLeft;
-    let tempCatSumn = catData;
-    var categoriesvalues = Object.values(tempCatSumn);
+  const calulateTotalCat = () => {
+    let tempCat = catData;
+    var categoriesvalues = Object.values(tempCat);
       var categoriesValuesInt = categoriesvalues.map(Number);
       var testBelop = categoriesValuesInt.reduce(function (a, b) {
         return a + b;
       }, 0)
-      tempSumLeft += testBelop;
-      setSumLeft(tempSumLeft);
+      let test2 = testBelop - tempCat.sumLeft;
+      let test = data.totalSum - test2;
+      tempCat.sumLeft = test;
+      setCatData(tempCat);
 
-
-    if (tempSumLeft > tempSums.totalSum) {
-      alert("warning test");
+     if (test > 0) {
+      
       setValidated(false);
       setdisableSubmit(true);
     }
-    else if (tempSums.sumToAdd === tempSums.totalSum)
+    else if (test === 0)
      {
        if(posted === false)
        {
@@ -63,9 +64,10 @@ const Budget = () => {
       setValidated(true);
        }
      }
-    
 
-  }
+    }
+  
+    
   const uploadBudget = async (e) => {
       if(validated){
         try {
@@ -99,7 +101,7 @@ const Budget = () => {
           <input type="number" name='totalSum' id="totalSum" value={data.totalSum} onChange={(event) => handleFormChange(event)} />
           </div>
           <div className="inputRow">
-            <p>Amount left to place: {sumLeft}</p>
+            <p>Amount left to place: {catData.sumLeft}</p>
             </div>
                     <div className="inputRow">
           <label for="date">Budget date:</label>
