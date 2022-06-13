@@ -4,7 +4,7 @@ import API_Service from '../../API/API_Service.js';
 
 const GetBudget = () => {
   const [data, setData] = useState();
-  const [backgroundColor, setBackgroundColor] = UseState('white');
+  
   useEffect(() => {
     const fetchData = async () => {
       const fetchresult = await API_Service.GetService('Budget');
@@ -15,6 +15,13 @@ const GetBudget = () => {
     fetchData();
   }, []);
   console.log(data)
+  function getBackgroundColor (procent) {
+    if(procent >= 80 && procent < 100) {
+      return 'orange'
+    } else if(procent > 100) {
+      return 'red'
+    }
+  }
   if (data) {
     return (
       <div class='container'>
@@ -45,7 +52,7 @@ const GetBudget = () => {
           </tr>
           <tr>
             <td>Used procent</td>
-            {Object.values(data.budgetCategories).map(x =><td {true ? setBackgroundColor('orange'): false ? setBackgroundColor('red') : setBackgroundColor('white')} style={{backgroundColor: backgroundColor}}>{x[3]}</td>  )}
+            {Object.values(data.budgetCategories).map(x =><td style={{backgroundColor: getBackgroundColor(x[3])}}>{x[3]}</td>  )}
           </tr>
         </table>
         </div>
