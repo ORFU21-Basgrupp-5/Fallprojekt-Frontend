@@ -13,6 +13,7 @@ import Home from './Components/home.js';
 import Budget from './Components/Budget/BudgetComponent';
 import AddBalanceChange from './Components/Budget/AddBalanceChangeComponent';
 import History from './Components/Budget/HistoryComponent.js'
+import Welcome from './Components/User/WelcomeComponent';
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(
@@ -20,6 +21,7 @@ ReactDOM.render(
 		<Routes>
 			<Route path='/' element={<App />}>
 				<Route index element={<Home />} />
+				<Route exact path='/welcome' element={<Welcome />} />
 				<Route exact path='/login' element={<Login />} />
 				<Route exact path='/register' element={<Register />} />
 				<Route exact path='/recover' element={<RecoverEmail />} />
@@ -35,7 +37,4 @@ ReactDOM.render(
 	rootElement
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
