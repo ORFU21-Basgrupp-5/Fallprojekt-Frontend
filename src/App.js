@@ -1,5 +1,5 @@
 import { Fragment,  } from 'react';
-import { Outlet } from 'react-router-dom';
+import MainRoutes from './routes.js';
 import './CSS/App.css';
 import NavigationBar from './Components/NavigationBar';
 import Footer from './Components/Footer';
@@ -11,7 +11,7 @@ function App() {
         <div className='header'>
         <NavigationBar/>
         </div>
-      <Outlet/>
+        <MainRoutes/>
       <Footer/>
     </div>
     </Fragment>
