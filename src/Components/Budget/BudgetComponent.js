@@ -9,6 +9,7 @@ const Budget = () => {
     date:'',
     month: '',
     year: '',
+    categoriesAndAmount: {}
   })
   const [catData,setCatData] = useState({
       Food:0,
@@ -58,13 +59,17 @@ const Budget = () => {
       if(validated){
         try {
           let postData = data;
-      const fetchresult =  await API_Service.PostService("Budget", postData);
-      if (fetchresult !== false)
-      {
-        setPosted(true);
-        setdisableSubmit(true);
-        DefaultRender("Your budget is saved!");
-      }
+          postData['month'] = new Date(postData.date).getMonth();
+          postData['year'] = new Date(postData.date).getFullYear();
+          delete postData['date'];
+          postData['categoriesAndAmount'] = catData;
+          const fetchresult =  await API_Service.PostService("Budget", postData);
+          if (fetchresult !== false)
+          {
+            setPosted(true);
+            setdisableSubmit(true);
+            DefaultRender("Your budget is saved!");
+          }
         }
         catch (error) {
           DefaultRender('Upload failed!');
@@ -79,8 +84,8 @@ const Budget = () => {
       <form id="form1" className='inputForm' onSubmit={handleSubmit}>
         <div className="inputRow">
           
-          <label htmlFor="budgetName">Budget name:</label>
-          <input type="text" id="budgetName" value={data.usnameerName} onChange={(event) => handleFormChange(event)} name="budgetName"/>
+          <label htmlFor="name">Budget name:</label>
+          <input type="text" id="name" value={data.name} onChange={(event) => handleFormChange(event)} name="name"/>
           </div>
           <div className="inputRow">
           <label htmlFor="totalSum">Budget total amount:</label>
