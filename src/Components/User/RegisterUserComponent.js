@@ -42,15 +42,15 @@ const Register = () => {
     
     function ValidateUser()
     {
-      const usernamevalidate = userRegister.every((x) => x != "");
+      const usernamevalidate = formData.every((x) => x != "");
           if (usernamevalidate) {
-            if (userRegister[2] != userRegister[3]) {
+            if (formData[2] != formData[3]) {
               let errorPassContainer = document.getElementById("hidden-message");
               let newText = document
               .createElement("p")
               .appendChild(document.createTextNode("Lösenorden matchar inte!"));
               errorPassContainer.appendChild(newText);
-            } else if (CheckPassword(userRegister[2]) === false) {
+            } else if (CheckPassword(formData[2]) === false) {
               let errorPassContainer = document.getElementById("hidden-message");
                   let newText = document
                   .createElement("p")
@@ -61,9 +61,9 @@ const Register = () => {
                       );
                       errorPassContainer.appendChild(newText);
                     } else {
-                      const name = userRegister[0];
-                      const email = userRegister[1];
-                      const password = userRegister[2];
+                      const name = formData[0];
+                      const email = formData[1];
+                      const password = formData[2];
                       
                       const userDTO = {
                         userName: name,

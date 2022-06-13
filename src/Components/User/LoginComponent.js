@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { DefaultRender } from '../Services/errorHandler.js';
 import NavigationBar  from '../NavigationBar.js'
 import API_Service from '../../API/API_Service.js';
+import { Render} from './WelcomeComponent.js'
 //first we create a "view" that is the html code we want to display
 const Login = () => {
   // const [errorMessage, setMessage] = useState ("");
@@ -29,10 +30,9 @@ const Login = () => {
     const post = inputFields;
     try {
       const fetchresult = await API_Service.PostService('User/login', post);
-
       if (fetchresult !== false) {
         CreateLoginToken(fetchresult);
-        return <NavigationBar fetchresult={fetchresult} />
+        return <NavigationBar loggedin={true} />
       }
     } catch (e) {
       DefaultRender('Username or password is incorrect.');
