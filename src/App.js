@@ -21,14 +21,14 @@ import Welcome from './Components/User/WelcomeComponent';
 function App() {
 	return (
 		<div className='App'>
-			<NavigationBar /> //dynamic navigationBar that always will render and swaps depending on auth status.
+			<NavigationBar /> 
 			<Routes>
-        //public routes
+
 				<Route path='/' element={<Home />} />
 				<Route exact path='/login' element={<Login />} />
 				<Route exact path='/registeruser' element={<Register />} />
 				<Route exact path='/recover' element={<RecoverEmail />} />
-        //private routes, required auth=true.
+
 				<Route path='/*' element={<PrivateOutlet />}>
           <Route exact path='welcome' element={<Welcome />} />
 					<Route exact path='GetBudget' element={<GetBudget />} />
@@ -38,7 +38,7 @@ function App() {
 					<Route exact path='changePassword' element={<ChangePassword />} />
 				</Route>
 			</Routes>
-			<Footer /> //dynamic footer,. currently static but dynamic functions can be writen.
+			<Footer />
 		</div>
 	);
 }

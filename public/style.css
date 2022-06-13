@@ -290,7 +290,7 @@ body{
     border-radius: 5px;
     box-shadow: 0 0 5px #000000;
   }
-  
+
   input[type = submit]:hover{
     background-color: #C64C4C;
   }

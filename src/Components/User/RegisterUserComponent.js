@@ -116,7 +116,7 @@ const Register = () => {
                 <input type="password" value={formData.confirmpassword} onChange={(e) => handleChange(e)} name="confirmpassword" placeholder="Bekräfta lösenord"/>
                 </div>
               <div>
-                <button type="submit" onSubmit = {handleSubmit}>Submit</button>
+                <input type="submit" onSubmit = {handleSubmit}/>
               </div>
               <div id="errorDiv"></div>
             </form>

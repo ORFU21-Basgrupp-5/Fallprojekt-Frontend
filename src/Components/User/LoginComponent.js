@@ -4,13 +4,13 @@ import { DefaultRender } from '../Services/errorHandler.js';
 import API_Service from '../../API/API_Service.js';
 import { useNavigate } from 'react-router-dom';
 import { Navigate, useLocation } from 'react-router-dom';
-import { useAuth } from "../Services/AuthProvider.js";
+import { useAuth } from '../Services/AuthProvider.js';
 
 //first we create a "view" that is the html code we want to display
 const Login = () => {
 	const { loginStatus, setLoginStatus } = useAuth();
 	const { state } = useLocation();
-	const previousPath = state?.from ? state.from : "/";
+	const previousPath = state?.from ? state.from : '/';
 	const navigate = useNavigate();
 	const [inputFields, setInputFields] = useState({
 		userName: '',
@@ -40,7 +40,6 @@ const Login = () => {
 			}
 		} catch (e) {
 			DefaultRender('Username or password is incorrect.');
-
 		}
 
 		function CreateLoginToken(data) {
@@ -48,7 +47,7 @@ const Login = () => {
 			let user = data.user;
 			let expires = new Date(Date.now() + 86400 * 1000).toUTCString();
 
-			document.cookie = 'token=' + token + ';' + 'user=' + user + ';' + 'expires=' + expires + 86400 + ';path=/;'
+			document.cookie = 'token=' + token + ';' + 'user=' + user + ';' + 'expires=' + expires + 86400 + ';path=/;';
 		}
 	};
 	return loginStatus ? (
@@ -94,9 +93,8 @@ const Login = () => {
 							Glömt lösenordet?
 						</NavLink>
 
-						<button className='login-btn' onClick={tryLogin}>
-							login
-						</button>
+						<input type='submit' name='login' value='Login' className='login-btn' onClick={tryLogin} />
+							
 					</div>
 
 					<div id='errorDiv' className='errorMessage'></div>
