@@ -56,7 +56,6 @@ setFormValue((prevState) => {
 
     <button id="recoverbutton" onClick={sendEmail}>Bekräfta</button>
     <div id="SentOrNotDiv"></div>
-    <a href="/">Logga in här byt till rätt route</a>
     <div id="errorDiv"></div>
   </form>
   )
