@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { DefaultRender } from '../Services/errorHandler.js';
-import NavigationBar from '../NavigationBar.js';
 import API_Service from '../../API/API_Service.js';
 import { useNavigate  } from "react-router-dom";
 

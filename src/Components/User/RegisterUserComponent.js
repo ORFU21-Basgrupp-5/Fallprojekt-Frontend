@@ -1,5 +1,4 @@
-import { useState, useEffect, useContext } from 'react'
-import { GetCookie } from "../Services/cookie";
+import { useState} from 'react'
 import { DefaultRender } from "../Services/errorHandler.js";
 import API_Service from '../../API/API_Service';
 
@@ -42,9 +41,9 @@ const Register = () => {
     
     function ValidateUser()
     {
-      const usernamevalidate = formData.every((x) => x != "");
+      const usernamevalidate = formData.every((x) => x !== "");
           if (usernamevalidate) {
-            if (formData[2] != formData[3]) {
+            if (formData[2] !== formData[3]) {
               let errorPassContainer = document.getElementById("hidden-message");
               let newText = document
               .createElement("p")
@@ -102,19 +101,19 @@ const Register = () => {
               
               <div id="uname">
                 <label for="username">Användarnamn</label>
-                <input type="text" value={formData.username} name="username" placeholder="Välj ett användarnamn"/>
+                <input type="text" value={formData.username} name="username" onChange={(e) => handleChange(e)} placeholder="Välj ett användarnamn"/>
               </div>
               <div id="email">
                 <label for="email">Email:</label>
-                <input type="text" value={formData.email} name="email" placeholder="Fyll i din epost"/>
+                <input type="text" value={formData.email} name="email" onChange={(e) => handleChange(e)} placeholder="Fyll i din epost"/>
               </div>
               <div id="pswrd">
                 <label for="password">Lösenord: </label>
-                <input type="text" value={formData.password} name="password" placeholder="Välj ett lösenord"/>
+                <input type="password" value={formData.password} name="password" onChange={(e) => handleChange(e)}  placeholder="Välj ett lösenord"/>
               </div>
               <div id="pswrdvalid">
                 <label for="password2">Bekräfta lösenord:</label>
-                <input type="text" value={formData.confirmpassword} onchange={handleChange} name="password2" placeholder="Bekräfta lösenord"/>
+                <input type="password" value={formData.confirmpassword} onChange={(e) => handleChange(e)} name="confirmpassword" placeholder="Bekräfta lösenord"/>
                 </div>
               <div>
                 <button type="submit" onSubmit = {handleSubmit}>Submit</button>
@@ -125,4 +124,3 @@ const Register = () => {
       )      
   }
   export default Register
-  
