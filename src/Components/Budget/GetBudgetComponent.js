@@ -4,7 +4,7 @@ import API_Service from '../../API/API_Service.js';
 
 const GetBudget = () => {
   const [data, setData] = useState();
-  
+
   useEffect(() => {
     const fetchData = async () => {
       const fetchresult = await API_Service.GetService('Budget');
@@ -52,7 +52,7 @@ const GetBudget = () => {
           </tr>
           <tr>
             <td>Used procent</td>
-            {Object.values(data.budgetCategories).map(x =><td style={{backgroundColor: getBackgroundColor(x[3])}}>{x[3]}</td>  )}
+            {Object.values(data.budgetCategories).map(x =><td style={{backgroundColor: getBackgroundColor(parseInt(x[3]))}}>{x[3]}</td>  )}
           </tr>
         </table>
         </div>
