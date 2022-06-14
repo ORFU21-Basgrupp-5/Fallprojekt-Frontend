@@ -5,7 +5,7 @@ import NavigationBar  from '../NavigationBar.js'
 import API_Service from '../../API/API_Service.js';
 //first we create a "view" that is the html code we want to display
 const Login = () => {
-  // const [errorMessage, setMessage] = useState ("");
+  const [errorMessage, setMessage] = useState ("");
   const [inputFields, setInputFields] = useState({
     userName: '',
     password: '',
@@ -35,8 +35,8 @@ const Login = () => {
         return <NavigationBar fetchresult={fetchresult} />
       }
     } catch (e) {
-      DefaultRender('Username or password is incorrect.');
-      // setMessage('Username or password is incorrect.');
+      // DefaultRender('Username or password is incorrect.');
+      setMessage('Username or password is incorrect.');
     }
 
 
@@ -105,8 +105,8 @@ const Login = () => {
           </div>
 
 
-          <div id='errorDiv' className='errorMessage'></div>
-          {/* <DefaultRender errorMessage ={errorMessage}/> */}
+          {/* <div id='errorDiv' className='errorMessage'></div> */}
+          <DefaultRender errorMessage={errorMessage}/>
         </form>
       </div>
     </div>
