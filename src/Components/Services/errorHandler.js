@@ -1,19 +1,19 @@
-// import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export const DefaultRender = (msg) => {
-  // const [errorMessage, setError] = useState("");
-  // setError(msg)
-  // return (
-  //   <div>
-  //     <p>{errorMessage}</p>
-  //   </div>
-  // );
+export const DefaultRender = ({errorMessage}) => {
+  const [Message, setError] = useState("");
+  useEffect(() => {
+    setError(errorMessage)
 
-  const errorDiv = document.getElementById("errorDiv")
-  const childErrorDiv = document.createElement("div")
-  childErrorDiv.insertAdjacentText("beforeend", msg)
-  errorDiv.appendChild(childErrorDiv)
-  setTimeout(function () {
-    errorDiv.removeChild(errorDiv.lastChild);
+    setTimeout(function () {
+      setError("")
   }, 4000)
+  }, [errorMessage]);
+
+
+  return (
+    <div>
+      <p>{Message}</p>
+    </div>
+  );
 }

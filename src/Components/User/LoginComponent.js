@@ -7,7 +7,10 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../Services/AuthProvider.js';
 
 //first we create a "view" that is the html code we want to display
+
+
 const Login = () => {
+  const [errorMessage, setMessage] = useState ("");
 	const { loginStatus, setLoginStatus } = useAuth();
 	const { state } = useLocation();
 	const previousPath = state?.from ? state.from : '/';
@@ -39,7 +42,7 @@ const Login = () => {
 				moveToWelcome();
 			}
 		} catch (e) {
-			DefaultRender('Username or password is incorrect.');
+			setMessage('Username or password is incorrect.');
 		}
 
 		function CreateLoginToken(data) {
@@ -97,8 +100,7 @@ const Login = () => {
 							
 					</div>
 
-					<div id='errorDiv' className='errorMessage'></div>
-					{/* <DefaultRender errorMessage ={errorMessage}/> */}
+					<DefaultRender errorMessage={errorMessage}/>
 				</form>
 			</div>
 		</div>
