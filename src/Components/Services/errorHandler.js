@@ -1,8 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export const DefaultRender = ({errorMessage}) => {
   const [Message, setError] = useState("");
-  // setError(msg)
+
+    useEffect(() => {
+      setError(errorMessage)
+    }, []);
+
+
   return (
     <div>
       <p>{errorMessage}</p>
