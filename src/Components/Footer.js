@@ -6,7 +6,7 @@ const Footer = () => {
         
             <footer className="site-footer">
                
-                <img id="footerPicture" src = {NavImage} alt="footlogo"/>
+
                     <ul className="socials">
                         <li><a href="www.facebook.com"><i className="fa fa-facebook"></i></a></li>
                         <li><a href="www.twitter.com"><i className="fa fa-twitter"></i></a></li>

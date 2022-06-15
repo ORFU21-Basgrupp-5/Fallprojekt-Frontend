@@ -19,7 +19,7 @@ import Welcome from './Components/User/WelcomeComponent';
 //privateOutlet you will get redirected to login. 
 function App() {
 	return (
-		<div className='App'>
+		<div class='container mx-auto'>
 			<NavigationBar /> 
 			<Routes>
 
