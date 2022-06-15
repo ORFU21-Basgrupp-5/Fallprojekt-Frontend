@@ -13,61 +13,52 @@ const NavigationBar = () => {
 
 	if (loginStatus === true) {
 		return (
-			<div className='box-border h-32 w-32 p-4 border-4'>
-				<div className='container'>
+			<div className='flex flex-row space-x-4 space-y-4 h-20'>
+				<div className=''>
 					<div id='header' className='navigation-menu'>
 						<img id='mainLogo' src={NavImage} alt='My Happy SVG' />
-						<ul id='navbar'>
-							<li>
-								<NavLink to='/addbalancechange' className='button'>
+						
+								<NavLink to='/addbalancechange' className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded'>
 									Inmatning
 								</NavLink>
-							</li>
-							<li>
-								<NavLink to='/History' className='button'>
+							
+								<NavLink to='/History' className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded'>
 									History
 								</NavLink>
-							</li>
-							<li>
-								<NavLink to='/addbudget' className='button'>
+							
+								<NavLink to='/addbudget' className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded'>
 									Skapa Budget
 								</NavLink>
-							</li>
-							<li>
-								<NavLink to='/getbudget' className='button'>
+							
+								<NavLink to='/getbudget' className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded'>
 									Visa Budget
 								</NavLink>
-							</li>
-							<li>
-								<NavLink to='/' onClick={forceLogout} className='button'>
+							
+								<NavLink to='/' onClick={forceLogout} className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded'>
 									Logout
 								</NavLink>
-							</li>
-						</ul>
+						
 					</div>
 				</div>
 			</div>
 		);
 	} else {
 		return (
-			<div className='header'>
-				<div className='container'>
-					<div id='header' className='navigation-menu'>
+			<div className='flex flex-row  h-10'>
+				
+					
 						
-						<ul id='navbar'>
-							<li>
-								<NavLink to='/login' className='button'>
+						
+								<NavLink to='/login' className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded mx-3'>
 									Login
 								</NavLink>
-							</li>
-							<li>
-								<NavLink to='/registeruser' className='button'>
+							
+								<NavLink to='/registeruser' className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded mx-3'>
 									Registera dig
 								</NavLink>
-							</li>
-						</ul>
-					</div>
-				</div>
+						
+					
+				
 			</div>
 		);
 	}

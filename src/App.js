@@ -15,11 +15,12 @@ import Welcome from './Components/User/WelcomeComponent';
 
 
 
+
 // if you are not logged in (auth) if you try and go to a route under the 
 //privateOutlet you will get redirected to login. 
 function App() {
 	return (
-		<div class='container mx-auto'>
+		<div className='container mx-auto'>
 			<NavigationBar /> 
 			<Routes>
 

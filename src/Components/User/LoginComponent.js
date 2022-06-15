@@ -92,11 +92,11 @@ const Login = () => {
 					</div>
 
 					<div id='recover'>
-						<NavLink to='/recover' id='recover-btn'>
+						<NavLink to='/recover' id='recover-btn' className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded mx-3'>
 							Glömt lösenordet?
 						</NavLink>
 
-						<input type='submit' name='login' value='Login' className='login-btn' onClick={tryLogin} />
+						<input type='submit' name='login' value='Login' className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded mx-3' onClick={tryLogin} />
 							
 					</div>
 

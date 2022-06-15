@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App.js';
 import AuthProvider from './Components/Services/AuthProvider.js';
 import { StrictMode } from "react";
 import { BrowserRouter} from 'react-router-dom';
-
+import './styles/output.css';
+import './styles/tailwind.css';
 //StrickMode is now on.
 //Quick FaQ :
 //StrictMode currently helps with:
