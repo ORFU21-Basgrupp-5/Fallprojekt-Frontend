@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router';
-import './CSS/App.css';
 import PrivateOutlet from './Components/Services/PrivateComponent.js';
 import NavigationBar from './Components/NavigationBar';
 import Footer from './Components/Footer';
@@ -20,7 +19,7 @@ import Welcome from './Components/User/WelcomeComponent';
 //privateOutlet you will get redirected to login. 
 function App() {
 	return (
-		<div className='App'>
+		<div class='container mx-auto'>
 			<NavigationBar /> 
 			<Routes>
 

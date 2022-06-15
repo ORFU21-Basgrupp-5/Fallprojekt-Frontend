@@ -13,7 +13,7 @@ const NavigationBar = () => {
 
 	if (loginStatus === true) {
 		return (
-			<div className='header'>
+			<div className='box-border h-32 w-32 p-4 border-4'>
 				<div className='container'>
 					<div id='header' className='navigation-menu'>
 						<img id='mainLogo' src={NavImage} alt='My Happy SVG' />
@@ -53,7 +53,7 @@ const NavigationBar = () => {
 			<div className='header'>
 				<div className='container'>
 					<div id='header' className='navigation-menu'>
-						<img id='mainLogo' src={NavImage} alt='My Happy SVG' />
+						
 						<ul id='navbar'>
 							<li>
 								<NavLink to='/login' className='button'>
