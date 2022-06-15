@@ -2,7 +2,7 @@ import NavImage from '../Images/Asset_2port.svg';
 
 const Footer = () => {
 	return (
-        <div className="container">
+
         
             <footer className="site-footer">
                
@@ -17,7 +17,7 @@ const Footer = () => {
                     <p>@Copyright Grupp 5- All Right Reserved.  </p>
                 </div>
             </footer>
-        </div>
+        
 	);
 };
 export default Footer;

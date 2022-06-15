@@ -10,9 +10,10 @@ import GetBudget from './Components/Budget/GetBudgetComponent';
 import Home from './Components/home.js';
 import Budget from './Components/Budget/BudgetComponent';
 import AddBalanceChange from './Components/Budget/AddBalanceChangeComponent';
-import History from './Components/Budget/HistoryComponent.js'
+import History from './Components/Budget/HistoryComponent.js';
 import Welcome from './Components/User/WelcomeComponent';
 
+<<<<<<< Updated upstream
 
 
 // if you are not logged in (auth) if you try and go to a route under the 
@@ -27,17 +28,42 @@ function App() {
 				<Route exact path='/login' element={<Login />} />
 				<Route exact path='/registeruser' element={<Register />} />
 				<Route exact path='/recover' element={<RecoverEmail />} />
+=======
+// if you are not logged in (auth) if you try and go to a route under the
+//privateOutlet you will get redirected to login.
+function App() {
+	return (
+		<div className="flex flex-col h-screen divide-y divide-blue  divide-opacity-25 ">
+			<div className='p-4 bg-white shadow-md'>
+			<div className='container mx-auto'>
+				<NavigationBar />
+				</div>
+			</div>
+			<div className='p-4 flex-grow bg-white'>
+			<div className='container mx-auto rounded'>
+				<Routes>
+					<Route path='/' element={<Home />} />
+					<Route exact path='/login' element={<Login />} />
+					<Route exact path='/registeruser' element={<Register />} />
+					<Route exact path='/recover' element={<RecoverEmail />} />
+>>>>>>> Stashed changes
 
-				<Route path='/*' element={<PrivateOutlet />}>
-          <Route exact path='welcome' element={<Welcome />} />
-					<Route exact path='GetBudget' element={<GetBudget />} />
-					<Route exact path='addbudget' element={<Budget />} />
-					<Route exact path='History' element={<History />} />
-          <Route exact path='AddBalanceChange' element={<AddBalanceChange />}/>
-					<Route exact path='changePassword' element={<ChangePassword />} />
-				</Route>
-			</Routes>
-			<Footer />
+					<Route path='/*' element={<PrivateOutlet />}>
+						<Route exact path='welcome' element={<Welcome />} />
+						<Route exact path='GetBudget' element={<GetBudget />} />
+						<Route exact path='addbudget' element={<Budget />} />
+						<Route exact path='History' element={<History />} />
+						<Route exact path='AddBalanceChange' element={<AddBalanceChange />} />
+						<Route exact path='changePassword' element={<ChangePassword />} />
+					</Route>
+				</Routes>
+				</div>
+			</div>
+			<div className='p-4 bg-white'>
+			<div className='container mx-auto'>
+				<Footer />
+			</div>
+			</div>
 		</div>
 	);
 }

@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
+<<<<<<< Updated upstream:src/index.css
 @tailwind utilities;
+=======
+@tailwind utilities;
+
+
+@layer components {
+    .btn-base {
+        @apply text-white font-bold cursor-pointer bg-blue  py-2 px-4 rounded mx-3 transition ease-in-out    hover:bg-orange duration-300;
+    }
+
+}
+>>>>>>> Stashed changes:src/styles/tailwind.css

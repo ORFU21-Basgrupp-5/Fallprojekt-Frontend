@@ -56,18 +56,19 @@ const Login = () => {
 	return loginStatus ? (
 		<Navigate to={previousPath} />
 	) : (
-		<div className='container'>
-			<div id='login'>
-				<h1>Login</h1>
-				<p>
-					Saknar du ett konto?
-					<NavLink to='/registeruser' id='reglink'>
+			<div className="container">
+				
+				<div className='m-4'>
+				<div className="text-xl font-bold">Login</div>
+					<p>Saknar du ett konto? 
+					<NavLink to='/registeruser' className="btn-base">
 						Skapa konto
 					</NavLink>
-				</p>
+					</p>
+				</div>
 
-				<form id='form1' className='inputForm' onSubmit={handleSubmit}>
-					<div id='uname'>
+				<form id='form1' className='m-4' onSubmit={handleSubmit}>
+					<div className='m-4'>
 						<label htmlFor='username'>Användarnamn: </label>
 
 						<input
@@ -79,7 +80,7 @@ const Login = () => {
 						/>
 					</div>
 
-					<div id='pswrd'>
+					<div className='m-4'>
 						<label htmlFor='password'>Lösenord: </label>
 
 						<input
@@ -92,18 +93,25 @@ const Login = () => {
 					</div>
 
 					<div id='recover'>
+<<<<<<< Updated upstream
 						<NavLink to='/recover' id='recover-btn'>
 							Glömt lösenordet?
 						</NavLink>
 
 						<input type='submit' name='login' value='Login' className='login-btn' onClick={tryLogin} />
+=======
+						<NavLink to='/recover' className='btn-base'>
+						Glömt lösenordet?
+								</NavLink>
+						<input type='submit' name='login' value='Login' className='btn-base' onClick={tryLogin} />
+>>>>>>> Stashed changes
 							
 					</div>
 
 					<DefaultRender errorMessage={errorMessage}/>
 				</form>
 			</div>
-		</div>
+		
 	);
 };
 
