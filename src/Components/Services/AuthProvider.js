@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext,useEffect, useState } from "react";
 import { DeleteCookie } from "./cookie";
 const AuthContext = createContext();
 
@@ -7,8 +7,11 @@ const AuthContext = createContext();
 // you can set this state on anypage, so if you want user to get logedout set this to false.
 const AuthProvider = ({ children }) => {
   const [loginStatus, setLoginStatus] = useState(false);
-    if(loginStatus === false)
-    DeleteCookie('token');
+  useEffect(() => {
+   if(loginStatus === false)
+   DeleteCookie('token');
+  }, [loginStatus]);
+
 
   return (
     <AuthContext.Provider value={{ loginStatus, setLoginStatus }}>
