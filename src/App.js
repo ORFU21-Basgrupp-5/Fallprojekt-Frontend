@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router';
-import './CSS/App.css';
 import PrivateOutlet from './Components/Services/PrivateComponent.js';
 import NavigationBar from './Components/NavigationBar';
 import Footer from './Components/Footer';
