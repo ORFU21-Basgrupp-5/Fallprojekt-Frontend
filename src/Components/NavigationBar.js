@@ -13,11 +13,12 @@ const NavigationBar = () => {
 
 	if (loginStatus === true) {
 		return (
-			<div className='flex flex-row h-20 justify-center gap-4 mt-10'>
+			<div className='flex justify-center mt-10 w-screen'>
 				<div className=''>
 					<div id='header' className='navigation-menu'>
-						<img id='mainLogo' src={NavImage} alt='My Happy SVG' />
-						
+						<img className='mb-5' id='mainLogo' src={NavImage} alt='My Happy SVG' />
+						</div>
+						<div className=''>
 								<NavLink to='/addbalancechange' className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded'>
 									Inmatning
 								</NavLink>
@@ -37,9 +38,8 @@ const NavigationBar = () => {
 								<NavLink to='/' onClick={forceLogout} className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded'>
 									Logout
 								</NavLink>
-						
+								</div>
 					</div>
-				</div>
 			</div>
 		);
 	} else {

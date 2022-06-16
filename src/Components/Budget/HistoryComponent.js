@@ -30,7 +30,7 @@ const History = () => {
   }
 
   return (
-    <div className='container'>
+    <div className='flex justify-center mt-20'>
       <h1>History</h1>
       <div className='table'>
         <table>

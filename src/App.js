@@ -20,10 +20,10 @@ import Welcome from './Components/User/WelcomeComponent';
 //privateOutlet you will get redirected to login. 
 function App() {
 	return (
-		<div className='container mx-auto'>
+		<div className=''>
 			<NavigationBar /> 
+			<div>
 			<Routes>
-
 				<Route path='/' element={<Home />} />
 				<Route exact path='/login' element={<Login />} />
 				<Route exact path='/registeruser' element={<Register />} />
@@ -38,7 +38,8 @@ function App() {
 					<Route exact path='changePassword' element={<ChangePassword />} />
 				</Route>
 			</Routes>
-			<Footer />
+			</div>
+			<Footer/>
 		</div>
 	);
 }
