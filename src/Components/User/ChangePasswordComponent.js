@@ -10,7 +10,7 @@ import API_Service from "../../API/API_Service";
     });
   
     
-  const handleChange = (e) => {
+  const HandleChange = (e) => {
     const {name, value} = e.target;
     
     setInputFields((prevState) => {
@@ -62,7 +62,7 @@ import API_Service from "../../API/API_Service";
       id="newPassword"
       name="newpassword"
       value={inputFields.NewPassword}
-      onChange={handleChange}
+      onChange={HandleChange}
       />
       <br/>
       <label>Confirm password: </label>
@@ -71,7 +71,7 @@ import API_Service from "../../API/API_Service";
        id="confirmPassword"
        name="confirmPassword"
        value={inputFields.ConfirmPassword}
-       onChange={handleChange}
+       onChange={HandleChange}
        />
       <button id="confirmButton" onclick={checkPassword}>Confirm</button>
       <br/>
