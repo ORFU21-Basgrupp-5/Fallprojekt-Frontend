@@ -13,7 +13,7 @@ const NavigationBar = () => {
 
 	if (loginStatus === true) {
 		return (
-			<div className='flex flex-row space-x-4 space-y-4 h-20'>
+			<div className='flex flex-row h-20 justify-center gap-4 mt-10'>
 				<div className=''>
 					<div id='header' className='navigation-menu'>
 						<img id='mainLogo' src={NavImage} alt='My Happy SVG' />
@@ -44,16 +44,14 @@ const NavigationBar = () => {
 		);
 	} else {
 		return (
-			<div className='flex flex-row  h-10'>
-				
+			<div className='flex flex-row h-20 justify-center gap-4 mt-10'>
+				<img id='mainLogo' src={NavImage} alt='My Happy SVG' />
 					
-						
-						
-								<NavLink to='/login' className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded mx-3'>
+								<NavLink to='/login' className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded mx-3 h-10'>
 									Login
 								</NavLink>
 							
-								<NavLink to='/registeruser' className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded mx-3'>
+								<NavLink to='/registeruser' className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded mx-3 h-10'>
 									Registera dig
 								</NavLink>
 						

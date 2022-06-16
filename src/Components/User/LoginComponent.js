@@ -43,10 +43,11 @@ const Login = () => {
 				moveToWelcome();
 			}
 			else{
-				setMessage('Could not log in')
+				setMessage('Username or password is incorrect.');
+				
 			}
 		} catch (e) {			
-			setMessage('Username or password is incorrect.');
+			setMessage('Could not log in, check your internet connection')
 		}
 		finally{
 			setLoading(false)
@@ -63,21 +64,15 @@ const Login = () => {
 	return loginStatus ? (
 		<Navigate to={previousPath} />
 	) : (
-		<div className='container'>
+		<div className='flex justify-center mt-20'>
 			<div id='login'>
-				<h1>Login</h1>
-				<p>
-					Saknar du ett konto?
-					<NavLink to='/registeruser' id='reglink'>
-						Skapa konto
-					</NavLink>
-				</p>
 
-				<form id='form1' className='inputForm' onSubmit={handleSubmit}>
-					<div id='uname'>
-						<label htmlFor='username'>Användarnamn: </label>
+				<form id='form1' className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+					<div id='uname' className='mb-4'>
+						<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor='username'>Användarnamn: </label>
 
 						<input
+						    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
 							type='text'
 							name='userName'
 							placeholder='Fyll i ditt användarnamn'
@@ -86,10 +81,11 @@ const Login = () => {
 						/>
 					</div>
 
-					<div id='pswrd'>
-						<label htmlFor='password'>Lösenord: </label>
+					<div id='pswrd' className="mb-6">
+						<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor='password'>Lösenord: </label>
 
 						<input
+						    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
 							type='password'
 							name='password'
 							placeholder='Fyll i ditt lösenord'
@@ -98,12 +94,12 @@ const Login = () => {
 						/>
 					</div>
 
-					<div id='recover'>
-						<NavLink to='/recover' id='recover-btn' className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded mx-3'>
+					<div id='recover' className="flex items-center justify-between">
+						<NavLink to='/recover' id='recover-btn' className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
 							Glömt lösenordet?
 						</NavLink>
 
-						<button  type='submit' name='login' className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded mx-3' onClick={tryLogin}>
+						<button  type='submit' name='login' className="bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={tryLogin}>
 						Login
 						{loading &&
 							<span className='animate-spin h-5 w-5 ml-3 inline-block text-center'>
@@ -116,8 +112,19 @@ const Login = () => {
 
 					<DefaultRender errorMessage={errorMessage}/>
 				</form>
+				<div className='flex justify-center'>
+			<p className="block text-gray-700 text-sm font-bold mb-2 ">
+					Saknar du ett konto?
+					<NavLink to='/registeruser' id='reglink'>
+						Skapa konto
+					</NavLink>
+				</p>
 			</div>
+			</div>
+			
 		</div>
+		
+		
 	);
 };
 
