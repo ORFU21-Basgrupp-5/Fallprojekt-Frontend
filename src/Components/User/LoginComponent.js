@@ -5,12 +5,13 @@ import API_Service from '../../API/API_Service.js';
 import { useNavigate } from 'react-router-dom';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../Services/AuthProvider.js';
-
+import { FaSpinner } from 'react-icons/fa';
 //first we create a "view" that is the html code we want to display
 
 
 const Login = () => {
-  const [errorMessage, setMessage] = useState ("");
+	const [loading, setLoading] = useState(false);
+    const [errorMessage, setMessage] = useState ("");
 	const { loginStatus, setLoginStatus } = useAuth();
 	const { state } = useLocation();
 	const previousPath = state?.from ? state.from : '/';
@@ -33,16 +34,22 @@ const Login = () => {
 	const tryLogin = async (e) => {
 		e.preventDefault();
 		const post = inputFields;
-
 		try {
+			setLoading(true)
 			const fetchresult = await API_Service.PostService('User/login', post);
 			if (fetchresult !== false) {
 				CreateLoginToken(fetchresult);
 				setLoginStatus(true);
 				moveToWelcome();
 			}
-		} catch (e) {
+			else{
+				setMessage('Could not log in')
+			}
+		} catch (e) {			
 			setMessage('Username or password is incorrect.');
+		}
+		finally{
+			setLoading(false)
 		}
 
 		function CreateLoginToken(data) {
@@ -96,7 +103,14 @@ const Login = () => {
 							Glömt lösenordet?
 						</NavLink>
 
-						<input type='submit' name='login' value='Login' className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded mx-3' onClick={tryLogin} />
+						<button  type='submit' name='login' className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded mx-3' onClick={tryLogin}>
+						Login
+						{loading &&
+							<span className='animate-spin h-5 w-5 ml-3 inline-block text-center'>
+							<FaSpinner/>
+							</span>
+							}
+							</button> 
 							
 					</div>
 
