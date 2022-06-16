@@ -4,6 +4,7 @@ import { DefaultRender } from '../Services/messageHandler.js';
 import API_Service from "../../API/API_Service";
 
 const ChangePassword = () => {
+  const [errorMessage, setMessage] = useState("");
   const [inputFields, setInputFields] = useState({
     NewPassword: '',
     ConfirmPassword: ''
@@ -11,7 +12,7 @@ const ChangePassword = () => {
 
 
   const handleChange = (e) => {
-    const [errorMessage, setMessage] = useState("");
+
     const { name, value } = e.target;
 
     setInputFields((prevState) => {

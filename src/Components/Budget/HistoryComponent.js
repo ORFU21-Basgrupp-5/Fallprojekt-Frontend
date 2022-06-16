@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { GetCookie } from "../Services/cookie.js";
-import { DefaultRender } from "../Services/errorHandler.js";
 import API_Service from "../../API/API_Service.js";
 import { DefaultRender } from '../Services/messageHandler.js';
 
