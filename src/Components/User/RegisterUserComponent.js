@@ -4,6 +4,7 @@ import API_Service from '../../API/API_Service';
 
 const Register = () => {
   const [errorMessage, setMessage] = useState("");
+  const [counter, setCounter] = useState(0);
   const [formData, setFormData] = useState({
     username: "",
     email: '',
@@ -34,7 +35,8 @@ const Register = () => {
         ValidateUser(fetchUser);
       }
     } catch (e) {
-      setMessage("Username or password incorrect")
+      setMessage("Username or password incorrect");
+      setCounter(counter + 1);
     }
   }
 
@@ -43,21 +45,12 @@ const Register = () => {
     const usernamevalidate = formData.every((x) => x !== "");
     if (usernamevalidate) {
       if (formData[2] !== formData[3]) {
-        let errorPassContainer = document.getElementById("hidden-message");
-        let newText = document
-          .createElement("p")
-          .appendChild(document.createTextNode("Lösenorden matchar inte!"));
-        errorPassContainer.appendChild(newText);
+        setMessage("Lösenorden matchar inte!");
+        setCounter(counter + 1);
       } else if (CheckPassword(formData[2]) === false) {
-        let errorPassContainer = document.getElementById("hidden-message");
-        let newText = document
-          .createElement("p")
-          .appendChild(
-            document.createTextNode(
-              "Ditt lösenord måste ha minst 12 tecken,en gemen, en storbokstav, en siffra och ett special tecken"
-            )
-          );
-        errorPassContainer.appendChild(newText);
+        setMessage("Ditt lösenord måste ha minst 12 tecken,en gemen, en storbokstav, en siffra och ett special tecken");
+        setCounter(counter + 1);
+
       } else {
         const name = formData[0];
         const email = formData[1];
@@ -72,11 +65,9 @@ const Register = () => {
         FetchReg(userDTO);
       }
     } else {
-      let errorPassContainer = document.getElementById("hidden-message");
-      let newText = document
-        .createElement("p")
-        .appendChild(document.createTextNode("Du måste fylla i alla fälten!"));
-      errorPassContainer.appendChild(newText);
+      setMessage("Du måste fylla i alla fälten!");
+      setCounter(counter + 1);
+
     }
   };
 
@@ -96,7 +87,7 @@ const Register = () => {
         <h1>Skapa ett konto</h1>
       </div>
       <p>Har du redan ett konto?<a href="/login">Logga in här</a> </p>
-      <form id="reg_form"><div id="hidden-message" />
+      <form id="reg_form">
 
         <div id="uname">
           <label for="username">Användarnamn</label>
@@ -117,7 +108,7 @@ const Register = () => {
         <div>
           <input type="submit" onSubmit={handleSubmit} />
         </div>
-        <DefaultRender errorMessage={errorMessage} />
+        <DefaultRender errorMessage={errorMessage} counter={counter} />
       </form>
     </div>
   )

@@ -5,6 +5,7 @@ import API_Service from "../../API/API_Service.js";
 
 const AddBalanceChange = () => {
   const [errorMessage, setMessage] = useState("");
+  const [counter, setCounter] = useState(0);
   CategorySelectFetch("Expense", document.getElementById("CategoryExp"));
   CategorySelectFetch("Income", document.getElementById("CategoryInc"));
 
@@ -16,7 +17,7 @@ const AddBalanceChange = () => {
   async function CategorySelectFetch(choice, catDiv) {
     try {
       const fetchresult = await API_Service.GetService(`${choice}/categories`);
-      if (fetchresult != null) {
+      if (fetchresult !== null) {
         for (var i = 0; i < fetchresult.length; i++) {
           catDiv.innerHTML = catDiv.innerHTML +
             '<option value="' + i + '">' + fetchresult[i] + '</option>';
@@ -24,6 +25,7 @@ const AddBalanceChange = () => {
       }
     } catch {
       setMessage('Could not load categories.');
+      setCounter(counter + 1);
     }
 
     incSubmit.onclick = function (e) {
@@ -52,7 +54,8 @@ const AddBalanceChange = () => {
     };
     const Income = (e) => {
       let Inc = document.getElementById("Incomes");
-      console.log("Added income");
+      setMessage("Added income");
+      setCounter(counter + 1);
       const incinputsDTO = {
         incomeDate: Inc.IDate.value,
         incomeDescription: Inc.IDesc.value,
@@ -80,19 +83,22 @@ const AddBalanceChange = () => {
           } else {
             return response.text().then(function (text) {
               setMessage(`${text.status}`);
+              setCounter(counter + 1);
             })
           }
         })
           .catch((error) => {
             debugger
             setMessage(`Error: ${error.message} `)
+            setCounter(counter + 1);
           })
       }
       FetchInc();
     };
 
     const Expense = (e) => {
-      console.log("Added expense");
+      setMessage("Added expense");
+      setCounter(counter + 1);
       let Exp = document.getElementById("Expenses")
       const expinputsDTO = {
         expenseDate: Exp.EDate.value,
@@ -120,11 +126,13 @@ const AddBalanceChange = () => {
           else {
             return response.text().then(function (text) {
               setMessage(`${text.error}`);
+              setCounter(counter + 1);
             })
           }
         })
           .catch((error) => {
             setMessage(`Error: ${error.message} `)
+            setCounter(counter + 1);
           })
       }
       FetchExp();
@@ -139,9 +147,11 @@ const AddBalanceChange = () => {
     switch (string) {
       case "expense":
         setMessage("Added expense");
+        setCounter(counter + 1);
 
       case "income":
         setMessage("Added income");
+        setCounter(counter + 1);
 
         break;
       default:
@@ -149,15 +159,17 @@ const AddBalanceChange = () => {
     }
   }
   function IsInputNumber(string) {
-    // let divexpense = document.getElementById("info-expense");
-    // let divincome = document.getElementById("info-income");
+    let divexpense = document.getElementById("info-expense");
+    let divincome = document.getElementById("info-income");
     switch (string) {
       case "expense":
-        setMessage("Balance must be indicated by numbers");
+        setMessage("Balance must be indicated by numbers when entering expense");
+        setCounter(counter + 1);
 
         break;
       case "income":
-        setMessage("Balance must be indicated by numbers");
+        setMessage("Balance must be indicated by numbers when entering income");
+        setCounter(counter + 1);
 
         break;
       default:
@@ -166,15 +178,17 @@ const AddBalanceChange = () => {
   }
 
   function IsInputEmpty(string) {
-    // let divexpense = document.getElementById("info-expense");
-    // let divincome = document.getElementById("info-income");
+    let divexpense = document.getElementById("info-expense");
+    let divincome = document.getElementById("info-income");
     switch (string) {
       case "expense":
-        setMessage("All fields must be filled in");
+        setMessage("All fields must be filled in when entering expense");
+        setCounter(counter + 1);
 
         break;
       case "income":
-        setMessage("All fields must be filled in");
+        setMessage("All fields must be filled in when entering income");
+        setCounter(counter + 1);
 
         break;
       default:
@@ -185,7 +199,6 @@ const AddBalanceChange = () => {
 
     <div id="pageContent">
       <div><h1>Incomes</h1></div>
-      <DefaultRender errorMessage={errorMessage} />
       <div id="info-income"></div>
       <form id="input-incomes">
         <div>
@@ -220,10 +233,10 @@ const AddBalanceChange = () => {
           <button id="ISubmit">Enter</button>
         </div>
       </form>
+      <DefaultRender errorMessage={errorMessage} counter={counter} />
       <div>
         <h1>Expenses</h1>
       </div>
-      <DefaultRender errorMessage={errorMessage} />
       <div id="info-expense"></div>
       <form id="input-expense">
         <div>

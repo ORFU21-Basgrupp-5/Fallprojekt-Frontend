@@ -5,6 +5,7 @@ import { DefaultRender } from '../Services/messageHandler.js';
 
 const GetBudget = () => {
   const [errorMessage, setMessage] = useState("");
+  const [counter, setCounter] = useState(0);
   const [data, setData] = useState();
 
   try {
@@ -14,11 +15,16 @@ const GetBudget = () => {
         if (fetchresult != null) {
           setData(fetchresult);
         }
+        else {
+          setMessage('Could not retrieve budget data.');
+          setCounter(counter + 1);
+        }
       };
       fetchData();
     }, []);
-  } catch (data) {
-    setMessage(data + '. Could not retrieve budget data.');
+  } catch {
+    setMessage('Check connection to internet.');
+    setCounter(counter + 1);
   }
   function getBackgroundColor(procent) {
     if (procent >= 80 && procent < 100) {
@@ -61,7 +67,7 @@ const GetBudget = () => {
             </tr>
           </table>
         </div>
-        <DefaultRender errorMessage={errorMessage} />
+        <DefaultRender errorMessage={errorMessage} counter={counter} />
       </div>
     );
   } else {

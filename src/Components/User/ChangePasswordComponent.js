@@ -5,6 +5,7 @@ import API_Service from "../../API/API_Service";
 
 const ChangePassword = () => {
   const [errorMessage, setMessage] = useState("");
+  const [counter, setCounter] = useState(0);
   const [inputFields, setInputFields] = useState({
     NewPassword: '',
     ConfirmPassword: ''
@@ -33,7 +34,8 @@ const ChangePassword = () => {
       ChangePasswordLink(NewPasswordDTO)
     }
     else {
-      setMessage("Lösenorden matchar inte")
+      setMessage("Lösenorden matchar inte");
+      setCounter(counter + 1);
     }
   }
 
@@ -44,13 +46,15 @@ const ChangePassword = () => {
     );
     console.log(fetchresult);
     if (fetchresult != false) {
-      DefaultRender('Changed password successfully');
+      setMessage('Changed password successfully');
+      setCounter(counter + 1);
       setTimeout(moveToLoging, 2000);
       function moveToLoging() {
         window.location.hash = "#/login";
       }
     } else {
-      DefaultRender('Could not change password');
+      setMessage('Could not change password');
+      setCounter(counter + 1);
     }
   }
 
@@ -78,7 +82,7 @@ const ChangePassword = () => {
       <button id="confirmButton" onclick={checkPassword}>Confirm</button>
       <br />
       <a href="/">Login here!</a>
-      <DefaultRender errorMessage={errorMessage} />
+      <DefaultRender errorMessage={errorMessage} counter={counter} />
     </form>
   )
 }

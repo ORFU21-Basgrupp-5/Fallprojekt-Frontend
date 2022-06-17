@@ -4,6 +4,7 @@ import API_Service from '../../API/API_Service.js';
 
 const Budget = () => {
   const [errorMessage, setMessage] = useState("");
+  const [counter, setCounter] = useState(0);
   const [data, setData] = useState({
     name: '',
     totalSum: 0,
@@ -67,10 +68,12 @@ const Budget = () => {
           setPosted(true);
           setdisableSubmit(true);
           DefaultRender("Your budget is saved!");
+          setCounter(counter + 1);
         }
       }
-      catch (error) {
-        setMessage(error.message + '. Upload failed!');
+      catch {
+        setMessage('Upload failed!');
+        setCounter(counter + 1);
       }
     }
 
@@ -128,7 +131,7 @@ const Budget = () => {
         </form>
         <button className="submit_button" id="budgetSumbit" disabled={disableSubmit ? true : false} onClick={uploadBudget}>Submit</button>
       </div>
-      <DefaultRender errorMessage={errorMessage} />
+      <DefaultRender errorMessage={errorMessage} counter={counter} />
     </div>
 
   );

@@ -6,6 +6,7 @@ import API_Service from '../../API/API_Service';
 
 const RecoverEmail = () => {
   const [errorMessage, setMessage] = useState("");
+  const [counter, setCounter] = useState(0);
   const [formValue, setFormValue] = useState({
     email: ''
   });
@@ -38,6 +39,7 @@ const RecoverEmail = () => {
       }
     } catch (e) {
       setMessage("Something went wrong");
+      setCounter(counter + 1);
     }
   }
 
@@ -56,7 +58,7 @@ const RecoverEmail = () => {
 
       <button id="recoverbutton" onClick={sendEmail}>Bekräfta</button>
       <div id="SentOrNotDiv"></div>
-      <DefaultRender errorMessage={errorMessage} />
+      <DefaultRender errorMessage={errorMessage} counter={counter} />
     </form>
   )
 
