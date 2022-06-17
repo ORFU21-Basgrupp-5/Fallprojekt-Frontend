@@ -62,8 +62,7 @@ return (
     <div id="errorDiv"></div>
       <form className="form-main">
       <h1>Add Balance change</h1>
-
-      <div>
+        <div>
           <label className="label-main">Type</label>
         </div>
         <select onChange={(event) => handleTypeChange(event)}>
@@ -72,14 +71,12 @@ return (
         </select>
         <div>
           <label className="label-main">Category</label>
-        </div>
         <select name="Category" onChange={(event) => handleSelectChange(event)}>
           {category?.map(x => <option>{x}</option>)}
         </select>
-        <div>
+        </div>
+        <div className="input-wrapper">
           <label className="label-main" htmlFor="BalanceChange">Balance</label>
-        </div>         
-        <div>
           <input
           className="input-main"
           type="number"
@@ -89,10 +86,8 @@ return (
           onChange={(event) => handleIncomeFormChange(event)}   
           />
         </div>
-        <div>
+        <div className="input-wrapper">
           <label className="label-main" htmlFor="Account">Account</label>
-        </div>
-        <div>
           <input 
           className="input-main"
           type="number"
@@ -101,10 +96,8 @@ return (
           onChange={(event) => handleIncomeFormChange(event)}
           />
         </div>
-        <div>
+        <div className="input-wrapper">
           <label className="label-main" htmlFor="Description">Description</label>
-        </div>
-        <div>
           <input 
           className="input-main"
           type="text"
@@ -113,10 +106,8 @@ return (
           onChange={(event) => handleIncomeFormChange(event)}
           />
         </div>
-        <div className="">
+        <div className="input-wrapper">
           <label className="label-main" htmlFor="Date">Date</label>
-        </div>
-        <div>
           <input
           className="input-main"
           name="Date" 

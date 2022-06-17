@@ -13,50 +13,41 @@ const NavigationBar = () => {
 
 	if (loginStatus === true) {
 		return (
-			<div className='flex justify-center mt-10 w-screen'>
-				<div className=''>
-					<div id='header' className='navigation-menu'>
-						<img className='mb-5' id='mainLogo' src={NavImage} alt='My Happy SVG' />
-						</div>
-						<div className=''>
-								<NavLink to='/addbalancechange' className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded'>
+			<div className='menu-wrapper'>
+						<img id='mainLogo' src={NavImage} alt='My Happy SVG' />
+								<NavLink to='/addbalancechange' className='menu-btn'>
 									Inmatning
 								</NavLink>
 							
-								<NavLink to='/History' className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded'>
+								<NavLink to='/History' className='menu-btn'>
 									History
 								</NavLink>
 							
-								<NavLink to='/addbudget' className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded'>
+								<NavLink to='/addbudget' className='menu-btn'>
 									Skapa Budget
 								</NavLink>
 							
-								<NavLink to='/getbudget' className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded'>
+								<NavLink to='/getbudget' className='menu-btn'>
 									Visa Budget
 								</NavLink>
 							
-								<NavLink to='/' onClick={forceLogout} className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded'>
+								<NavLink to='/' onClick={forceLogout} className='menu-btn'>
 									Logout
 								</NavLink>
-								</div>
-					</div>
 			</div>
 		);
 	} else {
 		return (
-			<div className='flex flex-row h-20 justify-center gap-4 mt-10'>
+			<div className='menu-wrapper'>
 				<img id='mainLogo' src={NavImage} alt='My Happy SVG' />
 					
-								<NavLink to='/login' className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded mx-3 h-10'>
+								<NavLink to='/login' className='menu-btn'>
 									Login
 								</NavLink>
 							
-								<NavLink to='/registeruser' className='text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded mx-3 h-10'>
+								<NavLink to='/registeruser' className='menu-btn'>
 									Registera dig
 								</NavLink>
-						
-					
-				
 			</div>
 		);
 	}

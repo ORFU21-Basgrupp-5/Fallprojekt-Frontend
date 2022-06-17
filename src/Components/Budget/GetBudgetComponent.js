@@ -30,34 +30,36 @@ const GetBudget = () => {
   if (data) {
     return (
       <div className='container'>
-        <h1>Lista Aktuell Budget</h1>
-        <h2>{data.budgetName}</h2>
-        <h4>
-          Total Budget:{data.totalSum}
-          Used Budget:{data.usedAmount}
-          Used Procent:${((parseInt(data.usedAmount) * 100) / parseInt(data.totalSum)).toFixed(2)} %
-        </h4>
-        <div className='table-main'>
-          <table className="table-main" style={{ backgroundColor: "white", border: "1px solid black" }}>
-            <tr>
-              <td>Categories</td>
-              {Object.keys(data.budgetCategories).map(x => <td>{x}</td>)}
+        <div className=''>
+        <div className="table-main">
+          <h1>Aktuell Budget</h1>
+          <h2>{data.budgetName}</h2>
+          <h4>
+            Total Budget:{data.totalSum} {' '}
+            Used Budget:{data.usedAmount} {' '}
+            Used Procent:${((parseInt(data.usedAmount) * 100) / parseInt(data.totalSum)).toFixed(2)} %
+          </h4>
+        </div>
+          <table className="table-main">
+            <tr className="table-row">
+              <th className="table-header">Categories</th>
+              {Object.keys(data.budgetCategories).map(x => <th className="table-header">{x}</th>)}
             </tr>
-            <tr>
-              <td>Cap</td>
-              {Object.values(data.budgetCategories).map(x => <td>{x[0]}</td>)}
+            <tr className="table-row">
+              <th className="table-header">Cap</th>
+              {Object.values(data.budgetCategories).map(x => <td className="table-cell">{x[0]}</td>)}
             </tr>
-            <tr>
-              <td>Spent</td>
-              {Object.values(data.budgetCategories).map(x => <td>{x[1]}</td>)}
+            <tr className="table-row">
+              <th className="table-header">Spent</th>
+              {Object.values(data.budgetCategories).map(x => <td className="table-cell">{x[1]}</td>)}
             </tr>
-            <tr>
-              <td>Amount Left</td>
-              {Object.values(data.budgetCategories).map(x => <td>{x[2]}</td>)}
+            <tr className="table-row">
+              <th className="table-header">Amount Left</th>
+              {Object.values(data.budgetCategories).map(x => <td className="table-cell">{x[2]}</td>)}
             </tr>
-            <tr>
-              <td>Used procent</td>
-              {Object.values(data.budgetCategories).map(x => <td style={{ backgroundColor: getBackgroundColor(parseInt(x[3])) }}>{x[3]}</td>)}
+            <tr className="table-row">
+              <th className="table-header" >Used procent</th>
+              {Object.values(data.budgetCategories).map(x => <td className="table-cell" style={{ backgroundColor: getBackgroundColor(parseInt(x[3])) }}>{x[3]}</td>)}
             </tr>
           </table>
         </div>

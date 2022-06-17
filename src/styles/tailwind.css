@@ -5,18 +5,33 @@
 
 @layer base {
     body {
-        @apply grid-cols-6 bg-test-background bg-cover bg-opacity-10;
+        @apply grid-cols-6 bg-test-background bg-cover bg-opacity-10 bg-no-repeat;
+    }
+    h1 {
+        @apply text-3xl font-medium text-center
+    }
+    h2 {
+        @apply text-2xl font-semibold text-center
+    }
+    h4 {
+        @apply text-xl font-bold text-center
     }
 }
 @layer components {
     .container {
-        @apply flex justify-center mt-20
+        @apply flex justify-center mt-10
+    }
+    .menu-wrapper {
+        @apply flex flex-row h-20 justify-center gap-4 mt-10
+    }
+    .menu-btn {
+        @apply text-white font-bold bg-blue-600 hover:bg-blue-800 py-2 px-4 rounded mx-3 h-10
     }
     .btn-main{
         @apply bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none; focus:shadow-outline;
     }
-    .inputs-wrapper {
-
+    .input-wrapper {
+        @apply mb-6
     }
     .input-main {
         @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none; focus:shadow-outline;
@@ -25,12 +40,21 @@
         @apply bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4;
     }
     .table-main {
-        @apply table-auto;
+        @apply table-auto bg-white mt-10 shadow-md rounded px-8 pt-6 pb-8 mb-4;
+    }
+    .table-header {
+        @apply text-sm font-medium text-gray-900 px-6 py-4 text-left
+    }
+    .table-row {
+        @apply border-b
+    }
+    .table-cell {
+        @apply text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap
     }
     .label-main {
         @apply block text-gray-700 text-sm font-bold mb-2
     }
     .footer-main {
-        @apply static w-5/12 bottom-0 left-10 p-4 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 shadow md:flex md:items-center md:justify-between md:p-6;
+        @apply inset-x-20 w-5/12 p-4 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 shadow md:flex md:items-center md:justify-between md:p-6;
     }
 }
