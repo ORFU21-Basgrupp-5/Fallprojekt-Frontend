@@ -29,7 +29,7 @@ const GetBudget = () => {
   }
   if (data) {
     return (
-      <div class='container'>
+      <div className='container'>
         <h1>Lista Aktuell Budget</h1>
         <h2>{data.budgetName}</h2>
         <h4>
@@ -37,8 +37,8 @@ const GetBudget = () => {
           Used Budget:{data.usedAmount}
           Used Procent:${((parseInt(data.usedAmount) * 100) / parseInt(data.totalSum)).toFixed(2)} %
         </h4>
-        <div className='table'>
-          <table style={{ backgroundColor: "white", border: "1px solid black" }}>
+        <div className='table-main'>
+          <table className="table-main" style={{ backgroundColor: "white", border: "1px solid black" }}>
             <tr>
               <td>Categories</td>
               {Object.keys(data.budgetCategories).map(x => <td>{x}</td>)}

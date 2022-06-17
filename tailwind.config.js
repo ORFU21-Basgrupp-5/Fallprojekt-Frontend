@@ -131,6 +131,7 @@ module.exports = {
     backgroundColor: ({ theme }) => theme('colors'),
     backgroundImage: {
       none: 'none',
+      'test-background': "url('../Images/pink-abstract.jpg')",
       'gradient-to-t': 'linear-gradient(to top, var(--tw-gradient-stops))',
       'gradient-to-tr': 'linear-gradient(to top right, var(--tw-gradient-stops))',
       'gradient-to-r': 'linear-gradient(to right, var(--tw-gradient-stops))',

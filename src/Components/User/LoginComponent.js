@@ -64,15 +64,15 @@ const Login = () => {
 	return loginStatus ? (
 		<Navigate to={previousPath} />
 	) : (
-		<div className='flex justify-center mt-20'>
+		<div className='container'>
 			<div id='login'>
 
-				<form id='form1' className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+				<form id='form1' className="form-main" onSubmit={handleSubmit}>
 					<div id='uname' className='mb-4'>
-						<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor='username'>Användarnamn: </label>
+						<label className="label-main" htmlFor='username'>Användarnamn: </label>
 
 						<input
-						    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+						    className="input-main" 
 							type='text'
 							name='userName'
 							placeholder='Fyll i ditt användarnamn'
@@ -82,10 +82,10 @@ const Login = () => {
 					</div>
 
 					<div id='pswrd' className="mb-6">
-						<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor='password'>Lösenord: </label>
+						<label className="label-main" htmlFor='password'>Lösenord: </label>
 
 						<input
-						    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+						    className="input-main" 
 							type='password'
 							name='password'
 							placeholder='Fyll i ditt lösenord'
@@ -113,7 +113,7 @@ const Login = () => {
 					<DefaultRender errorMessage={errorMessage}/>
 				</form>
 				<div className='flex justify-center'>
-			<p className="block text-gray-700 text-sm font-bold mb-2 ">
+				<p className="block text-gray-700 text-sm font-bold mb-2 ">
 					Saknar du ett konto?
 					<NavLink to='/registeruser' id='reglink'>
 						Skapa konto

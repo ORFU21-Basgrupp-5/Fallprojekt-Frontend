@@ -3,7 +3,7 @@ import NavImage from '../Images/Asset_2port.svg';
 const Footer = () => {
 	return (
         
-            <footer className="bottom-0 p-4 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 ">
+            <footer className="footer-main">
                     <ul className="socials">
                         <li><a href="www.facebook.com"><i className="fa fa-facebook"></i></a></li>
                         <li><a href="www.twitter.com"><i className="fa fa-twitter"></i></a></li>

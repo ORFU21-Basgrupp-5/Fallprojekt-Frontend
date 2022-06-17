@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+    body {
+        @apply grid-cols-6 bg-test-background bg-cover bg-opacity-10;
+    }
+}
+@layer components {
+    .container {
+        @apply flex justify-center mt-20
+    }
+    .btn-main{
+        @apply bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none; focus:shadow-outline;
+    }
+    .inputs-wrapper {
+
+    }
+    .input-main {
+        @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none; focus:shadow-outline;
+    }
+    .form-main {
+        @apply bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4;
+    }
+    .table-main {
+        @apply table-auto;
+    }
+    .label-main {
+        @apply block text-gray-700 text-sm font-bold mb-2
+    }
+    .footer-main {
+        @apply static w-5/12 bottom-0 left-10 p-4 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 shadow md:flex md:items-center md:justify-between md:p-6;
+    }
+}
