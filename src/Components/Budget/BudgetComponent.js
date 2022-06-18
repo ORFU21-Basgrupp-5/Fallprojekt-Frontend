@@ -31,7 +31,7 @@ const Budget = () => {
     }, 0)
     setSumLeft(data.totalSum - catSum);
 
-    if (sumLeft > 0 || sumLeft < 0) {
+    if (sumLeft > 0 || sumLeft < 0 || Object.values(catData).every(x => x === 0)) {
       setValidated(false);
       setdisableSubmit(true);
     }
@@ -124,7 +124,7 @@ const Budget = () => {
             <input className="input-main" type="number" name="Other" value={catData.Other} onChange={(event) => handleCatChange(event)} />
           </div>
 
-          <button className="btn-main" id="budgetSumbit" disabled={disableSubmit ? true : false} onClick={uploadBudget}>Submit</button>
+          <button className={disableSubmit ? "btn-disabled" : "btn-main"} id="budgetSumbit" disabled={disableSubmit ? true : false} onClick={uploadBudget}>Submit</button>
         </form>
         
       </div>

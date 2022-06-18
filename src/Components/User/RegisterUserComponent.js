@@ -74,42 +74,42 @@ const Register = () => {
   return (
     <div className='container'>
       <div>
-      <form className="form-main">
-        <div id="hidden-message" />
+        <form className="form-main">
+          <div id="hidden-message" />
 
-        <div className="input-wrapper">
-          <label className="label-main" htmlFor="username">Användarnamn</label>
-          <input required className="input-main" type="text" value={formData.username} name="username" onChange={(e) => handleChange(e)} placeholder="Välj ett användarnamn" />
+          <div className="input-wrapper">
+            <label className="label-main" htmlFor="username">Användarnamn</label>
+            <input required className="input-main" type="text" value={formData.username} name="username" onChange={(e) => handleChange(e)} placeholder="Välj ett användarnamn" />
+          </div>
+          <div className="input-wrapper">
+            <label className="label-main" htmlFor="email">Email</label>
+            <input required className="input-main" type="text" value={formData.email} name="email" onChange={(e) => handleChange(e)} placeholder="Fyll i din epost" />
+          </div>
+          <div className="input-wrapper">
+            <label className="label-main" htmlFor="password">Lösenord </label>
+            <input required className="input-main" type="password" value={formData.password} name="password" onChange={(e) => handleChange(e)} placeholder="Välj ett lösenord" />
+          </div>
+          <div className="input-wrapper">
+            <label 
+            className="label-main" htmlFor="password2">Bekräfta lösenord</label>
+            <input required className="input-main" type="password" value={formData.confirmpassword} onChange={(e) => handleChange(e)} name="confirmpassword" placeholder="Bekräfta lösenord" />
+          </div>
+          <div>
+            <input className="btn-main" type="submit" onClick={handleSubmit}/>
+          </div>
+          
+          <DefaultRender errorMessage={errorMessage} />
+        </form>
+        <div className='label-linkwrap'>
+          <p className="label-main">
+            Har du redan ett konto? {' '}
+            <NavLink className="menu-textlink" to='/login' id='reglink'>
+              Logga in här
+            </NavLink>
+          </p>
         </div>
-        <div className="input-wrapper">
-          <label className="label-main" htmlFor="email">Email</label>
-          <input required className="input-main" type="text" value={formData.email} name="email" onChange={(e) => handleChange(e)} placeholder="Fyll i din epost" />
-        </div>
-        <div className="input-wrapper">
-          <label className="label-main" htmlFor="password">Lösenord </label>
-          <input required className="input-main" type="password" value={formData.password} name="password" onChange={(e) => handleChange(e)} placeholder="Välj ett lösenord" />
-        </div>
-        <div className="input-wrapper">
-          <label 
-          className="label-main" htmlFor="password2">Bekräfta lösenord</label>
-          <input required className="input-main" type="password" value={formData.confirmpassword} onChange={(e) => handleChange(e)} name="confirmpassword" placeholder="Bekräfta lösenord" />
-        </div>
-        <div>
-          <input className="btn-main" type="submit" onClick={handleSubmit}/>
-        </div>
-        
-        <DefaultRender errorMessage={errorMessage} />
-      </form>
-      <div>
-      <p className="block text-gray-700 text-sm font-bold mb-2 ">
-        Har du redan ett konto? 
-          <NavLink to='/login' id='reglink'>
-             Logga in här
-          </NavLink>
-        </p>
       </div>
-      </div>
-      </div>
+    </div>
   )
 }
 export default Register

@@ -99,7 +99,7 @@ const Login = () => {
 							Glömt lösenordet?
 						</NavLink>
 
-						<button  type='submit' name='login' className="bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={tryLogin}>
+						<button  type='submit' name='login' className="btn-main" onClick={tryLogin}>
 						Login
 						{loading &&
 							<span className='animate-spin h-5 w-5 ml-3 inline-block text-center'>
@@ -112,14 +112,14 @@ const Login = () => {
 
 					<DefaultRender errorMessage={errorMessage}/>
 				</form>
-				<div className='flex justify-center'>
-				<p className="block text-gray-700 text-sm font-bold mb-2 ">
-					Saknar du ett konto?
-					<NavLink to='/registeruser' id='reglink'>
-						Skapa konto
-					</NavLink>
-				</p>
-			</div>
+				<div className='label-linkwrap'>
+					<p className="label-main">
+						Saknar du ett konto? {' '}
+						<NavLink className="menu-textlink" to='/registeruser' id='reglink'>
+							Skapa konto
+						</NavLink>
+					</p>
+				</div>
 			</div>
 			
 		</div>

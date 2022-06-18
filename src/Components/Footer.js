@@ -4,7 +4,7 @@ const Footer = () => {
 	return (
         
             <footer className="footer-main">
-                    <ul className="socials">
+                    <ul className="footer-socials">
                         <li><a href="www.facebook.com"><i className="fa fa-facebook"></i></a></li>
                         <li><a href="www.twitter.com"><i className="fa fa-twitter"></i></a></li>
                         <li><a href="www.linkedin.com"><i className="fa fa-linkedin-square"></i></a></li>

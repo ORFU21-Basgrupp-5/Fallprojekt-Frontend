@@ -30,14 +30,14 @@ const GetBudget = () => {
   if (data) {
     return (
       <div className='container'>
-        <div className=''>
+        <div>
         <div className="table-main">
           <h1>Aktuell Budget</h1>
           <h2>{data.budgetName}</h2>
           <h4>
-            Total Budget:{data.totalSum} {' '}
-            Used Budget:{data.usedAmount} {' '}
-            Used Procent:${((parseInt(data.usedAmount) * 100) / parseInt(data.totalSum)).toFixed(2)} %
+            Total Budget: {data.totalSum} {' '}
+            Used Budget: {data.usedAmount} {' '}
+            Used Procent: {((parseInt(data.usedAmount) * 100) / parseInt(data.totalSum)).toFixed(2)} %
           </h4>
         </div>
           <table className="table-main">
