@@ -131,6 +131,7 @@ module.exports = {
     backgroundColor: ({ theme }) => theme('colors'),
     backgroundImage: {
       none: 'none',
+      'test-background': "url('../Images/pink-abstract.jpg')",
       'gradient-to-t': 'linear-gradient(to top, var(--tw-gradient-stops))',
       'gradient-to-tr': 'linear-gradient(to top right, var(--tw-gradient-stops))',
       'gradient-to-r': 'linear-gradient(to right, var(--tw-gradient-stops))',
@@ -647,6 +648,7 @@ module.exports = {
     minHeight: {
       0: '0px',
       full: '100%',
+      60: '60vh',
       screen: '100vh',
       min: 'min-content',
       max: 'max-content',
@@ -655,6 +657,7 @@ module.exports = {
     minWidth: {
       0: '0px',
       full: '100%',
+      50: '50vw',
       min: 'min-content',
       max: 'max-content',
       fit: 'fit-content',

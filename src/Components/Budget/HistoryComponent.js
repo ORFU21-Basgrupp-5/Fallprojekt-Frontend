@@ -32,24 +32,25 @@ const History = () => {
   }
 
   return (
-    <div className='flex justify-center mt-20'>
-      <h1>History</h1>
-      <div className='table'>
-        <table>
+    <div className='container'>
+
+      <div className=''>
+      <h4>History</h4>
+        <table className="table-main">
           <tr>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Balance Change</th>
+            <th className="table-header">Date</th>
+            <th className="table-header">Description</th>
+            <th className="table-header">Balance Change</th>
           </tr>
           {data?.map(x =>
-            <tr>
-              <td>
+            <tr className="table-row">
+              <td className="table-cell">
                 {new Date(x.Date).toDateString()}
               </td>
-              <td>
+              <td className="table-cell">
                 {("expenseDescription" in x) ? x.expenseDescription : x.incomeDescription}
               </td>
-              <td>
+              <td className="table-cell">
                 {("expenseBalanceChange" in x) ? '-' + x.expenseBalanceChange : '+' + x.incomeBalanceChange} kr
               </td>
             </tr>)}

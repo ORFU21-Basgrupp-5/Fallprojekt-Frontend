@@ -31,7 +31,7 @@ const RecoverEmail = () => {
     e.preventDefault();
     const post = formValue;
     try {
-      const fetchresult = await API_Service.PostService('User/SendRecoveryEmail', post);
+      const fetchresult = await API_Service.PostService('User/recover', post);
       if (fetchresult !== false) {
         // DefaultRender(fetchresult);
         // return true;
@@ -45,18 +45,19 @@ const RecoverEmail = () => {
 
 
   return (
-    <form onSubmit={handleSubmit}>
-
-      <label htmlFor="Email">Email: </label>
-      <input
+    <form className="form-main">
+      <div className="input-wrapper">
+        <label className="label-main" htmlFor="Email">Email: </label>
+        <input
+        className="input-main"
         type="text"
         name="email"
         placeholder="Enter your email address"
         value={formValue.email}
         onChange={handleChange}
-      />
-
-      <button id="recoverbutton" onClick={sendEmail}>Bekräfta</button>
+        />
+      </div>
+      <button className="btn-main" onClick={sendEmail}>Bekräfta</button>
       <div id="SentOrNotDiv"></div>
       <DefaultRender errorMessage={errorMessage} counter={counter} />
     </form>

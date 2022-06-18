@@ -1,5 +1,6 @@
 import { GetCookie } from "../Services/cookie";
 import { useState } from 'react';
+import {NavLink} from 'react-router-dom'
 import { DefaultRender } from '../Services/messageHandler.js';
 import API_Service from "../../API/API_Service";
 
@@ -7,8 +8,8 @@ const ChangePassword = () => {
   const [errorMessage, setMessage] = useState("");
   const [counter, setCounter] = useState(0);
   const [inputFields, setInputFields] = useState({
-    NewPassword: '',
-    ConfirmPassword: ''
+    newPassword: '',
+    confirmPassword: ''
   });
 
 
@@ -26,12 +27,8 @@ const ChangePassword = () => {
 
   function checkPassword(e) {
     e.preventDefault();
-    if (inputFields.newPassword.value === inputFields.confirmPassword.value) {
-      const NewPasswordDTO = {
-        NewPassword: inputFields.newPassword.value,
-        ConfirmPassword: inputFields.confirmPassword.value
-      };
-      ChangePasswordLink(NewPasswordDTO)
+    if (inputFields.newPassword === inputFields.confirmPassword) {
+      ChangePasswordLink(inputFields);
     }
     else {
       setMessage("Lösenorden matchar inte");
@@ -44,7 +41,7 @@ const ChangePassword = () => {
       'User/recover',
       NewPasswordDTO
     );
-    console.log(fetchresult);
+    
     if (fetchresult != false) {
       setMessage('Changed password successfully');
       setCounter(counter + 1);
@@ -61,27 +58,39 @@ const ChangePassword = () => {
 
 
   return (
-    <form>
-      <label>New password: </label>
+    <form className="form-main">
+      <div className="input-wrapper">
+      <label className="label-main">New password: </label>
       <input
+        className="input-main"
         type="text"
         id="newPassword"
         name="newpassword"
-        value={inputFields.NewPassword}
+        value={inputFields.newPassword}
         onChange={handleChange}
       />
+      </div>
       <br />
-      <label>Confirm password: </label>
+      <div className="input-wrapper">
+      <label className="label-main">Confirm password: </label>
       <input
+        className="input-main"
         type="text"
         id="confirmPassword"
         name="confirmPassword"
-        value={inputFields.ConfirmPassword}
+        value={inputFields.confirmPassword}
         onChange={handleChange}
       />
-      <button id="confirmButton" onclick={checkPassword}>Confirm</button>
+      </div>
+      <button className="btn-main" id="confirmButton" onclick={checkPassword}>Confirm</button>
       <br />
-      <a href="/">Login here!</a>
+      <div className='label-linkwrap'>
+					<p className="label-main">
+						<NavLink className="menu-textlink" to='/login'>
+							Logga in här
+						</NavLink>
+					</p>
+				</div>
       <DefaultRender errorMessage={errorMessage} counter={counter} />
     </form>
   )

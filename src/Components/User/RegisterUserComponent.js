@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { DefaultRender } from '../Services/messageHandler.js';
 import API_Service from '../../API/API_Service';
+import { useNavigate, NavLink } from 'react-router-dom';
 
 const Register = () => {
+  const navigate = useNavigate();
   const [errorMessage, setMessage] = useState("");
   const [counter, setCounter] = useState(0);
   const [formData, setFormData] = useState({
@@ -13,26 +15,28 @@ const Register = () => {
   })
 
   const handleChange = (e) => {
-    const value = e.target.value
-    const name = e.target.name
-
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }))
+    setFormData((prevState) => ({...prevState, [e.target.name]: e.target.value}));
   }
 
   let handleSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
+    console.log(formData)
+    ValidateUser();
   };
 
-  const FetchReg = async (e) => {
-    e.preventDefault();
-    const post = formData;
+  const FetchReg = async () => {
     try {
-      const fetchUser = await API_Service.PostService('User/register', post);
-      if (fetchUser !== false) {
-        ValidateUser(fetchUser);
+      let postData =  {};
+      for (const [key, value] of Object.entries(formData)) {
+        postData[key] = value;
+      }
+      delete postData['confirmpassword'];
+      const res = await API_Service.PostService('User/register', postData);
+      if (res != false) {
+        setMessage("Registrerad. Går till login...");
+        setTimeout(() =>{
+          navigate('/login');
+        }, 5000);
       }
     } catch (e) {
       setMessage("Username or password incorrect");
@@ -41,37 +45,25 @@ const Register = () => {
   }
 
 
-  function ValidateUser() {
-    const usernamevalidate = formData.every((x) => x !== "");
+  const ValidateUser = () => {
+    const usernamevalidate = Object.values(formData).every((x) => x !== "");
     if (usernamevalidate) {
-      if (formData[2] !== formData[3]) {
+      if (formData.password !== formData.confirmpassword) {
         setMessage("Lösenorden matchar inte!");
         setCounter(counter + 1);
-      } else if (CheckPassword(formData[2]) === false) {
-        setMessage("Ditt lösenord måste ha minst 12 tecken,en gemen, en storbokstav, en siffra och ett special tecken");
+      } else if (CheckPassword(formData.password) === false) {
+        setMessage("Ditt lösenord måste ha minst 12 tecken, en gemen, en storbokstav, en siffra och ett special tecken");
         setCounter(counter + 1);
-
       } else {
-        const name = formData[0];
-        const email = formData[1];
-        const password = formData[2];
-
-        const userDTO = {
-          userName: name,
-          password: password,
-          email: email,
-        };
-
-        FetchReg(userDTO);
+        FetchReg();
       }
     } else {
       setMessage("Du måste fylla i alla fälten!");
       setCounter(counter + 1);
-
     }
   };
 
-  function CheckPassword(password) {
+  const CheckPassword = (password) => {
     var paswd = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{12,50}$/;
     if (password.match(paswd)) {
       return true;
@@ -80,36 +72,43 @@ const Register = () => {
     }
   }
 
-
   return (
-    <div id="pageContent">
-      <div id="reg">
-        <h1>Skapa ett konto</h1>
+    <div className='container'>
+      <div>
+        <form className="form-main">
+          <div id="hidden-message" />
+          <div className="input-wrapper">
+            <label className="label-main" htmlFor="username">Användarnamn</label>
+            <input required className="input-main" type="text" value={formData.username} name="username" onChange={(e) => handleChange(e)} placeholder="Välj ett användarnamn" />
+          </div>
+          <div className="input-wrapper">
+            <label className="label-main" htmlFor="email">Email</label>
+            <input required className="input-main" type="text" value={formData.email} name="email" onChange={(e) => handleChange(e)} placeholder="Fyll i din epost" />
+          </div>
+          <div className="input-wrapper">
+            <label className="label-main" htmlFor="password">Lösenord </label>
+            <input required className="input-main" type="password" value={formData.password} name="password" onChange={(e) => handleChange(e)} placeholder="Välj ett lösenord" />
+          </div>
+          <div className="input-wrapper">
+            <label 
+            className="label-main" htmlFor="password2">Bekräfta lösenord</label>
+            <input required className="input-main" type="password" value={formData.confirmpassword} onChange={(e) => handleChange(e)} name="confirmpassword" placeholder="Bekräfta lösenord" />
+          </div>
+          <div>
+            <input className="btn-main" type="submit" onClick={handleSubmit}/>
+          </div>
+          
+          <DefaultRender errorMessage={errorMessage} counter={counter}/>
+        </form>
+        <div className='label-linkwrap'>
+          <p className="label-main">
+            Har du redan ett konto? {' '}
+            <NavLink className="menu-textlink" to='/login' id='reglink'>
+              Logga in här
+            </NavLink>
+          </p>
+        </div>
       </div>
-      <p>Har du redan ett konto?<a href="/login">Logga in här</a> </p>
-      <form id="reg_form">
-
-        <div id="uname">
-          <label for="username">Användarnamn</label>
-          <input type="text" value={formData.username} name="username" onChange={(e) => handleChange(e)} placeholder="Välj ett användarnamn" />
-        </div>
-        <div id="email">
-          <label for="email">Email:</label>
-          <input type="text" value={formData.email} name="email" onChange={(e) => handleChange(e)} placeholder="Fyll i din epost" />
-        </div>
-        <div id="pswrd">
-          <label for="password">Lösenord: </label>
-          <input type="password" value={formData.password} name="password" onChange={(e) => handleChange(e)} placeholder="Välj ett lösenord" />
-        </div>
-        <div id="pswrdvalid">
-          <label for="password2">Bekräfta lösenord:</label>
-          <input type="password" value={formData.confirmpassword} onChange={(e) => handleChange(e)} name="confirmpassword" placeholder="Bekräfta lösenord" />
-        </div>
-        <div>
-          <input type="submit" onSubmit={handleSubmit} />
-        </div>
-        <DefaultRender errorMessage={errorMessage} counter={counter} />
-      </form>
     </div>
   )
 }

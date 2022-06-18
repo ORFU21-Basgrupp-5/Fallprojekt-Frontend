@@ -32,7 +32,7 @@ const Budget = () => {
     }, 0)
     setSumLeft(data.totalSum - catSum);
 
-    if (sumLeft > 0 || sumLeft < 0) {
+    if (sumLeft > 0 || sumLeft < 0 || Object.values(catData).every(x => x === 0)) {
       setValidated(false);
       setdisableSubmit(true);
     }
@@ -82,54 +82,54 @@ const Budget = () => {
   return (
     <div className="container">
       <div id="budgetForm">
-        <form id="form1" className='inputForm' onSubmit={handleSubmit}>
-          <div className="inputRow">
-
-            <label htmlFor="name">Budget name:</label>
-            <input type="text" id="name" value={data.name} onChange={(event) => handleFormChange(event)} name="name" />
+        <form id="form1" className='form-main' onSubmit={handleSubmit}>
+        <h1>Skapa en ny budget</h1>
+          <div className="input-wrapper">
+            <label className="label-main" htmlFor="name">Budget name:</label>
+            <input className="input-main" type="text" id="name" value={data.name} onChange={(event) => handleFormChange(event)} name="name" />
           </div>
-          <div className="inputRow">
-            <label htmlFor="totalSum">Budget total amount:</label>
-            <input type="number" name='totalSum' id="totalSum" value={data.totalSum} onChange={(event) => handleFormChange(event)} />
+          <div className="input-wrapper">
+            <label className="label-main" htmlFor="totalSum">Budget total amount:</label>
+            <input className="input-main" type="number" name='totalSum' id="totalSum" value={data.totalSum} onChange={(event) => handleFormChange(event)} />
           </div>
-          <div className="inputRow">
+          <div className="input-wrapper">
             <p>Amount left to place: {sumLeft}</p>
           </div>
-          <div className="inputRow">
-            <label htmlFor="date">Budget date:</label>
-            <input type="date" id="budgetDate" name="date" value={data.date} onChange={(event) => handleFormChange(event)} />
+          <div className="input-wrapper">
+            <label className="label-main" htmlFor="date">Budget date:</label>
+            <input className="input-main" type="date" id="budgetDate" name="date" value={data.date} onChange={(event) => handleFormChange(event)} />
           </div>
-          <div className="inputRow">
-            <label htmlFor="">Budget categories:</label>
+          <div className="input-wrapper">
+            <label className="label-main" htmlFor="">Budget categories:</label>
           </div>
-          <div className="inputRow">
-            <label htmlFor="Food">Food:</label>
-            <input type="number" name="Food" value={catData.Food} onChange={(event) => handleCatChange(event)} />
+          <div className="input-wrapper">
+            <label className="label-main" htmlFor="Food">Food:</label>
+            <input className="input-main" type="number" name="Food" value={catData.Food} onChange={(event) => handleCatChange(event)} />
           </div>
-          <div className="inputRow">
-            <label htmlFor="Car">Car:</label>
-            <input type="number" name="Car" value={catData.Car} onChange={(event) => handleCatChange(event)} />
+          <div className="input-wrapper">
+            <label className="label-main" htmlFor="Car">Car:</label>
+            <input className="input-main" type="number" name="Car" value={catData.Car} onChange={(event) => handleCatChange(event)} />
           </div>
-          <div className="inputRow">
-            <label htmlFor="Subscriptions">Subscriptions:</label>
-            <input type="number" name="Subscriptions" value={catData.Subscriptions} onChange={(event) => handleCatChange(event)} />
+          <div className="input-wrapper">
+            <label className="label-main" htmlFor="Subscriptions">Subscriptions:</label>
+            <input className="input-main" type="number" name="Subscriptions" value={catData.Subscriptions} onChange={(event) => handleCatChange(event)} />
           </div>
-          <div className="inputRow">
-            <label htmlFor="Clothes">Clothes:</label>
-            <input type="number" name="Clothes" value={catData.Clothes} onChange={(event) => handleCatChange(event)} />
+          <div className="input-wrapper">
+            <label className="label-main" htmlFor="Clothes">Clothes:</label>
+            <input className="input-main" type="number" name="Clothes" value={catData.Clothes} onChange={(event) => handleCatChange(event)} />
           </div>
-          <div className="inputRow">
-            <label htmlFor="Treat">Treat:</label>
-            <input type="number" name="Treat" value={catData.Treat} onChange={(event) => handleCatChange(event)} />
+          <div className="input-wrapper">
+            <label className="label-main" htmlFor="Treat">Treat:</label>
+            <input className="input-main" type="number" name="Treat" value={catData.Treat} onChange={(event) => handleCatChange(event)} />
           </div>
-          <div className="inputRow">
-            <label htmlFor="Other">Other:</label>
-            <input type="number" name="Other" value={catData.Other} onChange={(event) => handleCatChange(event)} />
+          <div className="input-wrapper">
+            <label className="label-main" htmlFor="Other">Other:</label>
+            <input className="input-main" type="number" name="Other" value={catData.Other} onChange={(event) => handleCatChange(event)} />
           </div>
 
-
+          <button className={disableSubmit ? "btn-disabled" : "btn-main"} id="budgetSumbit" disabled={disableSubmit ? true : false} onClick={uploadBudget}>Submit</button>
         </form>
-        <button className="submit_button" id="budgetSumbit" disabled={disableSubmit ? true : false} onClick={uploadBudget}>Submit</button>
+        
       </div>
       <DefaultRender errorMessage={errorMessage} counter={counter} />
     </div>
