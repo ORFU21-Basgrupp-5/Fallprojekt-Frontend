@@ -32,10 +32,10 @@ const History = () => {
   }
 
   return (
-    <div className='container'>
+    <>
 
       <div className=''>
-      <h4>History</h4>
+      <h1 className="text-white mb-10">History</h1>
         <table className="table-main">
           <tr>
             <th className="table-header">Date</th>
@@ -43,21 +43,21 @@ const History = () => {
             <th className="table-header">Balance Change</th>
           </tr>
           {data?.map(x =>
-            <tr className="table-row">
-              <td className="table-cell">
+            <tr className={("expenseDescription" in x) ? "table-row-expense" : "table-row-income"}>
+              <td className="table-cell-w">
                 {new Date(x.Date).toDateString()}
               </td>
-              <td className="table-cell">
+              <td className="table-cell-w">
                 {("expenseDescription" in x) ? x.expenseDescription : x.incomeDescription}
               </td>
-              <td className="table-cell">
+              <td className="table-cell-w">
                 {("expenseBalanceChange" in x) ? '-' + x.expenseBalanceChange : '+' + x.incomeBalanceChange} kr
               </td>
             </tr>)}
         </table>
       </div>
       <DefaultRender errorMessage={errorMessage} counter={counter} />
-    </div>
+    </>
   );
 };
 

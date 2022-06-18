@@ -9,7 +9,6 @@ const AddBalanceChange  = () => {
   const [category, setCategory] = useState();
   const [type, setType] = useState ("Income");
   const [data, setData] = useState({
-    AccountId : "",
     Description: "",
     Date: "",
     BalanceChange: "",
@@ -46,8 +45,8 @@ const uploadChange = async (e) => {
   e.preventDefault();
   const post = {};
   for (const [key, value] of Object.entries(data)) {
-    (key === 'AccountId') ? post[key] = parseInt(value) 
-    : (key === 'BalanceChange') ? post[type.toLowerCase() + key] = parseInt(value)
+     
+     (key === 'BalanceChange') ? post[type.toLowerCase() + key] = parseInt(value)
     : post[type.toLowerCase() + key] = value;
   }
   try {
@@ -98,19 +97,19 @@ const uploadChange = async (e) => {
 
 return (
   <div className="container">
+    <h1 className="text-white mb-10">Add Balance change</h1>
     <div id="errorDiv"></div>
       <form className="form-main">
-      <h1>Add Balance change</h1>
         <div>
           <label className="label-main">Type</label>
         </div>
-        <select onChange={(event) => handleTypeChange(event)}>
+        <select  className="input-main"  onChange={(event) => handleTypeChange(event)}>
           <option value="Income" >Income</option>
           <option value="Expense">Expense</option>
         </select>
         <div>
           <label className="label-main">Category</label>
-        <select name="Category" onChange={(event) => handleSelectChange(event)}>
+        <select className="input-main"   name="Category" onChange={(event) => handleSelectChange(event)}>
           {category?.map(x => <option>{x}</option>)}
         </select>
         </div>
@@ -123,16 +122,6 @@ return (
           name="BalanceChange"
           value={data.BalanceChange}
           onChange={(event) => handleIncomeFormChange(event)}   
-          />
-        </div>
-        <div className="input-wrapper">
-          <label className="label-main" htmlFor="Account">Account</label>
-          <input 
-          className="input-main"
-          type="number"
-          name="AccountId"
-          value={data.AccountId}
-          onChange={(event) => handleIncomeFormChange(event)}
           />
         </div>
         <div className="input-wrapper">

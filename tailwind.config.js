@@ -6,6 +6,9 @@ module.exports = {
   presets: [],
   darkMode: 'media', // or 'class'
   theme: {
+    ripple: theme => ({
+      colors: theme('colors'),
+  }),
     screens: {
       sm: '640px',
       md: '768px',
@@ -131,7 +134,7 @@ module.exports = {
     backgroundColor: ({ theme }) => theme('colors'),
     backgroundImage: {
       none: 'none',
-      'test-background': "url('../Images/pink-abstract.jpg')",
+      'test-background': "url('../Images/galaxy-transparent.png')",
       'gradient-to-t': 'linear-gradient(to top, var(--tw-gradient-stops))',
       'gradient-to-tr': 'linear-gradient(to top right, var(--tw-gradient-stops))',
       'gradient-to-r': 'linear-gradient(to right, var(--tw-gradient-stops))',
@@ -955,5 +958,7 @@ module.exports = {
     'active',
     'disabled',
   ],
-  plugins: [],
+  plugins: [
+    require('tailwindcss-ripple')()
+  ],
 }

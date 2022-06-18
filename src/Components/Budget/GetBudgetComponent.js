@@ -35,10 +35,10 @@ const GetBudget = () => {
   }
   if (data) {
     return (
-      <div className='container'>
+      <>
         <div>
+        <h1 className="text-white mb-10">Aktuell Budget</h1>
         <div className="table-main">
-          <h1>Aktuell Budget</h1>
           <h2>{data.budgetName}</h2>
           <h4>
             Total Budget: {data.totalSum} {' '}
@@ -70,7 +70,7 @@ const GetBudget = () => {
           </table>
         </div>
         <DefaultRender errorMessage={errorMessage} counter={counter} />
-      </div>
+      </>
     );
   } else {
     return null;

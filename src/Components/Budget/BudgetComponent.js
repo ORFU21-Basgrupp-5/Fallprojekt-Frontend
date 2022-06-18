@@ -81,9 +81,10 @@ const Budget = () => {
 
   return (
     <div className="container">
+    <h1 className="text-white mb-10">Skapa ny Budget</h1>
       <div id="budgetForm">
         <form id="form1" className='form-main' onSubmit={handleSubmit}>
-        <h1>Skapa en ny budget</h1>
+       
           <div className="input-wrapper">
             <label className="label-main" htmlFor="name">Budget name:</label>
             <input className="input-main" type="text" id="name" value={data.name} onChange={(event) => handleFormChange(event)} name="name" />

@@ -11,9 +11,11 @@ const Footer = () => {
                     </ul>
                     <div className="footer-bottom">
                     <h3>Johannas budget-app</h3>
-                    <p>@Copyright Grupp 5- All Right Reserved.  </p>
+                    <p>@Copyright Grupp 5- All Rights Reserved.  </p>
                 </div>
             </footer>
     	);
 };
 export default Footer;
+
+

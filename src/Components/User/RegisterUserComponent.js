@@ -75,6 +75,7 @@ const Register = () => {
   return (
     <div className='container'>
       <div>
+        <h1 className="text-white mb-10">Skapa ett konto</h1>
         <form className="form-main">
           <div id="hidden-message" />
           <div className="input-wrapper">
@@ -95,7 +96,7 @@ const Register = () => {
             <input required className="input-main" type="password" value={formData.confirmpassword} onChange={(e) => handleChange(e)} name="confirmpassword" placeholder="Bekräfta lösenord" />
           </div>
           <div>
-            <input className="btn-main" type="submit" onClick={handleSubmit}/>
+            <input className="menu-reg-btn" type="submit" onClick={handleSubmit}/>
           </div>
           
           <DefaultRender errorMessage={errorMessage} counter={counter}/>

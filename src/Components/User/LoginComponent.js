@@ -40,7 +40,7 @@ const Login = () => {
 			const fetchresult = await API_Service.PostService('User/login', post);
 			if (fetchresult !== false) {
 				CreateLoginToken(fetchresult);
-				setLoginStatus(true);
+				setLoginStatus({status:true, user:fetchresult.user});
 				moveToWelcome();
 			}
 			else{
@@ -61,14 +61,15 @@ const Login = () => {
 			let expires = new Date(Date.now() + 86400 * 1000).toUTCString();
 
 			document.cookie = `token=${token};user=${user};expires=${expires + 86400};path=/;`;
+			
 		}
 	};
-	return loginStatus ? (
+	return loginStatus.status ? (
 		<Navigate to={previousPath} />
 	) : (
-		<div className='container'>
-			<div id='login'>
-
+		<>
+			
+			<h1 className="text-white mb-10">Loga in</h1>
 				<form id='form1' className="form-main" onSubmit={handleSubmit}>
 					<div id='uname' className='input-wrapper'>
 						<label className="label-main" htmlFor='username'>Användarnamn: </label>
@@ -101,10 +102,10 @@ const Login = () => {
 							Glömt lösenordet?
 						</NavLink>
 
-						<button  type='submit' name='login' className="btn-main" onClick={tryLogin}>
-						Login
+						<button  type='submit' name='login' className="menu-reg-btn" onClick={tryLogin}>
+						 {!loading && 'Login'}
 						{loading &&
-							<span className='animate-spin h-5 w-5 ml-3 inline-block text-center'>
+							<span className='animate-spin inline-block text-center'>
 							<FaSpinner/>
 							</span>
 							}
@@ -122,8 +123,8 @@ const Login = () => {
 						</NavLink>
 					</p>
 				</div>
-			</div>
-		</div>
+			
+		</>
 	);
 };
 

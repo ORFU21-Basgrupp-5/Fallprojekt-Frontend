@@ -29,6 +29,26 @@ const API_Service = {
       console.log(e);
     }
   },
+  async GetQuotesService() {
+
+    const settings = {
+      method: "GET",
+      headers: {
+        "X-Api-Key":"oiXOgKnlrDSJELimF2oB1w==liinfuhNTlLE4U5o"
+      },
+    };
+
+    try {
+      const result = await fetch(`https://api.api-ninjas.com/v1/quotes?category=happiness`, settings);
+      if (result.ok) {
+        const data = await result.json();
+        return data;
+      }       
+    }
+    catch (e) {
+      console.log(e);
+    }
+  },
   async PostService(endpoint, body) {
     let theTooken = GetCookie("token");
     let settings;

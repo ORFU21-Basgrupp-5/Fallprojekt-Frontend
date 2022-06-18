@@ -57,7 +57,7 @@ const RecoverEmail = () => {
         onChange={handleChange}
         />
       </div>
-      <button className="btn-main" onClick={sendEmail}>Bekräfta</button>
+      <button className="menu-reg-btn" onClick={sendEmail}>Bekräfta</button>
       <div id="SentOrNotDiv"></div>
       <DefaultRender errorMessage={errorMessage} counter={counter} />
     </form>

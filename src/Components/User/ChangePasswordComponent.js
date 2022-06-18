@@ -82,7 +82,7 @@ const ChangePassword = () => {
         onChange={handleChange}
       />
       </div>
-      <button className="btn-main" id="confirmButton" onclick={checkPassword}>Confirm</button>
+      <button className="menu-reg-btn" id="confirmButton" onclick={checkPassword}>Confirm</button>
       <br />
       <div className='label-linkwrap'>
 					<p className="label-main">
