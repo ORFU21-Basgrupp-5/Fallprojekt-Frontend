@@ -11,7 +11,8 @@ import { FaSpinner } from 'react-icons/fa';
 
 const Login = () => {
 	const [loading, setLoading] = useState(false);
-    const [errorMessage, setMessage] = useState ("");
+  const [errorMessage, setMessage] = useState ("");
+  const [counter, setCounter] = useState(0);
 	const { loginStatus, setLoginStatus } = useAuth();
 	const { state } = useLocation();
 	const previousPath = state?.from ? state.from : '/';
@@ -44,10 +45,11 @@ const Login = () => {
 			}
 			else{
 				setMessage('Username or password is incorrect.');
-				
+				setCounter(counter + 1);
 			}
 		} catch (e) {			
-			setMessage('Could not log in, check your internet connection')
+			setMessage('Could not log in, check your internet connection');
+      setCounter(counter + 1);
 		}
 		finally{
 			setLoading(false)
@@ -68,11 +70,11 @@ const Login = () => {
 			<div id='login'>
 
 				<form id='form1' className="form-main" onSubmit={handleSubmit}>
-					<div id='uname' className='mb-4'>
+					<div id='uname' className='input-wrapper'>
 						<label className="label-main" htmlFor='username'>Användarnamn: </label>
 
 						<input
-						    className="input-main" 
+						  className="input-main" 
 							type='text'
 							name='userName'
 							placeholder='Fyll i ditt användarnamn'
@@ -81,11 +83,11 @@ const Login = () => {
 						/>
 					</div>
 
-					<div id='pswrd' className="mb-6">
+					<div id='pswrd' className="input-wrapper">
 						<label className="label-main" htmlFor='password'>Lösenord: </label>
 
 						<input
-						    className="input-main" 
+						  className="input-main" 
 							type='password'
 							name='password'
 							placeholder='Fyll i ditt lösenord'
@@ -110,7 +112,7 @@ const Login = () => {
 							
 					</div>
 
-					<DefaultRender errorMessage={errorMessage}/>
+					<DefaultRender errorMessage={errorMessage} counter={counter}/>
 				</form>
 				<div className='label-linkwrap'>
 					<p className="label-main">
@@ -121,10 +123,7 @@ const Login = () => {
 					</p>
 				</div>
 			</div>
-			
 		</div>
-		
-		
 	);
 };
 

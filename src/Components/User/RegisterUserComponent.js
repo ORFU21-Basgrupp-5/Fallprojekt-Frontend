@@ -40,6 +40,7 @@ const Register = () => {
       }
     } catch (e) {
       setMessage("Username or password incorrect");
+      setCounter(counter + 1);
     }
   }
 
@@ -76,7 +77,6 @@ const Register = () => {
       <div>
         <form className="form-main">
           <div id="hidden-message" />
-
           <div className="input-wrapper">
             <label className="label-main" htmlFor="username">Användarnamn</label>
             <input required className="input-main" type="text" value={formData.username} name="username" onChange={(e) => handleChange(e)} placeholder="Välj ett användarnamn" />
@@ -98,7 +98,7 @@ const Register = () => {
             <input className="btn-main" type="submit" onClick={handleSubmit}/>
           </div>
           
-          <DefaultRender errorMessage={errorMessage} />
+          <DefaultRender errorMessage={errorMessage} counter={counter}/>
         </form>
         <div className='label-linkwrap'>
           <p className="label-main">

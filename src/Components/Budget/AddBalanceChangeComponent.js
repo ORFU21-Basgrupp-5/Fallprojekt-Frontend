@@ -4,6 +4,8 @@ import { DefaultRender } from "../Services/messageHandler";
 import API_Service from "../../API/API_Service.js";
 
 const AddBalanceChange  = () => {
+  const [errorMessage, setMessage] = useState("");
+  const [counter, setCounter] = useState(0);
   const [category, setCategory] = useState();
   const [type, setType] = useState ("Income");
   const [data, setData] = useState({
@@ -25,7 +27,8 @@ const AddBalanceChange  = () => {
       fetchData();
     } 
     catch (data) {
-      console.log(data + '. Could not retrieve budget data.');
+      setMessage('Could not load categories.');
+      setCounter(counter + 1);
     }
   },[type]);
   
@@ -51,9 +54,45 @@ const uploadChange = async (e) => {
     const incomeResult = await API_Service.PostService(type, post);
     if(incomeResult !== false) {
       //setData(incomeResult)
+  //function IsInputNumber(string) {
+    //let divexpense = document.getElementById("info-expense");
+    //let divincome = document.getElementById("info-income");
+    //switch (string) {
+      //case "expense":
+        //setMessage("Balance must be indicated by numbers when entering expense");
+        //setCounter(counter + 1);
+
+        //break;
+      //case "income":
+        //setMessage("Balance must be indicated by numbers when entering income");
+        //setCounter(counter + 1);
+
+        //break;
+      //default:
+        //break;
+   // }
+ // }
+
+  //function IsInputEmpty(string) {
+    //let divexpense = document.getElementById("info-expense");
+    //let divincome = document.getElementById("info-income");
+    //switch (string) {
+      //case "expense":
+        //setMessage("All fields must be filled in when entering expense");
+        //setCounter(counter + 1);
+
+        //break;
+      //case "income":
+        //setMessage("All fields must be filled in when entering income");
+        //setCounter(counter + 1);
+
+        //break;
+      //default:
+        //break;
     }
   } catch (e) {
-    DefaultRender('something went wrong');
+    setMessage('something went wrong');
+    setCounter(counter + 1);
   }
 }
 
@@ -121,6 +160,7 @@ return (
         </div>
         <div id="info-income"></div>
       </form>
+  <DefaultRender errorMessage={errorMessage} counter={counter} />
   </div>
 );
 

@@ -5,6 +5,7 @@ import { DefaultRender } from '../Services/messageHandler.js';
 
 const History = () => {
   const [errorMessage, setMessage] = useState("");
+  const [counter, setCounter] = useState(0);
   const [data, setData] = useState();
 
   try {
@@ -27,6 +28,7 @@ const History = () => {
     }, []);
   } catch {
     setMessage('Can not show history.');
+    setCounter(counter + 1);
   }
 
   return (
@@ -54,7 +56,7 @@ const History = () => {
             </tr>)}
         </table>
       </div>
-      <DefaultRender errorMessage={errorMessage} />
+      <DefaultRender errorMessage={errorMessage} counter={counter} />
     </div>
   );
 };
