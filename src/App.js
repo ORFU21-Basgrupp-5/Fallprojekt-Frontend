@@ -20,7 +20,7 @@ import Welcome from './Components/User/WelcomeComponent';
 //privateOutlet you will get redirected to login. 
 function App() {
 	return (
-		<div className=''>
+		<div className='min-h-screen relative'>
 			<NavigationBar /> 
 			<div className='main'>
 			<Routes>

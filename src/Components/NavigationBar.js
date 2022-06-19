@@ -20,7 +20,7 @@ const NavigationBar = () => {
 								</NavLink>
 							
 								<NavLink to='/History' className='menu-btn'>
-									History
+									Historik
 								</NavLink>
 							
 								<NavLink to='/addbudget' className='menu-btn'>

@@ -1,4 +1,4 @@
-import { GetCookie, DeleteCookie } from "../Components/Services/cookie.js";
+import { GetCookie } from "../Components/Services/cookie.js";
 import { DefaultRender } from "../Components/Services/messageHandler.js";
 
 

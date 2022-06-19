@@ -1,4 +1,3 @@
-import { GetCookie } from "../Services/cookie";
 import { useState } from 'react';
 import {NavLink} from 'react-router-dom'
 import { DefaultRender } from '../Services/messageHandler.js';
@@ -42,7 +41,7 @@ const ChangePassword = () => {
       NewPasswordDTO
     );
     
-    if (fetchresult != false) {
+    if (fetchresult !== false) {
       setMessage('Changed password successfully');
       setCounter(counter + 1);
       setTimeout(moveToLoging, 2000);
@@ -58,6 +57,7 @@ const ChangePassword = () => {
 
 
   return (
+    <div className='container'>
     <form className="form-main">
       <div className="input-wrapper">
       <label className="label-main">New password: </label>
@@ -93,6 +93,7 @@ const ChangePassword = () => {
 				</div>
       <DefaultRender errorMessage={errorMessage} counter={counter} />
     </form>
+    </div>
   )
 }
 

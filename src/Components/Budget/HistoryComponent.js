@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { GetCookie } from "../Services/cookie.js";
 import API_Service from "../../API/API_Service.js";
 import { DefaultRender } from '../Services/messageHandler.js';
 
@@ -35,12 +34,13 @@ const History = () => {
     <div className='container'>
 
       <div className=''>
-      <h4>History</h4>
+      <h1>Historik</h1>
         <table className="table-main">
+        
           <tr>
-            <th className="table-header">Date</th>
-            <th className="table-header">Description</th>
-            <th className="table-header">Balance Change</th>
+            <th className="table-header">Datum</th>
+            <th className="table-header">Beskrivning</th>
+            <th className="table-header">Belopp ändring</th>
           </tr>
           {data?.map(x =>
             <tr className="table-row">

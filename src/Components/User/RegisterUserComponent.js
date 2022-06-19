@@ -32,7 +32,7 @@ const Register = () => {
       }
       delete postData['confirmpassword'];
       const res = await API_Service.PostService('User/register', postData);
-      if (res != false) {
+      if (res !== false) {
         setMessage("Registrerad. Går till login...");
         setTimeout(() =>{
           navigate('/login');

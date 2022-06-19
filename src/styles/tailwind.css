@@ -4,8 +4,11 @@
 
 
 @layer base {
+    /* html {
+        @apply
+    } */
     body {
-        @apply min-h-screen bg-test-background bg-cover bg-opacity-10 bg-no-repeat;
+        @apply h-screen bg-test-background bg-cover bg-opacity-10 bg-no-repeat;
     }
     h1 {
         @apply text-3xl font-medium text-center
@@ -19,13 +22,13 @@
 }
 @layer components {
     .main {
-        @apply min-h-60
+        @apply relative min-h-70 min-w-full
     }
     .container {
-        @apply flex justify-center place-content-center m-10
+        @apply relative flex justify-center place-content-center mt-10 min-w-full
     }
     .menu-wrapper {
-        @apply flex flex-row h-20 justify-center gap-4 mt-10 
+        @apply flex flex-row h-20 justify-center gap-4 pt-10 
     }
     .menu-btn {
         @apply text-white font-bold bg-pink-600 hover:bg-pink-800 py-2 px-4 rounded mx-3 h-10
@@ -66,7 +69,7 @@
         @apply flex justify-center
     }
     .footer-main {
-        @apply bottom-0 flex m-2 p-4 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 shadow md:flex md:items-center md:justify-between md:p-6;
+        @apply relative bottom-2 flex m-2 p-4 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 shadow md:flex md:items-center md:justify-between md:p-6;
     }
     .footer-socials {
         @apply space-x-1 inline text-center

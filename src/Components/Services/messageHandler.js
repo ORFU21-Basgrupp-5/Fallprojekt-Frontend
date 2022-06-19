@@ -6,16 +6,16 @@ export const DefaultRender = ({ errorMessage, counter }) => {
   const [errorCount, setErrorCount] = useState(0);
 
   useEffect(() => {
-    debugger;
-    console.log("hej");
+    //debugger;
+    //console.log("hej");
     setErrorCount(counter);
     setError(errorMessage);
     setTime(4000);
-
+    console.log('Error Count ' + errorCount);
     setTimeout(function () {
       setError("")
     }, time);
-  }, [counter]);
+  }, [counter, errorMessage, time, errorCount]);
 
 
   return (

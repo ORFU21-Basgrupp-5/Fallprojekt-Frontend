@@ -1,4 +1,3 @@
-import { GetCookie } from "../Services/cookie";
 import { useState } from 'react';
 import { DefaultRender } from '../Services/messageHandler.js';
 import API_Service from '../../API/API_Service';
@@ -23,10 +22,6 @@ const RecoverEmail = () => {
     });
   };
 
-  let handleSubmit = (event) => {
-    event.preventDefault();
-  };
-
   const sendEmail = async (e) => {
     e.preventDefault();
     const post = formValue;
@@ -45,14 +40,15 @@ const RecoverEmail = () => {
 
 
   return (
+    <div className="container">
     <form className="form-main">
       <div className="input-wrapper">
-        <label className="label-main" htmlFor="Email">Email: </label>
+        <label className="label-main" htmlFor="Email">Email </label>
         <input
         className="input-main"
         type="text"
         name="email"
-        placeholder="Enter your email address"
+        placeholder="Fyll i din epost"
         value={formValue.email}
         onChange={handleChange}
         />
@@ -61,6 +57,7 @@ const RecoverEmail = () => {
       <div id="SentOrNotDiv"></div>
       <DefaultRender errorMessage={errorMessage} counter={counter} />
     </form>
+    </div>
   )
 
 }

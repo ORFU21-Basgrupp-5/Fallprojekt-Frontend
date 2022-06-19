@@ -1,4 +1,4 @@
-import Logo from '../Images/LoggaBudgeteraMera.png';
+//import Logo from '../Images/LoggaBudgeteraMera.png';
 
 const Home = () => {
 	return (

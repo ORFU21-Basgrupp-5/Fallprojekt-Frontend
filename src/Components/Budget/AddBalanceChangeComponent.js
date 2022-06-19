@@ -1,4 +1,3 @@
-import { GetCookie } from "../Services/cookie.js"
 import { useState, useEffect } from 'react';
 import { DefaultRender } from "../Services/messageHandler";
 import API_Service from "../../API/API_Service.js";
@@ -7,6 +6,7 @@ const AddBalanceChange  = () => {
   const [errorMessage, setMessage] = useState("");
   const [counter, setCounter] = useState(0);
   const [category, setCategory] = useState();
+  const [accounts, setAccounts] = useState();
   const [type, setType] = useState ("Income");
   const [data, setData] = useState({
     AccountId : "",
@@ -20,8 +20,12 @@ const AddBalanceChange  = () => {
     try {
       const fetchData = async () => {
         const fetchresult = await API_Service.GetService(type + '/categories');
-        if (fetchresult != null) {
+        const res = await API_Service.GetService('Account');
+        console.log(res)
+        if (fetchresult !== null && res !== null) {
           setCategory(fetchresult);
+          setAccounts(res);
+          data.AccountId = res[0].id;
         }
       }
       fetchData();
@@ -30,14 +34,17 @@ const AddBalanceChange  = () => {
       setMessage('Could not load categories.');
       setCounter(counter + 1);
     }
-  },[type]);
+  },[type, data, counter]);
   
-  const handleIncomeFormChange = (e) => {
+  const handleFormChange = (e) => {
 		setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 	};
   const handleSelectChange = (e) => {
     setData((prev) => ({ ...prev, [e.target.name]: e.target.selectedIndex }));
   }
+  // const handleAccountChange = (e) => {
+  //   setData((prev) => ({ ...prev, [e.target.name]: e.target.id }));
+  // }
   const handleTypeChange = (e) => {
 		setType(e.target.value);
 	};
@@ -46,49 +53,15 @@ const uploadChange = async (e) => {
   e.preventDefault();
   const post = {};
   for (const [key, value] of Object.entries(data)) {
-    (key === 'AccountId') ? post[key] = parseInt(value) 
-    : (key === 'BalanceChange') ? post[type.toLowerCase() + key] = parseInt(value)
-    : post[type.toLowerCase() + key] = value;
+    if (key === 'BalanceChange') post[type.toLowerCase() + key] = parseInt(value)
+    else post[type.toLowerCase() + key] = value;
   }
+  console.log('post' + Object.entries(post))
   try {
-    const incomeResult = await API_Service.PostService(type, post);
-    if(incomeResult !== false) {
-      //setData(incomeResult)
-  //function IsInputNumber(string) {
-    //let divexpense = document.getElementById("info-expense");
-    //let divincome = document.getElementById("info-income");
-    //switch (string) {
-      //case "expense":
-        //setMessage("Balance must be indicated by numbers when entering expense");
-        //setCounter(counter + 1);
-
-        //break;
-      //case "income":
-        //setMessage("Balance must be indicated by numbers when entering income");
-        //setCounter(counter + 1);
-
-        //break;
-      //default:
-        //break;
-   // }
- // }
-
-  //function IsInputEmpty(string) {
-    //let divexpense = document.getElementById("info-expense");
-    //let divincome = document.getElementById("info-income");
-    //switch (string) {
-      //case "expense":
-        //setMessage("All fields must be filled in when entering expense");
-        //setCounter(counter + 1);
-
-        //break;
-      //case "income":
-        //setMessage("All fields must be filled in when entering income");
-        //setCounter(counter + 1);
-
-        //break;
-      //default:
-        //break;
+    const result = await API_Service.PostService(type, post);
+    if(result !== false) {
+      setMessage('Balance Added');
+      setCounter(counter + 1);
     }
   } catch (e) {
     setMessage('something went wrong');
@@ -98,61 +71,58 @@ const uploadChange = async (e) => {
 
 return (
   <div className="container">
-    <div id="errorDiv"></div>
+    <div>
+    <h1 className="mb-10">Lägg till Inkomst/Utgift</h1>
       <form className="form-main">
-      <h1>Add Balance change</h1>
+
         <div>
-          <label className="label-main">Type</label>
+          <label className="label-main">Typ</label>
         </div>
         <select onChange={(event) => handleTypeChange(event)}>
-          <option value="Income" >Income</option>
-          <option value="Expense">Expense</option>
+          <option value="Income" >Inkomst</option>
+          <option value="Expense">Utgift</option>
         </select>
         <div>
-          <label className="label-main">Category</label>
+          <label className="label-main">Kategori</label>
         <select name="Category" onChange={(event) => handleSelectChange(event)}>
           {category?.map(x => <option>{x}</option>)}
         </select>
         </div>
         <div className="input-wrapper">
-          <label className="label-main" htmlFor="BalanceChange">Balance</label>
+          <label className="label-main" htmlFor="BalanceChange">Belopp</label>
           <input
           className="input-main"
           type="number"
           id="BalanceChange"
           name="BalanceChange"
           value={data.BalanceChange}
-          onChange={(event) => handleIncomeFormChange(event)}   
+          onChange={(event) => handleFormChange(event)}   
           />
         </div>
         <div className="input-wrapper">
-          <label className="label-main" htmlFor="Account">Account</label>
-          <input 
-          className="input-main"
-          type="number"
-          name="AccountId"
-          value={data.AccountId}
-          onChange={(event) => handleIncomeFormChange(event)}
-          />
+          <label className="label-main" htmlFor="AccountId">Konto</label>
+          <select name="AccountId" value={data.AccountId} onChange={(event) => handleFormChange(event)}>
+          {accounts?.map(x => <option value={x.id}>{x.name}</option>)}
+          </select>
         </div>
         <div className="input-wrapper">
-          <label className="label-main" htmlFor="Description">Description</label>
+          <label className="label-main" htmlFor="Description">Beskrivning</label>
           <input 
           className="input-main"
           type="text"
           name="Description"
           value={data.Description}
-          onChange={(event) => handleIncomeFormChange(event)}
+          onChange={(event) => handleFormChange(event)}
           />
         </div>
         <div className="input-wrapper">
-          <label className="label-main" htmlFor="Date">Date</label>
+          <label className="label-main" htmlFor="Date">Datum</label>
           <input
           className="input-main"
           name="Date" 
           type="date"
           value={data.Date}
-          onChange={(event) => handleIncomeFormChange(event)}         
+          onChange={(event) => handleFormChange(event)}         
            />
         </div>
         <div>
@@ -161,6 +131,7 @@ return (
         <div id="info-income"></div>
       </form>
   <DefaultRender errorMessage={errorMessage} counter={counter} />
+  </div>
   </div>
 );
 

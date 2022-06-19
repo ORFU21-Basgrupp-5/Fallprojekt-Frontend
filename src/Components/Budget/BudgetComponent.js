@@ -82,25 +82,26 @@ const Budget = () => {
   return (
     <div className="container">
       <div id="budgetForm">
+      <h1 className='mb-10'>Skapa en ny budget</h1>
         <form id="form1" className='form-main' onSubmit={handleSubmit}>
-        <h1>Skapa en ny budget</h1>
+        
           <div className="input-wrapper">
-            <label className="label-main" htmlFor="name">Budget name:</label>
+            <label className="label-main" htmlFor="name">Namn</label>
             <input className="input-main" type="text" id="name" value={data.name} onChange={(event) => handleFormChange(event)} name="name" />
           </div>
           <div className="input-wrapper">
-            <label className="label-main" htmlFor="totalSum">Budget total amount:</label>
+            <label className="label-main" htmlFor="totalSum">Total belopp</label>
             <input className="input-main" type="number" name='totalSum' id="totalSum" value={data.totalSum} onChange={(event) => handleFormChange(event)} />
           </div>
           <div className="input-wrapper">
-            <p>Amount left to place: {sumLeft}</p>
+            <p>Belopp kvar: {sumLeft}</p>
           </div>
           <div className="input-wrapper">
-            <label className="label-main" htmlFor="date">Budget date:</label>
+            <label className="label-main" htmlFor="date">Datum</label>
             <input className="input-main" type="date" id="budgetDate" name="date" value={data.date} onChange={(event) => handleFormChange(event)} />
           </div>
           <div className="input-wrapper">
-            <label className="label-main" htmlFor="">Budget categories:</label>
+            <label className="label-main" htmlFor="">Kategorier</label>
           </div>
           <div className="input-wrapper">
             <label className="label-main" htmlFor="Food">Food:</label>

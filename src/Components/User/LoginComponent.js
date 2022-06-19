@@ -71,7 +71,7 @@ const Login = () => {
 
 				<form id='form1' className="form-main" onSubmit={handleSubmit}>
 					<div id='uname' className='input-wrapper'>
-						<label className="label-main" htmlFor='username'>Användarnamn: </label>
+						<label className="label-main" htmlFor='username'>Användarnamn </label>
 
 						<input
 						  className="input-main" 
@@ -84,7 +84,7 @@ const Login = () => {
 					</div>
 
 					<div id='pswrd' className="input-wrapper">
-						<label className="label-main" htmlFor='password'>Lösenord: </label>
+						<label className="label-main" htmlFor='password'>Lösenord </label>
 
 						<input
 						  className="input-main" 
