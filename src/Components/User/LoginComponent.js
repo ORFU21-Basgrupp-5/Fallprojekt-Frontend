@@ -13,7 +13,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setMessage] = useState("");
   const [counter, setCounter] = useState(0);
-  const [timer, setTimer] = useState(0);
+  const [time, setTime] = useState(0);
   const { loginStatus, setLoginStatus } = useAuth();
   const { state } = useLocation();
   const previousPath = state?.from ? state.from : '/';
@@ -47,12 +47,12 @@ const Login = () => {
       else {
         setMessage('Username or password is incorrect.');
         setCounter(counter + 1);
-        setTimer(4000);
+        setTime(4000);
       }
     } catch (e) {
       setMessage('Could not log in, check your internet connection');
       setCounter(counter + 1);
-      setTimer(5000);
+      setTime(4000);
     }
     finally {
       setLoading(false)
@@ -115,7 +115,7 @@ const Login = () => {
 
           </div>
 
-          <DefaultRender errorMessage={errorMessage} counter={counter} timer={timer} />
+          <DefaultRender errorMessage={errorMessage} counter={counter} time={time} />
         </form>
         <div className='label-linkwrap'>
           <p className="label-main">
