@@ -17,6 +17,7 @@ const Login = () => {
 	const { state } = useLocation();
 	const previousPath = state?.from ? state.from : '/';
 	const navigate = useNavigate();
+	
 	const [inputFields, setInputFields] = useState({
 		userName: '',
 		password: '',
@@ -69,7 +70,7 @@ const Login = () => {
 	) : (
 		<>
 			
-			<h1 className="text-white mb-10">Loga in</h1>
+			<h1 className="dark:text-white mb-10">Loga in</h1>
 				<form id='form1' className="form-main" onSubmit={handleSubmit}>
 					<div id='uname' className='input-wrapper'>
 						<label className="label-main" htmlFor='username'>Användarnamn: </label>

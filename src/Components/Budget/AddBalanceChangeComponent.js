@@ -52,42 +52,8 @@ const uploadChange = async (e) => {
   try {
     const incomeResult = await API_Service.PostService(type, post);
     if(incomeResult !== false) {
-      //setData(incomeResult)
-  //function IsInputNumber(string) {
-    //let divexpense = document.getElementById("info-expense");
-    //let divincome = document.getElementById("info-income");
-    //switch (string) {
-      //case "expense":
-        //setMessage("Balance must be indicated by numbers when entering expense");
-        //setCounter(counter + 1);
-
-        //break;
-      //case "income":
-        //setMessage("Balance must be indicated by numbers when entering income");
-        //setCounter(counter + 1);
-
-        //break;
-      //default:
-        //break;
-   // }
- // }
-
-  //function IsInputEmpty(string) {
-    //let divexpense = document.getElementById("info-expense");
-    //let divincome = document.getElementById("info-income");
-    //switch (string) {
-      //case "expense":
-        //setMessage("All fields must be filled in when entering expense");
-        //setCounter(counter + 1);
-
-        //break;
-      //case "income":
-        //setMessage("All fields must be filled in when entering income");
-        //setCounter(counter + 1);
-
-        //break;
-      //default:
-        //break;
+      setMessage('Balance added successfully');
+      setCounter(counter+1);
     }
   } catch (e) {
     setMessage('something went wrong');

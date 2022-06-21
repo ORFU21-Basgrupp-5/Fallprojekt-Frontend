@@ -10,8 +10,8 @@ const Footer = () => {
                         <li><a href="www.linkedin.com"><i className="fa fa-linkedin-square"></i></a></li>
                     </ul>
                     <div className="footer-bottom">
-                    <h3>Johannas budget-app</h3>
-                    <p>@Copyright Grupp 5- All Rights Reserved.  </p>
+                    <h3>Johannas BudgetFix</h3>
+                    <p>Upphovsrätt Grupp 5</p>
                 </div>
             </footer>
     	);

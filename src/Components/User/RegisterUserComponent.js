@@ -7,6 +7,7 @@ const Register = () => {
   const navigate = useNavigate();
   const [errorMessage, setMessage] = useState("");
   const [counter, setCounter] = useState(0);
+  const [disableSubmit, setdisableSubmit] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     email: '',
@@ -26,6 +27,7 @@ const Register = () => {
 
   const FetchReg = async () => {
     try {
+      setdisableSubmit(true);
       let postData =  {};
       for (const [key, value] of Object.entries(formData)) {
         postData[key] = value;
@@ -34,13 +36,15 @@ const Register = () => {
       const res = await API_Service.PostService('User/register', postData);
       if (res != false) {
         setMessage("Registrerad. Går till login...");
+        setCounter(counter + 1);
         setTimeout(() =>{
           navigate('/login');
-        }, 5000);
+        }, 3000);
       }
     } catch (e) {
       setMessage("Username or password incorrect");
       setCounter(counter + 1);
+      setdisableSubmit(false);
     }
   }
 
@@ -75,7 +79,7 @@ const Register = () => {
   return (
     <div className='container'>
       <div>
-        <h1 className="text-white mb-10">Skapa ett konto</h1>
+        <h1 className="dark:text-white mb-10">Skapa ett konto</h1>
         <form className="form-main">
           <div id="hidden-message" />
           <div className="input-wrapper">
@@ -96,7 +100,8 @@ const Register = () => {
             <input required className="input-main" type="password" value={formData.confirmpassword} onChange={(e) => handleChange(e)} name="confirmpassword" placeholder="Bekräfta lösenord" />
           </div>
           <div>
-            <input className="menu-reg-btn" type="submit" onClick={handleSubmit}/>
+          <button className="menu-reg-btn" id="budgetSumbit" disabled={disableSubmit ? true : false} onClick={handleSubmit}>Submit</button>
+
           </div>
           
           <DefaultRender errorMessage={errorMessage} counter={counter}/>

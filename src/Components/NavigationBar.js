@@ -15,13 +15,13 @@ const NavigationBar = () => {
 				<div className='mainLogo'>BudgetFix</div>
 
 				<NavLink to='/' className='menu-btn'>
-					Home
+					Hem
 				</NavLink>
 				<NavLink to='/about' className='menu-btn'>
-					About
+					Om oss
 				</NavLink>
 				<NavLink to='/contact' className='menu-btn'>
-					Contact
+					Kontakt
 				</NavLink>
 				<NavLink to='/addbalancechange' className='menu-btn'>
 					Inmatning
@@ -40,7 +40,7 @@ const NavigationBar = () => {
 				</NavLink>
 
 				<NavLink to='/' onClick={forceLogout} className='menu-login-btn'>
-					Logout
+					Logga ut
 				</NavLink>
 			</div>
 		);
@@ -49,20 +49,20 @@ const NavigationBar = () => {
 			<div className='menu-wrapper'>
 				<div className='mainLogo'>BudgetFix</div>
 				<NavLink to='/' className='menu-btn'>
-					Home
+					Hem
 				</NavLink>
 				<NavLink to='/about' className='menu-btn'>
-					About
+					Om oss
 				</NavLink>
 				<NavLink to='/contact' className='menu-btn'>
-					Contact
+					Kontakt
 				</NavLink>
 
 				<NavLink to='/login' className='menu-login-btn'>
-					Login
+					Logga in
 				</NavLink>
 				<NavLink to='/registeruser' className='menu-reg-btn'>
-					Start Saving
+					Börja spara
 				</NavLink>
 			</div>
 		);

@@ -29,7 +29,7 @@ const Home = () => {
                
 
                 return (
-                <div className='container mx-auto mb-40 mt-10 text-center text-white'>
+                <div className='container mx-auto mb-40 mt-10 text-center dark:text-white'>
 					<h1 className='text-5xl mb-5'>
 						Welcome <br />
 						{loginStatus.user}
@@ -40,50 +40,49 @@ const Home = () => {
 	} else {
 		return (
 			<>
-				<div className='container mx-auto mb-40 mt-10 text-center text-white'>
+				<div className='container mx-auto mb-40 mt-10 text-center dark:text-white'>
 					<h1 className='text-5xl mb-5'>
-						An Budget App For a <br />
-						Modern World
+						En budget app för den <br />
+						Moderna Världen
 					</h1>
-					<p>Spend less time worrying about your economy, more time enjoying life</p>
+					<p>Spendera mindra tid oroa dig över ekonomin, njut nu</p>
 				</div>
-				<div className='container mx-auto mb-40 text-center text-white flex flex-col md:flex-col items-center sm:flex-col sm:gap-10 md:gap-18 lg:flex-row lg:gap-36 justify-center'>
+				<div className='container mx-auto mb-40 text-center dark:text-white flex flex-col md:flex-col items-center sm:flex-col sm:gap-10 md:gap-18 lg:flex-row lg:gap-36 justify-center'>
 					<div className='ml-auto mr-auto lg:mr-10 lg:ml-10 mb-20 w-60'>
 						<img id='subImage' src={NeutralNet} alt='Ai Predictions' className='h-16 mx-auto mb-5' />
-						<p className='text-center mx-auto mb-5 h-28'>Let our Ai-predictions guide your saving.</p>
+						<p className='text-center mx-auto mb-5 h-28'>Låt våra ai-förutsägelser vägleda dig.</p>
 						<NavLink to='/prediction' className='menu-sub-btn'>
-							Ai-predictions Process
+							Ai-förutsägelser
 						</NavLink>
 					</div>
 					<div className='ml-auto mr-auto lg:mr-10 lg:ml-10 mb-20 w-60'>
 						<img id='subImage' src={svgPicture} alt='Ai Predictions' className='h-16 mx-auto mb-5' />
-						<p className='text-center mx-auto mb-5 h-28'>Reduce your carbon footprint.</p>
+						<p className='text-center mx-auto mb-5 h-28'>Reducera din klimat påverkan</p>
 						<NavLink to='/eco' className='menu-sub-btn'>
-							Eco Process
+							Eco påverkan
 						</NavLink>
 					</div>
 					<div className='ml-auto mr-auto lg:mr-10 lg:ml-10 mb-20 w-60'>
 						<img id='subImage' src={credCard} alt='Ai Predictions' className='h-16 mx-auto mb-5' />
-						<p className='text-center mx-auto mb-5 h-28'>Get rid of all your credit cards.</p>
+						<p className='text-center mx-auto mb-5 h-28'>Gör dig av med alla kreditkort</p>
 						<NavLink to='/payments' className='menu-sub-btn'>
-							Payment alternatives
+							Betalnings altenativ
 						</NavLink>
 					</div>
 				</div>
-				<div className='container mx-auto mb-40 text-center flex flex-row items-baseline gap-10 justify-center text-white'>
-					<p>Ready to get your economy started?</p>
+				<div className='container mx-auto mb-40 text-center flex flex-row items-baseline gap-10 justify-center dark:text-white'>
+					<p>Redo att starta din nya ekonomi</p>
 					<NavLink to='/registeruser' className='menu-reg-btn'>
-						Start Saving
+						Börja spara
 					</NavLink>
 				</div>
-				<div className='container mx-auto mb-40 mt-10 text-lefts text-white flex items-center'>
+				<div className='container mx-auto mb-40 mt-10 text-lefts dark:text-white flex items-center'>
 					<div className='text'>
-						<p>Superior Predictions and Analytics</p>
-						<p className='text-3xl mb-5 text-lefts'>Every stat you need to have full controll</p>
+						<p>Överlägsna förutsägelser och analyser </p>
+						<p className='text-3xl mb-5 text-lefts'>Varje stat du behöver för att ha full kontroll</p>
 
 						<p className='max-w-xl'>
-							We’ve build our system from the ground up, by both economics and familiy planing experts alike. From realtime
-							budget anlaytics to comparing and findin the optimal planing, we’ve got you covered.
+						Vi har byggt vårt system från grunden, av både ekonomi- och familje rådgivare. Från realtid budget anlaytics för att jämföra och hitta den optimala planeringen, du kan känna dig trygg.
 						</p>
 					</div>
 					<img id='subImage' src={chart} alt='Ai Predictions' className='ml-20 h-52' />
