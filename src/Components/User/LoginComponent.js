@@ -10,8 +10,8 @@ import { FaSpinner } from 'react-icons/fa';
 
 
 const Login = () => {
-	const [loading, setLoading] = useState(false);
-  const [errorMessage, setMessage] = useState ("");
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setMessage] = useState("");
   const [counter, setCounter] = useState(0);
 	const { loginStatus, setLoginStatus } = useAuth();
 	const { state } = useLocation();
@@ -26,9 +26,9 @@ const Login = () => {
 		navigate('/welcome');
 	};
 
-	const handleFormChange = (e) => {
-		setInputFields((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-	};
+  const handleFormChange = (e) => {
+    setInputFields((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
 	let handleSubmit = (event) => {
 		event.preventDefault();
@@ -45,21 +45,23 @@ const Login = () => {
 				moveToWelcome();
 			}
 			else{
-				setMessage('Username or password is incorrect.');
-				setCounter(counter + 1);
+				setMessage('Användarnamn eller lösenord är inkorrekt');
+        setCounter(counter + 1);
+        setTime(4000);
 			}
 		} catch (e) {			
-			setMessage('Could not log in, check your internet connection');
+      setMessage('Kunde inte ansluta, kolla din internetåtkomst');
       setCounter(counter + 1);
-		}
-		finally{
-			setLoading(false)
-		}
+      setTime(4000);
+    }
+    finally {
+      setLoading(false)
+    }
 
-		function CreateLoginToken(data) {
-			let token = data.token;
-			let user = data.user;
-			let expires = new Date(Date.now() + 86400 * 1000).toUTCString();
+    function CreateLoginToken(data) {
+      let token = data.token;
+      let user = data.user;
+      let expires = new Date(Date.now() + 86400 * 1000).toUTCString();
 
 			document.cookie = `token=${token};user=${user};expires=${expires + 86400};path=/;`;
 			
@@ -75,33 +77,33 @@ const Login = () => {
 					<div id='uname' className='input-wrapper'>
 						<label className="label-main" htmlFor='username'>Användarnamn: </label>
 
-						<input
-						  className="input-main" 
-							type='text'
-							name='userName'
-							placeholder='Fyll i ditt användarnamn'
-							value={inputFields.userName}
-							onChange={(event) => handleFormChange(event)}
-						/>
-					</div>
+            <input
+              className="input-main"
+              type='text'
+              name='userName'
+              placeholder='Fyll i ditt användarnamn'
+              value={inputFields.userName}
+              onChange={(event) => handleFormChange(event)}
+            />
+          </div>
 
-					<div id='pswrd' className="input-wrapper">
-						<label className="label-main" htmlFor='password'>Lösenord: </label>
+          <div id='pswrd' className="input-wrapper">
+            <label className="label-main" htmlFor='password'>Lösenord </label>
 
-						<input
-						  className="input-main" 
-							type='password'
-							name='password'
-							placeholder='Fyll i ditt lösenord'
-							value={inputFields.password}
-							onChange={(event) => handleFormChange(event)}
-						/>
-					</div>
+            <input
+              className="input-main"
+              type='password'
+              name='password'
+              placeholder='Fyll i ditt lösenord'
+              value={inputFields.password}
+              onChange={(event) => handleFormChange(event)}
+            />
+          </div>
 
-					<div id='recover' className="flex items-center justify-between">
-						<NavLink to='/recover' id='recover-btn' className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
-							Glömt lösenordet?
-						</NavLink>
+          <div id='recover' className="flex items-center justify-between">
+            <NavLink to='/recover' id='recover-btn' className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+              Glömt lösenordet?
+            </NavLink>
 
 						<button  type='submit' name='login' className="menu-reg-btn" onClick={tryLogin}>
 						 {!loading && 'Login'}

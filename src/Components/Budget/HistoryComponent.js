@@ -1,15 +1,19 @@
 import { useState, useEffect } from "react";
-import { GetCookie } from "../Services/cookie.js";
 import API_Service from "../../API/API_Service.js";
 import { DefaultRender } from '../Services/messageHandler.js';
+import { FaSpinner } from 'react-icons/fa';
 
 const History = () => {
+  const [loading, setLoading] = useState(false);
   const [errorMessage, setMessage] = useState("");
   const [counter, setCounter] = useState(0);
+  const [timer, setTimer] = useState(0);
   const [data, setData] = useState();
 
-  try {
+  
     useEffect(() => {
+      try {
+      setLoading(true)
       const fetchData = async () => {
         const res = await API_Service.GetService('Expense');
         const res2 = await API_Service.GetService('Income');
@@ -24,12 +28,16 @@ const History = () => {
         }
       };
       fetchData();
-
+    }
+    catch {
+      setMessage('Kunde inte hämta data');
+      setCounter(counter + 1);
+      setTimer(4000);
+    }
+    finally{
+      setLoading(false)
+    }
     }, []);
-  } catch {
-    setMessage('Can not show history.');
-    setCounter(counter + 1);
-  }
 
   return (
     <>
@@ -37,10 +45,11 @@ const History = () => {
       <div className=''>
       <h1 className="text-white mb-10">History</h1>
         <table className="table-main">
+
           <tr>
-            <th className="table-header">Date</th>
-            <th className="table-header">Description</th>
-            <th className="table-header">Balance Change</th>
+            <th className="table-header">Datum</th>
+            <th className="table-header">Beskrivning</th>
+            <th className="table-header">Belopp ändring</th>
           </tr>
           {data?.map(x =>
             <tr className={("expenseDescription" in x) ? "table-row-expense" : "table-row-income"}>

@@ -2,12 +2,15 @@ import { useState } from 'react'
 import { DefaultRender } from '../Services/messageHandler.js';
 import API_Service from '../../API/API_Service';
 import { useNavigate, NavLink } from 'react-router-dom';
+import { FaSpinner } from 'react-icons/fa';
 
 const Register = () => {
   const navigate = useNavigate();
   const [errorMessage, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const [counter, setCounter] = useState(0);
   const [disableSubmit, setdisableSubmit] = useState(false);
+  const [timer, setTimer] = useState(0);
   const [formData, setFormData] = useState({
     username: "",
     email: '',
@@ -16,7 +19,7 @@ const Register = () => {
   })
 
   const handleChange = (e) => {
-    setFormData((prevState) => ({...prevState, [e.target.name]: e.target.value}));
+    setFormData((prevState) => ({ ...prevState, [e.target.name]: e.target.value }));
   }
 
   let handleSubmit = (event) => {
@@ -28,13 +31,14 @@ const Register = () => {
   const FetchReg = async () => {
     try {
       setdisableSubmit(true);
+      setLoading(true);
       let postData =  {};
       for (const [key, value] of Object.entries(formData)) {
         postData[key] = value;
       }
       delete postData['confirmpassword'];
       const res = await API_Service.PostService('User/register', postData);
-      if (res != false) {
+      if (res !== false) {
         setMessage("Registrerad. Går till login...");
         setCounter(counter + 1);
         setTimeout(() =>{
@@ -50,20 +54,27 @@ const Register = () => {
 
 
   const ValidateUser = () => {
+    setLoading(true);
     const usernamevalidate = Object.values(formData).every((x) => x !== "");
     if (usernamevalidate) {
       if (formData.password !== formData.confirmpassword) {
         setMessage("Lösenorden matchar inte!");
         setCounter(counter + 1);
+        setLoading(false);
+        setTimer(4000);
       } else if (CheckPassword(formData.password) === false) {
         setMessage("Ditt lösenord måste ha minst 12 tecken, en gemen, en storbokstav, en siffra och ett special tecken");
         setCounter(counter + 1);
+        setLoading(false);
+        setTimer(8000);
       } else {
         FetchReg();
       }
     } else {
       setMessage("Du måste fylla i alla fälten!");
       setCounter(counter + 1);
+      setLoading(false)
+      setTimer(4000);
     }
   };
 
@@ -83,28 +94,28 @@ const Register = () => {
         <form className="form-main">
           <div id="hidden-message" />
           <div className="input-wrapper">
-            <label className="label-main" htmlFor="username">Användarnamn</label>
+            <label className="label-main" htmlFor="username">Användarnamn: </label>
             <input required className="input-main" type="text" value={formData.username} name="username" onChange={(e) => handleChange(e)} placeholder="Välj ett användarnamn" />
           </div>
           <div className="input-wrapper">
-            <label className="label-main" htmlFor="email">Email</label>
+            <label className="label-main" htmlFor="email">Email: </label>
             <input required className="input-main" type="text" value={formData.email} name="email" onChange={(e) => handleChange(e)} placeholder="Fyll i din epost" />
           </div>
           <div className="input-wrapper">
-            <label className="label-main" htmlFor="password">Lösenord </label>
+            <label className="label-main" htmlFor="password">Lösenord: </label>
             <input required className="input-main" type="password" value={formData.password} name="password" onChange={(e) => handleChange(e)} placeholder="Välj ett lösenord" />
           </div>
           <div className="input-wrapper">
-            <label 
-            className="label-main" htmlFor="password2">Bekräfta lösenord</label>
+            <label
+              className="label-main" htmlFor="password2">Bekräfta lösenord: </label>
             <input required className="input-main" type="password" value={formData.confirmpassword} onChange={(e) => handleChange(e)} name="confirmpassword" placeholder="Bekräfta lösenord" />
           </div>
           <div>
           <button className="menu-reg-btn" id="budgetSumbit" disabled={disableSubmit ? true : false} onClick={handleSubmit}>Submit</button>
 
           </div>
-          
-          <DefaultRender errorMessage={errorMessage} counter={counter}/>
+
+          <DefaultRender errorMessage={errorMessage} counter={counter} timer={timer} />
         </form>
         <div className='label-linkwrap'>
           <p className="label-main">

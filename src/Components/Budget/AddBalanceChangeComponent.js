@@ -1,14 +1,19 @@
-import { GetCookie } from "../Services/cookie.js"
 import { useState, useEffect } from 'react';
 import { DefaultRender } from "../Services/messageHandler";
 import API_Service from "../../API/API_Service.js";
+import { FaSpinner } from 'react-icons/fa';
 
 const AddBalanceChange  = () => {
+  const [loading, setLoading] = useState(false);
+  const [disableSubmit, setdisableSubmit] = useState(true);
   const [errorMessage, setMessage] = useState("");
   const [counter, setCounter] = useState(0);
+  const [timer, setTimer] = useState(0);
   const [category, setCategory] = useState();
-  const [type, setType] = useState ("Income");
+  const [accounts, setAccounts] = useState();
+  const [type, setType] = useState("Income");
   const [data, setData] = useState({
+    AccountId: "",
     Description: "",
     Date: "",
     BalanceChange: "",
@@ -18,46 +23,78 @@ const AddBalanceChange  = () => {
   useEffect(() => {
     try {
       const fetchData = async () => {
+        setLoading(true)
         const fetchresult = await API_Service.GetService(type + '/categories');
-        if (fetchresult != null) {
+        const res = await API_Service.GetService('Account');
+        console.log(res)
+        if (fetchresult !== null && res !== null) {
           setCategory(fetchresult);
+          setAccounts(res);
+          data.AccountId = res[0].id;
         }
       }
       fetchData();
-    } 
+    }
     catch (data) {
       setMessage('Could not load categories.');
       setCounter(counter + 1);
+      setTimer(4000);
     }
-  },[type]);
+    finally{
+      setLoading(false)
+    }
+  },[type, data, counter]);
   
-  const handleIncomeFormChange = (e) => {
-		setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-	};
+  const handleFormChange = (e) => {
+    setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
   const handleSelectChange = (e) => {
     setData((prev) => ({ ...prev, [e.target.name]: e.target.selectedIndex }));
   }
+  // const handleAccountChange = (e) => {
+  //   setData((prev) => ({ ...prev, [e.target.name]: e.target.id }));
+  // }
   const handleTypeChange = (e) => {
-		setType(e.target.value);
-	};
+    setType(e.target.value);
+  };
 
-const uploadChange = async (e) => {
-  e.preventDefault();
-  const post = {};
-  for (const [key, value] of Object.entries(data)) {
-     
-     (key === 'BalanceChange') ? post[type.toLowerCase() + key] = parseInt(value)
-    : post[type.toLowerCase() + key] = value;
-  }
-  try {
-    const incomeResult = await API_Service.PostService(type, post);
-    if(incomeResult !== false) {
-      setMessage('Balance added successfully');
-      setCounter(counter+1);
+  const uploadChange = async (e) => {
+    e.preventDefault();
+    const post = {};
+    for (const [key, value] of Object.entries(data)) {
+      if(key === 'AccountId'){
+        post[key] = value
+      }
+      else if (key === 'BalanceChange'){
+        post[type.toLowerCase() + key] = parseInt(value)
+      }
+
+      else {
+        post[type.toLowerCase() + key] = value;
+      }
     }
-  } catch (e) {
-    setMessage('something went wrong');
-    setCounter(counter + 1);
+    console.log('post' + Object.entries(post))
+    try {
+      setLoading(true)
+      const result = await API_Service.PostService(type, post);
+      if (result !== false) {
+        setMessage('Utgift/inkomst lades till');
+        setCounter(counter + 1);
+        setTimer(2000);
+      }
+      else {
+        setMessage('Något gick fel');
+        setCounter(counter + 1);
+        setTimer(2000);
+      }
+    } catch (e) {
+      setMessage('Kunde inte ansluta, kolla din internetåtkomst');
+      setCounter(counter + 1);
+      setTimer(4000);
+    }
+   
+  finally{
+    setLoading(false)
   }
 }
 

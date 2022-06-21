@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer base {
+    /* html {
+        @apply
+    } */
     body {
         @apply flex flex-col h-screen bg-slate-800 bg-test-background dark:bg-test-background-darkMode  bg-fixed	 bg-cover bg-no-repeat overflow-y-scroll;
     }

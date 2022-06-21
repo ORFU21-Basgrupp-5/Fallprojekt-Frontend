@@ -1,30 +1,34 @@
 import { useEffect, useState } from 'react';
 import { DefaultRender } from '../Services/messageHandler.js';
 import API_Service from '../../API/API_Service.js';
+import { FaSpinner } from 'react-icons/fa';
+
 
 const Budget = () => {
-	const [errorMessage, setMessage] = useState('');
-	const [counter, setCounter] = useState(0);
-	const [data, setData] = useState({
-		name: '',
-		totalSum: 0,
-		date: '',
-		month: '',
-		year: '',
-		categoriesAndAmount: {},
-	});
-	const [catData, setCatData] = useState({
-		Food: 0,
-		Car: 0,
-		Subscriptions: 0,
-		Clothes: 0,
-		Treat: 0,
-		Other: 0,
-	});
-	const [posted, setPosted] = useState(false);
-	const [validated, setValidated] = useState(false);
-	const [disableSubmit, setdisableSubmit] = useState(true);
-	const [sumLeft, setSumLeft] = useState();
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setMessage] = useState("");
+  const [counter, setCounter] = useState(0);
+  const [timer, setTimer] = useState(0);
+  const [data, setData] = useState({
+    name: '',
+    totalSum: 0,
+    date: '',
+    month: '',
+    year: '',
+    categoriesAndAmount: {}
+  })
+  const [catData, setCatData] = useState({
+    Food: 0,
+    Car: 0,
+    Subscriptions: 0,
+    Clothes: 0,
+    Treat: 0,
+    Other: 0,
+  })
+  const [posted, setPosted] = useState(false);
+  const [validated, setValidated] = useState(false);
+  const [disableSubmit, setdisableSubmit] = useState(true);
+  const [sumLeft, setSumLeft] = useState();
 
 	useEffect(() => {
 		const catSum = Object.values(catData)

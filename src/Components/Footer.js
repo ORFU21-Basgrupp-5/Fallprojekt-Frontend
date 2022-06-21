@@ -1,4 +1,4 @@
-import NavImage from '../Images/Asset_2port.svg';
+//import NavImage from '../Images/Asset_2port.svg';
 
 const Footer = () => {
 	return (
