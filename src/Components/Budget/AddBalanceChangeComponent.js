@@ -65,8 +65,13 @@ const AddBalanceChange  = () => {
       if(key === 'AccountId'){
         post[key] = value
       }
-      else if (key === 'BalanceChange') post[type.toLowerCase() + key] = parseInt(value)
-      else post[type.toLowerCase() + key] = value;
+      else if (key === 'BalanceChange'){
+        post[type.toLowerCase() + key] = parseInt(value)
+      }
+
+      else {
+        post[type.toLowerCase() + key] = value;
+      }
     }
     console.log('post' + Object.entries(post))
     try {
@@ -82,8 +87,8 @@ const AddBalanceChange  = () => {
         setCounter(counter + 1);
         setTimer(2000);
       }
-    } catch {
-      setMessage('Could not log in, check your internet connection');
+    } catch (e) {
+      setMessage('Could not connect, check your internet connection');
       setCounter(counter + 1);
       setTimer(4000);
     }
@@ -127,12 +132,12 @@ return (
               onChange={(event) => handleFormChange(event)}
             />
           </div>
-          {/* <div className="input-wrapper">
+          <div className="input-wrapper">
             <label className="label-main" htmlFor="AccountId">Konto</label>
             <select name="AccountId" value={data.AccountId} onChange={(event) => handleFormChange(event)}>
               {accounts?.map(x => <option value={x.id}>{x.name}</option>)}
             </select>
-          </div> */}
+          </div>
           <div className="input-wrapper">
             <label className="label-main" htmlFor="Description">Beskrivning</label>
             <input
