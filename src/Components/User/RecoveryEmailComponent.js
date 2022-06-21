@@ -49,7 +49,6 @@ const RecoverEmail = () => {
 
   return (
     <div className="container">
-<<<<<<< HEAD
     <form className="form-main">
       <div className="input-wrapper">
         <label className="label-main" htmlFor="Email">Email </label>
@@ -70,24 +69,6 @@ const RecoverEmail = () => {
       <div id="SentOrNotDiv"></div>
       <DefaultRender errorMessage={errorMessage} counter={counter} />
     </form>
-=======
-      <form className="form-main">
-        <div className="input-wrapper">
-          <label className="label-main" htmlFor="Email">Email </label>
-          <input
-            className="input-main"
-            type="text"
-            name="email"
-            placeholder="Fyll i din epost"
-            value={formValue.email}
-            onChange={handleChange}
-          />
-        </div>
-        <button className="btn-main" onClick={sendEmail}>Bekräfta</button>
-        <div id="SentOrNotDiv"></div>
-        <DefaultRender errorMessage={errorMessage} counter={counter} timer={timer} />
-      </form>
->>>>>>> e005d9759b6a831c995c8249e5c013e05e655cc4
     </div>
   )
 

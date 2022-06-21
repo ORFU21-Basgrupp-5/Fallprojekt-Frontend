@@ -119,12 +119,12 @@ return (
               onChange={(event) => handleFormChange(event)}
             />
           </div>
-          <div className="input-wrapper">
+          {/* <div className="input-wrapper">
             <label className="label-main" htmlFor="AccountId">Konto</label>
             <select name="AccountId" value={data.AccountId} onChange={(event) => handleFormChange(event)}>
               {accounts?.map(x => <option value={x.id}>{x.name}</option>)}
             </select>
-          </div>
+          </div> */}
           <div className="input-wrapper">
             <label className="label-main" htmlFor="Description">Beskrivning</label>
             <input
@@ -146,7 +146,7 @@ return (
             />
           </div>
           <div>
-            <button className={disableSubmit ? "btn-disabled" : "btn-main"} id="SubmitChange" disabled={disableSubmit ? true : false} onClick={uploadChange}>Submit
+            <button className="btn-main" onClick={uploadChange}>Submit
             {loading &&
 							<span className='animate-spin h-5 w-5 ml-3 inline-block'>
 							<FaSpinner/>

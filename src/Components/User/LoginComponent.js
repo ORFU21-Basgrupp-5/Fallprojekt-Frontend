@@ -37,7 +37,7 @@ const Login = () => {
     e.preventDefault();
     const post = inputFields;
     try {
-      setLoading(true)
+      setLoading(true);
       const fetchresult = await API_Service.PostService('User/login', post);
       if (fetchresult !== false) {
         CreateLoginToken(fetchresult);

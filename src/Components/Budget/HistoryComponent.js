@@ -38,7 +38,6 @@ const History = () => {
       setLoading(false)
     }
     }, []);
-  }
 
   return (
     <div className='container'>
@@ -72,6 +71,6 @@ const History = () => {
       <DefaultRender errorMessage={errorMessage} counter={counter} timer={timer} />
     </div>
   );
-
+};
 
 export default History;

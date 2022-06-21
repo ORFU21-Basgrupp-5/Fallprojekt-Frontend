@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 export const DefaultRender = ({ errorMessage, counter, timer }) => {
   const [Message, setError] = useState("");
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState(4000);
   const [errorCount, setErrorCount] = useState(0);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ export const DefaultRender = ({ errorMessage, counter, timer }) => {
     setTimeout(function () {
       setError("")
     }, time);
-  }, [counter, errorMessage, time, errorCount]);
+  }, [counter, timer, errorMessage]);
 
 
   return (
