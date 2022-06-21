@@ -62,7 +62,10 @@ const AddBalanceChange  = () => {
     e.preventDefault();
     const post = {};
     for (const [key, value] of Object.entries(data)) {
-      if (key === 'BalanceChange') post[type.toLowerCase() + key] = parseInt(value)
+      if(key === 'AccountId'){
+        post[key] = value
+      }
+      else if (key === 'BalanceChange') post[type.toLowerCase() + key] = parseInt(value)
       else post[type.toLowerCase() + key] = value;
     }
     console.log('post' + Object.entries(post))
@@ -74,8 +77,13 @@ const AddBalanceChange  = () => {
         setCounter(counter + 1);
         setTimer(2000);
       }
+      else {
+        setMessage('Something went wrong');
+        setCounter(counter + 1);
+        setTimer(2000);
+      }
     } catch {
-      setMessage('something went wrong');
+      setMessage('Could not log in, check your internet connection');
       setCounter(counter + 1);
       setTimer(4000);
     }
@@ -153,8 +161,9 @@ return (
 							</span>}</button>
           </div>
           <div id="info-income"></div>
+          <DefaultRender errorMessage={errorMessage} counter={counter} timer={timer} />
         </form>
-        <DefaultRender errorMessage={errorMessage} counter={counter} timer={timer} />
+        
       </div>
     </div>
   );
