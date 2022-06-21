@@ -7,6 +7,7 @@ const History = () => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setMessage] = useState("");
   const [counter, setCounter] = useState(0);
+  const [timer, setTimer] = useState(0);
   const [data, setData] = useState();
 
   
@@ -31,12 +32,13 @@ const History = () => {
     catch {
       setMessage('Can not show history.');
       setCounter(counter + 1);
+      setTimer(4000);
     }
     finally{
       setLoading(false)
     }
     }, []);
-
+  }
 
   return (
     <div className='container'>
@@ -45,9 +47,9 @@ const History = () => {
 							<FaSpinner/>
 							</span>}
       <div className=''>
-      <h1>Historik</h1>
+        <h1>Historik</h1>
         <table className="table-main">
-        
+
           <tr>
             <th className="table-header">Datum</th>
             <th className="table-header">Beskrivning</th>
@@ -67,9 +69,9 @@ const History = () => {
             </tr>)}
         </table>
       </div>
-      <DefaultRender errorMessage={errorMessage} counter={counter} />
+      <DefaultRender errorMessage={errorMessage} counter={counter} timer={timer} />
     </div>
   );
-};
+
 
 export default History;

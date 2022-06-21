@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import {NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { DefaultRender } from '../Services/messageHandler.js';
 import API_Service from "../../API/API_Service";
 
 const ChangePassword = () => {
   const [errorMessage, setMessage] = useState("");
   const [counter, setCounter] = useState(0);
+  const [timer, setTimer] = useState(0);
   const [inputFields, setInputFields] = useState({
     newPassword: '',
     confirmPassword: ''
@@ -32,6 +33,7 @@ const ChangePassword = () => {
     else {
       setMessage("Lösenorden matchar inte");
       setCounter(counter + 1);
+      setTimer(4000);
     }
   }
 
@@ -40,7 +42,7 @@ const ChangePassword = () => {
       'User/recover',
       NewPasswordDTO
     );
-    
+
     if (fetchresult !== false) {
       setMessage('Changed password successfully');
       setCounter(counter + 1);
@@ -51,6 +53,7 @@ const ChangePassword = () => {
     } else {
       setMessage('Could not change password');
       setCounter(counter + 1);
+      setTimer(4000);
     }
   }
 
@@ -58,41 +61,41 @@ const ChangePassword = () => {
 
   return (
     <div className='container'>
-    <form className="form-main">
-      <div className="input-wrapper">
-      <label className="label-main">New password: </label>
-      <input
-        className="input-main"
-        type="text"
-        id="newPassword"
-        name="newpassword"
-        value={inputFields.newPassword}
-        onChange={handleChange}
-      />
-      </div>
-      <br />
-      <div className="input-wrapper">
-      <label className="label-main">Confirm password: </label>
-      <input
-        className="input-main"
-        type="text"
-        id="confirmPassword"
-        name="confirmPassword"
-        value={inputFields.confirmPassword}
-        onChange={handleChange}
-      />
-      </div>
-      <button className="btn-main" id="confirmButton" onclick={checkPassword}>Confirm</button>
-      <br />
-      <div className='label-linkwrap'>
-					<p className="label-main">
-						<NavLink className="menu-textlink" to='/login'>
-							Logga in här
-						</NavLink>
-					</p>
-				</div>
-      <DefaultRender errorMessage={errorMessage} counter={counter} />
-    </form>
+      <form className="form-main">
+        <div className="input-wrapper">
+          <label className="label-main">New password: </label>
+          <input
+            className="input-main"
+            type="text"
+            id="newPassword"
+            name="newpassword"
+            value={inputFields.newPassword}
+            onChange={handleChange}
+          />
+        </div>
+        <br />
+        <div className="input-wrapper">
+          <label className="label-main">Confirm password: </label>
+          <input
+            className="input-main"
+            type="text"
+            id="confirmPassword"
+            name="confirmPassword"
+            value={inputFields.confirmPassword}
+            onChange={handleChange}
+          />
+        </div>
+        <button className="btn-main" id="confirmButton" onclick={checkPassword}>Confirm</button>
+        <br />
+        <div className='label-linkwrap'>
+          <p className="label-main">
+            <NavLink className="menu-textlink" to='/login'>
+              Logga in här
+            </NavLink>
+          </p>
+        </div>
+        <DefaultRender errorMessage={errorMessage} counter={counter} timer={timer} />
+      </form>
     </div>
   )
 }

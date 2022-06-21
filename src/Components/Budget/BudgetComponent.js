@@ -8,6 +8,7 @@ const Budget = () => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setMessage] = useState("");
   const [counter, setCounter] = useState(0);
+  const [timer, setTimer] = useState(0);
   const [data, setData] = useState({
     name: '',
     totalSum: 0,
@@ -73,11 +74,13 @@ const Budget = () => {
           setdisableSubmit(true);
           DefaultRender("Your budget is saved!");
           setCounter(counter + 1);
+          setTimer(4000);
         }
       }
       catch {
         setMessage('Upload failed!');
         setCounter(counter + 1);
+        setTimer(4000);
       }
       finally{
         setLoading(false)
@@ -93,9 +96,9 @@ const Budget = () => {
 							<FaSpinner/>
 							</span>}
       <div id="budgetForm">
-      <h1 className='mb-10'>Skapa en ny budget</h1>
+        <h1 className='mb-10'>Skapa en ny budget</h1>
         <form id="form1" className='form-main' onSubmit={handleSubmit}>
-        
+
           <div className="input-wrapper">
             <label className="label-main" htmlFor="name">Namn</label>
             <input className="input-main" type="text" id="name" value={data.name} onChange={(event) => handleFormChange(event)} name="name" />
@@ -146,9 +149,9 @@ const Budget = () => {
 							</span>}
               </button>
         </form>
-        
+
       </div>
-      <DefaultRender errorMessage={errorMessage} counter={counter} />
+      <DefaultRender errorMessage={errorMessage} counter={counter} timer={timer} />
     </div>
 
   );

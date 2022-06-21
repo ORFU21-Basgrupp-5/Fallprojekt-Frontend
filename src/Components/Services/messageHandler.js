@@ -1,16 +1,14 @@
 import { useEffect, useState } from 'react';
 
-export const DefaultRender = ({ errorMessage, counter }) => {
+export const DefaultRender = ({ errorMessage, counter, timer }) => {
   const [Message, setError] = useState("");
   const [time, setTime] = useState(0);
   const [errorCount, setErrorCount] = useState(0);
 
   useEffect(() => {
-    //debugger;
-    //console.log("hej");
     setErrorCount(counter);
     setError(errorMessage);
-    setTime(4000);
+    setTime(timer);
     console.log('Error Count ' + errorCount);
     setTimeout(function () {
       setError("")

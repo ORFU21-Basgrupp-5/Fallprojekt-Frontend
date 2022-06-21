@@ -7,6 +7,7 @@ const GetBudget = () => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setMessage] = useState("");
   const [counter, setCounter] = useState(0);
+  const [timer, setTimer] = useState(0);
   const [data, setData] = useState();
 
 
@@ -17,12 +18,13 @@ const GetBudget = () => {
       const fetchData = async () => {
         setLoading(true);
         const fetchresult = await API_Service.GetService('Budget');
-        if (fetchresult != null) {
+        if (fetchresult !== null) {
           setData(fetchresult);
         }
         else {
           setMessage('Could not retrieve budget data.');
           setCounter(counter + 1);
+          setTimer(4000);
         }
       };
       fetchData();
@@ -30,6 +32,7 @@ const GetBudget = () => {
   catch {
     setMessage('Check connection to internet.');
     setCounter(counter + 1);
+    setTimer(4000);
   }
   finally{
     setLoading(false);
@@ -52,7 +55,7 @@ const GetBudget = () => {
 							<FaSpinner/>
 							</span>}
         <div>
-        {/* <div className="table-main"> */}
+          {/* <div className="table-main"> */}
           <h1>Aktuell Budget</h1>
           <h2>{data.budgetName}</h2>
           <h4>
@@ -60,7 +63,7 @@ const GetBudget = () => {
             Använd Budget: {data.usedAmount} {' '}
             Procent: {((parseInt(data.usedAmount) * 100) / parseInt(data.totalSum)).toFixed(2)} %
           </h4>
-        {/* </div> */}
+          {/* </div> */}
           <table className="table-main">
             <tr className="table-row">
               <th className="table-header">Kategorier</th>
@@ -84,7 +87,7 @@ const GetBudget = () => {
             </tr>
           </table>
         </div>
-        <DefaultRender errorMessage={errorMessage} counter={counter} />
+        <DefaultRender errorMessage={errorMessage} counter={counter} timer={timer} />
       </div>
     );
   } else {
