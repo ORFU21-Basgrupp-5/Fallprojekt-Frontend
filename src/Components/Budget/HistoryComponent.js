@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
 import API_Service from "../../API/API_Service.js";
 import { DefaultRender } from '../Services/messageHandler.js';
+import { FaSpinner } from 'react-icons/fa';
 
 const History = () => {
+  const [loading, setLoading] = useState(false);
   const [errorMessage, setMessage] = useState("");
   const [counter, setCounter] = useState(0);
   const [data, setData] = useState();
 
-  try {
+  
     useEffect(() => {
+      try {
+      setLoading(true)
       const fetchData = async () => {
         const res = await API_Service.GetService('Expense');
         const res2 = await API_Service.GetService('Income');
@@ -23,16 +27,23 @@ const History = () => {
         }
       };
       fetchData();
-
+    }
+    catch {
+      setMessage('Can not show history.');
+      setCounter(counter + 1);
+    }
+    finally{
+      setLoading(false)
+    }
     }, []);
-  } catch {
-    setMessage('Can not show history.');
-    setCounter(counter + 1);
-  }
+
 
   return (
     <div className='container'>
-
+      {loading &&
+							<span className='animate-spin h-5 w-5 ml-3 inline-block'>
+							<FaSpinner/>
+							</span>}
       <div className=''>
       <h1>Historik</h1>
         <table className="table-main">

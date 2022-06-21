@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import { DefaultRender } from "../Services/messageHandler";
 import API_Service from "../../API/API_Service.js";
+import { FaSpinner } from 'react-icons/fa';
 
 const AddBalanceChange  = () => {
+  const [loading, setLoading] = useState(false);
+  const [disableSubmit, setdisableSubmit] = useState(true);
   const [errorMessage, setMessage] = useState("");
   const [counter, setCounter] = useState(0);
   const [category, setCategory] = useState();
@@ -19,6 +22,7 @@ const AddBalanceChange  = () => {
   useEffect(() => {
     try {
       const fetchData = async () => {
+        setLoading(true)
         const fetchresult = await API_Service.GetService(type + '/categories');
         const res = await API_Service.GetService('Account');
         console.log(res)
@@ -33,6 +37,9 @@ const AddBalanceChange  = () => {
     catch (data) {
       setMessage('Could not load categories.');
       setCounter(counter + 1);
+    }
+    finally{
+      setLoading(false)
     }
   },[type, data, counter]);
   
@@ -58,6 +65,7 @@ const uploadChange = async (e) => {
   }
   console.log('post' + Object.entries(post))
   try {
+    setLoading(true)
     const result = await API_Service.PostService(type, post);
     if(result !== false) {
       setMessage('Balance Added');
@@ -67,10 +75,17 @@ const uploadChange = async (e) => {
     setMessage('something went wrong');
     setCounter(counter + 1);
   }
+  finally{
+    setLoading(false)
+  }
 }
 
 return (
   <div className="container">
+     {loading &&
+							<span className='animate-spin h-5 w-5 ml-3 inline-block'>
+							<FaSpinner/>
+							</span>}
     <div>
     <h1 className="mb-10">Lägg till Inkomst/Utgift</h1>
       <form className="form-main">
@@ -126,7 +141,12 @@ return (
            />
         </div>
         <div>
-          <button className="btn-main" onClick={uploadChange}>Enter</button>
+        <button className={disableSubmit ? "btn-disabled" : "btn-main"} id="submitChange" disabled={disableSubmit ? true : false} onClick={uploadChange}>Submit
+          {loading &&
+							<span className='animate-spin h-5 w-5 ml-3 inline-block'>
+							<FaSpinner/>
+							</span>
+							}</button>
         </div>
         <div id="info-income"></div>
       </form>

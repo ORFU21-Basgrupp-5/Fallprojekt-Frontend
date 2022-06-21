@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { DefaultRender } from '../Services/messageHandler.js';
 import API_Service from '../../API/API_Service';
+import { FaSpinner } from 'react-icons/fa';
 
 
 const RecoverEmail = () => {
+  const [loading, setLoading] = useState(false);
   const [errorMessage, setMessage] = useState("");
   const [counter, setCounter] = useState(0);
   const [formValue, setFormValue] = useState({
@@ -26,6 +28,7 @@ const RecoverEmail = () => {
     e.preventDefault();
     const post = formValue;
     try {
+      setLoading(true)
       const fetchresult = await API_Service.PostService('User/recover', post);
       if (fetchresult !== false) {
         // DefaultRender(fetchresult);
@@ -35,6 +38,9 @@ const RecoverEmail = () => {
     } catch (e) {
       setMessage("Something went wrong");
       setCounter(counter + 1);
+    }
+    finally{
+      setLoading(false)
     }
   }
 
@@ -53,7 +59,11 @@ const RecoverEmail = () => {
         onChange={handleChange}
         />
       </div>
-      <button className="btn-main" onClick={sendEmail}>Bekräfta</button>
+      <button className="btn-main" onClick={sendEmail}>Bekräfta
+      {loading &&
+							<span className='animate-spin h-5 w-5 ml-3 inline-block'>
+							<FaSpinner/>
+							</span>}</button>
       <div id="SentOrNotDiv"></div>
       <DefaultRender errorMessage={errorMessage} counter={counter} />
     </form>

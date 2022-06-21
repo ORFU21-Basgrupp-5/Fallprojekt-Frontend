@@ -1,15 +1,21 @@
 import { useState, useEffect } from 'react';
 import API_Service from '../../API/API_Service.js';
 import { DefaultRender } from '../Services/messageHandler.js';
+import { FaSpinner } from 'react-icons/fa';
 
 const GetBudget = () => {
+  const [loading, setLoading] = useState(false);
   const [errorMessage, setMessage] = useState("");
   const [counter, setCounter] = useState(0);
   const [data, setData] = useState();
 
-  try {
+
     useEffect(() => {
+      try{
+
+     
       const fetchData = async () => {
+        setLoading(true);
         const fetchresult = await API_Service.GetService('Budget');
         if (fetchresult != null) {
           setData(fetchresult);
@@ -20,11 +26,17 @@ const GetBudget = () => {
         }
       };
       fetchData();
-    }, [counter]);
-  } catch {
+    }
+  catch {
     setMessage('Check connection to internet.');
     setCounter(counter + 1);
   }
+  finally{
+    setLoading(false);
+  }
+    }, [counter]);
+
+
   function getBackgroundColor(procent) {
     if (procent >= 80 && procent < 100) {
       return 'orange'
@@ -35,6 +47,10 @@ const GetBudget = () => {
   if (data) {
     return (
       <div className='container'>
+        {loading &&
+							<span className='animate-spin h-5 w-5 ml-3 inline-block'>
+							<FaSpinner/>
+							</span>}
         <div>
         {/* <div className="table-main"> */}
           <h1>Aktuell Budget</h1>

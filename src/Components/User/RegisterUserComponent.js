@@ -2,10 +2,12 @@ import { useState } from 'react'
 import { DefaultRender } from '../Services/messageHandler.js';
 import API_Service from '../../API/API_Service';
 import { useNavigate, NavLink } from 'react-router-dom';
+import { FaSpinner } from 'react-icons/fa';
 
 const Register = () => {
   const navigate = useNavigate();
   const [errorMessage, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const [counter, setCounter] = useState(0);
   const [formData, setFormData] = useState({
     username: "",
@@ -26,6 +28,7 @@ const Register = () => {
 
   const FetchReg = async () => {
     try {
+      setLoading(true)
       let postData =  {};
       for (const [key, value] of Object.entries(formData)) {
         postData[key] = value;
@@ -42,24 +45,31 @@ const Register = () => {
       setMessage("Username or password incorrect");
       setCounter(counter + 1);
     }
+    finally{
+      setLoading(false)
+    }
   }
 
 
   const ValidateUser = () => {
+    setLoading(true)
     const usernamevalidate = Object.values(formData).every((x) => x !== "");
     if (usernamevalidate) {
       if (formData.password !== formData.confirmpassword) {
         setMessage("Lösenorden matchar inte!");
         setCounter(counter + 1);
+        setLoading(false)
       } else if (CheckPassword(formData.password) === false) {
         setMessage("Ditt lösenord måste ha minst 12 tecken, en gemen, en storbokstav, en siffra och ett special tecken");
         setCounter(counter + 1);
+        setLoading(false)
       } else {
         FetchReg();
       }
     } else {
       setMessage("Du måste fylla i alla fälten!");
       setCounter(counter + 1);
+      setLoading(false)
     }
   };
 
@@ -95,7 +105,12 @@ const Register = () => {
             <input required className="input-main" type="password" value={formData.confirmpassword} onChange={(e) => handleChange(e)} name="confirmpassword" placeholder="Bekräfta lösenord" />
           </div>
           <div>
-            <input className="btn-main" type="submit" onClick={handleSubmit}/>
+            <button className="btn-main" type="submit" onClick={handleSubmit}>Registrera
+            {loading &&
+							<span className='animate-spin h-5 w-5 ml-3 inline-block'>
+							<FaSpinner/>
+							</span>}
+            </button>
           </div>
           
           <DefaultRender errorMessage={errorMessage} counter={counter}/>

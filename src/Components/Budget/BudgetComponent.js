@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import { DefaultRender } from '../Services/messageHandler.js';
 import API_Service from '../../API/API_Service.js';
+import { FaSpinner } from 'react-icons/fa';
+
 
 const Budget = () => {
+  const [loading, setLoading] = useState(false);
   const [errorMessage, setMessage] = useState("");
   const [counter, setCounter] = useState(0);
   const [data, setData] = useState({
@@ -58,6 +61,7 @@ const Budget = () => {
   const uploadBudget = async (e) => {
     if (validated) {
       try {
+        setLoading(true)
         let postData = data;
         postData['month'] = new Date(postData.date).getMonth();
         postData['year'] = new Date(postData.date).getFullYear();
@@ -75,12 +79,19 @@ const Budget = () => {
         setMessage('Upload failed!');
         setCounter(counter + 1);
       }
+      finally{
+        setLoading(false)
+      }
     }
 
   };
 
   return (
     <div className="container">
+       {loading &&
+							<span className='animate-spin h-5 w-5 ml-3 inline-block'>
+							<FaSpinner/>
+							</span>}
       <div id="budgetForm">
       <h1 className='mb-10'>Skapa en ny budget</h1>
         <form id="form1" className='form-main' onSubmit={handleSubmit}>
@@ -128,7 +139,12 @@ const Budget = () => {
             <input className="input-main" type="number" name="Other" value={catData.Other} onChange={(event) => handleCatChange(event)} />
           </div>
 
-          <button className={disableSubmit ? "btn-disabled" : "btn-main"} id="budgetSumbit" disabled={disableSubmit ? true : false} onClick={uploadBudget}>Submit</button>
+          <button className={disableSubmit ? "btn-disabled" : "btn-main"} id="budgetSumbit" disabled={disableSubmit ? true : false} onClick={uploadBudget}>Submit
+          {loading &&
+							<span className='animate-spin h-5 w-5 ml-3 inline-block'>
+							<FaSpinner/>
+							</span>}
+              </button>
         </form>
         
       </div>
