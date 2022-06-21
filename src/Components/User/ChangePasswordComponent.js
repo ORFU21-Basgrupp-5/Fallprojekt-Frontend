@@ -44,14 +44,14 @@ const ChangePassword = () => {
     );
 
     if (fetchresult !== false) {
-      setMessage('Changed password successfully');
+      setMessage('Bytt lösenord!');
       setCounter(counter + 1);
       setTimeout(moveToLoging, 2000);
       function moveToLoging() {
         window.location.hash = "#/login";
       }
     } else {
-      setMessage('Could not change password');
+      setMessage('Kunde inte ändra lösenord');
       setCounter(counter + 1);
       setTimer(4000);
     }
@@ -63,7 +63,7 @@ const ChangePassword = () => {
     <div className='container'>
       <form className="form-main">
         <div className="input-wrapper">
-          <label className="label-main">New password: </label>
+          <label className="label-main">Nytt lösenord: </label>
           <input
             className="input-main"
             type="text"
@@ -75,7 +75,7 @@ const ChangePassword = () => {
         </div>
         <br />
         <div className="input-wrapper">
-          <label className="label-main">Confirm password: </label>
+          <label className="label-main">Bekräfta lösenord: </label>
           <input
             className="input-main"
             type="text"
@@ -85,7 +85,7 @@ const ChangePassword = () => {
             onChange={handleChange}
           />
         </div>
-        <button className="btn-main" id="confirmButton" onclick={checkPassword}>Confirm</button>
+        <button className="btn-main" id="confirmButton" onclick={checkPassword}>Bekräfta</button>
         <br />
         <div className='label-linkwrap'>
           <p className="label-main">

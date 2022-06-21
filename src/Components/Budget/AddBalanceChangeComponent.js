@@ -78,17 +78,17 @@ const AddBalanceChange  = () => {
       setLoading(true)
       const result = await API_Service.PostService(type, post);
       if (result !== false) {
-        setMessage('Balance Added');
+        setMessage('Utgift/inkomst lades till');
         setCounter(counter + 1);
         setTimer(2000);
       }
       else {
-        setMessage('Something went wrong');
+        setMessage('Något gick fel');
         setCounter(counter + 1);
         setTimer(2000);
       }
     } catch (e) {
-      setMessage('Could not connect, check your internet connection');
+      setMessage('Kunde inte ansluta, kolla din internetåtkomst');
       setCounter(counter + 1);
       setTimer(4000);
     }
@@ -159,7 +159,7 @@ return (
             />
           </div>
           <div>
-            <button className="btn-main" onClick={uploadChange}>Submit
+            <button className="btn-main" onClick={uploadChange}>Lägg till
             {loading &&
 							<span className='animate-spin h-5 w-5 ml-3 inline-block'>
 							<FaSpinner/>

@@ -93,20 +93,20 @@ const Register = () => {
         <form className="form-main">
           <div id="hidden-message" />
           <div className="input-wrapper">
-            <label className="label-main" htmlFor="username">Användarnamn</label>
+            <label className="label-main" htmlFor="username">Användarnamn: </label>
             <input required className="input-main" type="text" value={formData.username} name="username" onChange={(e) => handleChange(e)} placeholder="Välj ett användarnamn" />
           </div>
           <div className="input-wrapper">
-            <label className="label-main" htmlFor="email">Email</label>
+            <label className="label-main" htmlFor="email">Email: </label>
             <input required className="input-main" type="text" value={formData.email} name="email" onChange={(e) => handleChange(e)} placeholder="Fyll i din epost" />
           </div>
           <div className="input-wrapper">
-            <label className="label-main" htmlFor="password">Lösenord </label>
+            <label className="label-main" htmlFor="password">Lösenord: </label>
             <input required className="input-main" type="password" value={formData.password} name="password" onChange={(e) => handleChange(e)} placeholder="Välj ett lösenord" />
           </div>
           <div className="input-wrapper">
             <label
-              className="label-main" htmlFor="password2">Bekräfta lösenord</label>
+              className="label-main" htmlFor="password2">Bekräfta lösenord: </label>
             <input required className="input-main" type="password" value={formData.confirmpassword} onChange={(e) => handleChange(e)} name="confirmpassword" placeholder="Bekräfta lösenord" />
           </div>
           <div>

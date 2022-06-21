@@ -22,7 +22,7 @@ const GetBudget = () => {
           setData(fetchresult);
         }
         else {
-          setMessage('Could not retrieve budget data.');
+          setMessage('Kunde inte hämta data');
           setCounter(counter + 1);
           setTimer(4000);
         }
@@ -30,7 +30,7 @@ const GetBudget = () => {
       fetchData();
     }
   catch {
-    setMessage('Check connection to internet.');
+    setMessage('Kunde inte ansluta, kolla din internetåtkomst');
     setCounter(counter + 1);
     setTimer(4000);
   }

@@ -72,13 +72,13 @@ const Budget = () => {
         if (fetchresult !== false) {
           setPosted(true);
           setdisableSubmit(true);
-          DefaultRender("Your budget is saved!");
+          DefaultRender("Din budget är sparad!");
           setCounter(counter + 1);
           setTimer(4000);
         }
       }
       catch {
-        setMessage('Upload failed!');
+        setMessage('Gick ej att spara budget!');
         setCounter(counter + 1);
         setTimer(4000);
       }
@@ -142,7 +142,7 @@ const Budget = () => {
             <input className="input-main" type="number" name="Other" value={catData.Other} onChange={(event) => handleCatChange(event)} />
           </div>
 
-          <button className={disableSubmit ? "btn-disabled" : "btn-main"} id="budgetSumbit" disabled={disableSubmit ? true : false} onClick={uploadBudget}>Submit
+          <button className={disableSubmit ? "btn-disabled" : "btn-main"} id="budgetSumbit" disabled={disableSubmit ? true : false} onClick={uploadBudget}>Lägg till
           {loading &&
 							<span className='animate-spin h-5 w-5 ml-3 inline-block'>
 							<FaSpinner/>

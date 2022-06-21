@@ -30,7 +30,7 @@ const History = () => {
       fetchData();
     }
     catch {
-      setMessage('Can not show history.');
+      setMessage('Kunde inte hämta data');
       setCounter(counter + 1);
       setTimer(4000);
     }

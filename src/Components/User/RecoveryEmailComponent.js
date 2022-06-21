@@ -37,7 +37,7 @@ const RecoverEmail = () => {
         return fetchresult;
       }
     } catch (e) {
-      setMessage("Something went wrong");
+      setMessage("Något gick fel");
       setCounter(counter + 1);
       setTimer(4000);
     }
@@ -51,7 +51,7 @@ const RecoverEmail = () => {
     <div className="container">
     <form className="form-main">
       <div className="input-wrapper">
-        <label className="label-main" htmlFor="Email">Email </label>
+        <label className="label-main" htmlFor="Email">Email: </label>
         <input
         className="input-main"
         type="text"

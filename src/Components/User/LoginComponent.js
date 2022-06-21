@@ -45,12 +45,12 @@ const Login = () => {
         moveToWelcome();
       }
       else {
-        setMessage('Username or password is incorrect.');
+        setMessage('Användarnamn eller lösenord är inkorrekt');
         setCounter(counter + 1);
         setTime(4000);
       }
     } catch (e) {
-      setMessage('Could not log in, check your internet connection');
+      setMessage('Kunde inte ansluta, kolla din internetåtkomst');
       setCounter(counter + 1);
       setTime(4000);
     }
@@ -105,7 +105,7 @@ const Login = () => {
             </NavLink>
 
             <button type='submit' name='login' className="btn-main" onClick={tryLogin}>
-              Login
+              Logga in
               {loading &&
                 <span className='animate-spin h-5 w-5 ml-3 inline-block text-center'>
                   <FaSpinner />
