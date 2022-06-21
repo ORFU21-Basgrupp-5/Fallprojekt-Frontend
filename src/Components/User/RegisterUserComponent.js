@@ -7,6 +7,7 @@ const Register = () => {
   const navigate = useNavigate();
   const [errorMessage, setMessage] = useState("");
   const [counter, setCounter] = useState(0);
+  const [timer, setTimer] = useState(0);
   const [formData, setFormData] = useState({
     username: "",
     email: '',
@@ -15,7 +16,7 @@ const Register = () => {
   })
 
   const handleChange = (e) => {
-    setFormData((prevState) => ({...prevState, [e.target.name]: e.target.value}));
+    setFormData((prevState) => ({ ...prevState, [e.target.name]: e.target.value }));
   }
 
   let handleSubmit = (event) => {
@@ -26,7 +27,7 @@ const Register = () => {
 
   const FetchReg = async () => {
     try {
-      let postData =  {};
+      let postData = {};
       for (const [key, value] of Object.entries(formData)) {
         postData[key] = value;
       }
@@ -34,13 +35,14 @@ const Register = () => {
       const res = await API_Service.PostService('User/register', postData);
       if (res !== false) {
         setMessage("Registrerad. Går till login...");
-        setTimeout(() =>{
+        setTimeout(() => {
           navigate('/login');
         }, 5000);
       }
     } catch (e) {
       setMessage("Username or password incorrect");
       setCounter(counter + 1);
+      setTimer(4000);
     }
   }
 
@@ -51,15 +53,18 @@ const Register = () => {
       if (formData.password !== formData.confirmpassword) {
         setMessage("Lösenorden matchar inte!");
         setCounter(counter + 1);
+        setTimer(4000);
       } else if (CheckPassword(formData.password) === false) {
         setMessage("Ditt lösenord måste ha minst 12 tecken, en gemen, en storbokstav, en siffra och ett special tecken");
         setCounter(counter + 1);
+        setTimer(8000);
       } else {
         FetchReg();
       }
     } else {
       setMessage("Du måste fylla i alla fälten!");
       setCounter(counter + 1);
+      setTimer(4000);
     }
   };
 
@@ -90,15 +95,15 @@ const Register = () => {
             <input required className="input-main" type="password" value={formData.password} name="password" onChange={(e) => handleChange(e)} placeholder="Välj ett lösenord" />
           </div>
           <div className="input-wrapper">
-            <label 
-            className="label-main" htmlFor="password2">Bekräfta lösenord</label>
+            <label
+              className="label-main" htmlFor="password2">Bekräfta lösenord</label>
             <input required className="input-main" type="password" value={formData.confirmpassword} onChange={(e) => handleChange(e)} name="confirmpassword" placeholder="Bekräfta lösenord" />
           </div>
           <div>
-            <input className="btn-main" type="submit" onClick={handleSubmit}/>
+            <input className="btn-main" type="submit" onClick={handleSubmit} />
           </div>
-          
-          <DefaultRender errorMessage={errorMessage} counter={counter}/>
+
+          <DefaultRender errorMessage={errorMessage} counter={counter} timer={timer} />
         </form>
         <div className='label-linkwrap'>
           <p className="label-main">
