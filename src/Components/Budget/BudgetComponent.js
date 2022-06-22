@@ -3,32 +3,20 @@ import { DefaultRender } from '../Services/messageHandler.js';
 import API_Service from '../../API/API_Service.js';
 import { FaSpinner } from 'react-icons/fa';
 
-
 const Budget = () => {
-  const [loading, setLoading] = useState(false);
-  const [errorMessage, setMessage] = useState("");
-  const [counter, setCounter] = useState(0);
-  const [timer, setTimer] = useState(0);
-  const [data, setData] = useState({
-    name: '',
-    totalSum: 0,
-    date: '',
-    month: '',
-    year: '',
-    categoriesAndAmount: {}
-  })
-  const [catData, setCatData] = useState({
-    Food: 0,
-    Car: 0,
-    Subscriptions: 0,
-    Clothes: 0,
-    Treat: 0,
-    Other: 0,
-  })
-  const [posted, setPosted] = useState(false);
-  const [validated, setValidated] = useState(false);
-  const [disableSubmit, setdisableSubmit] = useState(true);
-  const [sumLeft, setSumLeft] = useState();
+	const initialData = { name: '', totalSum: 0, date: '', month: '', year: '', categoriesAndAmount: {} };
+	const initialCatData = { Food: 0, Car: 0, Subscriptions: 0, Clothes: 0, Treat: 0, Other: 0 };
+	const [loading, setLoading] = useState(false);
+	const [errorMessage, setMessage] = useState('');
+	const [counter, setCounter] = useState(0);
+	const [timer, setTimer] = useState(0);
+	const [data, setData] = useState(initialData);
+	const [catData, setCatData] = useState(initialCatData);
+
+	const [posted, setPosted] = useState(false);
+	const [validated, setValidated] = useState(false);
+	const [disableSubmit, setdisableSubmit] = useState(true);
+	const [sumLeft, setSumLeft] = useState();
 
 	useEffect(() => {
 		const catSum = Object.values(catData)
@@ -42,12 +30,12 @@ const Budget = () => {
 			setValidated(false);
 			setdisableSubmit(true);
 		} else if (sumLeft === 0) {
-			if (posted === false) {
+			if (posted === false && data.date != '') {
 				setdisableSubmit(false);
 				setValidated(true);
 			}
 		}
-	}, [catData, data.totalSum, sumLeft, posted]);
+	}, [catData, data.totalSum,data.date ,sumLeft, posted]);
 	const handleFormChange = (e) => {
 		setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 	};
@@ -61,6 +49,7 @@ const Budget = () => {
 	const uploadBudget = async (e) => {
 		if (validated) {
 			try {
+				setLoading(true);
 				let postData = data;
 				postData['month'] = new Date(postData.date).getMonth();
 				postData['year'] = new Date(postData.date).getFullYear();
@@ -72,10 +61,14 @@ const Budget = () => {
 					setdisableSubmit(true);
 					setMessage('Din budget är nu sparad!');
 					setCounter(counter + 1);
+					setData(initialData);
+					setCatData(initialCatData);
 				}
 			} catch {
 				setMessage('Sparning misslyckades');
 				setCounter(counter + 1);
+			} finally {
+				setLoading(false);
 			}
 		}
 	};
@@ -83,6 +76,11 @@ const Budget = () => {
 	return (
 		<div className='container'>
 			<h1 className='text-white mb-10'>Skapa en ny Budget</h1>
+			{loading ?? (
+				<span className='animate-spin inline-block text-center'>
+					<FaSpinner />
+				</span>
+			)}
 			<div id='budgetForm'>
 				<form id='form1' className='form-main' onSubmit={handleSubmit}>
 					<div className='input-wrapper'>
@@ -100,7 +98,7 @@ const Budget = () => {
 					</div>
 					<div className='input-wrapper'>
 						<label className='label-main' htmlFor='totalSum'>
-            Total belopp:
+							Total belopp:
 						</label>
 						<input
 							className='input-main'
@@ -129,7 +127,7 @@ const Budget = () => {
 					</div>
 					<div className='input-wrapper'>
 						<label className='label-main' htmlFor=''>
-            Kategorier:
+							Kategorier:
 						</label>
 					</div>
 					<div className='input-wrapper'>
@@ -211,7 +209,12 @@ const Budget = () => {
 						disabled={disableSubmit ? true : false}
 						onClick={uploadBudget}
 					>
-						Spara
+						{disableSubmit ? <p>Belopp kvar: {sumLeft}</p> : 'Spara'}
+						{loading && (
+							<span className='animate-spin inline-block text-center'>
+								<FaSpinner />
+							</span>
+						)}
 					</button>
 				</form>
 			</div>

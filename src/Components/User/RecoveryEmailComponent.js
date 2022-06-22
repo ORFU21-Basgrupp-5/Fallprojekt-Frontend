@@ -61,10 +61,10 @@ const RecoverEmail = () => {
         onChange={handleChange}
         />
       </div>
-      <button className="btn-main" onClick={sendEmail}>Bekräfta
+      <button className="btn-main" onClick={sendEmail}>	{!loading && 'Bekräfta'}
       {loading &&
-							<span className='animate-spin h-5 w-5 ml-3 inline-block'>
-							<FaSpinner/>
+								<span className='animate-spin inline-block text-center'>
+								<FaSpinner />
 							</span>}</button>
       <div id="SentOrNotDiv"></div>
       <DefaultRender errorMessage={errorMessage} counter={counter} />

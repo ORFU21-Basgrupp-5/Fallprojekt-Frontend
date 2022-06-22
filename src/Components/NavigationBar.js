@@ -39,7 +39,7 @@ const NavigationBar = () => {
 					Visa Budget
 				</NavLink>
 
-				<NavLink to='/' onClick={forceLogout} className='menu-login-btn'>
+				<NavLink to='/' onClick={forceLogout} className='menu-btn'>
 					Logga ut
 				</NavLink>
 			</div>

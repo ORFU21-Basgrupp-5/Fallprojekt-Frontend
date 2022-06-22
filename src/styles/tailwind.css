@@ -40,7 +40,7 @@
     }
     
     .menu-wrapper {
-        @apply container bg-white rounded-md bg-opacity-80 dark:bg-opacity-0 p-3 mx-auto mt-10 mb-10 flex-wrap flex flex-row gap-10 items-baseline max-w-5xl;
+        @apply container bg-white rounded-md bg-opacity-80 dark:bg-opacity-0 p-3 mx-auto mt-10 mb-10 flex-wrap flex flex-row gap-8 items-baseline max-w-5xl;
     }
     .mainLogo {
         @apply dark:text-white  text-2xl font-semibold mr-24  ;
@@ -65,7 +65,7 @@
         @apply px-6 py-2.5 rounded-md ripple-bg-purple-600 dark:ripple-bg-blue-900 dark:text-white focus:underline active:underline  hover:scale-105;
     }
     .btn-disabled {
-        @apply bg-pink-400 opacity-30 dark:text-white font-bold py-2 px-4 rounded focus:outline-none; focus:shadow-outline;
+        @apply bg-pink-400 dark:bg-blue-400 opacity-30 dark:text-white font-bold py-2 px-4 rounded focus:outline-none; focus:shadow-outline;
     }
     .input-wrapper {
         @apply mb-6;

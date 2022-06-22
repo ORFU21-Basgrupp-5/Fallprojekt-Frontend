@@ -22,7 +22,7 @@ const API_Service = {
         window.location.reload();
       } else {
         const message = "Error with Status Code: " + result.status;
-        throw new Error(message);
+        return false;
       }
     }
     catch (e) {
@@ -75,20 +75,22 @@ const API_Service = {
     try {
       const result = await fetch(`http://localhost:7151/api/${endpoint}`, settings);
 
-      if (result.ok) {
-        const data = await result.json();
-        console.log(data);
-        return data;
+      if (result.status === 200) {
+        const data = await result.json()
+        if(data != null){
+          return data;
+        }
+        return true;
       } else if (result.status === 401) {
         window.location.reload();
-      } else {
-        const message = "Error with Status Code: " + result.status;
-        console.log(message);
+      } else if (result.status === 400){
         return false;
       }
     }
     catch (e) {
-      console.log(e);
+      console.log('e');
+      return false;
+      
     }
   },
   async PutService(endpoint, body) {
