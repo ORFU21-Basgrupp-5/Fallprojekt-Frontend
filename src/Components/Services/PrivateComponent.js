@@ -5,9 +5,8 @@ import { useAuth } from "./AuthProvider";
 const PrivateOutlet = () => {
   const { loginStatus } = useAuth();
   const { pathname } = useLocation();
-  console.log({ pathname });
 
-  return loginStatus ? (
+  return loginStatus.status ? (
     <Outlet />
   ) : (
     <Navigate to="/login" state={{ from: pathname }} replace />

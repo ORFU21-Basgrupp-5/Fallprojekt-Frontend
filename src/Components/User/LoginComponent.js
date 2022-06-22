@@ -8,126 +8,130 @@ import { useAuth } from '../Services/AuthProvider.js';
 import { FaSpinner } from 'react-icons/fa';
 //first we create a "view" that is the html code we want to display
 
-
 const Login = () => {
-  const [loading, setLoading] = useState(false);
-  const [errorMessage, setMessage] = useState("");
-  const [counter, setCounter] = useState(0);
-  const [time, setTime] = useState(0);
-  const { loginStatus, setLoginStatus } = useAuth();
-  const { state } = useLocation();
-  const previousPath = state?.from ? state.from : '/';
-  const navigate = useNavigate();
-  const [inputFields, setInputFields] = useState({
-    userName: '',
-    password: '',
-  });
-  const moveToWelcome = () => {
-    navigate('/welcome');
-  };
+	const [loading, setLoading] = useState(false);
+	const [time, setTime] = useState(0);
+	const [errorMessage, setMessage] = useState('');
+	const [counter, setCounter] = useState(0);
+	const { loginStatus, setLoginStatus } = useAuth();
+	const { state } = useLocation();
+	const previousPath = state?.from ? state.from : '/';
+	const navigate = useNavigate();
 
-  const handleFormChange = (e) => {
-    setInputFields((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+	const [inputFields, setInputFields] = useState({
+		userName: '',
+		password: '',
+	});
+	const moveToWelcome = () => {
+		navigate('/welcome');
+	};
 
-  let handleSubmit = (event) => {
-    event.preventDefault();
-  };
-  const tryLogin = async (e) => {
-    e.preventDefault();
-    const post = inputFields;
-    try {
-      setLoading(true);
-      const fetchresult = await API_Service.PostService('User/login', post);
-      if (fetchresult !== false) {
-        CreateLoginToken(fetchresult);
-        setLoginStatus(true);
-        moveToWelcome();
-      }
-      else {
-        setMessage('Användarnamn eller lösenord är inkorrekt');
-        setCounter(counter + 1);
-        setTime(4000);
-      }
-    } catch (e) {
-      setMessage('Kunde inte ansluta, kolla din internetåtkomst');
-      setCounter(counter + 1);
-      setTime(4000);
-    }
-    finally {
-      setLoading(false)
-    }
+	const handleFormChange = (e) => {
+		setInputFields((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+	};
 
-    function CreateLoginToken(data) {
-      let token = data.token;
-      let user = data.user;
-      let expires = new Date(Date.now() + 86400 * 1000).toUTCString();
+	let handleSubmit = (event) => {
+		event.preventDefault();
+	};
+	const tryLogin = async (e) => {
+		e.preventDefault();
+		const post = inputFields;
+		try {
+			setLoading(true);
+			const fetchresult = await API_Service.PostService('User/login', post);
+			if (fetchresult !== false) {
+				CreateLoginToken(fetchresult);
+				setLoginStatus({ status: true, user: fetchresult.user });
+				moveToWelcome();
+			} else {
+				setMessage('Användarnamn eller lösenord är inkorrekt');
+				setCounter(counter + 1);
+				setTime(4000);
+			}
+		} catch (e) {
+			setMessage('Kunde inte ansluta, kolla din internetåtkomst');
+			setCounter(counter + 1);
+			setTime(4000);
+		} finally {
+			setLoading(false);
+		}
 
-      document.cookie = `token=${token};user=${user};expires=${expires + 86400};path=/;`;
-    }
-  };
-  return loginStatus ? (
-    <Navigate to={previousPath} />
-  ) : (
-    <div className='container'>
-      <div id='login'>
+		function CreateLoginToken(data) {
+			let token = data.token;
+			let user = data.user;
+			let expires = new Date(Date.now() + 86400 * 1000).toUTCString();
 
-        <form id='form1' className="form-main" onSubmit={handleSubmit}>
-          <div id='uname' className='input-wrapper'>
-            <label className="label-main" htmlFor='username'>Användarnamn </label>
+			document.cookie = `token=${token};user=${user};expires=${expires + 86400};path=/;`;
+		}
+	};
+	return loginStatus.status ? (
+		<Navigate to={previousPath} />
+	) : (
+		<>
+			<h1 className='dark:text-white mb-10'>Loga in</h1>
 
-            <input
-              className="input-main"
-              type='text'
-              name='userName'
-              placeholder='Fyll i ditt användarnamn'
-              value={inputFields.userName}
-              onChange={(event) => handleFormChange(event)}
-            />
-          </div>
+			<form id='form1' className='form-main' onSubmit={handleSubmit}>
+				<div id='uname' className='input-wrapper'>
+					<label className='label-main' htmlFor='username'>
+						Användarnamn:{' '}
+					</label>
 
-          <div id='pswrd' className="input-wrapper">
-            <label className="label-main" htmlFor='password'>Lösenord </label>
+					<input
+						className='input-main'
+						type='text'
+						name='userName'
+						placeholder='Fyll i ditt användarnamn'
+						value={inputFields.userName}
+						onChange={(event) => handleFormChange(event)}
+					/>
+				</div>
 
-            <input
-              className="input-main"
-              type='password'
-              name='password'
-              placeholder='Fyll i ditt lösenord'
-              value={inputFields.password}
-              onChange={(event) => handleFormChange(event)}
-            />
-          </div>
+				<div id='pswrd' className='input-wrapper'>
+					<label className='label-main' htmlFor='password'>
+						Lösenord{' '}
+					</label>
 
-          <div id='recover' className="flex items-center justify-between">
-            <NavLink to='/recover' id='recover-btn' className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
-              Glömt lösenordet?
-            </NavLink>
+					<input
+						className='input-main'
+						type='password'
+						name='password'
+						placeholder='Fyll i ditt lösenord'
+						value={inputFields.password}
+						onChange={(event) => handleFormChange(event)}
+					/>
+				</div>
 
-            <button type='submit' name='login' className="btn-main" onClick={tryLogin}>
-              Logga in
-              {loading &&
-                <span className='animate-spin h-5 w-5 ml-3 inline-block text-center'>
-                  <FaSpinner />
-                </span>
-              }
-            </button>
+				<div id='recover' className='flex items-center justify-between'>
+					<NavLink
+						to='/recover'
+						id='recover-btn'
+						className='inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800'
+					>
+						Glömt lösenordet?
+					</NavLink>
 
-          </div>
+					<button type='submit' name='login' className='menu-reg-btn' onClick={tryLogin}>
+						{!loading && 'Login'}
+						{loading && (
+							<span className='animate-spin inline-block text-center'>
+								<FaSpinner />
+							</span>
+						)}
+					</button>
+				</div>
+			</form>
 
-          <DefaultRender errorMessage={errorMessage} counter={counter} time={time} />
-        </form>
-        <div className='label-linkwrap'>
-          <p className="label-main">
-            Saknar du ett konto? {' '}
-            <NavLink className="menu-textlink" to='/registeruser' id='reglink'>
-              Skapa konto
-            </NavLink>
-          </p>
-        </div>
-      </div>
-    </div>
-  );
+			<div className='label-linkwrap'>
+				<p className='label-main'>
+					Saknar du ett konto?{' '}
+					<NavLink className='menu-textlink' to='/registeruser' id='reglink'>
+						Skapa konto
+					</NavLink>
+				</p>
+			</div>
+			<DefaultRender errorMessage={errorMessage} counter={counter} />
+		</>
+	);
 };
 
 //we export this page so that app.js can call on it when the route is correct aka /login

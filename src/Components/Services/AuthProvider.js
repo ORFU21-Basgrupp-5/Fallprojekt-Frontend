@@ -1,23 +1,13 @@
-import { createContext, useContext,useEffect, useState } from "react";
-import { DeleteCookie } from "./cookie";
+import { createContext, useContext, useState } from 'react';
 const AuthContext = createContext();
 
 // context that we can use from anypage, if this is true, private routing
-// becomes active. 
+// becomes active.
 // you can set this state on anypage, so if you want user to get logedout set this to false.
 const AuthProvider = ({ children }) => {
-  const [loginStatus, setLoginStatus] = useState(false);
-  useEffect(() => {
-   if(loginStatus === false)
-   DeleteCookie('token');
-  }, [loginStatus]);
+	const [loginStatus, setLoginStatus] = useState({ status: false, user: '' });
 
-
-  return (
-    <AuthContext.Provider value={{ loginStatus, setLoginStatus }}>
-      {children}
-    </AuthContext.Provider>
-  );
+	return <AuthContext.Provider value={{ loginStatus, setLoginStatus }}>{children}</AuthContext.Provider>;
 };
 
 export default AuthProvider;
