@@ -40,10 +40,10 @@
     }
     
     .menu-wrapper {
-        @apply container bg-white rounded-md bg-opacity-80 dark:bg-opacity-0 p-3 mx-auto mt-10 mb-10 flex-wrap flex flex-row gap-8 items-baseline max-w-5xl;
+        @apply container bg-white rounded-md bg-opacity-80 dark:bg-opacity-0  mx-auto mt-10  flex-wrap flex flex-row gap-8 items-center max-w-5xl;
     }
     .mainLogo {
-        @apply dark:text-white  text-2xl font-semibold mr-24  ;
+        @apply dark:text-white  text-2xl font-semibold mr-24 p-5  ;
     }
     
     .menu-btn {
@@ -53,16 +53,16 @@
         @apply   dark:text-white focus:underline active:underline  hover:scale-105 ml-auto;
     }
     .menu-reg-btn {
-        @apply px-6 py-2.5 rounded-md ripple-bg-pink-300 dark:ripple-bg-blue-900 dark:text-white focus:underline active:underline  hover:scale-105;
+        @apply px-6 py-2.5 rounded-md ripple-bg-pink-300 dark:ripple-bg-blue-900 dark:text-white focus:underline active:underline  hover:scale-105 mr-5;
     }
     .menu-sub-btn {
         @apply px-3 py-2.5 rounded-md dark:ripple-bg-slate-800 ripple-bg-pink-300 dark:text-white text-sm hover:scale-105;
     }
-    .menu-textlink{
+    .menu-textlink{ 
         @apply hover:text-pink-800
     }
     .btn-main{
-        @apply px-6 py-2.5 rounded-md ripple-bg-purple-600 dark:ripple-bg-blue-900 dark:text-white focus:underline active:underline  hover:scale-105;
+        @apply px-6 py-2.5 rounded-md ripple-bg-pink-300 dark:ripple-bg-blue-900 dark:text-white focus:underline active:underline  hover:scale-105;
     }
     .btn-disabled {
         @apply bg-pink-400 dark:bg-blue-400 opacity-30 dark:text-white font-bold py-2 px-4 rounded focus:outline-none; focus:shadow-outline;
@@ -74,13 +74,13 @@
         @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-teal-600 focus:bg-blue-600 focus:text-white;
     }
     .form-main {
-        @apply dark:bg-white dark:bg-opacity-5 shadow-md rounded px-8 pt-6 pb-8 mb-4 dark:text-white max-w-2xl container mx-auto;
+        @apply dark:bg-white dark:bg-opacity-5 bg-white rounded-md bg-opacity-80 shadow-md rounded px-8 pt-6 pb-8 mb-4 dark:text-white max-w-2xl container mx-auto;
     }
     .table-main {
-        @apply dark:bg-opacity-5 dark:text-white container mx-auto table-auto dark:bg-white mt-10 shadow-md rounded px-8 pt-6 pb-8 mb-4;
+        @apply dark:bg-opacity-5 dark:text-white bg-white rounded-md bg-opacity-80   container mx-auto table-auto dark:bg-white mt-10 shadow-md rounded px-8 pt-6 pb-8 mb-4;
     }
     .table-header {
-        @apply text-sm font-medium dark:text-white px-6 py-4 text-left
+        @apply text-sm font-medium dark:bg-opacity-5 dark:text-white bg-white rounded-md bg-opacity-80 px-6 py-4 text-left
     }
     .table-row{
         @apply border-b border-slate-400 ;

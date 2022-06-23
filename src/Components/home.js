@@ -29,14 +29,17 @@ const Home = () => {
                
 
                 return (
-                <div className='container mx-auto mb-40 mt-10 text-center dark:text-white'>
-					<h1 className='text-5xl mb-5'>
+					
+                <div className='container mx-auto p-5 max-w-2xl mb-40 mt-10 text-center dark:bg-opacity-5 dark:text-white bg-white rounded-md bg-opacity-80'>
+					
+					<h1 className='text-5xl mb-5 '>
 						Welcome <br />
 						{loginStatus.user}
 					</h1>
 					<p className="mb-10 mt-10">{data.quote}</p>
                                         <p>Author:  {data.author}</p>
-				</div>)
+				</div>
+				)
 	} else {
 		return (
 			<>
